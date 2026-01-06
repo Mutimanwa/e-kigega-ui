@@ -1,15 +1,17 @@
-    <!-- leftbar-tab-menu -->
+
+   <!-- leftbar-tab-menu -->
     <div class="startbar d-print-none">
         <!--start brand-->
         <div class="brand">
-            <a href="index.html" class="logo">
+            <a href="index.php" class="logo">
                 <!-- <span>
-                    <img src="assets/images/logo-sm.png" alt="logo-small" class="logo-sm" />
+                    <img src="<?= IMAGES_URL ?>logos/logo.png" alt="logo-small" class="logo-sm" />
                 </span>
-                <span class="">
-                    <img src="assets/images/logo-light.png" alt="logo-large" class="logo-lg logo-light" />
-                    <img src="assets/images/logo-dark.png" alt="logo-large" class="logo-lg logo-dark" />
+                <span class="bg-light d-none d-lg-inline-block border rounded-circle ovverflow-hidden">
+                    <img src="<?= IMAGES_URL ?>logos/logo.png" height="50" alt="logo-large" class="" />
+                    <img src="<?= IMAGES_URL ?>logos/logo.png" alt="logo-large" class="logo-lg logo-dark" />
                 </span> -->
+             
             </a>
         </div>
         <!--end brand-->
@@ -24,14 +26,14 @@
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="index.html">
+                            <a class="nav-link" href="index.php">
                                 <i class="iconoir-report-columns menu-icon"></i>
                                 <span>Dashboard</span>
                             </a>
                         </li>
                         <!--end nav-item-->
                         <li class="nav-item">
-                            <a class="nav-link" href="payment.html">
+                            <a class="nav-link" href="produits/">
                                 <i class="iconoir-box menu-icon"></i>
                                 <span>Gestion de produits</span>
                             </a>
@@ -39,7 +41,7 @@
                     
                         <!--end nav-item-->
                         <li class="nav-item">
-                            <a class="nav-link" href="cards.html">
+                            <a class="nav-link" href="depenses/">
                                <i class="iconoir-wallet menu-icon"></i>
                                 <span>Gestion des Depenses</span>
                                 <!-- <span class="badge text-bg-pink ms-auto">03</span> -->
@@ -47,7 +49,7 @@
                         </li>
                         <!--end nav-item-->
                         <li class="nav-item">
-                            <a class="nav-link" href="taxes.html">
+                            <a class="nav-link" href="clients/">
                                 <i class="iconoir-user-square menu-icon"></i>
                                 <span>Gestion des clients</span>
                                
@@ -55,14 +57,14 @@
                         </li>
                          <!--end nav-item-->
                         <li class="nav-item">
-                            <a class="nav-link" href="cards.html">
+                            <a class="nav-link" href="ventes">
                                 <i class="iconoir-shopping-bag menu-icon"></i>
                                 <span>Gestion des Ventes</span>
                             </a>
                         </li>
                         <!--end nav-item-->
                         <li class="nav-item">
-                            <a class="nav-link" href="cards.html">
+                            <a class="nav-link" href="stock/">
                                <i class="iconoir-database menu-icon"></i>
 
                                 <span>Gestion de stock</span>
@@ -70,9 +72,6 @@
                             </a>
                         </li>
                         
-                     
-
-                    
                         <!--end nav-item-->
                         <li class="nav-item">
                             <a class="nav-link" href="#">
@@ -92,7 +91,7 @@
                         </li>
                          <!--end nav-item-->
                         <li class="nav-item">
-                            <a class="nav-link" href="users.html">
+                            <a class="nav-link" href="utilisateurs/">
                                 <i class="iconoir-user-circle menu-icon"></i>
 
                                 <span>Utilisateurs</span>
@@ -107,7 +106,7 @@
                         <div
                             class="d-flex justify-content-center bg-light align-items-center thumb-xxl update-icon-box rounded-circle mx-auto">
                             <!-- <i class="iconoir-peace-hand h3 align-self-center mb-0 text-primary"></i> -->
-                            <img src="assets/images/logos/logo.png" alt="" class="" height="130" />
+                            <img src="<?= IMAGES_URL ?>logos/logo.png" alt="" class="" height="130" />
                         </div>
                         <h5 class="mt-3">
                             Today's <span class="text-white">$2450.00</span>

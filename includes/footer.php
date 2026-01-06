@@ -15,7 +15,7 @@
                                         <span class="text-muted d-none d-sm-inline-block float-end">
                                             Design with
                                             <i class="iconoir-heart-solid text-danger align-middle"></i>
-                                            by Mannatthemes</span>
+                                            by Plc lab</span>
                                     </p>
                                 </div>
                             </div>
@@ -33,14 +33,14 @@
     <!-- Javascript  -->
     <!-- vendor js -->
 
-    <script src="assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/libs/simplebar/simplebar.min.js"></script>
+    <script src="<?= LIBS_URL ?>bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="<?= LIBS_URL ?>simplebar/simplebar.min.js"></script>
 
-    <script src="assets/libs/apexcharts/apexcharts.min.js"></script>
+    <script src="<?= LIBS_URL ?>apexcharts/apexcharts.min.js"></script>
     <script src="https://apexcharts.com/samples/assets/stock-prices.js"></script>
-    <script src="assets/js/pages/index.init.js"></script>
-    <script src="assets/js/DynamicSelect.js"></script>
-    <script src="assets/js/app.js"></script>
+    <script src="<?= JS_URL ?>pages/index.init.js"></script>
+    <script src="<?= JS_URL ?>DynamicSelect.js"></script>
+    <script src="<?= JS_URL ?>app.js"></script>
 </body>
 <!--end body-->
 

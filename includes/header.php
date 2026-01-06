@@ -1,3 +1,30 @@
+<?php include_once __DIR__ . "/../config/constantes.php" ; ?>
+<!DOCTYPE html>
+<html lang="fr" dir="ltr" data-startbar="dark" data-bs-theme="light">
+
+<head>
+    <meta charset="utf-8" />
+    <title>E-Kigega</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta content="Platefome de gestion finaciere permettant d'accompagner les utilisateurs de la recolte a la commercilisation" name="description" />
+    <meta content="" name="author" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="<?= IMAGES_URL ?>logos/ekigega-logo.png"/>
+
+    <!-- App css -->
+    <link href="<?= CSS_URL ?>bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="<?= CSS_URL ?>icons.min.css" rel="stylesheet" type="text/css" />
+    <link href="<?= CSS_URL ?>app.min.css" rel="stylesheet" type="text/css" />
+    <!-- App css -->
+    <link href="<?= CSS_URL ?>bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="<?= CSS_URL ?>icons.min.css" rel="stylesheet" type="text/css" />
+    <link href="<?= CSS_URL ?>app.min.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
     <!-- Top Bar Start -->
     <div class="topbar d-print-none">
         <div class="container-fluid">
@@ -20,11 +47,11 @@
                     <li class="dropdown">
                         <a class="nav-link dropdown-toggle arrow-none nav-icon" data-bs-toggle="dropdown" href="#" role="button"
                         aria-haspopup="false" aria-expanded="false" data-bs-offset="0,19">
-                        <img src="assets/images/flags/french_flag.jpg" alt="" class="thumb-sm rounded-circle">
+                        <img src="<?= IMAGES_URL ?>flags/french_flag.jpg" alt="" class="thumb-sm rounded-circle">
                         </a>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href="#"><img src="assets/images/flags/french_flag.jpg" alt="" height="15" class="me-2">Français</a>
-                            <a class="dropdown-item" href="#"><img src="assets/images/flags/burundi-flag.png" alt="" height="15" class="me-2">Kirundi</a>
+                            <a class="dropdown-item" href="#"><img src="<?= IMAGES_URL ?>flags/french_flag.jpg" alt="" height="15" class="me-2">Français</a>
+                            <a class="dropdown-item" href="#"><img src="<?= IMAGES_URL ?>flags/burundi-flag.png" alt="" height="15" class="me-2">Kirundi</a>
                         </div>
                     </li>
                     <!--end topbar-language-->
@@ -278,12 +305,12 @@
                     <li class="dropdown topbar-item">
                         <a class="nav-link dropdown-toggle arrow-none nav-icon" data-bs-toggle="dropdown" href="#"
                             role="button" aria-haspopup="false" aria-expanded="false" data-bs-offset="0,19">
-                            <img src="assets/images/users/avatar-1.jpg" alt="" class="thumb-md rounded-circle" />
+                            <img src="<?= IMAGES_URL ?>users/avatar-1.jpg" alt="" class="thumb-md rounded-circle" />
                         </a>
                         <div class="dropdown-menu dropdown-menu-end py-0">
                             <div class="d-flex align-items-center dropdown-item py-2 bg-secondary-subtle">
                                 <div class="flex-shrink-0">
-                                    <img src="assets/images/users/avatar-1.jpg" alt=""
+                                    <img src="<?= IMAGES_URL ?>users/avatar-1.jpg" alt=""
                                         class="thumb-md rounded-circle" />
                                 </div>
                                 <div class="flex-grow-1 ms-2 text-truncate align-self-center">
