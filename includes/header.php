@@ -1,4 +1,6 @@
-<?php include_once __DIR__ . "/../config/constantes.php" ; ?>
+<?php include_once __DIR__ . "/../config/constantes.php" ;
+      include_once __DIR__ . "/../includes/functions.php";
+ ?>
 <!DOCTYPE html>
 <html lang="fr" dir="ltr" data-startbar="dark" data-bs-theme="light">
 

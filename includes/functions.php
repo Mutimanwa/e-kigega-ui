@@ -51,3 +51,13 @@ function formatTime($time){
 function formatPrix($pricx){
     return number_format($pricx,2,".",",");
 }
+
+/**
+ * fonction pour vérifier si une route est active
+ * @param string $path
+ * @return string
+ */
+function isActive(string $path): string {
+    $current = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
+    return str_contains($current, trim($path, '/')) ? 'active' : '';
+}

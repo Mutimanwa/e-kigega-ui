@@ -3,10 +3,7 @@ include "./../../../includes/header.php";
 
 include "./../../../includes/sidebar.php";
 ?>
-
-
-
-    <div class="page-wrapper">
+<div class="page-wrapper">
 
         <!-- Page Content-->
         <div class="page-content">
@@ -93,11 +90,9 @@ include "./../../../includes/sidebar.php";
             
        
 
-            <!--end footer-->
-        </div>
-        <!-- end page content -->
-    </div>
-    <!-- end page-wrapper -->
+<?php
+include "./../../../includes/footer.php";
+?>
    
 
 <!-- Popup Ajouter -->
@@ -204,6 +199,4 @@ include "./../../../includes/sidebar.php";
   </div>
 </div>
 
-<?php
-include "./../../../includes/footer.php";
-?>
+
