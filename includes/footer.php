@@ -11,12 +11,10 @@
                                         <script>
                                             document.write(new Date().getFullYear());
                                         </script>
-                                        Approx
-                                        <span class="text-muted d-none d-sm-inline-block float-end">
-                                            Design with
-                                            <i class="iconoir-heart-solid text-danger align-middle"></i>
-                                            by Plc lab</span>
-                                    </p>
+                                                                   E-Kigega
+                    <span class="text-muted d-none d-sm-inline-block float-end">
+                        Made by PLC Lab
+                    </span>
                                 </div>
                             </div>
                         </div>
