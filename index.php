@@ -68,7 +68,7 @@
                                                 </div>
                                             </div><!--end col-->
                                             <div class="col-sm-6 text-end">
-                                                <a href="recover-pw.php" class="text-muted font-13"><i
+                                                <a href="./public/recover-pw.php" class="text-muted font-13"><i
                                                         class="dripicons-lock"></i> Forgot password?</a>
                                             </div><!--end col-->
                                         </div><!--end form-group-->
@@ -83,7 +83,7 @@
                                         </div> <!--end form-group-->
                                     </form><!--end form-->
                                     <div class="text-center  mb-2">
-                                        <p class="text-muted">Don't have an account ? <a href="register.php"
+                                        <p class="text-muted">Don't have an account ? <a href="./public/register.php"
                                                 class="text-warning ms-2">Free Resister</a></p>
                                         <!-- <h6 class="px-3 d-inline-block">Or Login With</h6> -->
                                     </div>

@@ -84,7 +84,7 @@
                                         </div> <!--end form-group-->                           
                                     </form><!--end form-->
                                     <div class="text-center">
-                                        <p class="text-muted">Already have an account ?  <a href="login.php" class="text-warning ms-2">Log in</a></p>
+                                        <p class="text-muted">Already have an account ?  <a href="./../index.php" class="text-warning ms-2">Log in</a></p>
                                     </div>
                                 </div><!--end card-body-->
                             </div><!--end card-->
