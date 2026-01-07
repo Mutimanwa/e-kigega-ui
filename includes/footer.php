@@ -12,7 +12,7 @@
                                         © <?php echo date('Y'); ?> © <?php echo APP_NAME; ?> v<?php echo APP_VERSION; ?>
                                         <span class="text-muted d-none d-sm-inline-block float-end">
                                             Développé avec
-                                            <i class="iconoir-heart-solid  align-middle " style="color: #9b9999ff;"></i>
+                                            <i class="iconoir-heart-solid  align-middle " style="color: #f86767ff;"></i>
                                             par Plc lab</span>
                                     </p>
                                 </div>
@@ -25,19 +25,28 @@
     </div>
     <!-- End Page Wrapper -->
     
-    <!-- JavaScript Libraries -->
+    <!-- Scripts globaux -->
     <script src="<?= LIBS_URL ?>bootstrap/js/bootstrap.bundle.min.js"></script>
-     <script src="<?= LIBS_URL ?>simplebar/simplebar.min.js"></script>
+    <script src="<?= LIBS_URL ?>simplebar/simplebar.min.js"></script>
     <script src="<?= JS_URL ?>app.js"></script>
-    
-    <!-- Scripts spécifiques aux pages -->
+
     <?php
-    // Charger automatiquement les scripts spécifiques à la page
-    $current_script = basename($_SERVER['PHP_SELF']);
-    $script_path = JS_URL . 'pages/' . str_replace('.php', '.js', $current_script);
-    if (file_exists(ASSETS_PATH . 'js/pages/' . str_replace('.php', '.js', $current_script))) {
-        echo '<script src="' . $script_path . '"></script>';
+    // Auto-chargement du script spécifique à la page
+    $currentPage = basename($_SERVER['PHP_SELF'], '.php');
+    $pageScriptFile = ASSETS_PATH . "js/pages/{$currentPage}.js";
+    $pageScriptUrl  = JS_URL . "pages/{$currentPage}.js";
+
+    if (file_exists($pageScriptFile)) {
+        echo '<script src="' . $pageScriptUrl . '"></script>';
+    }
+
+    // Chargement des librairies spécifiques à la page
+    if (isset($pageLibs) && is_array($pageLibs)) {
+        foreach ($pageLibs as $libUrl) {
+            echo '<script src="' . $libUrl . '"></script>';
+        }
     }
     ?>
+
 </body>
 </html>

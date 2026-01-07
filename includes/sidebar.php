@@ -45,6 +45,6 @@ require_once 'menu_functions.php';
     <!--end startbar-menu-->
 </div>
 
-<!--end startbar-->
-<div class="startbar-overlay d-print-none"></div>
-<!-- end leftbar-tab-menu-->
+    <!--end startbar-->
+    <div class="startbar-overlay d-print-none"></div>
+    <!-- end leftbar-tab-menu-->

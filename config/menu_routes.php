@@ -7,7 +7,7 @@ $menu_structure = [
         'dashboard' => [
             'title' => 'Tableau de bord',
             'icon' => 'iconoir-report-columns',
-            'path' => '/index.php',
+            'path' => '/public/admin/index.php',
             'active' => ['index.php'],
             'permission' => 'admin'
         ],
@@ -81,16 +81,18 @@ $menu_structure = [
         ],
         'rapports' => [
             'title' => 'Rapports',
-            'icon' => 'iconoir-chart-line',
+            'icon' => 'iconoir-stats-report',
             'path' => '/public/admin/rapports/',
             'active' => ['rapports', 'rapports.php', 'rapports/'],
             'permission' => 'admin'
         ],
         'ai' => [
-            'title' => 'Intelligence Artificielle',
-            'icon' => 'iconoir-robot',
-            'path' => '/public/admin/ai/',
+            'title' => 'Outils AI',
+            'icon' => 'iconoir-spark',
+            'path' => '#',
             'active' => ['ai', 'ai.php', 'ai/'],
+            'badge' => 'coming soon',
+            'badge_class' => 'text-bg-blue',
             'permission' => 'admin'
         ],
         'utilisateurs' => [
@@ -115,7 +117,7 @@ $menu_structure = [
         'dashboard' => [
             'title' => 'Tableau de bord',
             'icon' => 'iconoir-report-columns',
-            'path' => '/index.php',
+            'path' => '/public/comptable/index.php',
             'active' => ['index.php'],
             'permission' => 'comptable'
         ],
@@ -179,7 +181,7 @@ $menu_structure = [
         'dashboard' => [
             'title' => 'Tableau de bord',
             'icon' => 'iconoir-report-columns',
-            'path' => '/index.php',
+            'path' => '/public/responsable/index.php',
             'active' => ['index.php'],
             'permission' => 'responsable'
         ],
