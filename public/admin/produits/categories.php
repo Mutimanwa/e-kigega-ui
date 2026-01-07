@@ -44,6 +44,7 @@ include "./../../../includes/sidebar.php";
                                           <tr>
                                             <th>Nom</th>
                                             <th>Description</th>
+                                            <th>Date</th>
                                             <th class="text-end">Action</th>
                                           </tr>
                                         </thead>
@@ -52,6 +53,7 @@ include "./../../../includes/sidebar.php";
                                             <tr>                                                
                                                 <td>Fer</td>
                                                 <td>Alminium</td>
+                                                <td>2024-06-01</td>
                                               
                                                                     <td class="text-end">
                                 <!-- Modifier -->
@@ -109,7 +111,11 @@ include "./../../../includes/sidebar.php";
             
        
 
-<?php
+<?php 
+ $pageLibs = [
+    LIBS_URL . "simple-datatables/umd/simple-datatables.js",
+    JS_URL . "pages/datatables.init.js"
+];
 include "./../../../includes/footer.php";
 ?>
    
