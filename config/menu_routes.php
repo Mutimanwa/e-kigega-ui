@@ -7,22 +7,48 @@ $menu_structure = [
         'dashboard' => [
             'title' => 'Tableau de bord',
             'icon' => 'iconoir-report-columns',
-            'path' => '/public/admin/index.php',
+            'path' => '/index.php',
             'active' => ['index.php'],
             'permission' => 'admin'
         ],
-        'produits' => [
-            'title' => 'Gestion de produits',
-            'icon' => 'iconoir-box',
-            'path' => '/public/admin/produits/',
-            'active' => ['produits', 'produits.php', 'produits/'],
-            'permission' => 'admin'
-        ],
-        'depenses' => [
+        'gestion_depenses' => [
             'title' => 'Gestion des Dépenses',
             'icon' => 'iconoir-wallet',
-            'path' => '/public/admin/depenses/',
-            'active' => ['depenses', 'depenses.php', 'depenses/'],
+            'type' => 'collapse', // Type collapse pour sous-menus
+            'id' => 'sidebarDepenses',
+            'items' => [
+                'depenses' => [
+                    'title' => 'Dépenses',
+                    'path' => '/public/admin/depenses/',
+                    'active' => ['depenses', 'depenses.php', 'depenses/']
+                ],
+                'categories_depenses' => [
+                    'title' => 'Catégories',
+                    'path' => '/public/admin/depenses/categories.php',
+                    'active' => ['categories-depenses', 'categories.php']
+                ]
+            ],
+            'active' => ['depenses', 'depenses.php', 'depenses/', 'categories-depenses', 'categories.php'],
+            'permission' => 'admin'
+        ],
+        'gestion_produits' => [
+            'title' => 'Gestion de Produits',
+            'icon' => 'iconoir-box',
+            'type' => 'collapse',
+            'id' => 'sidebarProduits',
+            'items' => [
+                'produits' => [
+                    'title' => 'Produits',
+                    'path' => '/public/admin/produits/',
+                    'active' => ['produits', 'produits.php', 'produits/']
+                ],
+                'categories_produits' => [
+                    'title' => 'Catégories',
+                    'path' => '/public/admin/produits/categories.php',
+                    'active' => ['categories-produits', 'categories.php']
+                ]
+            ],
+            'active' => ['produits', 'produits.php', 'produits/', 'categories-produits', 'categories.php'],
             'permission' => 'admin'
         ],
         'clients' => [
@@ -93,18 +119,44 @@ $menu_structure = [
             'active' => ['index.php'],
             'permission' => 'comptable'
         ],
-        'depenses' => [
+        'gestion_depenses' => [
             'title' => 'Gestion des Dépenses',
             'icon' => 'iconoir-wallet',
-            'path' => '/public/comptable/depenses/',
-            'active' => ['depenses', 'depenses.php', 'depenses/'],
+            'type' => 'collapse',
+            'id' => 'sidebarDepenses',
+            'items' => [
+                'depenses' => [
+                    'title' => 'Dépenses',
+                    'path' => '/public/comptable/depenses/',
+                    'active' => ['depenses', 'depenses.php', 'depenses/']
+                ],
+                'categories_depenses' => [
+                    'title' => 'Catégories',
+                    'path' => '/public/comptable/depenses/categories.php',
+                    'active' => ['categories-depenses', 'categories.php']
+                ]
+            ],
+            'active' => ['depenses', 'depenses.php', 'depenses/', 'categories-depenses', 'categories.php'],
             'permission' => 'comptable'
         ],
-        'produits' => [
+        'gestion_produits' => [
             'title' => 'Produits',
             'icon' => 'iconoir-box',
-            'path' => '/public/comptable/produits/',
-            'active' => ['produits', 'produits.php', 'produits/'],
+            'type' => 'collapse',
+            'id' => 'sidebarProduits',
+            'items' => [
+                'produits' => [
+                    'title' => 'Produits',
+                    'path' => '/public/comptable/produits/',
+                    'active' => ['produits', 'produits.php', 'produits/']
+                ],
+                'categories_produits' => [
+                    'title' => 'Catégories',
+                    'path' => '/public/comptable/produits/categories.php',
+                    'active' => ['categories-produits', 'categories.php']
+                ]
+            ],
+            'active' => ['produits', 'produits.php', 'produits/', 'categories-produits', 'categories.php'],
             'permission' => 'comptable'
         ],
         'ventes' => [
@@ -131,11 +183,24 @@ $menu_structure = [
             'active' => ['index.php'],
             'permission' => 'responsable'
         ],
-        'produits' => [
+        'gestion_produits' => [
             'title' => 'Gestion de produits',
             'icon' => 'iconoir-box',
-            'path' => '/public/responsable/produits/',
-            'active' => ['produits', 'produits.php', 'produits/'],
+            'type' => 'collapse',
+            'id' => 'sidebarProduits',
+            'items' => [
+                'produits' => [
+                    'title' => 'Produits',
+                    'path' => '/public/responsable/produits/',
+                    'active' => ['produits', 'produits.php', 'produits/']
+                ],
+                'categories_produits' => [
+                    'title' => 'Catégories',
+                    'path' => '/public/responsable/produits/categories.php',
+                    'active' => ['categories-produits', 'categories.php']
+                ]
+            ],
+            'active' => ['produits', 'produits.php', 'produits/', 'categories-produits', 'categories.php'],
             'permission' => 'responsable'
         ],
         'ventes' => [
@@ -163,54 +228,85 @@ $menu_groups = [
     ],
     [
         'label' => 'Opérations',
-        'items' => ['produits', 'ventes', 'stock', 'depenses', 'clients', 'fournisseurs']
+        'items' => ['gestion_produits', 'ventes', 'stock', 'gestion_depenses', 'clients', 'fournisseurs']
     ],
     [
         'label' => 'Administration',
         'items' => ['formations', 'rapports', 'ai'],
-        'roles' => ['admin'] // Seulement pour admin
+        'roles' => ['admin']
     ],
     [
         'label' => 'Système',
         'items' => ['utilisateurs'],
-        'roles' => ['admin'] // Seulement pour admin
+        'roles' => ['admin']
     ]
 ];
 
 // Fonction pour détecter la page active
 function is_active_page($active_patterns) {
+    if (!is_array($active_patterns)) {
+        return false;
+    }
+    
     $current_uri = $_SERVER['REQUEST_URI'];
     $current_path = parse_url($current_uri, PHP_URL_PATH);
     
+    // Nettoyer le chemin actuel
+    $current_path = ltrim($current_path, '/');
+    
     foreach ($active_patterns as $pattern) {
+        // Si c'est un fichier PHP
+        if ($pattern == basename($_SERVER['PHP_SELF'])) {
+            return true;
+        }
+        
+        // Si le chemin contient le pattern
         if (strpos($current_path, $pattern) !== false) {
             return true;
         }
-    }
-    
-    // Vérifier aussi le script en cours
-    $current_script = basename($_SERVER['PHP_SELF']);
-    if (in_array($current_script, $active_patterns)) {
-        return true;
-    }
-    
-    // Vérifier pour l'index
-    if ($current_script == 'index.php' && in_array('index.php', $active_patterns)) {
-        return true;
+        
+        // Pour les chemins avec ou sans slash
+        if (strpos($current_path, rtrim($pattern, '/')) !== false || 
+            strpos($current_path, rtrim($pattern, '/') . '/') !== false) {
+            return true;
+        }
     }
     
     return false;
 }
 
-// Récupérer le rôle de l'utilisateur (à adapter selon votre système d'authentification)
+// Fonction pour vérifier si un menu collapse doit être ouvert
+function should_collapse_be_open($item_active_patterns, $current_menu_items = []) {
+    // Vérifier si le menu principal est actif
+    if (is_active_page($item_active_patterns)) {
+        return true;
+    }
+    
+    // Vérifier si un des sous-menus est actif
+    foreach ($current_menu_items as $sub_item) {
+        if (is_active_page($sub_item['active'])) {
+            return true;
+        }
+    }
+    
+    return false;
+}
+
+// Récupérer le rôle de l'utilisateur
 function get_user_role() {
-    // Exemple: récupérer depuis la session
-    ob_start();
+    session_start();
     if (isset($_SESSION['user_role'])) {
         return $_SESSION['user_role'];
     }
     
-    // Par défaut, retourner 'admin' pour le développement
+    // Pour le développement, déterminer le rôle par l'URL
+    $current_url = $_SERVER['REQUEST_URI'];
+    if (strpos($current_url, '/comptable/') !== false) {
+        return 'comptable';
+    } elseif (strpos($current_url, '/responsable/') !== false) {
+        return 'responsable';
+    }
+    
     return 'admin';
 }
 ?>
