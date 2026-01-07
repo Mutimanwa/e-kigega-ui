@@ -12,7 +12,7 @@
                                         © <?php echo date('Y'); ?> © <?php echo APP_NAME; ?> v<?php echo APP_VERSION; ?>
                                         <span class="text-muted d-none d-sm-inline-block float-end">
                                             Développé avec
-                                            <i class="iconoir-heart-solid text-danger align-middle"></i>
+                                            <i class="iconoir-heart-solid  align-middle " style="color: #9b9999ff;"></i>
                                             par Plc lab</span>
                                     </p>
                                 </div>
