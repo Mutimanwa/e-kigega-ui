@@ -30,7 +30,7 @@ include "./../../../includes/sidebar.php";
                             <div class="card-header">
                                 <div class="row align-items-center">
                                     <div class="col">                      
-                                        <h4 class="card-title">Produits Details</h4>                      
+                                        <h4 class="card-title"> Details</h4>                      
                                     </div><!--end col-->
                                     <div class="col-auto"> 
                                         <button class="btn bg-primary text-white"  data-bs-toggle="modal" data-bs-target="#addRate"><i class="fas fa-plus me-1"></i> Ajouter un produit</button> 
@@ -82,25 +82,25 @@ include "./../../../includes/sidebar.php";
 
                             </div>
                                   <br>
-                                                      <div class="d-flex justify-content-center">
-                            <ul class="pagination">
-                                <li class="page-item disabled">
-                                    <a class="page-link" href="#" tabindex="-1">Previous</a>
-                                </li>
-                                <li class="page-item active">
-                                    <a class="page-link" href="#">1</a>
-                                </li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#">2</a>
-                                </li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#">3</a>
-                                </li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#">Next</a>
-                                </li>
-                            </ul>
-                        </div>
+                                                          <div class="d-flex justify-content-center">
+              <ul class="pagination">
+                  <li class="page-item disabled">
+                      <a class="page-link" href="#" tabindex="-1">Précédent</a>
+                  </li>
+                  <li class="page-item active">
+                      <a class="page-link" href="#">1</a>
+                  </li>
+                  <li class="page-item">
+                      <a class="page-link" href="#">2</a>
+                  </li>
+                  <li class="page-item">
+                      <a class="page-link" href="#">3</a>
+                  </li>
+                  <li class="page-item">
+                      <a class="page-link" href="#">Suivant</a>
+                  </li>
+              </ul>
+          </div>
 
                         </div>
                     </div> <!-- end col -->
@@ -119,7 +119,7 @@ include "./../../../includes/footer.php";
 <!-- Popup Ajouter -->
 <div class="modal fade" id="addRate" tabindex="-1" aria-labelledby="addRateLabel" aria-hidden="true">
   <div class="modal-dialog">
-    <form action="">
+    <form action="#">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="addRateLabel">Ajouter un produit</h5>
@@ -135,14 +135,18 @@ include "./../../../includes/footer.php";
             </div>
           </div>
 
-          <div class="mb-2">
-            <label>Catégorie</label>
-            <div class="input-group">
-              <span class="input-group-text"><i class="fas fa-tags"></i></span>
-              <input type="text" id="add-categorie" class="form-control" placeholder="Nom de catégorie">
-            </div>
-          </div>
-
+             <div class="mb-2">
+    <label for="add-categorie" class="form-label">Catégorie</label>
+    <div class="input-group">
+        <span class="input-group-text">
+            <i class="fas fa-tags"></i>
+        </span>
+        <select id="add-categorie" class="form-select">
+            <option value="" selected disabled>Choisir une catégorie</option>
+            <option value="autre">Autre</option>
+        </select>
+    </div>
+</div>
           <div class="mb-2">
             <label>Prix</label>
             <div class="input-group">
@@ -161,7 +165,7 @@ include "./../../../includes/footer.php";
 
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-primary w-100">Ajouter</button>
+          <button type="submit" class="btn btn-primary w-100">Ajouter</button>
         </div>
       </div>
     </form>
@@ -171,7 +175,7 @@ include "./../../../includes/footer.php";
 <!-- Popup Modifier  -->
 <div class="modal fade" id="modifyRate" tabindex="-1" aria-labelledby="modifyRateLabel" aria-hidden="true">
   <div class="modal-dialog">
-    <form action="">
+    <form action="#">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="modifyRateLabel">Modifier un produit</h5>
@@ -187,13 +191,18 @@ include "./../../../includes/footer.php";
             </div>
           </div>
 
-          <div class="mb-2">
-            <label>Catégorie</label>
-            <div class="input-group">
-              <span class="input-group-text"><i class="fas fa-tags"></i></span>
-              <input type="text" id="modify-categorie" class="form-control" placeholder="Nom de catégorie">
-            </div>
-          </div>
+           <div class="mb-2">
+    <label for="add-categorie" class="form-label">Catégorie</label>
+    <div class="input-group">
+        <span class="input-group-text">
+            <i class="fas fa-tags"></i>
+        </span>
+        <select id="add-categorie" class="form-select">
+            <option value="" selected disabled>Choisir une catégorie</option>
+            <option value="autre">Autre</option>
+        </select>
+    </div>
+</div>
 
           <div class="mb-2">
             <label>Prix</label>
@@ -213,7 +222,7 @@ include "./../../../includes/footer.php";
 
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-primary w-100">Modifier</button>
+          <button type="submit" class="btn btn-primary w-100">Modifier</button>
         </div>
       </div>
     </form>

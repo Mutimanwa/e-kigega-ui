@@ -11,13 +11,13 @@ include "./../../../includes/sidebar.php";
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="page-title-box d-md-flex justify-content-md-between align-items-center">
-                            <h4 class="page-title">Depenses</h4>
+                            <h4 class="page-title">Categorie des dépenses</h4>
                             <div class="">
                                 <ol class="breadcrumb mb-0">
                                     <li class="breadcrumb-item"><a href="#">E-Kigega</a></li>
                                     <li class="breadcrumb-item"><a href="#">Admin</a>
                                     </li><!--end nav-item-->
-                                    <li class="breadcrumb-item active">Depenses</li>
+                                    <li class="breadcrumb-item active">Categorie des dépenses</li>
                                 </ol>
                             </div>                            
                         </div><!--end page-title-box-->
@@ -30,10 +30,10 @@ include "./../../../includes/sidebar.php";
                             <div class="card-header">
                                 <div class="row align-items-center">
                                     <div class="col">                      
-                                        <h4 class="card-title">Depenses Details</h4>                      
+                                        <h4 class="card-title"> Details</h4>                      
                                     </div><!--end col-->
                                     <div class="col-auto"> 
-                                        <button class="btn bg-primary text-white"  data-bs-toggle="modal" data-bs-target="#addRate"><i class="fas fa-plus me-1"></i> Ajouter une dépense</button> 
+                                        <button class="btn bg-primary text-white"  data-bs-toggle="modal" data-bs-target="#addRate"><i class="fas fa-plus me-1"></i> Ajouter une catégorie</button> 
                                     </div><!--end col-->
                                 </div><!--end row-->                                  
                             </div><!--end card-header-->
@@ -42,18 +42,17 @@ include "./../../../includes/sidebar.php";
                                     <table class="table mb-0" id="datatable_1">
                                         <thead class="table-light">
                                           <tr>
-                                            <th>Categorie</th>
+                                            <th>Nom</th>
                                             <th>Description</th>
-                                            <th>Montant</th>
                                             <th class="text-end">Action</th>
                                           </tr>
                                         </thead>
                                         <tbody>
                                           
                                             <tr>                                                
+                                                <td>Fer</td>
                                                 <td>Alminium</td>
-                                                <td> this is wakanda product</td>
-                                                <td> 1400</td>
+                                              
                                                                     <td class="text-end">
                                 <!-- Modifier -->
                                 <a href="#"
@@ -79,27 +78,26 @@ include "./../../../includes/sidebar.php";
                                       </table>
 
                             </div>
-                                  <br>
-                                                            <div class="d-flex justify-content-center">
-                    <ul class="pagination">
-                        <li class="page-item disabled">
-                            <a class="page-link" href="#" tabindex="-1">Précédent</a>
-                        </li>
-                        <li class="page-item active">
-                            <a class="page-link" href="#">1</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">2</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">3</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">Suivant</a>
-                        </li>
-                    </ul>
-                </div>
-
+                                              <br>
+                                                                <div class="d-flex justify-content-center">
+                <ul class="pagination">
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#" tabindex="-1">Précédent</a>
+                    </li>
+                    <li class="page-item active">
+                        <a class="page-link" href="#">1</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="#">2</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="#">3</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="#">Suivant</a>
+                    </li>
+                </ul>
+            </div>
 
                         </div>
                     </div> <!-- end col -->
@@ -121,26 +119,20 @@ include "./../../../includes/footer.php";
     <form action="#">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="addRateLabel">Ajouter une dépense</h5>
+          <h5 class="modal-title" id="addRateLabel">Ajouter une categorie</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
         </div>
         <div class="modal-body">
 
-        
-      <div class="mb-2">
-    <label for="add-categorie" class="form-label">Catégorie</label>
-    <div class="input-group">
-        <span class="input-group-text">
-            <i class="fas fa-tags"></i>
-        </span>
-        <select id="add-categorie" class="form-select">
-            <option value="" selected disabled>Choisir une catégorie</option>
-            <option value="autre">Autre</option>
-        </select>
-    </div>
-</div>
-
           <div class="mb-2">
+            <label>Nom de la catégorie</label>
+            <div class="input-group">
+              <span class="input-group-text"><i class="fas fa-box"></i></span>
+              <input type="text" id="add-produit" class="form-control" placeholder="Nom de la catégorie">
+            </div>
+          </div>
+
+           <div class="mb-2">
     <label for="add-description" class="form-label">Description</label>
     <div class="input-group">
         <span class="input-group-text">
@@ -152,16 +144,8 @@ include "./../../../includes/footer.php";
                   placeholder="Description de la dépense"></textarea>
     </div>
 </div>
-            <div class="mb-2">
-                <label>Montant</label>
-                <div class="input-group">
-                <span class="input-group-text"><i class="fas fa-money-bill-wave"></i></span>
-                <input type="number" id="add-prix" class="form-control" placeholder="Montant de la dépense">
-                </div>
-        </div>
 
-       
-
+         
         </div>
         <div class="modal-footer">
           <button type="submit" class="btn btn-primary w-100">Ajouter</button>
@@ -177,25 +161,20 @@ include "./../../../includes/footer.php";
     <form action="#">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="modifyRateLabel">Modifier une dépense</h5>
+          <h5 class="modal-title" id="modifyRateLabel">Modifier une catégorie</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
         </div>
         <div class="modal-body">
 
-                <div class="mb-2">
-    <label for="add-categorie" class="form-label">Catégorie</label>
-    <div class="input-group">
-        <span class="input-group-text">
-            <i class="fas fa-tags"></i>
-        </span>
-        <select id="add-categorie" class="form-select">
-            <option value="" selected disabled>Choisir une catégorie</option>
-            <option value="autre">Autre</option>
-        </select>
-    </div>
-</div>
-
           <div class="mb-2">
+            <label>Nom de la catégorie</label>
+            <div class="input-group">
+              <span class="input-group-text"><i class="fas fa-box"></i></span>
+              <input type="text" id="add-produit" class="form-control" placeholder="Nom de la catégorie">
+            </div>
+          </div>
+
+           <div class="mb-2">
     <label for="add-description" class="form-label">Description</label>
     <div class="input-group">
         <span class="input-group-text">
@@ -207,13 +186,7 @@ include "./../../../includes/footer.php";
                   placeholder="Description de la dépense"></textarea>
     </div>
 </div>
-            <div class="mb-2">
-                <label>Montant</label>
-                <div class="input-group">
-                <span class="input-group-text"><i class="fas fa-money-bill-wave"></i></span>
-                <input type="number" id="add-prix" class="form-control" placeholder="Montant de la prduit">
-                </div>
-        </div>
+
 
         </div>
         <div class="modal-footer">

@@ -294,7 +294,7 @@ function should_collapse_be_open($item_active_patterns, $current_menu_items = []
 
 // Récupérer le rôle de l'utilisateur
 function get_user_role() {
-    session_start();
+    ob_start();
     if (isset($_SESSION['user_role'])) {
         return $_SESSION['user_role'];
     }
