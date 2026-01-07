@@ -939,5 +939,10 @@ include "../../includes/sidebar.php";
         <!-- page Content end -->
 
         <?php
+        $pageLibs = [
+            LIBS_URL . "apexcharts/apexcharts.min.js",
+            JS_URL . "pages/index.init.js",
+            JS_URL . "DynamicSelect.js"
+        ];
         include "../../includes/footer.php";
         ?>
