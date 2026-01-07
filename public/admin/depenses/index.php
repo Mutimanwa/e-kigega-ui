@@ -108,12 +108,9 @@ include "./../../../includes/sidebar.php";
             </div>
             <!--Start Footer-->
 
-
-
             <?php
             include "./../../../includes/footer.php";
             ?>
-
 
             <!-- Popup Ajouter -->
             <div class="modal fade" id="addRate" tabindex="-1" aria-labelledby="addRateLabel" aria-hidden="true">
