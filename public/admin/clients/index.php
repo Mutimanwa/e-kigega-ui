@@ -11,13 +11,13 @@ include "./../../../includes/sidebar.php";
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="page-title-box d-md-flex justify-content-md-between align-items-center">
-                            <h4 class="page-title">Categorie des produits</h4>
+                            <h4 class="page-title">Client</h4>
                             <div class="">
                                 <ol class="breadcrumb mb-0">
                                     <li class="breadcrumb-item"><a href="#">E-Kigega</a></li>
                                     <li class="breadcrumb-item"><a href="#">Admin</a>
                                     </li><!--end nav-item-->
-                                    <li class="breadcrumb-item active">Categorie des produits</li>
+                                    <li class="breadcrumb-item active">Client</li>
                                 </ol>
                             </div>                            
                         </div><!--end page-title-box-->
@@ -33,29 +33,34 @@ include "./../../../includes/sidebar.php";
                                         <h4 class="card-title"> Details</h4>                      
                                     </div><!--end col-->
                                     <div class="col-auto"> 
-                                        <button class="btn bg-primary text-white"  data-bs-toggle="modal" data-bs-target="#addRate"><i class="fas fa-plus me-1"></i> Ajouter une catégorie</button> 
+                                        <button class="btn bg-primary text-white"  data-bs-toggle="modal" data-bs-target="#addRate"><i class="fas fa-plus me-1"></i> Ajouter un client</button> 
                                     </div><!--end col-->
                                 </div><!--end row-->                                  
                             </div><!--end card-header-->
-                            <div class="card-body pt-0">
+                           <div class="card-body pt-0">
                                 <div class="table-responsive">
                                     <table class="table mb-0" id="datatable_1">
                                         <thead class="table-light">
                                           <tr>
-                                            <th>Nom</th>
-                                            <th>Description</th>
-                                            <th>Date</th>
+                                             <th class=>Nom</th>
+                                                <th class=>Prenom</th>
+                                                <th class=>Telephone</th>
+                                                <th class=>Email</th>
+                                                <th class=>adresse</th>
+                                                <th>Date</th>
                                             <th class="text-end">Action</th>
                                           </tr>
                                         </thead>
                                         <tbody>
                                           
                                             <tr>                                                
-                                                <td>Fer</td>
-                                                <td>Alminium</td>
+                                                 <td> Audry</td>
+                                                <td>Wakanda</td>
+                                                <td>62661187</td>
+                                                <td>audrywakanda@gmail.com</td>                                   
+                                                <td>Carama-gahahe</td>
                                                 <td>2024-06-01</td>
-                                              
-                                                                    <td class="text-end">
+                                                <td class="text-end">
                                 <!-- Modifier -->
                                 <a href="#"
                                 data-bs-toggle="modal"
@@ -73,7 +78,6 @@ include "./../../../includes/sidebar.php";
                                 <i class="las la-trash-alt text-secondary fs-18"></i>
                                 </a>
                             </td>
-
                                                                     </tr>
                                                                                                                         
                                         </tbody>
@@ -109,8 +113,6 @@ include "./../../../includes/sidebar.php";
             </div>
             <!--Start Footer-->
             
-       
-
 <?php 
  $pageLibs = [
     LIBS_URL . "simple-datatables/umd/simple-datatables.js",
@@ -124,41 +126,72 @@ include "./../../../includes/footer.php";
 <div class="modal fade" id="addRate" tabindex="-1" aria-labelledby="addRateLabel" aria-hidden="true">
   <div class="modal-dialog">
     <form action="#">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="addRateLabel">Ajouter une categorie</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-        </div>
-        <div class="modal-body">
-
-          <div class="mb-2">
-            <label>Nom de la catégorie</label>
-            <div class="input-group">
-              <span class="input-group-text"><i class="fas fa-box"></i></span>
-              <input type="text" id="add-produit" class="form-control" placeholder="Nom de la catégorie">
-            </div>
-          </div>
-
-           <div class="mb-2">
-    <label for="add-description" class="form-label">Description</label>
-    <div class="input-group">
-        <span class="input-group-text">
-            <i class="fas fa-align-left"></i>
-        </span>
-        <textarea id="add-description"
-                  class="form-control"
-                  rows="3"
-                  placeholder="Description de la dépense"></textarea>
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" id="addRateLabel">Ajouter un client</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
     </div>
-</div>
 
-         
-        </div>
-        <div class="modal-footer">
-          <button type="submit" class="btn btn-primary w-100">Ajouter</button>
+    <div class="modal-body">
+
+      <div class="mb-2">
+        <label>Nom</label>
+        <div class="input-group">
+          <span class="input-group-text">
+            <i class="fas fa-user"></i>
+          </span>
+          <input type="text" id="add-nom" class="form-control" placeholder="Nom du client">
         </div>
       </div>
-    </form>
+
+      <div class="mb-2">
+        <label>Prénom</label>
+        <div class="input-group">
+          <span class="input-group-text">
+            <i class="fas fa-user-tag"></i>
+          </span>
+          <input type="text" id="add-prenom" class="form-control" placeholder="Prénom du client">
+        </div>
+      </div>
+
+      <div class="mb-2">
+        <label>Téléphone</label>
+        <div class="input-group">
+          <span class="input-group-text">
+            <i class="fas fa-phone"></i>
+          </span>
+          <input type="number" id="add-telephone" class="form-control" placeholder="Numéro de téléphone">
+        </div>
+      </div>
+
+      <div class="mb-2">
+        <label>Email</label>
+        <div class="input-group">
+          <span class="input-group-text">
+            <i class="fas fa-envelope"></i>
+          </span>
+          <input type="email" id="add-email" class="form-control" placeholder="Email du client">
+        </div>
+      </div>
+
+      <div class="mb-2">
+        <label>Adresse</label>
+        <div class="input-group">
+          <span class="input-group-text">
+            <i class="fas fa-map-marker-alt"></i>
+          </span>
+          <input type="text" id="add-adresse" class="form-control" placeholder="Adresse du client">
+        </div>
+      </div>
+
+    </div>
+
+    <div class="modal-footer">
+      <button type="submit" class="btn btn-primary w-100">Ajouter</button>
+    </div>
+  </div>
+</form>
+
   </div>
 </div>
 
@@ -168,33 +201,60 @@ include "./../../../includes/footer.php";
     <form action="#">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="modifyRateLabel">Modifier une catégorie</h5>
+          <h5 class="modal-title" id="modifyRateLabel">Modifier un client</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
         </div>
         <div class="modal-body">
 
-          <div class="mb-2">
-            <label>Nom de la catégorie</label>
-            <div class="input-group">
-              <span class="input-group-text"><i class="fas fa-box"></i></span>
-              <input type="text" id="add-produit" class="form-control" placeholder="Nom de la catégorie">
-            </div>
-          </div>
+            <div class="mb-2">
+        <label>Nom</label>
+        <div class="input-group">
+          <span class="input-group-text">
+            <i class="fas fa-user"></i>
+          </span>
+          <input type="text" id="add-nom" class="form-control" placeholder="Nom du client">
+        </div>
+      </div>
 
-           <div class="mb-2">
-    <label for="add-description" class="form-label">Description</label>
-    <div class="input-group">
-        <span class="input-group-text">
-            <i class="fas fa-align-left"></i>
-        </span>
-        <textarea id="add-description"
-                  class="form-control"
-                  rows="3"
-                  placeholder="Description de la dépense"></textarea>
-    </div>
-</div>
+      <div class="mb-2">
+        <label>Prénom</label>
+        <div class="input-group">
+          <span class="input-group-text">
+            <i class="fas fa-user-tag"></i>
+          </span>
+          <input type="text" id="add-prenom" class="form-control" placeholder="Prénom du client">
+        </div>
+      </div>
 
+      <div class="mb-2">
+        <label>Téléphone</label>
+        <div class="input-group">
+          <span class="input-group-text">
+            <i class="fas fa-phone"></i>
+          </span>
+          <input type="number" id="add-telephone" class="form-control" placeholder="Numéro de téléphone">
+        </div>
+      </div>
 
+      <div class="mb-2">
+        <label>Email</label>
+        <div class="input-group">
+          <span class="input-group-text">
+            <i class="fas fa-envelope"></i>
+          </span>
+          <input type="email" id="add-email" class="form-control" placeholder="Email du client">
+        </div>
+      </div>
+
+      <div class="mb-2">
+        <label>Adresse</label>
+        <div class="input-group">
+          <span class="input-group-text">
+            <i class="fas fa-map-marker-alt"></i>
+          </span>
+          <input type="text" id="add-adresse" class="form-control" placeholder="Adresse du client">
+        </div>
+      </div>
         </div>
         <div class="modal-footer">
           <button type="submit" class="btn btn-primary w-100">Modifier</button>

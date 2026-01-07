@@ -16,6 +16,8 @@ include "../../../includes/sidebar.php";
                                 <ol class="breadcrumb mb-0">
                                     <li class="breadcrumb-item"><a href="#">E-kigega</a>
                                     </li><!--end nav-item-->
+                                    <li class="breadcrumb-item"><a href="#">Admin</a>
+                                    </li>
                                     <li class="breadcrumb-item active">Utilisateurs</li>
                                 </ol>
                             </div>                            

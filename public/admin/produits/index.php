@@ -44,8 +44,8 @@ include "./../../../includes/sidebar.php";
                                           <tr>
                                             <th>Nom</th>
                                             <th>Categorie</th>
-                                            <th>Prix</th>
                                             <th>Quantite</th>
+                                            <th>Date</th>
                                             <th class="text-end">Action</th>
                                           </tr>
                                         </thead>
@@ -54,8 +54,8 @@ include "./../../../includes/sidebar.php";
                                             <tr>                                                
                                                 <td>Fer</td>
                                                 <td>Alminium</td>
-                                                <td> $14500</td>
                                                 <td> 14</td>
+                                                <td>2024-06-01</td>
                                                                     <td class="text-end">
                                 <!-- Modifier -->
                                 <a href="#"
@@ -110,11 +110,14 @@ include "./../../../includes/sidebar.php";
             <!--Start Footer-->
             
        
-
-<?php
+<?php 
+ $pageLibs = [
+    LIBS_URL . "simple-datatables/umd/simple-datatables.js",
+    JS_URL . "pages/datatables.init.js"
+];
 include "./../../../includes/footer.php";
 ?>
-   
+    
 
 <!-- Popup Ajouter -->
 <div class="modal fade" id="addRate" tabindex="-1" aria-labelledby="addRateLabel" aria-hidden="true">
@@ -147,21 +150,7 @@ include "./../../../includes/footer.php";
         </select>
     </div>
 </div>
-          <div class="mb-2">
-            <label>Prix</label>
-            <div class="input-group">
-              <span class="input-group-text"><i class="fas fa-money-bill-wave"></i></span>
-              <input type="number" id="add-prix" class="form-control" placeholder="Prix du produit">
-            </div>
-          </div>
-
-          <div class="mb-2">
-            <label>Quantité</label>
-            <div class="input-group">
-              <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
-              <input type="number" id="add-quantite" class="form-control" placeholder="Quantité">
-            </div>
-          </div>
+          
 
         </div>
         <div class="modal-footer">
@@ -204,21 +193,7 @@ include "./../../../includes/footer.php";
     </div>
 </div>
 
-          <div class="mb-2">
-            <label>Prix</label>
-            <div class="input-group">
-              <span class="input-group-text"><i class="fas fa-money-bill-wave"></i></span>
-              <input type="number" id="modify-prix" class="form-control" placeholder="Prix du produit">
-            </div>
-          </div>
-
-          <div class="mb-2">
-            <label>Quantité</label>
-            <div class="input-group">
-              <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
-              <input type="number" id="modify-quantite" class="form-control" placeholder="Quantité">
-            </div>
-          </div>
+      
 
         </div>
         <div class="modal-footer">

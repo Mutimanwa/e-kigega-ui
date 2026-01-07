@@ -232,8 +232,11 @@ include "./../../../includes/sidebar.php";
             <!--Start Footer-->
             
        
-
-<?php
+<?php 
+ $pageLibs = [
+    LIBS_URL . "simple-datatables/umd/simple-datatables.js",
+    JS_URL . "pages/datatables.init.js"
+];
 include "./../../../includes/footer.php";
 ?>
    
