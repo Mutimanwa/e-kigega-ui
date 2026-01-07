@@ -39,8 +39,8 @@
                                             <img src="<?= IMAGES_URL ?>/logos/logo.png" height="150" alt="logo"
                                                 class="auth-logo">
                                         </a>
-                                        <h4 class="mt-n3 fw-semibold fs-18">welcom back </h4>
-                                        <p class="text-muted  fw-medium mb-0">Sign in to continue to Approx.</p>
+                                        <h4 class="mt-n3 fw-semibold fs-18">Welcome back </h4>
+                                        <p class="text-muted  fw-medium mb-0">Sign in to continue to e-kigega.</p>
                                     </div>
                                 </div>
                                 <div class="card-body pt-0">
@@ -60,12 +60,6 @@
 
                                         <div class="form-group row mt-3">
                                             <div class="col-sm-6">
-                                                <div class="form-check form-switch form-switch-success">
-                                                    <input class="form-check-input" type="checkbox"
-                                                        id="customSwitchSuccess">
-                                                    <label class="form-check-label" for="customSwitchSuccess">Remember
-                                                        me</label>
-                                                </div>
                                             </div><!--end col-->
                                             <div class="col-sm-6 text-end">
                                                 <a href="./public/recover-pw.php" class="text-muted font-13"><i
