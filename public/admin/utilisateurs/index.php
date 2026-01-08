@@ -155,14 +155,14 @@ include "../../../includes/footer.php"; ?>
                         <div class="col-md-6 mb-2">
                             <label for="firstNameAdd">Nom</label>
                             <div class="input-group">
-                                <span class="input-group-text"><i class="fa-regular fa-user"></i></span>
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
                                 <input type="text" class="form-control" id="firstNameAdd" placeholder="Nom">
                             </div>
                         </div>
                         <div class="col-md-6 mb-2">
                             <label for="lastNameAdd">Prénom</label>
                             <div class="input-group">
-                                <span class="input-group-text"><i class="fa-regular fa-user"></i></span>
+                                <span class="input-group-text"><i class="fas fa-user-tag"></i></span>
                                 <input type="text" class="form-control" id="lastNameAdd" placeholder="Prénom">
                             </div>
                         </div>
@@ -173,7 +173,7 @@ include "../../../includes/footer.php"; ?>
                         <div class="col-md-6 mb-2">
                             <label for="emailAdd">Email</label>
                             <div class="input-group">
-                                <span class="input-group-text"><i class="fa-regular fa-envelope"></i></span>
+                                <span class="input-group-text"><i class="fas fa-envelope"></i></span>
                                 <input type="email" class="form-control" id="emailAdd" placeholder="Email">
                             </div>
                         </div>
@@ -220,7 +220,7 @@ include "../../../includes/footer.php"; ?>
                                 <span class="input-group-text"><i class="fa-solid fa-lock"></i></span>
                                 <input type="password" class="form-control password-input" id="passwordAdd" placeholder="Mot de passe">
                                 <span class="input-group-text toggle-password" data-target="passwordAdd">
-                                    <i class="fa-solid fa-eye"></i>
+                                    <i class="fa-solid fa-eye-slash"></i>
                                 </span>
                             </div>
                         </div>
@@ -230,7 +230,7 @@ include "../../../includes/footer.php"; ?>
                                 <span class="input-group-text"><i class="fa-solid fa-lock"></i></span>
                                 <input type="password" class="form-control password-input" id="confirmPasswordAdd" placeholder="Confirmer mot de passe">
                                 <span class="input-group-text toggle-password" data-target="confirmPasswordAdd">
-                                    <i class="fa-solid fa-eye"></i>
+                                    <i class="fa-solid fa-eye-slash"></i>
                                 </span>
                             </div>
                         </div>
@@ -272,14 +272,14 @@ include "../../../includes/footer.php"; ?>
                         <div class="col-md-6 mb-2">
                             <label for="firstNameEdit">Nom</label>
                             <div class="input-group">
-                                <span class="input-group-text"><i class="fa-regular fa-user"></i></span>
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
                                 <input type="text" class="form-control" id="firstNameEdit" placeholder="Nom">
                             </div>
                         </div>
                         <div class="col-md-6 mb-2">
                             <label for="lastNameEdit">Prénom</label>
                             <div class="input-group">
-                                <span class="input-group-text"><i class="fa-regular fa-user"></i></span>
+                                <span class="input-group-text"><i class="fas fa-user-tag"></i></span>
                                 <input type="text" class="form-control" id="lastNameEdit" placeholder="Prénom">
                             </div>
                         </div>
@@ -290,7 +290,7 @@ include "../../../includes/footer.php"; ?>
                         <div class="col-md-6 mb-2">
                             <label for="emailEdit">Email</label>
                             <div class="input-group">
-                                <span class="input-group-text"><i class="fa-regular fa-envelope"></i></span>
+                                <span class="input-group-text"><i class="fas fa-envelope"></i></i></span>
                                 <input type="email" class="form-control" id="emailEdit" placeholder="Email">
                             </div>
                         </div>
@@ -337,7 +337,7 @@ include "../../../includes/footer.php"; ?>
                                 <span class="input-group-text"><i class="fa-solid fa-lock"></i></span>
                                 <input type="password" class="form-control password-input" id="passwordEdit" placeholder="Mot de passe">
                                 <span class="input-group-text toggle-password" data-target="passwordEdit">
-                                    <i class="fa-solid fa-eye"></i>
+                                    <i class="fa-solid fa-eye-slash"></i>
                                 </span>
                             </div>
                         </div>
@@ -347,7 +347,7 @@ include "../../../includes/footer.php"; ?>
                                 <span class="input-group-text"><i class="fa-solid fa-lock"></i></span>
                                 <input type="password" class="form-control password-input" id="confirmPasswordEdit" placeholder="Confirmer mot de passe">
                                 <span class="input-group-text toggle-password" data-target="confirmPasswordEdit">
-                                    <i class="fa-solid fa-eye"></i>
+                                    <i class="fa-solid fa-eye-slash"></i>
                                 </span>
                             </div>
                         </div>
@@ -386,16 +386,17 @@ include "../../../includes/footer.php"; ?>
 // Fonction pour le toggle des mots de passe
 document.querySelectorAll(".toggle-password").forEach(toggle => {
     toggle.addEventListener("click", function () {
-        const targetId = this.getAttribute("data-target");
-        const input = document.getElementById(targetId);
+        const input = this.parentElement.querySelector(".password-input"); // prend l'input dans le même groupe
         const icon = this.querySelector("i");
 
-        if (input.type === "password") {
-            input.type = "text";
+        if (icon.classList.contains("fa-eye")) {
+            // Icon = eye → mot de passe visible → on masque
+            input.type = "password";
             icon.classList.remove("fa-eye");
             icon.classList.add("fa-eye-slash");
         } else {
-            input.type = "password";
+            // Icon = eye-slash → mot de passe masqué → on rend visible
+            input.type = "text";
             icon.classList.remove("fa-eye-slash");
             icon.classList.add("fa-eye");
         }
