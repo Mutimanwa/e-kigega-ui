@@ -44,7 +44,7 @@ include "./../../../includes/sidebar.php";
                                           <tr>
                                              <th class=>Nom</th>
                                                 <th class=>Prenom</th>
-                                                <th class=>Telephone</th>
+                                                <th class=>N° Telephone</th>
                                                 <th class=>Email</th>
                                                 <th class=>adresse</th>
                                                 <th>Date</th>

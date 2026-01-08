@@ -31,10 +31,10 @@ include "../../../includes/sidebar.php";
                             <div class="card-header">
                                 <div class="row align-items-center">
                                     <div class="col">                      
-                                        <h4 class="card-title">Détails Utilisateurs</h4>                      
+                                        <h4 class="card-title">Détails </h4>                      
                                     </div><!--end col-->
                                     <div class="col-auto"> 
-                                        <button class="btn bg-primary text-white"  data-bs-toggle="modal" data-bs-target="#addUser"><i class="fas fa-plus me-1"></i> Add User</button> 
+                                        <button class="btn bg-primary text-white"  data-bs-toggle="modal" data-bs-target="#addUser"><i class="fas fa-plus me-1"></i> Ajouter un utilisateur</button> 
                                     </div><!--end col-->
                                 </div><!--end row-->                                  
                             </div><!--end card-header-->
@@ -43,10 +43,11 @@ include "../../../includes/sidebar.php";
                                     <table class="table mb-0" id="datatable_2">
                                         <thead class="table-light table-hover">
                                           <tr>
-                                            <th>Nom</th>
+                                            <th>Nom & Prénom</th>
                                             <th>Email</th>
                                             <th>N° Téléphone</th>
                                             <th>Date d'inscription</th>
+                                            <th>Role</th>
                                             <th>Status</th>
                                             <th class="text-end">Action</th>
                                           </tr>
@@ -57,15 +58,53 @@ include "../../../includes/sidebar.php";
                                                     <div class="d-flex align-items-center">
                                                         <img src="<?= IMAGES_URL ?>users/avatar-1.jpg" class="me-2 thumb-md align-self-center rounded" alt="...">
                                                         <div class="flex-grow-1 text-truncate"> 
-                                                            <h6 class="m-0">Unity Pugh</h6>
-                                                            <p class="fs-12 text-muted mb-0">USA</p>                                                                                           
+                                                            <h6 class="m-0">Audry Wakanda</h6>
+                                                                                                                                                     
                                                         </div><!--end media body-->
                                                     </div>
                                                 </td>
-                                                <td><a href="#" class="text-primary text-decoration-underline">dummy@gmail.com</a></td>
+                                <td>
+                                <a href="mailto:audrywakanda@gmail.com" class="text-primary text-decoration-underline">
+                                    audrywakanda@gmail.com
+                                </a>
+                                </td>
                                                 <td>+1 234 567 890</td>
                                                 <td>22 August 2024</td>
+                                                <td>Administrateur</td>
                                                 <td><span class="badge rounded text-success bg-success-subtle">Active</span></td>
+                                               
+
+                                                <td class="text-end">                                                       
+                                                    <a href="#" data-bs-target="modal" data-bs-toggle="#EditUser"><i class="las la-pen text-secondary fs-18"></i></a>
+                                                    <a href="#" data-bs-toggle="modal" data-bs-target="#deleteModal"><i class="las la-trash-alt text-secondary fs-18"></i></a>
+                                                </td>
+                                            </tr>
+
+                                              <tr>
+                                                <td class="d-flex align-items-center">
+                                                    <div class="d-flex align-items-center">
+                                                        <img src="<?= IMAGES_URL ?>users/avatar-1.jpg" class="me-2 thumb-md align-self-center rounded" alt="...">
+                                                        <div class="flex-grow-1 text-truncate"> 
+                                                            <h6 class="m-0"> Kamana Urbain</h6>
+                                                                                                                                                     
+                                                        </div><!--end media body-->
+                                                    </div>
+                                                </td>
+                                <td>
+                                <a href="mailto:urbain@gmail.com" class="text-primary text-decoration-underline">
+                                    urbain@gmail.com
+                                </a>
+                                </td>
+                                                <td>+1 234 567 890</td>
+                                                <td>22 August 2024</td>
+                                                <td>Utilisateur</td>
+                                                
+                                                <td>
+                                        <span class="badge rounded text-secondary bg-secondary-subtle">
+                                            Inactive
+                                        </span>
+                                        </td>
+
                                                 <td class="text-end">                                                       
                                                     <a href="#" data-bs-target="modal" data-bs-toggle="#EditUser"><i class="las la-pen text-secondary fs-18"></i></a>
                                                     <a href="#" data-bs-toggle="modal" data-bs-target="#deleteModal"><i class="las la-trash-alt text-secondary fs-18"></i></a>
@@ -94,7 +133,7 @@ include "../../../includes/footer.php"; ?>
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="addUserLabel">Add User Detail</h5>
+              <h5 class="modal-title" id="addUserLabel">Ajouter un utilisateur</h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -103,18 +142,35 @@ include "../../../includes/footer.php"; ?>
                          <i class="fas fa-user text-muted thumb-xl rounded me-2 border-dashed"></i>
                         <div class="flex-grow-1 text-truncate"> 
                             <label class="btn btn-primary text-light">
-                                Add Avatar <input type="file" hidden="">
+                                Ajouter une photo <input type="file" hidden="">
                             </label>                                                                                          
                         </div><!--end media body-->
                     </div>                    
                 </div>
+
+                <div class="row">
+                <div class="col-md-6">
                 <div class=" mb-2">
-                    <label for="fullName">Full Name</label> 
+                    <label for="fullName">Nom</label> 
                     <div class="input-group">                                                            
                         <span class="input-group-text" id="fullName"><i class="far fa-user"></i></span>
-                        <input type="text" class="form-control" placeholder="Name" aria-label="FullName">
+                        <input type="text" class="form-control" placeholder="Nom" aria-label="FullName">
                     </div>
                 </div>
+                    </div><!--end col-->
+                    <div class="col-md-6">
+                  <div class=" mb-2">
+                    <label for="fullName">Prenom</label> 
+                    <div class="input-group">                                                            
+                        <span class="input-group-text" id="fullName"><i class="far fa-user"></i></span>
+                        <input type="text" class="form-control" placeholder="Prenom" aria-label="FullName">
+                    </div>
+                </div>
+                    </div><!--end col-->
+                 </div><!--end row--> 
+
+                 <div class="row">
+                    <div class="col-md-6">
                 <div class=" mb-2">
                     <label for="email">Email</label> 
                     <div class="input-group">                                                            
@@ -122,27 +178,55 @@ include "../../../includes/footer.php"; ?>
                         <input type="email" class="form-control" placeholder="Email address" aria-label="email">
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="mb-2">
-                            <label for="ragisterDate">Register Date</label> 
-                            <div class="input-group">
-                                <span class="input-group-text" id="ragisterDate"><i class="far fa-calendar"></i></span>
-                                <input type="text" class="form-control" placeholder="00/2024" aria-label="ragisterDate">
-                            </div>
-                        </div>
                     </div><!--end col-->
                     <div class="col-md-6">
                         <div class="mb-2">
-                            <label for="mobilleNo">Mobille No</label> 
+                            <label for="mobilleNo">N° Téléphone</label> 
                             <div class="input-group">
                                 <span class="input-group-text" id="mobilleNo"><i class="fas fa-phone"></i></span>
                                 <input type="text" class="form-control" placeholder="+1 234 567 890" aria-label="mobilleNo">
                             </div>
-                        </div>                                                            
-                    </div><!--end col-->
-                </div><!--end row-->                
+                        </div>   
+                        </div><!--end col-->
+                    </div><!--end row-->
+                        
+                         <div class="row">
+                    <div class="col-md-6">             
+                    <div class="mb-2">
+                <label for="add-statut" class="form-label">Role</label>
+                <div class="input-group">
+                    <span class="input-group-text">
+                        <i class="fas fa-tags"></i>
+                    </span>
+                    <select id="add-statut" class="form-select">
+                        <option value="" selected disabled>Choisir un role</option>
+
+                        <option value="active">Comptable</option>
+                        <option value="inactive">Responsable</option>
+                    
+                    </select>
+                </div>
             </div>
+                   </div><!--end col-->
+            
+                   <div class="col-md-6">
+                        <div class="mb-2">
+                <label for="add-statut" class="form-label">Statut</label>
+                <div class="input-group">
+                    <span class="input-group-text">
+                        <i class="fas fa-tags"></i>
+                    </span>
+                    <select id="add-statut" class="form-select">
+                        <option value="" selected disabled>Choisir un statut</option>
+
+                      <option value="active">Active</option>
+                        <option value="inactive">Inactive</option>
+                    </select>
+                </div>
+            </div>
+                     </div><!--end col-->
+                </div><!--end row-->
+                        </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-primary w-100">Add User</button>
             </div>

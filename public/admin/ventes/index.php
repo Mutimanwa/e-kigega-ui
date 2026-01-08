@@ -40,82 +40,6 @@ include "./../../../includes/sidebar.php";
                             <div class="card-body pt-0">
                                 <div class="table-responsive">
 
-                                                            <style>
-                            /* Style et responsive pour tous les statuts */
-                            .status {
-                                display: inline-block;
-                                padding: 0.15em 0.5em;       /* padding flexible */
-                                font-weight: 600;
-                                font-size: 0.65rem;          /* base mini */
-                                border-radius: 0.35em;       /* arrondi subtil */
-                                text-transform: uppercase;
-                                letter-spacing: 0.025em;
-                                text-align: center;
-                                vertical-align: middle;
-                                box-shadow: inset 0 -1px 0 rgba(0,0,0,0.1);
-                                transition: all 0.2s ease-in-out;
-                                white-space: nowrap;         /* empêcher le retour à la ligne */
-                                overflow: hidden;
-                                text-overflow: ellipsis;     /* ... si le texte est trop long */
-                            }
-
-                            /* Couleurs sobres, semi-transparentes (rgba) */
-                            .status.en-attente {
-                                background: linear-gradient(135deg, rgba(242, 186, 0, 0.09), rgba(245, 213, 71, 0.2));
-                                color: #f9de12ff;
-                            }
-
-                            .status.payee {
-                                background: linear-gradient(135deg, rgba(0, 158, 79, 0.08), rgba(102, 255, 110, 0.08));
-                                color: #078f49ff;
-                            }
-
-                            .status.paiement-partiel {
-                                background: linear-gradient(135deg, rgba(255, 128, 0, 0.19), rgba(255, 184, 77, 0.22));
-                                color: #d27905ff;
-                            }
-
-                            .status.annulee {
-                                background: linear-gradient(135deg, rgba(195, 0, 0, 0.2), rgba(255, 82, 82, 0.28));
-                                color: #b30909ff;
-                            }
-
-                            .status.rembourse {
-                                background: linear-gradient(135deg, rgba(41, 98, 255, 0.18), rgba(100, 180, 246, 0.21));
-                                color: #0d47a1ff;
-                            }
-
-                            /* Hover subtil et professionnel */
-                            .status:hover {
-                                transform: scale(1.1);
-                                box-shadow: 0 2px 6px rgba(0,0,0,0.25);
-                            }
-
-                            /* Optionnel : espace visuel discret pour badges */
-                            .status::after {
-                                content: "";
-                                display: inline-block;
-                                width: 0.15em;
-                            }
-
-                            /* Media Queries pour responsive */
-                            @media (max-width: 768px) {
-                                .status {
-                                    font-size: 0.55rem;    /* texte plus petit sur tablette */
-                                    padding: 0.1em 0.4em;
-                                }
-                            }
-
-                            @media (max-width: 480px) {
-                                .status {
-                                    font-size: 0.5rem;     /* texte ultra petit sur mobile */
-                                    padding: 0.08em 0.3em;
-                                    letter-spacing: 0.02em;
-                                }
-                            }
-
-
-                                </style>
                              <table class="table mb-0" id="datatable_1">
                             <thead class="table-light">
                                 <tr>
@@ -131,7 +55,11 @@ include "./../../../includes/sidebar.php";
                                     <td>Fer</td>
                                     <td>Aluminium</td>
                                     <td>10</td>
-                                    <td><span class="status en-attente">En attente</span></td>
+                                    <td>
+                                <span class="badge rounded text-warning bg-warning-subtle">
+                                    En attente
+                                </span>
+                                </td>
                                     <td class="text-end">
                                         <a href="#" data-bs-toggle="modal" data-bs-target="#modifyRate" class="edit-product">
                                             <i class="las la-pen text-secondary fs-18"></i>
@@ -145,7 +73,12 @@ include "./../../../includes/sidebar.php";
                                     <td>Jean</td>
                                     <td>Ordinateur</td>
                                     <td>5</td>
-                                    <td><span class="status payee">Payée</span></td>
+                                    <td>
+                                        <span class="badge rounded text-success bg-success-subtle">
+                                            Payée
+                                        </span>
+                                     </td>
+
                                    <td class="text-end">
                                         <a href="#" data-bs-toggle="modal" data-bs-target="#modifyRate" class="edit-product">
                                             <i class="las la-pen text-secondary fs-18"></i>
@@ -159,7 +92,11 @@ include "./../../../includes/sidebar.php";
                                     <td>Marie</td>
                                     <td>Smartphone</td>
                                     <td>8</td>
-                                    <td><span class="status paiement-partiel">Paiement partiel</span></td>
+                                    <td>
+                                        <span class="badge rounded text-info bg-info-subtle">
+                                            Paiement partiel
+                                        </span>
+                                   </td>
                                     <td class="text-end">
                                         <a href="#" data-bs-toggle="modal" data-bs-target="#modifyRate" class="edit-product">
                                             <i class="las la-pen text-secondary fs-18"></i>
@@ -173,8 +110,12 @@ include "./../../../includes/sidebar.php";
                                     <td>Paul</td>
                                     <td>Tablette</td>
                                     <td>3</td>
-                                    <td><span class="status annulee">Annulée</span></td>
-                                    <td class="text-end">
+                                   <td>
+                                        <span class="badge rounded text-danger bg-danger-subtle">
+                                            Annulée
+                                        </span>
+                                        </td>
+                                      <td class="text-end">
                                         <a href="#" data-bs-toggle="modal" data-bs-target="#modifyRate" class="edit-product">
                                             <i class="las la-pen text-secondary fs-18"></i>
                                         </a>
@@ -187,7 +128,11 @@ include "./../../../includes/sidebar.php";
                                     <td>Lucie</td>
                                     <td>Imprimante</td>
                                     <td>2</td>
-                                    <td><span class="status rembourse">Remboursée</span></td>
+                                    <td>
+                            <span class="badge rounded text-primary bg-primary-subtle">
+                                Remboursée
+                            </span>
+                            </td>
                                     <td class="text-end">
                                         <a href="#" data-bs-toggle="modal" data-bs-target="#modifyRate" class="edit-product">
                                             <i class="las la-pen text-secondary fs-18"></i>

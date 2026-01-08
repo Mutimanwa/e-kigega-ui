@@ -111,8 +111,6 @@ include "./../../../includes/sidebar.php";
             <!--Start Footer-->
             
        
-
-<<<<<<< HEAD
             <?php
             include "./../../../includes/footer.php";
             ?>
@@ -170,7 +168,7 @@ include "./../../../includes/sidebar.php";
                             </div>
                         </div>
                     </form>
-=======
+
 <?php 
  $pageLibs = [
     LIBS_URL . "simple-datatables/umd/simple-datatables.js",
@@ -179,6 +177,7 @@ include "./../../../includes/sidebar.php";
 include "./../../../includes/footer.php";
 ?>
      
+
 
 <!-- Popup Ajouter -->
 <div class="modal fade" id="addRate" tabindex="-1" aria-labelledby="addRateLabel" aria-hidden="true">
@@ -222,7 +221,6 @@ include "./../../../includes/footer.php";
                 <div class="input-group">
                 <span class="input-group-text"><i class="fas fa-money-bill-wave"></i></span>
                 <input type="number" id="add-prix" class="form-control" placeholder="Montant de la dépense">
->>>>>>> refs/remotes/origin/main
                 </div>
         </div>
 
@@ -236,6 +234,7 @@ include "./../../../includes/footer.php";
     </form>
   </div>
 </div>
+
 
 <!-- Popup Modifier  -->
 <div class="modal fade" id="modifyRate" tabindex="-1" aria-labelledby="modifyRateLabel" aria-hidden="true">
