@@ -1,6 +1,6 @@
 <?php include "../config/constantes.php"; ?>
 <!DOCTYPE php>
-<php lang="en" dir="ltr" data-startbar="dark" data-bs-theme="light">
+<php lang="fr" dir="ltr" data-startbar="dark" data-bs-theme="light">
 
 <head>
 
@@ -37,28 +37,28 @@
                                             <img src="<?= IMAGES_URL ?>/logos/logo.png" height="150" alt="logo"
                                                 class="auth-logo">
                                         </a>
-                                        <h4 class="mt-n3 fw-semibold fs-18">welcom back </h4>
-                                        <p class="text-muted  fw-medium mb-0">Sign in to continue to Approx.</p>
+                                        <h4 class="mt-n3 fw-semibold fs-18">Bienvenue</h4>
+                                        <p class="text-muted  fw-medium mb-0">Connectez-vous pour continuer vers Approx.</p>
                                     </div>
                                 </div>
                                 <div class="card-body pt-0">
                                     <!-- formulare de connexions -->
                                     <form class="my-4" action="dashboard.php">
                                         <div class="form-group mb-2">
-                                            <label class="form-label" for="username">Username</label>
+                                            <label class="form-label" for="username">Nom d'utilisateur</label>
                                             <input type="text" class="form-control" id="username" name="username"
-                                                placeholder="Enter username">
+                                                placeholder="Entrez votre nom d'utilisateur">
                                         </div><!--end form-group-->
 
                                         <div class="form-group">
-                                            <label class="form-label" for="userpassword">Password</label>
+                                            <label class="form-label" for="userpassword">Mot de passe</label>
                                             <input type="password" class="form-control" name="password"
-                                                id="userpassword" placeholder="Enter password">
+                                                id="userpassword" placeholder="Entrez votre mot de passe">
                                         </div><!--end form-group-->
 
                                         <div class="form-group row mt-3">
                                             <div class="col-sm-6">
-                                                <div class="form-check form-switch form-switch-success">
+                                                <div class="form-check form-switch form-switch-warning">
                                                     <input class="form-check-input" type="checkbox"
                                                         id="customSwitchSuccess">
                                                     <label class="form-check-label" for="customSwitchSuccess">Remember

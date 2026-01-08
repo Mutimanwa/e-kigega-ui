@@ -57,7 +57,11 @@ include "./../../../includes/sidebar.php";
                                                  <td> Audry</td>
                                                 <td>Wakanda</td>
                                                 <td>62661187</td>
-                                                <td>audrywakanda@gmail.com</td>                                   
+                                                 <td>
+                                <a href="mailto:audrywakanda@gmail.com" class="text-primary text-decoration-underline">
+                                    audrywakanda@gmail.com
+                                </a>
+                                </td>                                  
                                                 <td>Carama-gahahe</td>
                                                 <td>2024-06-01</td>
                                                 <td class="text-end">
@@ -74,9 +78,8 @@ include "./../../../includes/sidebar.php";
                                 </a>
 
                                 <!-- Supprimer -->
-                                <a href="#">
-                                <i class="las la-trash-alt text-secondary fs-18"></i>
-                                </a>
+                                                                <a href="#" data-bs-toggle="modal" data-bs-target="#deleteModal"><i class="las la-trash-alt text-secondary fs-18"></i></a>
+
                             </td>
                                                                     </tr>
                                                                                                                         
@@ -263,5 +266,28 @@ include "./../../../includes/footer.php";
     </form>
   </div>
 </div>
+
+
+<!-- modal de suppression -->
+    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="DeleteUserLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header bg-white">
+              <h5 class="modal-title text-danger" id="addUserLabel">Supprimer</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p class="text-muted">Êtes-vous sûr de vouloir supprimer cet utilisateur ? Cette action est irréversible.</p>           
+            </div>
+            <div class="modal-footer">
+             <button type="submit" class="btn btn-outline-danger">Oui</button>
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+  Annuler
+</button>
+
+            </div>
+          </div>
+        </div>
+  </div>
 
 
