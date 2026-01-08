@@ -11,13 +11,13 @@ include "./../../../includes/sidebar.php";
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="page-title-box d-md-flex justify-content-md-between align-items-center">
-                            <h4 class="page-title">Stocks</h4>
+                            <h4 class="page-title">Stock</h4>
                             <div class="">
                                 <ol class="breadcrumb mb-0">
                                     <li class="breadcrumb-item"><a href="#">E-Kigega</a></li>
                                     <li class="breadcrumb-item"><a href="#">Admin</a>
                                     </li><!--end nav-item-->
-                                    <li class="breadcrumb-item active">Stocks</li>
+                                    <li class="breadcrumb-item active">Stock</li>
                                 </ol>
                             </div>                            
                         </div><!--end page-title-box-->
@@ -157,6 +157,13 @@ include "./../../../includes/footer.php";
     </div>
 </div>
           
+   <div class="mb-2">
+            <label>Quantité</label>
+            <div class="input-group">
+              <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
+              <input type="number" id="add-quantite" class="form-control" placeholder="Quantité">
+            </div>
+          </div>
 
         </div>
         <div class="modal-footer">
@@ -203,7 +210,14 @@ include "./../../../includes/footer.php";
         </select>
     </div>
 </div>
-          
+         
+   <div class="mb-2">
+            <label>Quantité</label>
+            <div class="input-group">
+              <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
+              <input type="number" id="add-quantite" class="form-control" placeholder="Quantité">
+            </div>
+          </div>
 
         </div>
         <div class="modal-footer">

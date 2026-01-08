@@ -11,9 +11,8 @@
                                     <p class="text-muted mb-0">
                                         © <?php echo date('Y'); ?> © <?php echo APP_NAME; ?> v<?php echo APP_VERSION; ?>
                                         <span class="text-muted d-none d-sm-inline-block float-end">
-                                            Développé avec
-                                            <i class="iconoir-heart-solid  align-middle " style="color: #f86767ff;"></i>
-                                            par Plc lab</span>
+                                            Développé
+                                            par Plc Lab</span>
                                     </p>
                                 </div>
                             </div>
