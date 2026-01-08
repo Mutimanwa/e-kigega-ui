@@ -2,34 +2,40 @@
 
     //============ login function 
     function login($email, $motDePasse) {
-        // Démarre la session si elle n'existe pas
-        if (session_status() === PHP_SESSION_NONE) {
-            session_start();
-        }
+        $apiUrl = "https://ekigega-backend.onrender.com/api/auth/login/";
 
-        $apiUrl = "http://localhost:8080/api/auth/login";
-
-        // Prépare les données JSON
         $payload = json_encode([
             "email" => $email,
-            "motDePasse" => $motDePasse
+            "password" => $motDePasse
         ]);
 
-        // Initialisation cURL
         $ch = curl_init($apiUrl);
         curl_setopt_array($ch, [
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_POST => true,
-            CURLOPT_HTTPHEADER => ["Content-Type: application/json"],
-            CURLOPT_POSTFIELDS => $payload
+            CURLOPT_HTTPHEADER => [
+                "Content-Type: application/json",
+                "Accept: application/json"
+            ],
+            CURLOPT_POSTFIELDS => $payload,
+            
+            CURLOPT_SSL_VERIFYPEER => false,
+            CURLOPT_SSL_VERIFYHOST => false
         ]);
 
         $response = curl_exec($ch);
+
+        if ($response === false) {
+            return [
+                "success" => false,
+                "message" => "Erreur cURL : " . curl_error($ch)
+            ];
+        }
+
         $status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         curl_close($ch);
 
-        // Vérification du status
-        if ($status !== 200) {
+        if ($status < 200 || $status >= 300) {
             return [
                 "success" => false,
                 "message" => "Identifiants incorrects"
@@ -38,21 +44,20 @@
 
         $data = json_decode($response, true);
 
-        if (!isset($data['token']) || !isset($data['role'])) {
+        if (!isset($data['access'], $data['user']['role']['nom'])) {
             return [
                 "success" => false,
                 "message" => "Réponse API invalide"
             ];
         }
 
-        // Stockage sécurisé dans la session
-        $_SESSION['token'] = $data['token'];
-        $_SESSION['role']  = $data['role'];
+        $_SESSION['token'] = $data['access'];
+        $_SESSION['role']  = $data['user']['role']['nom'];
 
         return [
             "success" => true,
             "message" => "Login successful",
-            "role"    => $data['role']
+            "role"    => $data['user']['role']['nom']
         ];
     }
 

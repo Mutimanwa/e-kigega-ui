@@ -1,27 +1,30 @@
 <?php
 
 ini_set('session.cookie_httponly', 1);
-ini_set('session.cookie_secure', 1);
-session_start();
-require_once("./../function/function.php");
+file_put_contents("debug.txt", print_r($_POST, true));
 
-// Indiquer que la réponse sera du JSON
+if (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') {
+    ini_set('session.cookie_secure', 1);
+}
+
+session_start();
+require_once __DIR__ . "/../function/function.php";
+
 header('Content-Type: application/json');
 
-try {
-    if (isset($_POST['send'])) {
-        $email = $_POST['mail'];
-        $psswd = $_POST['password'];
-
-        $send = login($email, $psswd); // retourne maintenant un tableau
-
-        // On renvoie directement le JSON
-        echo json_encode($send);
-    }
-} catch (PDOException $e) {
+if (empty($_POST['mail']) || empty($_POST['password'])) {
     echo json_encode([
         "success" => false,
-        "message" => "Server error"
+        "message" => "Email ou mot de passe manquant"
     ]);
+    exit;
 }
+
+$email  = trim($_POST['mail']);
+$psswd = $_POST['password'];
+
+$result = login($email, $psswd);
+
+echo json_encode($result);
+
 ?>

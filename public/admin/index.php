@@ -1,4 +1,18 @@
 <?php
+
+    ini_set('session.cookie_httponly', 1);
+    ini_set('session.cookie_secure', 1);
+    session_start();
+
+    require_once('./../../backend/function/function.php');
+    $role="ADMIN";
+
+    //================== gerer les session 
+    if(requireRole($role)==="Accès interdit"){
+        header("Location: ./../../index.php");
+        session_destroy();
+    }
+
 // menu lateral admin et header
 include "../../includes/header.php";
 include "../../includes/sidebar.php";

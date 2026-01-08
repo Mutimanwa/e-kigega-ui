@@ -45,10 +45,10 @@
                                 </div>
                                 <div class="card-body pt-0">
                                     <!-- formulare de connexions -->
-                                    <form class="my-4" action="dashboard.php">
+                                    <form class="my-4" id="loginForm" onsubmit="disableForm(event)">
                                         <div class="form-group mb-2">
                                             <label class="form-label" for="username">Username</label>
-                                            <input type="text" class="form-control" id="username" name="username"
+                                            <input type="mail" class="form-control" id="username" name="mail"
                                                 placeholder="Enter username">
                                         </div><!--end form-group-->
 
@@ -67,10 +67,16 @@
                                             </div><!--end col-->
                                         </div><!--end form-group-->
 
+                                            <!-- Message de notification  -->
+                                        <div class="d-flex justify-content-center">
+                                            <p class="text-muted" id="response"></p>
+                                        </div>
+
                                         <div class="form-group mb-0 row">
                                             <div class="col-12">
                                                 <div class="d-grid mt-3">
-                                                    <button class="btn btn-warning" type="submit">Log In <i
+                                                    <input type="hidden" value="1" name="send">
+                                                    <button class="btn btn-warning" type="submit" name="send" value="1" onclick="sendlogin()">Log In <i
                                                             class="fas fa-sign-in-alt ms-1"></i></button>
                                                 </div>
                                             </div><!--end col-->
@@ -81,20 +87,6 @@
                                                 class="text-warning ms-2">Free Resister</a></p>
                                         <!-- <h6 class="px-3 d-inline-block">Or Login With</h6> -->
                                     </div>
-                                    <!-- <div class="d-flex justify-content-center">
-                                        <a href=""
-                                            class="d-flex justify-content-center align-items-center thumb-md bg-blue-subtle text-blue rounded-circle me-2">
-                                            <i class="fab fa-facebook align-self-center"></i>
-                                        </a>
-                                        <a href=""
-                                            class="d-flex justify-content-center align-items-center thumb-md bg-info-subtle text-info rounded-circle me-2">
-                                            <i class="fab fa-twitter align-self-center"></i>
-                                        </a>
-                                        <a href=""
-                                            class="d-flex justify-content-center align-items-center thumb-md bg-danger-subtle text-danger rounded-circle">
-                                            <i class="fab fa-google align-self-center"></i>
-                                        </a>
-                                    </div> -->
                                 </div><!--end card-body-->
                             </div><!--end card-->
                         </div><!--end col-->
@@ -103,6 +95,7 @@
             </div><!--end col-->
         </div><!--end row-->
     </div><!-- container -->
+  <script src="./assets/js/index.js"></script><!-- Ajax pour le login  -->
 </body>
 <!--end body-->
 
