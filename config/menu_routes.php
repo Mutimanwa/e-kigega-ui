@@ -102,6 +102,13 @@ $menu_structure = [
             'active' => ['utilisateurs', 'utilisateurs.php', 'utilisateurs/'],
             'permission' => 'admin'
         ],
+         'log de connexion' => [
+            'title' => 'Log de connexion',
+            'icon' => 'iconoir-wallet',
+            'path' => '/public/admin/logs/',
+            'active' => ['logs', 'logs.php', 'logs/'],
+            'permission' => 'admin'
+        ],
         'fournisseurs' => [
             'title' => 'Fournisseurs',
             'icon' => 'iconoir-truck',
@@ -239,7 +246,7 @@ $menu_groups = [
     ],
     [
         'label' => 'Système',
-        'items' => ['utilisateurs'],
+        'items' => ['utilisateurs', 'log de connexion'],
         'roles' => ['admin']
     ]
 ];
