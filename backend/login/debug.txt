@@ -1,6 +1,0 @@
-Array
-(
-    [mail] => kamana@ekigega.bi
-    [password] => Buja001@
-    [send] => 1
-)
