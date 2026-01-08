@@ -1,66 +1,70 @@
 <?php
 
-//============ login function 
-function login($email, $motDePasse) {
+    //============ login function 
+    function login($email, $motDePasse) {
 
-    $apiUrl = "https://ekigega-backend.onrender.com/api/auth/login/";
+        $apiUrl = "https://ekigega-backend.onrender.com/api/auth/login/";
 
-    $payload = json_encode([
-        "email" => $email,
-        "password" => $motDePasse
-    ]);
+        $payload = json_encode([
+            "email" => $email,
+            "password" => $motDePasse
+        ]);
 
-    $ch = curl_init($apiUrl);
-    curl_setopt_array($ch, [
-        CURLOPT_RETURNTRANSFER => true,
-        CURLOPT_POST => true,
-        CURLOPT_HTTPHEADER => [
-            "Content-Type: application/json",
-            "Accept: application/json"
-        ],
-        CURLOPT_POSTFIELDS => $payload,
+        $ch = curl_init($apiUrl);
+        curl_setopt_array($ch, [
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_POST => true,
+            CURLOPT_HTTPHEADER => [
+                "Content-Type: application/json",
+                "Accept: application/json"
+            ],
+            CURLOPT_POSTFIELDS => $payload,
 
-        // PERFORMANCE
-        CURLOPT_CONNECTTIMEOUT => 5,
-        CURLOPT_TIMEOUT => 10,
+            // PERFORMANCE
+            CURLOPT_CONNECTTIMEOUT => 5,
+            CURLOPT_TIMEOUT => 10,
 
-        // TEMPORAIRE (DEV ONLY)
-        CURLOPT_SSL_VERIFYPEER => false,
-        CURLOPT_SSL_VERIFYHOST => false
-    ]);
+            // TEMPORAIRE (DEV ONLY)
+            CURLOPT_SSL_VERIFYPEER => false,
+            CURLOPT_SSL_VERIFYHOST => false
+        ]);
 
-    $response = curl_exec($ch);
+        $response = curl_exec($ch);
 
-    if ($response === false) {
+        if ($response === false) {
+            return [
+                "success" => false,
+                "message" => "Connexion lente ou indisponible"
+            ];
+        }
+
+        $status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        curl_close($ch);
+
+        if ($status < 200 || $status >= 300) {
+            return [
+                "success" => false,
+                "message" => "Identifiants incorrects"
+            ];
+        }
+
+        $data = json_decode($response, true);
+
+        if ($data['user']['role']['nom']==='SUPER_ADMIN') {
+            $_SESSION['token'] = $data['access'];
+            $_SESSION['role']  = $data['user']['role']['nom'];
+        }else{
+            $_SESSION['token'] = $data['access'];
+            $_SESSION['role']  = $data['user']['role']['nom'];
+            $_SESSION['entreprise'] = $data['user']['entreprise']['id'];
+        }
+
         return [
-            "success" => false,
-            "message" => "Connexion lente ou indisponible"
+            "success" => true,
+            "message" => "Login successful",
+            "role"    => $_SESSION['role']
         ];
     }
-
-    $status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-    curl_close($ch);
-
-    if ($status < 200 || $status >= 300) {
-        return [
-            "success" => false,
-            "message" => "Identifiants incorrects"
-        ];
-    }
-
-    $data = json_decode($response, true);
-
-    $_SESSION['token'] = $data['access'];
-    $_SESSION['society'] = $data['entreprise'];
-    $_SESSION['role']  = $data['user']['role']['nom'];
-
-
-    return [
-        "success" => true,
-        "message" => "Login successful",
-        "role"    => $_SESSION['role']
-    ];
-}
 
 
     //============== GESTION DES SESSION SECURITES DES PAGES
