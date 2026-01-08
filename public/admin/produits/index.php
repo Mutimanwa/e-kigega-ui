@@ -4,12 +4,12 @@
     ini_set('session.cookie_secure', 1);
     session_start();
 
-    require_once('./../../backend/function/function.php');
+    require_once('./../../../backend/function/function.php');
     $role="ADMIN";
 
     //================== gerer les session 
     if(requireRole($role)==="Accès interdit"){
-        header("Location: ./../../index.php");
+        header("Location: ./../../../index.php");
         session_destroy();
     }
 
