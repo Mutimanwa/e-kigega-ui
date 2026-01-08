@@ -23,10 +23,22 @@ function sendlogin() {
                 } else {
                     p.innerHTML = result.message;
 
+                    // =====when is a super admin loged
                     if (["SUPER_ADMIN"].includes(result.role)) {
                         p.innerHTML = `${result.message} for : ${result.role}`;
                     }
 
+                    // =====when is a COMPTABLE loged
+                    if (["COMPTABLE"].includes(result.role)) {
+                        p.innerHTML = `${result.message} for : ${result.role}`;
+                    }   
+                    
+                    // =====when is a VENTE loged
+                    if (["VENTE"].includes(result.role)) {
+                        p.innerHTML = `${result.message} for : ${result.role}`;
+                    }  
+                    
+                    //=========== when is a society admin loged
                     if (["ADMIN"].includes(result.role)) {
                         window.location.href = "./public/admin/index.php";
                     }
