@@ -70,9 +70,8 @@ include "./../../../includes/sidebar.php";
                                 </a>
 
                                 <!-- Supprimer -->
-                                <a href="#">
-                                <i class="las la-trash-alt text-secondary fs-18"></i>
-                                </a>
+                                                              <a href="#" data-bs-toggle="modal" data-bs-target="#deleteModal"><i class="las la-trash-alt text-secondary fs-18"></i></a>
+
                             </td>
 
                                                                     </tr>
@@ -111,63 +110,6 @@ include "./../../../includes/sidebar.php";
             <!--Start Footer-->
             
        
-            <?php
-            include "./../../../includes/footer.php";
-            ?>
-
-            <!-- Popup Ajouter -->
-            <div class="modal fade" id="addRate" tabindex="-1" aria-labelledby="addRateLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <form action="#">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="addRateLabel">Ajouter une dépense</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                            </div>
-                            <div class="modal-body">
-
-
-                                <div class="mb-2">
-                                    <label for="add-categorie" class="form-label">Catégorie</label>
-                                    <div class="input-group">
-                                        <span class="input-group-text">
-                                            <i class="fas fa-tags"></i>
-                                        </span>
-                                        <select id="add-categorie" class="form-select">
-                                            <option value="" selected disabled>Choisir une catégorie</option>
-                                            <option value="autre">Autre</option>
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <div class="mb-2">
-                                    <label for="add-description" class="form-label">Description</label>
-                                    <div class="input-group">
-                                        <span class="input-group-text">
-                                            <i class="fas fa-align-left"></i>
-                                        </span>
-                                        <textarea id="add-description"
-                                            class="form-control"
-                                            rows="3"
-                                            placeholder="Description de la dépense"></textarea>
-                                    </div>
-                                </div>
-                                <div class="mb-2">
-                                    <label>Montant</label>
-                                    <div class="input-group">
-                                        <span class="input-group-text"><i class="fas fa-money-bill-wave"></i></span>
-                                        <input type="number" id="add-prix" class="form-control" placeholder="Montant de la dépense">
-                                    </div>
-                                </div>
-
-
-
-                            </div>
-                            <div class="modal-footer">
-                                <button type="submit" class="btn btn-primary w-100">Ajouter</button>
-                            </div>
-                        </div>
-                    </form>
 
 <?php 
  $pageLibs = [
@@ -177,7 +119,6 @@ include "./../../../includes/sidebar.php";
 include "./../../../includes/footer.php";
 ?>
      
-
 
 <!-- Popup Ajouter -->
 <div class="modal fade" id="addRate" tabindex="-1" aria-labelledby="addRateLabel" aria-hidden="true">
@@ -235,7 +176,6 @@ include "./../../../includes/footer.php";
   </div>
 </div>
 
-
 <!-- Popup Modifier  -->
 <div class="modal fade" id="modifyRate" tabindex="-1" aria-labelledby="modifyRateLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -290,3 +230,25 @@ include "./../../../includes/footer.php";
 </div>
 
 
+
+<!-- modal de suppression -->
+    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="DeleteUserLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header bg-white">
+              <h5 class="modal-title text-danger" id="addUserLabel">Supprimer</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p class="text-muted">Êtes-vous sûr de vouloir supprimer cet utilisateur ? Cette action est irréversible.</p>           
+            </div>
+            <div class="modal-footer">
+             <button type="submit" class="btn btn-outline-danger">Oui</button>
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+  Annuler
+</button>
+
+            </div>
+          </div>
+        </div>
+  </div>
