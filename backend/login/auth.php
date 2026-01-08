@@ -1,7 +1,7 @@
 <?php
 
 ini_set('session.cookie_httponly', 1);
-file_put_contents("debug.txt", print_r($_POST, true));
+/*  file_put_contents("debug.txt", print_r($_POST, true)); */
 
 if (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') {
     ini_set('session.cookie_secure', 1);
