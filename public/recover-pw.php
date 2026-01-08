@@ -36,21 +36,21 @@
                                         <a href="index.php" class="logo logo-admin">
                                             <img src="<?= IMAGES_URL ?>/logos/logo.png" height="150" alt="logo" class="auth-logo">
                                         </a>
-                                        <h4 class="mt-n3 fw-semibold fs-18">Reset Password</h4>   
-                                        <p class="text-muted fw-medium mb-0">Enter your Email and instructions will be sent to you!</p>  
+                                        <h4 class="mt-n3 fw-semibold fs-18">Réinitialiser le mot de passe</h4>   
+                                        <p class="text-muted fw-medium mb-0">Entrez votre email et les instructions vous seront envoyées !</p>  
                                     </div>
                                 </div>
                                 <div class="card-body pt-0">                                    
                                     <form class="my-4" action="index.php">            
                                         <div class="form-group mb-2">
                                             <label class="form-label" for="username">Email</label>
-                                            <input type="text" class="form-control" id="userEmail" name="Email" placeholder="Enter Email Address">                               
+                                            <input type="text" class="form-control" id="userEmail" name="Email" placeholder="Entrez votre email">                               
                                         </div><!--end form-group-->             
                                         
                                         <div class="form-group mb-0 row">
                                             <div class="col-12">
                                                 <div class="d-grid mt-3">
-                                                    <button class="btn btn-warning" type="button">Reset <i class="fas fa-sign-in-alt ms-1"></i></button>
+                                                    <button class="btn btn-warning" type="button">Réinitialiser <i class="fas fa-sign-in-alt ms-1"></i></button>
                                                 </div>
                                             </div><!--end col--> 
                                         </div> <!--end form-group-->                           
