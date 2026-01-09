@@ -16,7 +16,7 @@ require_once '../includes/sidebar.php';
                                 <li class="breadcrumb-item"><a href="#">E-Kigega</a></li>
                                 <li class="breadcrumb-item"><a href="#">Admin</a></li>
                                 <!--end nav-item-->
-                                <li class="breadcrumb-item active">Profile</li>
+                                <li class="breadcrumb-item active">Profil</li>
                             </ol>
                 </div>                                
             </div><!--end page-title-box-->
