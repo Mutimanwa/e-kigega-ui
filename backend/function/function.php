@@ -66,7 +66,6 @@
         ];
     }
 
-
     //============== GESTION DES SESSION SECURITES DES PAGES
     function requireRole(string $role) {
         if (!isset($_SESSION['token']) || !isset($_SESSION['role']) || $_SESSION['role'] !== $role) {
@@ -122,7 +121,7 @@
     //========== GESTION DES API LORS DE DELETE {api/ex/:id} 
     function apiDelete(string $endpoint) {
 
-        $apiBase = "http://localhost:8080/api";
+        $apiBase = "https://ekigega-backend.onrender.com";
         $token   = $_SESSION['token'];
 
         $ch = curl_init($apiBase . $endpoint);
@@ -133,7 +132,15 @@
             CURLOPT_HTTPHEADER => [
                 "Authorization: Bearer $token",
                 "Content-Type: application/json"
-            ]
+            ],
+
+            // Performance
+            CURLOPT_CONNECTTIMEOUT => 5,
+            CURLOPT_TIMEOUT => 10,
+
+            //  SSL fix (DEV only)
+            CURLOPT_SSL_VERIFYPEER => false,
+            CURLOPT_SSL_VERIFYHOST => false
         ]);
 
         $response = curl_exec($ch);
