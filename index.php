@@ -74,7 +74,7 @@
                                             <div class="col-sm-6">
                                                           <!-- Message de notification  -->
                                         <div class="d-flex justify-content-center">
-                                            <p class="text-danger" id="response"></p>
+                                            <p class="text-danger" id="response" ></p>
                                         </div>
                                             </div><!--end col-->
                                             <div class="col-sm-6 text-end">
@@ -125,6 +125,21 @@
 
 .toggle-password:hover {
     color: #000;
+}
+
+p.text-danger:not(:empty) {
+    animation: smoothIn 0.4s ease forwards;
+}
+
+@keyframes smoothIn {
+    from {
+        opacity: 0;
+        transform: translateY(-8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 
