@@ -89,18 +89,19 @@
                       <td class="text-end">
                         <!-- Modifier -->
                         <a href="#"
+                          class="editBtn"
                           data-bs-toggle="modal"
-                          data-bs-target="#modifyRate"
-                          class="edit-product"
-                          data-produit="Ordinateur HP"
-                          data-categorie="Informatique"
-                          data-prix="1200"
-                          data-quantite="10">
+                          data-bs-target="#modifyProductModal"
+                          data-id="<?= $p['id'] ?>"
+                          data-nom="<?= htmlspecialchars($p['nom']) ?>"
+                          data-categorie="<?= htmlspecialchars($p['categorie']) ?>"
+                          data-prix="<?= $p['prix'] ?>"
+                          data-unite="<?= $p['mesure'] ?>">
                           <i class="las la-pen text-secondary fs-18"></i>
                         </a>
 
+
                         <!-- Supprimer -->
-                                                <!-- Supprimer -->
                         <a href="#"
                           class="text-danger delete-btn"
                           data-bs-toggle="modal"
@@ -226,55 +227,75 @@
       </div>
 
       <!-- Popup Modifier  -->
-      <div class="modal fade" id="modifyRate" tabindex="-1" aria-labelledby="modifyRateLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <form action="#">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="modifyRateLabel">Modifier un produit</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-              </div>
-              <div class="modal-body">
+<div class="modal fade" id="modifyProductModal" tabindex="-1" aria-labelledby="modifyProductLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <form action="./../../../backend/admin/produit/edit.php" method="post" id="form-edit-produit">
+      <input type="hidden" name="id" id="edit-id">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modifyProductLabel">Modifier le produit</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
 
-                <div class="mb-2">
-                  <label>Produit</label>
-                  <div class="input-group">
-                    <span class="input-group-text"><i class="fas fa-box"></i></span>
-                    <input type="text" id="modify-produit" class="form-control" placeholder="Nom de produit">
-                  </div>
-                </div>
-
-                <div class="mb-2">
-                  <label for="add-categorie" class="form-label">Catégorie</label>
-                  <div class="input-group">
-                    <span class="input-group-text">
-                      <i class="fas fa-tags"></i>
-                    </span>
-                    <select id="add-categorie" class="form-select">
-                      <option value="" selected disabled>Choisir une catégorie</option>
-                      <option value="autre">Autre</option>
-                    </select>
-                  </div>
-                </div>
-
-                   <div class="mb-2">
-            <label>Prix</label>
+          <!-- Nom du produit -->
+          <div class="mb-2">
+            <label>Produit</label>
             <div class="input-group">
-              <span class="input-group-text"><i class="fas fa-money-bill-wave"></i></span>
-              <input type="number" id="add-prix" class="form-control" placeholder="Prix du produit">
+              <span class="input-group-text"><i class="fas fa-box"></i></span>
+              <input type="text" name="nom" id="edit-nom" class="form-control" placeholder="Nom du produit" required>
             </div>
           </div>
 
-
-
-              </div>
-              <div class="modal-footer">
-                <button type="submit" class="btn btn-primary w-100">Modifier</button>
-              </div>
+          <!-- Catégorie -->
+          <div class="mb-2">
+            <label class="form-label">Catégorie</label>
+            <div class="input-group">
+              <span class="input-group-text"><i class="fas fa-tags"></i></span>
+              <select name="categorie" id="edit-categorie" class="form-select" required>
+                <option value="" disabled>Choisir une catégorie</option>
+                <?php foreach($categories as $c): ?>
+                  <option value="<?= htmlspecialchars($c['nom']) ?>"><?= htmlspecialchars($c['nom']) ?></option>
+                <?php endforeach; ?>
+              </select>
             </div>
-          </form>
+          </div>
+
+          <!-- Unité -->
+          <div class="mb-2">
+            <label class="form-label">Unité de mesure</label>
+            <div class="input-group">
+              <span class="input-group-text"><i class="fas fa-ruler"></i></span>
+              <select name="unite" id="edit-unite" class="form-select" required>
+                <option value="" disabled>Choisir une unité</option>
+                <option value="kg">Kg</option>
+                <option value="L">L</option>
+                <option value="m">m</option>
+                <option value="unite">Unité</option>
+                <option value="paire">Paire</option>
+                <option value="piece">Pièce</option>
+                <option value="carton">Carton</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Prix -->
+          <div class="mb-2">
+            <label>Prix</label>
+            <div class="input-group">
+              <span class="input-group-text"><i class="fas fa-money-bill-wave"></i></span>
+              <input type="number" name="prix" id="edit-prix" class="form-control" placeholder="Prix du produit" required>
+            </div>
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="submit" name="send" class="btn btn-primary w-100">Modifier</button>
         </div>
       </div>
+    </form>
+  </div>
+</div>
 
 
       <!-- modal de suppression -->
@@ -317,3 +338,22 @@
             });
         });
       </script>
+
+      <!-- Js pour recuperl'id lors de modification  -->
+       <script>
+          document.addEventListener('DOMContentLoaded', function() {
+            const editButtons = document.querySelectorAll('.editBtn');
+            const modal = document.getElementById('modifyProductModal');
+
+            editButtons.forEach(btn => {
+              btn.addEventListener('click', function() {
+                document.getElementById('edit-id').value = this.dataset.id;
+                document.getElementById('edit-nom').value = this.dataset.nom;
+                document.getElementById('edit-prix').value = this.dataset.prix;
+                document.getElementById('edit-unite').value = this.dataset.unite;
+                document.getElementById('edit-categorie').value = this.dataset.categorie;
+              });
+            });
+          });
+        </script>
+
