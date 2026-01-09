@@ -114,7 +114,7 @@ include_once __DIR__ . "/../includes/functions.php";
                                 </div>
                             </div>
                             <!-- All-->
-                            <a href="notifications.php"
+                            <a href="<?= BASE_URL ?>public/notifications.php"
                                 class="dropdown-item text-center text-dark fs-13 py-2 border-top">
                                 View All <i class="fi-arrow-right"></i>
                             </a>

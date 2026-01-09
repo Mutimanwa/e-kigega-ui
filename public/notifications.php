@@ -263,94 +263,23 @@ include '../includes/sidebar.php';
                         <button class="btn btn-outline-secondary active" onclick="filterNotifications('all')">
                             Toutes
                         </button>
-                        <button class="btn btn-outline-primary" onclick="filterNotifications('order')">
-                            Commandes
-                        </button>
+                    
                         <button class="btn btn-outline-success" onclick="filterNotifications('payment')">
                             Paiements
                         </button>
                         <button class="btn btn-outline-info" onclick="filterNotifications('review')">
-                            Avis
+                            Ventes
                         </button>
                         <button class="btn btn-outline-warning" onclick="filterNotifications('stock')">
                             Stock
                         </button>
-                        <button class="btn btn-outline-danger" onclick="filterNotifications('return')">
-                            Retours
-                        </button>
+                       
                     </div>
                 </div>
             </div>
 
  
 
-<style>
-    .notification-card {
-        border-left: 4px solid var(--bs-primary);
-        transition: all 0.3s ease;
-    }
-    
-    .notification-card:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    }
-    
-    .notification-card[data-type="order"] {
-        border-left-color: var(--bs-primary);
-    }
-    
-    .notification-card[data-type="payment"] {
-        border-left-color: var(--bs-success);
-    }
-    
-    .notification-card[data-type="review"] {
-        border-left-color: var(--bs-info);
-    }
-    
-    .notification-card[data-type="stock"] {
-        border-left-color: var(--bs-warning);
-    }
-    
-    .notification-card[data-type="return"] {
-        border-left-color: var(--bs-danger);
-    }
-    
-    .notification-card[data-type="customer"] {
-        border-left-color: var(--bs-purple);
-    }
-    
-    .notification-avatar {
-        width: 48px;
-        height: 48px;
-        overflow: hidden;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: #f8f9fa;
-    }
-    
-    .notification-avatar img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
-    
-    .notification-badge {
-        font-size: 11px;
-        font-weight: 500;
-        padding: 2px 8px;
-    }
-    
-    .btn-group .btn {
-        padding: 4px 12px;
-    }
-    
-    .bg-light-warning {
-        background-color: rgba(255, 193, 7, 0.1);
-        border: 1px solid rgba(255, 193, 7, 0.2);
-    }
-</style>
 
 <script>
     // Fonctions utilitaires pour PHP (à mettre dans un fichier séparé en production)
