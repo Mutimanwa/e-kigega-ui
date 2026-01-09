@@ -2,7 +2,7 @@
 
 <?php include "./config/constantes.php"; ?>
 <!DOCTYPE php>
-<php lang="en" dir="ltr" data-startbar="dark" data-bs-theme="light">
+<php lang="fr" dir="ltr" data-startbar="dark" data-bs-theme="light">
 
 <head>
 
@@ -39,52 +39,54 @@
                                             <img src="<?= IMAGES_URL ?>/logos/logo.png" height="150" alt="logo"
                                                 class="auth-logo">
                                         </a>
-                                        <h4 class="mt-n3 fw-semibold fs-18">Welcome back </h4>
-                                        <p class="text-muted  fw-medium mb-0">Sign in to continue to e-kigega.</p>
+                                        <h4 class="mt-n3 fw-semibold fs-18">Bienvenue</h4>
+                                        <p class="text-muted  fw-medium mb-0">Connectez-vous pour continuer sur e-kigega.</p>
                                     </div>
                                 </div>
                                 <div class="card-body pt-0">
                                     <!-- formulare de connexions -->
                                     <form class="my-4" id="loginForm" onsubmit="disableForm(event)">
                                         <div class="form-group mb-2">
-                                            <label class="form-label" for="username">Username</label>
+                                            <label class="form-label" for="username">Email</label>
                                             <input type="mail" class="form-control" id="username" name="mail"
-                                                placeholder="Enter username">
+                                                placeholder="Entrer votre email" required>
                                         </div><!--end form-group-->
 
                                         <div class="form-group">
-                                            <label class="form-label" for="userpassword">Password</label>
+                                            <label class="form-label" for="userpassword">Mot de passe</label>
                                             <input type="password" class="form-control" name="password"
-                                                id="userpassword" placeholder="Enter password">
+                                                id="userpassword" placeholder="Entrer votre mot de passe" required>
                                         </div><!--end form-group-->
 
+                                        
                                         <div class="form-group row mt-3">
+                                                  <!-- Message de notification  -->
+                                        <div class="d-flex justify-content-center">
+                                            <p class="text-danger" id="response"></p>
+                                        </div>
                                             <div class="col-sm-6">
                                             </div><!--end col-->
                                             <div class="col-sm-6 text-end">
                                                 <a href="./public/recover-pw.php" class="text-muted font-13"><i
-                                                        class="dripicons-lock"></i> Forgot password?</a>
+                                                        class="dripicons-lock"></i> Mot de passe oublié?</a>
                                             </div><!--end col-->
                                         </div><!--end form-group-->
 
-                                            <!-- Message de notification  -->
-                                        <div class="d-flex justify-content-center">
-                                            <p class="text-muted" id="response"></p>
-                                        </div>
+                                      
 
                                         <div class="form-group mb-0 row">
                                             <div class="col-12">
                                                 <div class="d-grid mt-3">
                                                     <input type="hidden" value="1" name="send">
-                                                    <button class="btn btn-warning" type="submit" name="send" value="1" onclick="sendlogin()">Log In <i
+                                                    <button class="btn btn-warning" type="submit" name="send" value="1" onclick="sendlogin()">Se connsecter <i
                                                             class="fas fa-sign-in-alt ms-1"></i></button>
                                                 </div>
                                             </div><!--end col-->
                                         </div> <!--end form-group-->
                                     </form><!--end form-->
                                     <div class="text-center  mb-2">
-                                        <p class="text-muted">Don't have an account ? <a href="./public/register.php"
-                                                class="text-warning ms-2">Free Resister</a></p>
+                                        <p class="text-muted">Vous n'avez pas de compte ? <a href="./public/register.php"
+                                                class="text-warning ms-2">Inscription gratuite</a></p>
                                         <!-- <h6 class="px-3 d-inline-block">Or Login With</h6> -->
                                     </div>
                                 </div><!--end card-body-->

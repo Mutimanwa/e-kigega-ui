@@ -1,0 +1,192 @@
+/* Styles TikTok */
+:root {
+    --tiktok-black: #000000;
+    --tiktok-pink: #FE2C55;
+    --tiktok-gray: #121212;
+    --tiktok-light-gray: #2C2C2C;
+}
+
+.tiktok-container {
+    background: var(--bs-startbar-bg) !important;
+    min-height: 100vh;
+    color: white;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+.shorts-feed {
+    padding-top: 70px;
+    padding-bottom: 70px;
+    height: calc(100vh - 140px);
+    overflow-y: auto;
+    scroll-snap-type: y mandatory;
+}
+
+.short-item {
+    min-height: 81vh;
+    scroll-snap-align: start;
+    position: relative;
+      
+}
+
+.short-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    
+}
+
+.video-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 20px;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+    z-index: 2;
+
+}
+
+.video-info {
+    max-width: 75%;
+}
+
+.author-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.author-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid var(--tiktok-pink);
+    object-fit: cover;
+}
+
+.author-name {
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+
+.video-title {
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+.video-description {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.95rem;
+    line-height: 1.4;
+    margin-bottom: 15px;
+}
+
+.interaction-sidebar {
+    position: absolute;
+    right: 20px;
+    bottom: 100px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    align-items: center;
+    z-index: 3;
+}
+
+.interaction-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    color: white;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.interaction-btn:hover {
+    transform: scale(1.1);
+}
+
+.interaction-btn i {
+    font-size: 24px;
+    background: rgba(0, 0, 0, 0.3);
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.interaction-count {
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.like-btn.active i {
+    color: var(--tiktok-pink);
+}
+
+.category-filters {
+    display: flex;
+    gap: 10px;
+    padding: 15px;
+    overflow-x: auto;
+    white-space: nowrap;
+    background: var(--tiktok-gray);
+}
+
+.category-filter {
+    padding: 8px 16px;
+    border-radius: 20px;
+    background: var(--tiktok-light-gray);
+    color: rgba(255, 255, 255, 0.7);
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-size: 0.9rem;
+}
+
+.category-filter.active {
+    background: white;
+    color: black;
+    font-weight: 500;
+}
+
+.category-filter:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+
+/* Mode création */
+.creation-floating-btn {
+    position: fixed;
+    right: 20px;
+    bottom: 80px;
+    background: var(--tiktok-pink);
+    color: white;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(254, 44, 85, 0.3);
+    z-index: 1001;
+    border: none;
+}
+
+.creation-floating-btn i {
+    font-size: 24px;
+}
+
+/* casher les footer  */
+footer.footer {
+    display: none;
+}
