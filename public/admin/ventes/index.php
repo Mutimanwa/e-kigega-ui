@@ -46,8 +46,9 @@ include "./../../../includes/sidebar.php";
                                     <th>Client</th>
                                     <th>Produit</th>
                                     <th>Quantité</th>
-                                    <th>Statut</th>
+                                    <th>Prix de vente</th>
                                     <th>Date</th>
+                                    <th>Statut</th>
                                     <th class="text-end">Action</th>
                                 </tr>
                             </thead>
@@ -56,12 +57,14 @@ include "./../../../includes/sidebar.php";
                                     <td>Fer</td>
                                     <td>Aluminium</td>
                                     <td>10</td>
+                                    <td>12000 FBu</td>
+                                    <td>2024-06-01</td>
                                     <td>
                                 <span class="badge rounded text-warning bg-warning-subtle">
                                     En attente
                                 </span>
                                 </td>
-                                <td>2024-06-01</td>
+                                
                                     <td class="text-end">
                                         <a href="#" data-bs-toggle="modal" data-bs-target="#modifyRate" class="edit-product">
                                             <i class="las la-pen text-secondary fs-18"></i>
@@ -73,12 +76,14 @@ include "./../../../includes/sidebar.php";
                                     <td>Jean</td>
                                     <td>Ordinateur</td>
                                     <td>5</td>
+                                    <td>12000 FBu</td>
+                                    <td>2024-06-01</td>
                                     <td>
                                         <span class="badge rounded text-success bg-success-subtle">
                                             Payée
                                         </span>
                                      </td>
-<td>2024-06-01</td>
+
                                    <td class="text-end">
                                         <a href="#" data-bs-toggle="modal" data-bs-target="#modifyRate" class="edit-product">
                                             <i class="las la-pen text-secondary fs-18"></i>
@@ -90,12 +95,14 @@ include "./../../../includes/sidebar.php";
                                     <td>Marie</td>
                                     <td>Smartphone</td>
                                     <td>8</td>
+                                    <td>12000 FBu</td>
+                                     <td>2024-06-01</td>
                                     <td>
                                         <span class="badge rounded text-info bg-info-subtle">
                                             Paiement partiel
                                         </span>
                                    </td>
-                                   <td>2024-06-01</td>
+                                  
                                     <td class="text-end">
                                         <a href="#" data-bs-toggle="modal" data-bs-target="#modifyRate" class="edit-product">
                                             <i class="las la-pen text-secondary fs-18"></i>
@@ -107,12 +114,14 @@ include "./../../../includes/sidebar.php";
                                     <td>Paul</td>
                                     <td>Tablette</td>
                                     <td>3</td>
+                                    <td>12000 FBu</td>
+                                     <td>2024-06-01</td>
                                    <td>
                                         <span class="badge rounded text-danger bg-danger-subtle">
                                             Annulée
                                         </span>
                                         </td>
-                                        <td>2024-06-01</td>
+                                       
                                       <td class="text-end">
                                         <a href="#" data-bs-toggle="modal" data-bs-target="#modifyRate" class="edit-product">
                                             <i class="las la-pen text-secondary fs-18"></i>
@@ -124,12 +133,14 @@ include "./../../../includes/sidebar.php";
                                     <td>Lucie</td>
                                     <td>Imprimante</td>
                                     <td>2</td>
+                                    <td>12000 FBu</td>
+                                     <td>2024-06-01</td>
                                     <td>
                             <span class="badge rounded text-primary bg-primary-subtle">
                                 Remboursée
                             </span>
                             </td>
-                            <td>2024-06-01</td>
+                           
                                     <td class="text-end">
                                         <a href="#" data-bs-toggle="modal" data-bs-target="#modifyRate" class="edit-product">
                                             <i class="las la-pen text-secondary fs-18"></i>
@@ -197,7 +208,7 @@ include "./../../../includes/footer.php";
     <label for="add-categorie" class="form-label">Client</label>
     <div class="input-group">
         <span class="input-group-text">
-            <i class="fas fa-tags"></i>
+             <i class="fas fa-user"></i>
         </span>
         <select id="add-categorie" class="form-select">
             <option value="" selected disabled>Choisir un client</option>
@@ -273,7 +284,7 @@ include "./../../../includes/footer.php";
     <label for="add-categorie" class="form-label">Client</label>
     <div class="input-group">
         <span class="input-group-text">
-            <i class="fas fa-tags"></i>
+            <i class="fas fa-user"></i>
         </span>
         <select id="add-categorie" class="form-select">
             <option value="" selected disabled>Choisir un client</option>
@@ -305,6 +316,15 @@ include "./../../../includes/footer.php";
               <input type="number" id="add-quantite" class="form-control" placeholder="Quantité">
             </div>
           </div>
+
+            <div class="mb-2">
+            <label>Prix de vente</label>
+            <div class="input-group">
+              <span class="input-group-text"><i class="fas fa-money-bill-wave"></i></span>
+              <input type="number" id="add-prix" class="form-control" placeholder="Prix de vente du produit">
+            </div>
+          </div>
+
 
               <div class="mb-2">
     <label for="add-statut" class="form-label">Statut</label>

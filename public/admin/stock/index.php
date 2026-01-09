@@ -45,6 +45,7 @@ include "./../../../includes/sidebar.php";
                                             <th>Produit</th>
                                             <th>Fournisseurs</th>
                                             <th>Quantite</th>
+                                            <th>Prix d'achat</th>
                                             <th>Date</th>
                                             <th class="text-end">Action</th>
                                           </tr>
@@ -55,6 +56,7 @@ include "./../../../includes/sidebar.php";
                                                 <td>Fer</td>
                                                 <td>Wakanda</td>
                                                 <td> 14</td>
+                                                <td>5000 FBu</td>
                                                 <td>2024-06-01</td>
                                                                     <td class="text-end">
                                 <!-- Modifier -->
@@ -129,6 +131,19 @@ include "./../../../includes/footer.php";
         </div>
         <div class="modal-body">
 
+               <div class="mb-2">
+    <label for="add-categorie" class="form-label">Fournisseurs</label>
+    <div class="input-group">
+        <span class="input-group-text">
+            <i class="fas fa-user"></i>
+        </span>
+        <select id="add-categorie" class="form-select">
+            <option value="" selected disabled>Choisir un fournisseur</option>
+            <option value="autre">Autre</option>
+        </select>
+    </div>
+</div>
+
           <div class="mb-2">
     <label for="add-categorie" class="form-label">Produits</label>
     <div class="input-group">
@@ -142,19 +157,15 @@ include "./../../../includes/footer.php";
     </div>
 </div>
        
+   <div class="mb-2">
+            <label>Prix d'achat</label>
+            <div class="input-group">
+              <span class="input-group-text"><i class="fas fa-money-bill-wave"></i></span>
+              <input type="number" id="add-prix" class="form-control" placeholder="Prix d'achat du produit">
+            </div>
+          </div>
 
-             <div class="mb-2">
-    <label for="add-categorie" class="form-label">Fournisseurs</label>
-    <div class="input-group">
-        <span class="input-group-text">
-            <i class="fas fa-tags"></i>
-        </span>
-        <select id="add-categorie" class="form-select">
-            <option value="" selected disabled>Choisir un fournisseur</option>
-            <option value="autre">Autre</option>
-        </select>
-    </div>
-</div>
+      
           
    <div class="mb-2">
             <label>Quantité</label>
@@ -183,6 +194,20 @@ include "./../../../includes/footer.php";
           <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
         </div>
         <div class="modal-body">
+
+             <div class="mb-2">
+    <label for="add-categorie" class="form-label">Fournisseurs</label>
+    <div class="input-group">
+        <span class="input-group-text">
+            <i class="fas fa-user"></i>
+        </span>
+        <select id="add-categorie" class="form-select">
+            <option value="" selected disabled>Choisir un fournisseur</option>
+            <option value="autre">Autre</option>
+        </select>
+    </div>
+</div>
+         
   <div class="mb-2">
     <label for="add-categorie" class="form-label">Produits</label>
     <div class="input-group">
@@ -195,21 +220,18 @@ include "./../../../includes/footer.php";
         </select>
     </div>
 </div>
+
+   <div class="mb-2">
+            <label>Prix d'achat</label>
+            <div class="input-group">
+              <span class="input-group-text"><i class="fas fa-money-bill-wave"></i></span>
+              <input type="number" id="add-prix" class="form-control" placeholder="Prix d'achat du produit">
+            </div>
+          </div>
+
        
 
-             <div class="mb-2">
-    <label for="add-categorie" class="form-label">Fournisseurs</label>
-    <div class="input-group">
-        <span class="input-group-text">
-            <i class="fas fa-tags"></i>
-        </span>
-        <select id="add-categorie" class="form-select">
-            <option value="" selected disabled>Choisir un fournisseur</option>
-            <option value="autre">Autre</option>
-        </select>
-    </div>
-</div>
-         
+        
    <div class="mb-2">
             <label>Quantité</label>
             <div class="input-group">

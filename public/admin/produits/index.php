@@ -58,6 +58,7 @@ include "./../../../includes/sidebar.php";
                       <th>Nom</th>
                       <th>Categorie</th>
                       <th>Quantite</th>
+                      <th>Prix</th>
                       <th>Date</th>
                       <th class="text-end">Action</th>
                     </tr>
@@ -68,6 +69,7 @@ include "./../../../includes/sidebar.php";
                       <td>Fer</td>
                       <td>Alminium</td>
                       <td> 14</td>
+                      <td>5000 FBu</td>
                       <td>2024-06-01</td>
                       <td class="text-end">
                         <!-- Modifier -->
@@ -163,6 +165,14 @@ include "./../../../includes/sidebar.php";
                   </div>
                 </div>
 
+                   <div class="mb-2">
+            <label>Prix</label>
+            <div class="input-group">
+              <span class="input-group-text"><i class="fas fa-money-bill-wave"></i></span>
+              <input type="number" id="add-prix" class="form-control" placeholder="Prix du produit">
+            </div>
+          </div>
+
 
               </div>
               <div class="modal-footer">
@@ -204,6 +214,14 @@ include "./../../../includes/sidebar.php";
                     </select>
                   </div>
                 </div>
+
+                   <div class="mb-2">
+            <label>Prix</label>
+            <div class="input-group">
+              <span class="input-group-text"><i class="fas fa-money-bill-wave"></i></span>
+              <input type="number" id="add-prix" class="form-control" placeholder="Prix du produit">
+            </div>
+          </div>
 
 
 
