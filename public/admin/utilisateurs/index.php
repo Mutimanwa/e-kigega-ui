@@ -130,7 +130,7 @@ include "../../../includes/footer.php"; ?>
 
 <!-- Modal d'ajout -->
 <div class="modal fade" id="addUser" tabindex="-1" aria-labelledby="addUserLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
         <form action="#">
             <div class="modal-content">
                 <div class="modal-header">
@@ -247,7 +247,7 @@ include "../../../includes/footer.php"; ?>
 
 <!-- Modal Modifier Utilisateur -->
 <div class="modal fade" id="editUser" tabindex="-1" aria-labelledby="editUserLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
         <form action="#">
             <div class="modal-content">
                 <div class="modal-header">

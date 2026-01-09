@@ -42,13 +42,13 @@ include_once __DIR__ . "/../includes/functions.php";
                             <i class="iconoir-menu"></i>
                         </button>
                     </li>
-                    <li class="hide-phone app-search">
+                    <!-- <li class="hide-phone app-search">
                         <form role="search" action="#" method="get">
                             <input type="search" name="search" class="form-control top-search mb-0"
                                 placeholder="Rechercher..." />
                             <button type="submit"><i class="iconoir-search"></i></button>
                         </form>
-                    </li>
+                    </li> -->
                 </ul>
                 <ul class="topbar-item list-unstyled d-inline-flex align-items-center mb-0">
                     <li class="dropdown">
