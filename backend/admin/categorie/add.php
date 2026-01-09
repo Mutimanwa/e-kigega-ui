@@ -29,7 +29,8 @@
          $e="Erreur lors de la création";
          header("Location:./../../../public/admin/produits/categories.php?error=$e");
       }else if($add['Message']==="ajouter avec succes"){
-        header("Location:./../../../public/admin/produits/categories.php");
+        $e= "Catégorie ajoutée avec succès";
+        header("Location:./../../../public/admin/produits/categories.php?success=$e");
       }
 
     }

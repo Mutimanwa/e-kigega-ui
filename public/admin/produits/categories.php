@@ -119,6 +119,53 @@ include "./../../../includes/sidebar.php";
       include "./../../../includes/footer.php";
       ?>
 
+      <script>
+        // toast success
+        <?php if (isset($_GET['success'])): ?>
+          showToast("<?= htmlspecialchars($_GET['success']) ?>", 'success');
+   
+        <?php endif; ?>
+        // toast error
+        <?php if (isset($_GET['error'])): ?>
+         showToast("<?= htmlspecialchars($_GET['error']) ?>", 'danger');
+       
+        <?php endif; ?>
+
+        function showToast(message, type = 'info') {
+    // Créer un toast Bootstrap
+      const toastContainer = document.getElementById('toastContainer');
+      if (!toastContainer) {
+          const container = document.createElement('div');
+          container.id = 'toastContainer';
+          container.style.cssText = 'position: fixed; top: 20px; right: 20px; z-index: 9999;';
+          document.body.appendChild(container);
+    }
+    
+    const toastId = 'toast-' + Date.now();
+    const toast = document.createElement('div');
+    toast.className = `toast align-items-center text-white bg-${type} border-0`;
+    toast.id = toastId;
+    toast.innerHTML = `
+        <div class="d-flex">
+            <div class="toast-body">${message}</div>
+            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+        </div>
+    `;
+    
+    document.getElementById('toastContainer').appendChild(toast);
+    
+    const bsToast = new bootstrap.Toast(toast, {
+        autohide: true,
+        delay: 3000
+    });
+    
+    bsToast.show();
+    
+    toast.addEventListener('hidden.bs.toast', function () {
+        toast.remove();
+    });
+}
+      </script>
 
       <!-- Popup Ajouter -->
       <div class="modal fade" id="addRate" tabindex="-1" aria-labelledby="addRateLabel" aria-hidden="true">
