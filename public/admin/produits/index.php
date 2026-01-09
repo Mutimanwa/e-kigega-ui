@@ -13,8 +13,12 @@
         session_destroy();
     }
 
-include "./../../../includes/header.php";
-include "./../../../includes/sidebar.php";
+    //================== fetch les produits
+    $produits=getApi('/api/produits/');
+
+    //=========== gestion des pages dynamiques
+    include "./../../../includes/header.php";
+    include "./../../../includes/sidebar.php";
 ?>
 <div class="page-wrapper">
 
@@ -64,13 +68,13 @@ include "./../../../includes/sidebar.php";
                     </tr>
                   </thead>
                   <tbody>
-
+                   <?php  foreach ($produits as $p ): ?>
                     <tr>
-                      <td>Fer</td>
-                      <td>Alminium</td>
-                      <td> 14</td>
-                      <td>5000 FBu</td>
-                      <td>2024-06-01</td>
+                      <td><?= htmlspecialchars($p['nom']) ?></td>
+                      <td><?= htmlspecialchars($p['categorie']) ?></td>
+                      <td> <?= htmlspecialchars($p['quantite']) ?></td>
+                      <td><?= htmlspecialchars($p['prix']) ?> FBu</td>
+                      <td><?= htmlspecialchars((new DateTime($p['created_at']))->format('d/m/Y')) ?></td>
                       <td class="text-end">
                         <!-- Modifier -->
                         <a href="#"
@@ -90,32 +94,9 @@ include "./../../../includes/sidebar.php";
                       </td>
 
                     </tr>
-
+                  <?php endforeach ; ?>
                   </tbody>
                 </table>
-
-              </div>
-              <br>
-              <div class="d-flex justify-content-center">
-                <ul class="pagination">
-                  <li class="page-item disabled">
-                    <a class="page-link" href="#" tabindex="-1">Précédent</a>
-                  </li>
-                  <li class="page-item active">
-                    <a class="page-link" href="#">1</a>
-                  </li>
-                  <li class="page-item">
-                    <a class="page-link" href="#">2</a>
-                  </li>
-                  <li class="page-item">
-                    <a class="page-link" href="#">3</a>
-                  </li>
-                  <li class="page-item">
-                    <a class="page-link" href="#">Suivant</a>
-                  </li>
-                </ul>
-              </div>
-
             </div>
           </div> <!-- end col -->
         </div> <!-- end row -->
