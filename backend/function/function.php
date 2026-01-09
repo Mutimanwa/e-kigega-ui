@@ -61,7 +61,7 @@
 
         return [
     "success" => true,
-    "message" => "<span class='text-success'>Login successful</span>",
+    "message" => "<span class='text-success'>Connexion réussie</span>",
     "role"    => $_SESSION['role']
 ];
 
