@@ -12,11 +12,12 @@ require_once '../includes/sidebar.php';
             <div class="page-title-box d-md-flex justify-content-md-between align-items-center">
                 <h4 class="page-title">Profil Utilisateur</h4>
                 <div class="">
-                    <ol class="breadcrumb mb-0">
-                        <li class="breadcrumb-item"><a href="<?= BASE_URL ?>">Tableau de bord</a></li>
-                        <li class="breadcrumb-item"><a href="<?= BASE_URL ?>public/admin/utilisateurs/">Utilisateurs</a></li>
-                        <li class="breadcrumb-item active">Profil</li>
-                    </ol>
+                   <ol class="breadcrumb mb-0">
+                                <li class="breadcrumb-item"><a href="#">E-Kigega</a></li>
+                                <li class="breadcrumb-item"><a href="#">Admin</a></li>
+                                <!--end nav-item-->
+                                <li class="breadcrumb-item active">Profil</li>
+                            </ol>
                 </div>                                
             </div><!--end page-title-box-->
         </div><!--end col-->
@@ -83,7 +84,7 @@ require_once '../includes/sidebar.php';
                                 
                                 <div class="d-flex gap-2">
                                 
-                                    <button type="button" class="btn btn-outline-primary flex-fill" onclick="editerProfil()">
+                                    <button type="button" class="btn btn-outline-primary flex-fill" data-bs-toggle="modal" data-bs-target="#editProfileModal">
                                         <i class="las la-edit me-1"></i> Modifier
                                     </button> 
                                 </div>
@@ -101,217 +102,210 @@ require_once '../includes/sidebar.php';
 </div><!-- container -->
 
 <!-- Modal Édition Profil -->
-<div class="modal fade" id="editProfileModal" tabindex="-1">
+<div class="modal fade" id="editProfileModal" tabindex="-1" aria-labelledby="editUserLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Modifier le Profil</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-            </div>
-            <form id="profileForm">
+        <form action="#">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editUserLabel">Modifier un utilisateur</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+
                 <div class="modal-body">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="mb-3">
-                                <label for="editNom" class="form-label">Nom complet *</label>
-                                <input type="text" class="form-control" id="editNom" value="Jean Ndayishimiye" required>
-                            </div>
-                            
-                            <div class="mb-3">
-                                <label for="editEmail" class="form-label">Email *</label>
-                                <input type="email" class="form-control" id="editEmail" value="jean.ndayishimiye@example.com" required>
-                            </div>
-                            
-                            <div class="mb-3">
-                                <label for="editTelephone" class="form-label">Téléphone</label>
-                                <input type="tel" class="form-control" id="editTelephone" value="+257 79 123 456">
-                            </div>
-                            
-                            
+                    <!-- Photo -->
+                    <div class="form-group mb-3 d-flex align-items-center">
+                        <i id="profileIconEdit" class="fa-solid fa-user text-muted thumb-xl rounded me-2 border-dashed"></i>
+                        <div class="flex-grow-1">
+                            <label class="btn btn-primary text-light">
+                                Modifier une photo
+                                <input type="file" id="profileInputEdit" accept="image/*" class="profile-input" data-target="profileIconEdit" hidden>
+                            </label>
                         </div>
-                        
-                            <div class="col-md-6">
-                                
-                                <div class="mb-3">
-                                    <label for="editAncienMotDePasse" class="form-label">Ancien mot de passe</label>
-                                    <input type="password" class="form-control" id="editAncienMotDePasse" placeholder="Votre ancien mot de passe">
-                                </div>
-                                
-                                <div class="mb-3">
-                                    <label for="editNouveauMotDePasse" class="form-label">Nouveau mot de passe</label>
-                                    <input type="password" class="form-control" id="editNouveauMotDePasse" placeholder="Entrer le nouveau mot de passe">
-                                </div>
-                                
-                                <div class="mb-3">
-                                    <label for="editStatut" class="form-label">Confirmer le Nouveau Mot de passe</label>
-                                    <input type="password" class="form-control" id="editStatut" placeholder="Confirmer le nouveau mot de passe"   >
-                                </div>
+                    </div>
+
+                    <!-- Nom / Prenom -->
+                    <div class="row">
+                        <div class="col-md-6 mb-2">
+                            <label for="firstNameEdit">Nom</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                <input type="text" class="form-control" id="firstNameEdit" placeholder="Nom">
                             </div>
+                        </div>
+                        <div class="col-md-6 mb-2">
+                            <label for="lastNameEdit">Prénom</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="fas fa-user-tag"></i></span>
+                                <input type="text" class="form-control" id="lastNameEdit" placeholder="Prénom">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Email / Téléphone -->
+                    <div class="row">
+                        <div class="col-md-6 mb-2">
+                            <label for="emailEdit">Email</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="fas fa-envelope"></i></i></span>
+                                <input type="email" class="form-control" id="emailEdit" placeholder="Email">
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-2">
+                            <label for="phoneEdit">N° Téléphone</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="fa-solid fa-phone"></i></span>
+                                <input type="text" class="form-control" id="phoneEdit" placeholder="+1 234 567 890">
+                            </div>
+                        </div>
+                    </div>
+
+                   
+                    <!-- Mot de passe / Confirmer mot de passe -->
+                    <div class="row">
+                        <div class="col-md-6 mb-2">
+                            <label for="passwordEdit">Mot de passe</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="fa-solid fa-lock"></i></span>
+                                <input type="password" class="form-control password-input" id="passwordEdit" placeholder="Mot de passe">
+                                <span class="input-group-text toggle-password" data-target="passwordEdit">
+                                    <i class="iconoir-eye-closed"></i>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-2">
+                            <label for="confirmPasswordEdit">Confirmer mot de passe</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="fa-solid fa-lock"></i></span>
+                                <input type="password" class="form-control password-input" id="confirmPasswordEdit" placeholder="Confirmer mot de passe">
+                                <span class="input-group-text toggle-password" data-target="confirmPasswordEdit">
+                                    <i class="iconoir-eye-closed"></i>
+                                </span>
+                            </div>
+                        </div>
                     </div>
                 </div>
+
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
-                    <button type="submit" class="btn btn-primary">
-                        <i class="las la-save me-1"></i> Enregistrer
-                    </button>
+                    <button type="submit" class="btn btn-primary w-100">Modifier</button>
                 </div>
-            </form>
-        </div>
+            </div>
+        </form>
     </div>
 </div>
 
+
+<!-- Script JavaScript pour toutes les fonctionnalités -->
 <script>
-// Initialisation
-document.addEventListener('DOMContentLoaded', function() {
-    // Initialiser le graphique d'activité
-    initialiserGraphiqueActivite();
+// Fonction pour le toggle des mots de passe
+document.querySelectorAll(".toggle-password").forEach(toggle => {
+    toggle.addEventListener("click", function () {
+        const input = this.parentElement.querySelector(".password-input"); // prend l'input dans le même groupe
+        const icon = this.querySelector("i");
+
+        if (icon.classList.contains("iconoir-eye")) {
+            // Icon = eye → mot de passe visible → on masque
+            input.type = "password";
+            icon.classList.remove("iconoir-eye");
+            icon.classList.add("iconoir-eye-closed");
+        } else {
+            // Icon = eye-slash → mot de passe masqué → on rend visible
+            input.type = "text";
+            icon.classList.remove("iconoir-eye-closed");
+            icon.classList.add("iconoir-eye");
+        }
+    });
 });
 
-function editerProfil() {
-    const modal = new bootstrap.Modal(document.getElementById('editProfileModal'));
-    modal.show();
-}
+// Fonction pour la prévisualisation d'image
+function setupImagePreview(inputId, iconId) {
+    const profileInput = document.getElementById(inputId);
+    const profileIcon = document.getElementById(iconId);
 
-function editerInformations() {
-    // Ici, vous ouvririez un modal pour éditer les informations personnelles
-    alert('Fonctionnalité d\'édition des informations personnelles');
-}
+    if (profileInput && profileIcon) {
+        profileInput.addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (!file) return;
 
-function enregistrerPermissions() {
-    // Collecter les permissions
-    const permissions = {
-        modules: {
-            dashboard: document.getElementById('module_dashboard').checked,
-            produits: document.getElementById('module_produits').checked,
-            ventes: document.getElementById('module_ventes').checked,
-            stock: document.getElementById('module_stock').checked,
-            depenses: document.getElementById('module_dépenses').checked,
-            clients: document.getElementById('module_clients').checked,
-            formations: document.getElementById('module_formations').checked,
-            rapports: document.getElementById('module_rapports').checked,
-            utilisateurs: document.getElementById('module_utilisateurs').checked,
-        },
-        actions: {
-            create: document.getElementById('action_create').checked,
-            read: document.getElementById('action_read').checked,
-            update: document.getElementById('action_update').checked,
-            delete: document.getElementById('action_delete').checked,
-            export: document.getElementById('action_export').checked,
-            import: document.getElementById('action_import').checked,
-        }
-    };
-    
-    // Simuler l'enregistrement
-    console.log('Permissions à enregistrer:', permissions);
-    
-    // Afficher un message de succès
-    showToast('Permissions enregistrées avec succès', 'success');
-}
-
-function initialiserGraphiqueActivite() {
-    const ctx = document.getElementById('activiteChart').getContext('2d');
-    
-    // Données de test
-    const data = {
-        labels: ['Sem 1', 'Sem 2', 'Sem 3', 'Sem 4'],
-        datasets: [
-            {
-                label: 'Tâches complétées',
-                data: [35, 42, 38, 45],
-                borderColor: '#727cf5',
-                backgroundColor: 'rgba(114, 124, 245, 0.1)',
-                fill: true,
-                tension: 0.4
-            },
-            {
-                label: 'Ventes',
-                data: [8, 12, 10, 15],
-                borderColor: '#0acf97',
-                backgroundColor: 'rgba(10, 207, 151, 0.1)',
-                fill: true,
-                tension: 0.4
-            },
-            {
-                label: 'Dépenses approuvées',
-                data: [5, 8, 6, 4],
-                borderColor: '#fa5c7c',
-                backgroundColor: 'rgba(250, 92, 124, 0.1)',
-                fill: true,
-                tension: 0.4
-            }
-        ]
-    };
-    
-    const config = {
-        type: 'line',
-        data: data,
-        options: {
-            responsive: true,
-            plugins: {
-                legend: {
-                    position: 'top',
-                },
-                tooltip: {
-                    mode: 'index',
-                    intersect: false
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                let img = document.getElementById('profilePreview_' + iconId);
+                
+                // Si l'image n'existe pas encore, la créer
+                if (!img) {
+                    img = document.createElement('img');
+                    img.id = 'profilePreview_' + iconId;
+                    img.className = 'thumb-xl rounded me-2 border-dashed';
+                    profileIcon.replaceWith(img);
                 }
-            },
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    title: {
-                        display: true,
-                        text: 'Quantité'
-                    }
-                },
-                x: {
-                    title: {
-                        display: true,
-                        text: 'Semaines du mois'
-                    }
-                }
-            }
-        }
-    };
-    
-    // Vérifier si Chart.js est disponible
-    if (typeof Chart !== 'undefined') {
-        new Chart(ctx, config);
+
+                // Définir la source de l'image sélectionnée
+                img.src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        });
     }
 }
 
-// Gestion du formulaire de profil
-document.getElementById('profileForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    const formData = {
-        nom: document.getElementById('editNom').value,
-        email: document.getElementById('editEmail').value,
-        telephone: document.getElementById('editTelephone').value,
-        role: document.getElementById('editRole').value,
-        poste: document.getElementById('editPoste').value,
-        departement: document.getElementById('editDepartement').value,
-        adresse: document.getElementById('editAdresse').value,
-        statut: document.getElementById('editStatut').value
-    };
-    
-    // Simuler l'enregistrement
-    console.log('Profil à mettre à jour:', formData);
-    
-    // Fermer le modal
-    bootstrap.Modal.getInstance(document.getElementById('editProfileModal')).hide();
-    
-    // Afficher un message de succès
-    showToast('Profil mis à jour avec succès', 'success');
-    
-    // Recharger les données (dans une vraie app, vous feriez une requête AJAX)
-    setTimeout(() => {
-        location.reload();
-    }, 1500);
+// Initialiser la prévisualisation pour les deux modals
+setupImagePreview('profileInputAdd', 'profileIconAdd');
+setupImagePreview('profileInputEdit', 'profileIconEdit');
+
+// Fonction pour réinitialiser les formulaires quand les modals sont fermés
+document.querySelectorAll('.modal').forEach(modal => {
+    modal.addEventListener('hidden.bs.modal', function () {
+        // Réinitialiser les prévisualisations d'image
+        const modalId = this.id;
+        let iconId, inputId;
+        
+        if (modalId === 'addUser') {
+            iconId = 'profileIconAdd';
+            inputId = 'profileInputAdd';
+        } else if (modalId === 'editUser') {
+            iconId = 'profileIconEdit';
+            inputId = 'profileInputEdit';
+        }
+        
+        // Réinitialiser l'icône si elle a été remplacée par une image
+        const previewImg = document.getElementById('profilePreview_' + iconId);
+        const iconElement = document.getElementById(iconId);
+        const inputElement = document.getElementById(inputId);
+        
+        if (previewImg && iconElement) {
+            // Remplacer l'image par l'icône originale
+            previewImg.replaceWith(iconElement);
+        }
+        
+        // Réinitialiser l'input file
+        if (inputElement) {
+            inputElement.value = '';
+        }
+    });
 });
 
+// Gestion du chargement des données utilisateur pour la modification
+document.querySelectorAll('.edit-user').forEach(button => {
+    button.addEventListener('click', function() {
+        const userId = this.getAttribute('data-user-id');
+        // Ici vous pouvez charger les données de l'utilisateur depuis une API
+        // Exemple avec des données statiques pour la démonstration
+        if (userId === '1') {
+            document.getElementById('firstNameEdit').value = 'Audry';
+            document.getElementById('lastNameEdit').value = 'Wakanda';
+            document.getElementById('emailEdit').value = 'audrywakanda@gmail.com';
+            document.getElementById('phoneEdit').value = '+1 234 567 890';
+            document.getElementById('roleEdit').value = 'administrateur';
+            document.getElementById('statusEdit').value = 'active';
+        } else if (userId === '2') {
+            document.getElementById('firstNameEdit').value = 'Kamana';
+            document.getElementById('lastNameEdit').value = 'Urbain';
+            document.getElementById('emailEdit').value = 'urbain@gmail.com';
+            document.getElementById('phoneEdit').value = '+1 234 567 890';
+            document.getElementById('roleEdit').value = 'utilisateur';
+            document.getElementById('statusEdit').value = 'inactive';
+        }
+    });
+});
 </script>
-
 
 <?php 
 require_once '../includes/footer.php';

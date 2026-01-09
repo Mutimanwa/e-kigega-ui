@@ -11,3 +11,15 @@
 .toggle-password:hover {
     color: #000;
 }
+
+#response {
+    opacity: 0;
+    transform: translateY(-6px);
+    transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+/* visible */
+#response.show {
+    opacity: 1;
+    transform: translateY(0);
+}

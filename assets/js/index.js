@@ -1,5 +1,21 @@
 let form = document.getElementById("loginForm");
 let p = document.getElementById("response");
+let loginBtn = document.getElementById("loginBtn");
+let btnSpinner = document.getElementById("btnSpinner");
+let btnText = document.getElementById("btnText");
+
+// Active ou désactive le spinner
+function spinner(state) {
+    if (state) {
+        loginBtn.disabled = true;
+        btnSpinner.classList.remove("d-none");
+        btnText.style.opacity = "0.6";
+    } else {
+        loginBtn.disabled = false;
+        btnSpinner.classList.add("d-none");
+        btnText.style.opacity = "1";
+    }
+}
 
 form.addEventListener("submit", function (e) {
   e.preventDefault();
@@ -8,12 +24,15 @@ form.addEventListener("submit", function (e) {
 });
 
 function sendlogin() {
+  spinner(true); // activation spinner
+
   let xhr = new XMLHttpRequest();
   let formData = new FormData(form);
 
   xhr.open("POST", "./backend/login/auth.php", true);
 
   xhr.onload = function () {
+    spinner(false); // désactivation spinner
     if (xhr.status === 200) {
       try {
         let result = JSON.parse(xhr.responseText);

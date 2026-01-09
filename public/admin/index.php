@@ -30,6 +30,7 @@ include "../../includes/sidebar.php";
                         <div class="">
                             <ol class="breadcrumb mb-0">
                                 <li class="breadcrumb-item"><a href="#">E-Kigega</a></li>
+                                <li class="breadcrumb-item"><a href="#">Admin</a></li>
                                 <!--end nav-item-->
                                 <li class="breadcrumb-item active">Tableau de Bord</li>
                             </ol>

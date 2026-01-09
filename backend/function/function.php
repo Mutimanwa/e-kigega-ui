@@ -60,10 +60,11 @@
         }
 
         return [
-            "success" => true,
-            "message" => "Login successful",
-            "role"    => $_SESSION['role']
-        ];
+    "success" => true,
+    "message" => "<span class='text-success'>Connexion réussie</span>",
+    "role"    => $_SESSION['role']
+];
+
     }
 
     //============== GESTION DES SESSION SECURITES DES PAGES
