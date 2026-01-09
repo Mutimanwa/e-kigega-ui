@@ -26,12 +26,12 @@ include "../../includes/sidebar.php";
             <div class="row">
                 <div class="col-sm-12">
                     <div class="page-title-box d-md-flex justify-content-md-between align-items-center">
-                        <h4 class="page-title">Dashboard</h4>
+                        <h4 class="page-title">Tableau de Bord</h4>
                         <div class="">
                             <ol class="breadcrumb mb-0">
                                 <li class="breadcrumb-item"><a href="#">E-Kigega</a></li>
                                 <!--end nav-item-->
-                                <li class="breadcrumb-item active">Dashboard</li>
+                                <li class="breadcrumb-item active">Tableau de Bord</li>
                             </ol>
                         </div>
                     </div>
@@ -66,16 +66,8 @@ include "../../includes/sidebar.php";
                                 <div class="card-body">
                                     <div>
                                         <div class="d-flex justify-content-between align-items-center">
-                                            <span class="fs-16 fw-semibold">Solde Caisse</span>
-                                            <form class="">
-                                                <select id="dynamic-select" name="example-select"
-                                                    data-placeholder="Sélectionner" data-dynamic-select>
-                                                    <option value="1" data-img="<?= IMAGES_URL ?>logos/m-card.png">
-                                                        Caisse Principale</option>
-                                                    <option value="2" data-img="<?= IMAGES_URL ?>logos/ame-bank.png">
-                                                        Caisse Secondaire</option>
-                                                </select>
-                                            </form>
+                                            <span class="fs-16 fw-semibold">Caisse – Dépenses</span>
+                                         
                                         </div>
 
                                         <h4 class="my-2 fs-24 fw-semibold">
@@ -85,10 +77,10 @@ include "../../includes/sidebar.php";
                                             <span class="text-success"><i class="fas fa-arrow-up me-1"></i>8.5%</span>
                                             Croissance mensuelle
                                         </p>
-                                        <button type="button" class="btn btn-soft-primary" data-bs-toggle="modal"
+                                        <a href="<?= BASE_URL ?>public/admin/rapports/"><button type="button" class="btn btn-soft-primary" data-bs-toggle="modal"
                                             data-bs-target="#transferModal">
-                                            Transferer
-                                        </button>
+                                            Benéfices
+                                        </button></a>
                                         <a href="<?= BASE_URL ?>public/admin/depenses/" class="btn btn-soft-danger">
                                             Dépenses
                                         </a>
@@ -138,7 +130,7 @@ include "../../includes/sidebar.php";
                                     <div class="row d-flex justify-content-center">
                                         <div class="col-9">
                                             <p class="text-muted text-uppercase mb-0 fw-normal fs-13">
-                                                Commandes
+                                               Ventes du Mois
                                             </p>
                                             <h4 class="mt-1 mb-0 fw-medium">722</h4>
                                         </div>
@@ -191,15 +183,16 @@ include "../../includes/sidebar.php";
                                     <div class="row d-flex justify-content-center">
                                         <div class="col-9">
                                             <p class="text-muted text-uppercase mb-0 fw-normal fs-13">
-                                                Panier Moyen
+                                                Fournisseurs
                                             </p>
-                                            <h4 class="mt-1 mb-0 fw-medium">102.550 FBU</h4>
+                                            <h4 class="mt-1 mb-0 fw-medium">2</h4>
                                         </div>
                                         <!--end col-->
                                         <div class="col-3 align-self-center">
                                             <div
                                                 class="d-flex justify-content-center align-items-center thumb-md border-dashed border-danger rounded mx-auto">
-                                                <i class="iconoir-wallet fs-22 align-self-center mb-0 text-danger"></i>
+                                                <i class="iconoir-user fs-22 align-self-center mb-0 text-danger"></i>
+
                                             </div>
                                         </div>
                                         <!--end col-->
@@ -576,146 +569,87 @@ include "../../includes/sidebar.php";
                                 <table class="table mb-0">
                                     <thead class="table-light">
                                         <tr>
-                                            <th class="border-top-0">Client</th>
-                                            <th class="border-top-0">Date</th>
-                                            <th class="border-top-0">Montant</th>
-                                            <th class="border-top-0">Statut</th>
-                                            <th class="border-top-0">Actions</th>
+                                               <th>Client</th>
+                                            <th>Produit</th>
+                                            <th>Quantité</th>
+                                            <th>Prix de vente</th>
+                                            <th>Date</th>
+                                            <th>Statut</th>
+                                           
                                         </tr>
                                         <!--end tr-->
                                     </thead>
-                                    <tbody>
+                                   <tbody>
                                         <tr>
+                                            <td>Fer</td>
+                                            <td>Aluminium</td>
+                                            <td>10</td>
+                                            <td>12000 FBu</td>
+                                            <td>2024-06-01</td>
                                             <td>
-                                                <div class="d-flex align-items-center">
-                                                    <img src="<?= IMAGES_URL ?>users/avatar-1.jpg" height="40"
-                                                        class="me-3 align-self-center rounded" alt="..." />
-                                                    <div class="flex-grow-1 text-truncate">
-                                                        <h6 class="m-0">Jean Ndayishimiye</h6>
-                                                        <a href="#" class="fs-12 text-primary">ID: C3652</a>
-                                                    </div>
-                                                    <!--end media body-->
-                                                </div>
+                                                <span class="badge rounded text-warning bg-warning-subtle">
+                                                    En attente
+                                                </span>
                                             </td>
-                                            <td>20 juillet 2024</td>
-                                            <td>560.000 FBU</td>
-                                            <td>
-                                                <span
-                                                    class="badge bg-success-subtle text-success fs-11 fw-medium px-2">Payé</span>
-                                            </td>
-                                            <td>
-                                                <a href="#" class="btn btn-sm btn-soft-primary"><i
-                                                        class="las la-eye"></i></a>
-                                                <a href="#" class="btn btn-sm btn-soft-danger"><i
-                                                        class="las la-trash-alt"></i></a>
-                                            </td>
+
+                                          
                                         </tr>
-                                        <!--end tr-->
                                         <tr>
+                                            <td>Jean</td>
+                                            <td>Ordinateur</td>
+                                            <td>5</td>
+                                            <td>12000 FBu</td>
+                                            <td>2024-06-01</td>
                                             <td>
-                                                <div class="d-flex align-items-center">
-                                                    <img src="<?= IMAGES_URL ?>users/avatar-2.jpg" height="40"
-                                                        class="me-3 align-self-center rounded" alt="..." />
-                                                    <div class="flex-grow-1 text-truncate">
-                                                        <h6 class="m-0">Marie Uwimana</h6>
-                                                        <a href="#" class="fs-12 text-primary">ID: C5784</a>
-                                                    </div>
-                                                    <!--end media body-->
-                                                </div>
+                                                <span class="badge rounded text-success bg-success-subtle">
+                                                    Payée
+                                                </span>
                                             </td>
-                                            <td>09 juillet 2024</td>
-                                            <td>2.350.000 FBU</td>
-                                            <td>
-                                                <span
-                                                    class="badge bg-warning-subtle text-warning fs-11 fw-medium px-2">En
-                                                    attente</span>
-                                            </td>
-                                            <td>
-                                                <a href="#" class="btn btn-sm btn-soft-primary"><i
-                                                        class="las la-eye"></i></a>
-                                                <a href="#" class="btn btn-sm btn-soft-danger"><i
-                                                        class="las la-trash-alt"></i></a>
-                                            </td>
+
+                                           
                                         </tr>
-                                        <!--end tr-->
                                         <tr>
+                                            <td>Marie</td>
+                                            <td>Smartphone</td>
+                                            <td>8</td>
+                                            <td>12000 FBu</td>
+                                            <td>2024-06-01</td>
                                             <td>
-                                                <div class="d-flex align-items-center">
-                                                    <img src="<?= IMAGES_URL ?>users/avatar-3.jpg" height="40"
-                                                        class="me-3 align-self-center rounded" alt="..." />
-                                                    <div class="flex-grow-1 text-truncate">
-                                                        <h6 class="m-0">Paul Niyonkuru</h6>
-                                                        <a href="#" class="fs-12 text-primary">ID: C9632</a>
-                                                    </div>
-                                                    <!--end media body-->
-                                                </div>
+                                                <span class="badge rounded text-info bg-info-subtle">
+                                                    Paiement partiel
+                                                </span>
                                             </td>
-                                            <td>02 juin 2024</td>
-                                            <td>2.200.000 FBU</td>
-                                            <td>
-                                                <span
-                                                    class="badge bg-success-subtle text-success fs-11 fw-medium px-2">Payé</span>
-                                            </td>
-                                            <td>
-                                                <a href="#" class="btn btn-sm btn-soft-primary"><i
-                                                        class="las la-eye"></i></a>
-                                                <a href="#" class="btn btn-sm btn-soft-danger"><i
-                                                        class="las la-trash-alt"></i></a>
-                                            </td>
+
+                                           
                                         </tr>
-                                        <!--end tr-->
                                         <tr>
+                                            <td>Paul</td>
+                                            <td>Tablette</td>
+                                            <td>3</td>
+                                            <td>12000 FBu</td>
+                                            <td>2024-06-01</td>
                                             <td>
-                                                <div class="d-flex align-items-center">
-                                                    <img src="<?= IMAGES_URL ?>users/avatar-4.jpg" height="40"
-                                                        class="me-3 align-self-center rounded" alt="..." />
-                                                    <div class="flex-grow-1 text-truncate">
-                                                        <h6 class="m-0">Anne Niyongabo</h6>
-                                                        <a href="#" class="fs-12 text-primary">ID: C8596</a>
-                                                    </div>
-                                                    <!--end media body-->
-                                                </div>
+                                                <span class="badge rounded text-danger bg-danger-subtle">
+                                                    Annulée
+                                                </span>
                                             </td>
-                                            <td>28 mai 2024</td>
-                                            <td>1.320.000 FBU</td>
-                                            <td>
-                                                <span
-                                                    class="badge bg-danger-subtle text-danger fs-11 fw-medium px-2">Annulé</span>
-                                            </td>
-                                            <td>
-                                                <a href="#" class="btn btn-sm btn-soft-primary"><i
-                                                        class="las la-eye"></i></a>
-                                                <a href="#" class="btn btn-sm btn-soft-danger"><i
-                                                        class="las la-trash-alt"></i></a>
-                                            </td>
+
+                                           
                                         </tr>
-                                        <!--end tr-->
                                         <tr>
+                                            <td>Lucie</td>
+                                            <td>Imprimante</td>
+                                            <td>2</td>
+                                            <td>12000 FBu</td>
+                                            <td>2024-06-01</td>
                                             <td>
-                                                <div class="d-flex align-items-center">
-                                                    <img src="<?= IMAGES_URL ?>users/avatar-5.jpg" height="40"
-                                                        class="me-3 align-self-center rounded" alt="..." />
-                                                    <div class="flex-grow-1 text-truncate">
-                                                        <h6 class="m-0">Eric Hakizimana</h6>
-                                                        <a href="#" class="fs-12 text-primary">ID: C7778</a>
-                                                    </div>
-                                                    <!--end media body-->
-                                                </div>
+                                                <span class="badge rounded text-primary bg-primary-subtle">
+                                                    Remboursée
+                                                </span>
                                             </td>
-                                            <td>15 mai 2024</td>
-                                            <td>3.650.000 FBU</td>
-                                            <td>
-                                                <span
-                                                    class="badge bg-success-subtle text-success fs-11 fw-medium px-2">Payé</span>
-                                            </td>
-                                            <td>
-                                                <a href="#" class="btn btn-sm btn-soft-primary"><i
-                                                        class="las la-eye"></i></a>
-                                                <a href="#" class="btn btn-sm btn-soft-danger"><i
-                                                        class="las la-trash-alt"></i></a>
-                                            </td>
+
+                                           
                                         </tr>
-                                        <!--end tr-->
                                     </tbody>
                                 </table>
                                 <!--end table-->
@@ -756,10 +690,9 @@ include "../../includes/sidebar.php";
                                         <tr class="">
                                             <td class="px-0">
                                                 <div class="d-flex align-items-center">
-                                                    <img src="<?= IMAGES_URL ?>users/avatar-1.jpg" height="36"
-                                                        class="me-2 align-self-center rounded" alt="..." />
+                                                    
                                                     <div class="flex-grow-1 text-truncate">
-                                                        <h6 class="m-0 text-truncate">Scott Holland</h6>
+                                                        <h6 class="m-0 text-truncate">Dorian axcelle</h6>
                                                         <a href="#"
                                                             class="font-12 text-muted text-decoration-underline">8
                                                             commandes</a>
@@ -777,10 +710,9 @@ include "../../includes/sidebar.php";
                                         <tr class="">
                                             <td class="px-0">
                                                 <div class="d-flex align-items-center">
-                                                    <img src="<?= IMAGES_URL ?>users/avatar-2.jpg" height="36"
-                                                        class="me-2 align-self-center rounded" alt="..." />
+                                                    
                                                     <div class="flex-grow-1 text-truncate">
-                                                        <h6 class="m-0 text-truncate">Karen Savage</h6>
+                                                        <h6 class="m-0 text-truncate">Audry Wakanda</h6>
                                                         <a href="#"
                                                             class="font-12 text-muted text-decoration-underline">6
                                                             commandes</a>
@@ -798,10 +730,9 @@ include "../../includes/sidebar.php";
                                         <tr class="">
                                             <td class="px-0">
                                                 <div class="d-flex align-items-center">
-                                                    <img src="<?= IMAGES_URL ?>users/avatar-3.jpg" height="36"
-                                                        class="me-2 align-self-center rounded" alt="..." />
+                                                   
                                                     <div class="flex-grow-1 text-truncate">
-                                                        <h6 class="m-0 text-truncate">Steven Sharp</h6>
+                                                        <h6 class="m-0 text-truncate">Calvin Mkamba </h6>
                                                         <a href="#"
                                                             class="font-12 text-muted text-decoration-underline">5
                                                             commandes</a>
@@ -819,10 +750,9 @@ include "../../includes/sidebar.php";
                                         <tr class="">
                                             <td class="px-0">
                                                 <div class="d-flex align-items-center">
-                                                    <img src="<?= IMAGES_URL ?>users/avatar-4.jpg" height="36"
-                                                        class="me-2 align-self-center rounded" alt="..." />
+                                                    
                                                     <div class="flex-grow-1 text-truncate">
-                                                        <h6 class="m-0 text-truncate">Teresa Himes</h6>
+                                                        <h6 class="m-0 text-truncate">Onile orlando</h6>
                                                         <a href="#"
                                                             class="font-12 text-muted text-decoration-underline">4
                                                             commandes</a>
@@ -840,10 +770,9 @@ include "../../includes/sidebar.php";
                                         <tr>
                                             <td class="px-0">
                                                 <div class="d-flex align-items-center">
-                                                    <img src="<?= IMAGES_URL ?>users/avatar-5.jpg" height="36"
-                                                        class="me-2 align-self-center rounded" alt="..." />
+                                                   
                                                     <div class="flex-grow-1 text-truncate">
-                                                        <h6 class="m-0 text-truncate">Ralph Denton</h6>
+                                                        <h6 class="m-0 text-truncate">Kenny CB</h6>
                                                         <a href="#"
                                                             class="font-12 text-muted text-decoration-underline">3
                                                             commandes</a>

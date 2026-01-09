@@ -89,7 +89,7 @@
                                             <div class="col-12">
                                                 <div class="d-grid mt-3">
                                                     <input type="hidden" value="1" name="send">
-                                                    <button class="btn btn-warning" type="submit" name="send" value="1" onclick="sendlogin()">Se connsecter <i
+                                                    <button class="btn btn-warning" type="submit" name="send" value="1" onclick="sendlogin()">Se connecter <i
                                                             class="fas fa-sign-in-alt ms-1"></i></button>
                                                 </div>
                                             </div><!--end col-->
