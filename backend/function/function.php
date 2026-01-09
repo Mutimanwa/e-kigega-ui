@@ -161,12 +161,12 @@
     }
 
     //========== GESTION DES UPDATES DES DONNEES  {api/ex/:id} 
-    function apiPut(string $endpoint, array $body) {
+    function apiPut($endpoint, $body){
 
-        $apiBase = "http://localhost:8080/api";
-        $token   = $_SESSION['token'];
+        $apiBase = "https://ekigega-backend.onrender.com";
+        $token = $_SESSION['token'];
 
-        $ch = curl_init($apiBase . $endpoint);
+        $ch = curl_init($apiBase.$endpoint);
 
         curl_setopt_array($ch, [
             CURLOPT_RETURNTRANSFER => true,
@@ -175,24 +175,25 @@
                 "Authorization: Bearer $token",
                 "Content-Type: application/json"
             ],
-            CURLOPT_POSTFIELDS => json_encode($body)
+            CURLOPT_POSTFIELDS => json_encode($body),
+
+            //======== performance
+            CURLOPT_CONNECTTIMEOUT => 5,
+            CURLOPT_TIMEOUT => 10,
+            
+            //=========verification ssl
+            CURLOPT_SSL_VERIFYPEER => false,
+            CURLOPT_SSL_VERIFYHOST => false
         ]);
 
         $response = curl_exec($ch);
-        $status   = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        $status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         curl_close($ch);
 
-        if ($status === 401) {
-            session_destroy();
-            header("Location: /auth/login.php");
-            exit;
-        }
+        if ($status === 401) return "login";
+        if ($status < 200 || $status > 299) return "error";
 
-        if ($status !== 200) {
-            die("Erreur lors de la mise à jour");
-        }
-
-        return json_decode($response, true);
+        return true;
     }
 
    //================== post method create 

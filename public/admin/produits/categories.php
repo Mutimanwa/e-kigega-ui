@@ -79,15 +79,14 @@ include "./../../../includes/sidebar.php";
                       <td class="text-end">
                         <!-- Modifier -->
                         <a href="#"
+                          class="editBtn"
                           data-bs-toggle="modal"
                           data-bs-target="#modifyRate"
-                          class="edit-product"
-                          data-produit="Ordinateur HP"
-                          data-categorie="Informatique"
-                          data-prix="1200"
-                          data-quantite="10">
+                          data-id="<?= $c['id'] ?>"
+                          data-nom="<?= htmlspecialchars($c['nom']) ?>">
                           <i class="las la-pen text-secondary fs-18"></i>
                         </a>
+
 
                         <!-- Supprimer -->
                         <a href="#"
@@ -170,85 +169,85 @@ include "./../../../includes/sidebar.php";
       </div>
 
       <!-- Popup Modifier  -->
-      <div class="modal fade" id="modifyRate" tabindex="-1" aria-labelledby="modifyRateLabel" aria-hidden="true">
+      <div class="modal fade" id="modifyRate" tabindex="-1">
         <div class="modal-dialog">
-          <form action="#">
+          <form method="POST" action="./../../../backend/admin/categorie/update.php">
             <div class="modal-content">
+
               <div class="modal-header">
-                <h5 class="modal-title" id="modifyRateLabel">Modifier une catégorie</h5>
+                <h5 class="modal-title">Modifier catégorie</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
               </div>
+
               <div class="modal-body">
 
-                <div class="mb-2">
-                  <label>Nom de la catégorie</label>
-                  <div class="input-group">
-                    <span class="input-group-text"><i class="fas fa-box"></i></span>
-                    <input type="text" id="add-produit" class="form-control" placeholder="Nom de la catégorie">
-                  </div>
-                </div>
+                <input type="hidden" name="id" id="edit-id">
 
-                <div class="mb-2">
-                  <label for="add-description" class="form-label">Description</label>
-                  <div class="input-group">
-                    <span class="input-group-text">
-                      <i class="fas fa-align-left"></i>
-                    </span>
-                    <textarea id="add-description"
-                      class="form-control"
-                      rows="3"
-                      placeholder="Description de la dépense"></textarea>
-                  </div>
+                <div class="mb-3">
+                  <label>Nom</label>
+                  <input type="text" name="nom" id="edit-nom" class="form-control" required>
                 </div>
-
 
               </div>
+
               <div class="modal-footer">
-                <button type="submit" class="btn btn-primary w-100">Modifier</button>
+                <button type="submit" class="btn btn-primary w-100">Mettre à jour</button>
               </div>
+
             </div>
           </form>
         </div>
       </div>
 
 
+
       <!-- modal de suppression -->
-<div class="modal fade" id="deleteModal" tabindex="-1">
-  <div class="modal-dialog">
-    <div class="modal-content">
+      <div class="modal fade" id="deleteModal" tabindex="-1">
+        <div class="modal-dialog">
+          <div class="modal-content">
 
-      <div class="modal-header bg-white">
-        <h5 class="modal-title text-danger">Supprimer catégorie</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            <div class="modal-header bg-white">
+              <h5 class="modal-title text-danger">Supprimer catégorie</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <div class="modal-body">
+              <p>
+                Voulez-vous vraiment supprimer
+                <strong id="catName"></strong> ?
+              </p>
+            </div>
+
+            <div class="modal-footer">
+              <form method="POST" action="./../../../backend/admin/categorie/delete.php">
+                <input type="hidden" name="id" id="deleteId">
+                <button type="submit" class="btn btn-danger">Oui, supprimer</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                  Annuler
+                </button>
+              </form>
+            </div>
+
+          </div>
+        </div>
       </div>
 
-      <div class="modal-body">
-        <p>
-          Voulez-vous vraiment supprimer
-          <strong id="catName"></strong> ?
-        </p>
-      </div>
+      <!-- Js pour recuper l'id lors de suppression  -->
+      <script>
+        document.querySelectorAll('.delete-btn').forEach(btn => {
+            btn.addEventListener('click', function () {
+                document.getElementById('deleteId').value = this.dataset.id;
+                document.getElementById('catName').innerText = this.dataset.nom;
+            });
+        });
+      </script>
 
-      <div class="modal-footer">
-        <form method="POST" action="./../../../backend/admin/categorie/delete.php">
-          <input type="hidden" name="id" id="deleteId">
-          <button type="submit" class="btn btn-danger">Oui, supprimer</button>
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-            Annuler
-          </button>
-        </form>
-      </div>
-
-    </div>
-  </div>
-</div>
-
-<!-- Js pour recuper l'id  -->
- <script>
-  document.querySelectorAll('.delete-btn').forEach(btn => {
-      btn.addEventListener('click', function () {
-          document.getElementById('deleteId').value = this.dataset.id;
-          document.getElementById('catName').innerText = this.dataset.nom;
-      });
-  });
-</script>
+      <!-- js pour recuperer l'id lors de modification -->
+      <script>
+        document.querySelectorAll('.editBtn').forEach(btn => {
+          btn.addEventListener('click', function () {
+            document.getElementById('edit-id').value = this.dataset.id;
+            document.getElementById('edit-nom').value = this.dataset.nom;
+          });
+        });
+      </script>
