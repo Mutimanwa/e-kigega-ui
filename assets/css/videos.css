@@ -269,7 +269,7 @@ footer.footer {
     .comments-modal {
         position: fixed;
         top: 0;
-        right: -100%;
+        /* right: -100%; */
         width: 400px;
         height: 100vh;
         background: rgba(0, 0, 0, 0.6);
@@ -277,13 +277,14 @@ footer.footer {
         z-index: 1050;
         transition: right 0.3s ease;
         box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
-        display: flex;
+        display: none;
         flex-direction: column;
         border-left: 1px solid var(--border-color);
     }
     
     .comments-modal.active {
         right: 0;
+        display: flex;
     }
     
     .comments-header {
@@ -420,7 +421,8 @@ footer.footer {
     }
     
     .share-modal {
-        background: var(--bg-primary);
+        background: rgba(0, 0, 0, 0.8);
+        color: white;
         width: 100%;
         max-width: 500px;
         border-radius: 20px 20px 0 0;
@@ -485,9 +487,9 @@ footer.footer {
         flex: 1;
         padding: 8px 12px;
         background: var(--bg-primary);
-        border: 1px solid var(--border-color);
+        border: 1px solid #888;
         border-radius: 5px;
-        color: var(--text-primary);
+        color: #0088cc;
         font-size: 14px;
         overflow: hidden;
         text-overflow: ellipsis;

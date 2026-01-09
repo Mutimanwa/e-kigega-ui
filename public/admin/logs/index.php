@@ -1,17 +1,17 @@
 <?php
 
-    ini_set('session.cookie_httponly', 1);
-    ini_set('session.cookie_secure', 1);
-    session_start();
+ini_set('session.cookie_httponly', 1);
+ini_set('session.cookie_secure', 1);
+session_start();
 
-    require_once('./../../../backend/function/function.php');
-    $role="ADMIN";
+require_once('./../../../backend/function/function.php');
+$role = "ADMIN";
 
-    //================== gerer les session 
-    if(requireRole($role)==="Accès interdit"){
-        header("Location: ./../../../index.php");
-        session_destroy();
-    }
+//================== gerer les session 
+if (requireRole($role) === "Accès interdit") {
+  header("Location: ./../../../index.php");
+  session_destroy();
+}
 
 include "./../../../includes/header.php";
 include "./../../../includes/sidebar.php";
@@ -51,23 +51,23 @@ include "./../../../includes/sidebar.php";
             </div><!--end card-header-->
             <div class="card-body pt-0">
               <div class="table-responsive">
-                <table class="table mb-0" id="datatable_1">
+                <table class="table" id="datatable_1">
                   <thead class="table-light">
                     <tr>
-                    <th>Entreprise</th>
-                    <th>Utilisateur</th>
+                      <th>Entreprise</th>
+                      <th>Utilisateur</th>
                       <th>Action</th>
                       <th>Details</th>
                       <th>Adresse IP</th>
                       <th>Date</th>
-                     
+
                     </tr>
                   </thead>
                   <tbody>
 
                     <tr>
-                    <td>PLC Lab</td>
-                    <td>Audry Wakanda</td>
+                      <td>PLC Lab</td>
+                      <td>Audry Wakanda</td>
                       <td>fire</td>
                       <td>Alminium</td>
                       <td> 192.168.1.1</td>
@@ -79,26 +79,6 @@ include "./../../../includes/sidebar.php";
                 </table>
 
               </div>
-              <br>
-              <div class="d-flex justify-content-center">
-                <ul class="pagination">
-                  <li class="page-item disabled">
-                    <a class="page-link" href="#" tabindex="-1">Précédent</a>
-                  </li>
-                  <li class="page-item active">
-                    <a class="page-link" href="#">1</a>
-                  </li>
-                  <li class="page-item">
-                    <a class="page-link" href="#">2</a>
-                  </li>
-                  <li class="page-item">
-                    <a class="page-link" href="#">3</a>
-                  </li>
-                  <li class="page-item">
-                    <a class="page-link" href="#">Suivant</a>
-                  </li>
-                </ul>
-              </div>
 
             </div>
           </div> <!-- end col -->
@@ -107,14 +87,13 @@ include "./../../../includes/sidebar.php";
       </div>
       <!--Start Footer-->
 
-      </div>
+    </div>
 
 
-      <?php
-      $pageLibs = [
-        LIBS_URL . "simple-datatables/umd/simple-datatables.js",
-        JS_URL . "pages/datatables.init.js"
-      ];
-      include "./../../../includes/footer.php";
-      ?>
-
+    <?php
+    $pageLibs = [
+      LIBS_URL . "simple-datatables/umd/simple-datatables.js",
+      JS_URL . "pages/datatables.init.js"
+    ];
+    include "./../../../includes/footer.php";
+    ?>

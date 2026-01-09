@@ -9,11 +9,12 @@ require_once 'menu_functions.php';
     <div class="brand">
         <a href="<?php echo BASE_URL; ?>" class="logo">
             <span>
-                <img src="<?= IMAGES_URL ?>logos/logo.png" alt="logo-small" class="logo-sm" />
-            </span>
-            <span class="bg-light d-none d-lg-inline-block border rounded-circle overflow-hidden">
-                <img src="<?= IMAGES_URL ?>logos/logo.png" height="50" alt="logo-large" class=""/>
-            </span>
+                   <img src="<?= IMAGES_URL?>logos/logo-sm.png" alt="logo-small" class="logo-sm" />
+                </span>
+                <span class="">
+                    <!-- <img src="<?= IMAGES_URL?>logos/logo-light.png" alt="logo-large" class="logo-lg logo-light" /> -->
+                    <img src="<?= IMAGES_URL?>logos/logo-dark.png" alt="logo-large" class="logo-lg logo-dark" />
+                </span>
         </a>
     </div>
     <!--end brand-->

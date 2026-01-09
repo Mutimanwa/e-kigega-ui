@@ -544,7 +544,7 @@ foreach ($categories as $key => $label) {
                     <div class="comment-item">
                         <div class="comment-header">
 
-                           <!-- <img src="<?= IMAGES_URL ?>icons/avatar.png" class="comment-avatar border border-warning" alt="${comment.username}"> -->
+                           <img src="<?= IMAGES_URL ?>users/avatar.png" class="comment-avatar border border-warning" alt="${comment.username}">
 
                             <div>
                                 <span class="comment-username">${comment.username}</span>
@@ -566,7 +566,7 @@ foreach ($categories as $key => $label) {
                             <div class="comment-input-wrapper">
                                 <input type="text" class="comment-input" id="replyInput${comment.id}" 
                                        placeholder="Écrire une réponse..." maxlength="300">
-                                <button class="send-comment-btn" onclick="postReply(${comment.id})">
+                                <button class="send-comment-btn " onclick="postReply(${comment.id})">
                                     <i class="las la-paper-plane"></i>
                                 </button>
                             </div>

@@ -150,7 +150,7 @@ include_once __DIR__ . "/../includes/functions.php";
                                     class="las la-question-circle fs-18 me-1 align-text-bottom"></i>
                                 Centre d'aide</a>
                             <div class="dropdown-divider mb-0"></div>
-                            <a class="dropdown-item text-danger" href="<?= BASE_URL ?>public/login.php"><i
+                            <a class="dropdown-item text-danger" href="<?= BASE_URL ?>"><i
                                     class="las la-power-off fs-18 me-1 align-text-bottom"></i>
                                 Déconnexion</a>
                         </div>
