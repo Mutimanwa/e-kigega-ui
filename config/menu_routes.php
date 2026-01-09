@@ -17,16 +17,17 @@ $menu_structure = [
             'type' => 'collapse', // Type collapse pour sous-menus
             'id' => 'sidebarDepenses',
             'items' => [
+                'categories_depenses' => [
+                    'title' => 'Catégories',
+                    'path' => '/public/admin/depenses/categories.php',
+                    'active' => ['categories-depenses', 'categories.php']
+                ],
                 'depenses' => [
                     'title' => 'Dépenses',
                     'path' => '/public/admin/depenses/',
                     'active' => ['depenses', 'depenses.php', 'depenses/']
                 ],
-                'categories_depenses' => [
-                    'title' => 'Catégories',
-                    'path' => '/public/admin/depenses/categories.php',
-                    'active' => ['categories-depenses', 'categories.php']
-                ]
+                
             ],
             'active' => ['depenses', 'depenses.php', 'depenses/', 'categories-depenses', 'categories.php'],
             'permission' => 'admin'
@@ -37,16 +38,17 @@ $menu_structure = [
             'type' => 'collapse',
             'id' => 'sidebarProduits',
             'items' => [
+                'categories_produits' => [
+                    'title' => 'Catégories',
+                    'path' => '/public/admin/produits/categories.php',
+                    'active' => ['categories-produits', 'categories.php']
+                ],
                 'produits' => [
                     'title' => 'Produits',
                     'path' => '/public/admin/produits/',
                     'active' => ['produits', 'produits.php', 'produits/']
                 ],
-                'categories_produits' => [
-                    'title' => 'Catégories',
-                    'path' => '/public/admin/produits/categories.php',
-                    'active' => ['categories-produits', 'categories.php']
-                ]
+                
             ],
             'active' => ['produits', 'produits.php', 'produits/', 'categories-produits', 'categories.php'],
             'permission' => 'admin'

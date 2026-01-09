@@ -60,11 +60,12 @@
 
                                         
                                         <div class="form-group row mt-3">
-                                                  <!-- Message de notification  -->
+                                        
+                                            <div class="col-sm-6">
+                                                          <!-- Message de notification  -->
                                         <div class="d-flex justify-content-center">
                                             <p class="text-danger" id="response"></p>
                                         </div>
-                                            <div class="col-sm-6">
                                             </div><!--end col-->
                                             <div class="col-sm-6 text-end">
                                                 <a href="./public/recover-pw.php" class="text-muted font-13"><i

@@ -190,3 +190,342 @@
 footer.footer {
     display: none;
 }
+
+    /* Styles pour les messages d'absence de contenu */
+    .no-content-message {
+        display: none;
+        text-align: center;
+        padding: 60px 20px;
+        color: #888;
+        animation: fadeIn 0.3s ease;
+    }
+    
+    .no-content-message.active {
+        display: block;
+    }
+    
+    .no-content-icon {
+        font-size: 48px;
+        margin-bottom: 20px;
+        opacity: 0.5;
+    }
+    
+    .no-content-title {
+        font-size: 20px;
+        font-weight: 600;
+        margin-bottom: 10px;
+        color: var(--text-primary);
+    }
+    
+    .no-content-description {
+        font-size: 14px;
+        color: var(--text-secondary);
+        max-width: 300px;
+        margin: 0 auto 20px;
+    }
+    
+    .create-first-btn {
+        background: var(--tiktok-pink);
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: 500;
+        transition: all 0.2s;
+    }
+    
+    .create-first-btn:hover {
+        background: #ff0066;
+        transform: translateY(-2px);
+    }
+    
+    .category-filter .count-badge {
+        background: var(--tiktok-pink);
+        color: white;
+        font-size: 10px;
+        padding: 2px 6px;
+        border-radius: 10px;
+        margin-left: 5px;
+        vertical-align: middle;
+    }
+    
+    .category-filter.empty .count-badge {
+        background: var(--tiktok-light-gray);
+    }
+    
+    .category-filter.empty {
+        opacity: 0.7;
+        position: relative;
+    }
+    
+    .category-filter.empty::after {
+        content: " (vide)";
+        font-size: 0.8em;
+        opacity: 0.7;
+    }
+    
+    /* Styles pour le modal des commentaires */
+    .comments-modal {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 400px;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.6);
+        color: white;
+        z-index: 1050;
+        transition: right 0.3s ease;
+        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+        display: flex;
+        flex-direction: column;
+        border-left: 1px solid var(--border-color);
+    }
+    
+    .comments-modal.active {
+        right: 0;
+    }
+    
+    .comments-header {
+        padding: 20px;
+        border-bottom: 1px solid var(--border-color);
+        background: var(--bg-secondary);
+    }
+    
+    .comments-body {
+        flex: 1;
+        overflow-y: auto;
+        padding: 20px;
+    }
+    
+    .comment-item {
+        padding: 15px 0;
+        border-bottom: 1px solid var(--border-light);
+    }
+    
+    .comment-header {
+        display: flex;
+        align-items: center;
+        margin-bottom: 8px;
+    }
+    
+    .comment-avatar {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        margin-right: 10px;
+    }
+    
+    .comment-username {
+        font-weight: 600;
+        font-size: 14px;
+    }
+    
+    .comment-date {
+        font-size: 12px;
+        color: var(--text-secondary);
+        margin-left: 10px;
+    }
+    
+    .comment-text {
+        font-size: 14px;
+        line-height: 1.4;
+        margin-bottom: 10px;
+    }
+    
+    .comment-actions {
+        display: flex;
+        gap: 15px;
+        align-items: center;
+    }
+    
+    .comment-like-btn {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        background: none;
+        border: none;
+        color: var(--text-secondary);
+        cursor: pointer;
+        font-size: 12px;
+    }
+    
+    .comment-like-btn.liked {
+        color: var(--tiktok-pink);
+    }
+    
+    .reply-btn {
+        background: none;
+        border: none;
+        color: var(--text-secondary);
+        cursor: pointer;
+        font-size: 12px;
+    }
+    
+    .reply-form {
+        margin-top: 15px;
+        padding-left: 42px;
+    }
+    
+    .comment-input-container {
+        padding: 20px;
+        border-top: 1px solid var(--border-color);
+        background: var(--bg-secondary);
+    }
+    
+    .comment-input-wrapper {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+    }
+    
+    .comment-input {
+        flex: 1;
+        padding: 10px 15px;
+        border: 1px solid var(--border-color);
+        border-radius: 20px;
+        background: var(--bg-primary);
+        color: var(--text-primary);
+    }
+    
+    .send-comment-btn {
+        background: var(--tiktok-pink);
+        color: white;
+        border: none;
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+    }
+    
+    /* Styles pour le modal de partage */
+    .share-modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.7);
+        z-index: 1040;
+        display: none;
+        align-items: flex-end;
+        justify-content: center;
+    }
+    
+    .share-modal-overlay.active {
+        display: flex;
+    }
+    
+    .share-modal {
+        background: var(--bg-primary);
+        width: 100%;
+        max-width: 500px;
+        border-radius: 20px 20px 0 0;
+        padding: 20px;
+        animation: slideUp 0.3s ease;
+    }
+    
+    .share-options {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+        margin: 20px 0;
+    }
+    
+    .share-option {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        background: none;
+        border: none;
+        color: var(--text-primary);
+        cursor: pointer;
+        padding: 10px;
+        border-radius: 10px;
+        transition: background 0.2s;
+    }
+    
+    .share-option:hover {
+        background: var(--bg-secondary);
+    }
+    
+    .share-icon {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        color: white;
+    }
+    
+    .share-icon.facebook { background: #1877F2; }
+    .share-icon.twitter { background: #1DA1F2; }
+    .share-icon.whatsapp { background: #25D366; }
+    .share-icon.telegram { background: #0088cc; }
+    .share-icon.copy { background: var(--tiktok-pink); }
+    .share-icon.embed { background: var(--tiktok-blue); }
+    
+    .share-link-container {
+        margin-top: 20px;
+        padding: 15px;
+        background: var(--bg-secondary);
+        border-radius: 10px;
+        display: flex;
+        gap: 10px;
+        align-items: center;
+    }
+    
+    .share-link {
+        flex: 1;
+        padding: 8px 12px;
+        background: var(--bg-primary);
+        border: 1px solid var(--border-color);
+        border-radius: 5px;
+        color: var(--text-primary);
+        font-size: 14px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    
+    .copy-link-btn {
+        background: var(--tiktok-pink);
+        color: white;
+        border: none;
+        padding: 8px 15px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 14px;
+    }
+    
+    /* Animations */
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    
+    @keyframes slideUp {
+        from { transform: translateY(100%); }
+        to { transform: translateY(0); }
+    }
+    
+    /* Overlay pour le modal */
+    .modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 1039;
+        display: none;
+    }
+    
+    .modal-overlay.active {
+        display: block;
+    }
