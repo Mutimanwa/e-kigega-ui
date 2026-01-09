@@ -7,6 +7,18 @@ form.addEventListener("submit", function (e) {
   form.reset();
 });
 
+function setLoading(state) {
+    if (state) {
+        loginBtn.disabled = true;
+        btnSpinner.classList.remove("d-none");
+        btnText.textContent = "Connexion...";
+    } else {
+        loginBtn.disabled = false;
+        btnSpinner.classList.add("d-none");
+        btnText.textContent = "Se connecter";
+    }
+}
+
 function sendlogin() {
   let xhr = new XMLHttpRequest();
   let formData = new FormData(form);
