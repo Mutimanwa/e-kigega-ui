@@ -52,11 +52,21 @@
                                                 placeholder="Entrer votre email" required>
                                         </div><!--end form-group-->
 
-                                        <div class="form-group">
-                                            <label class="form-label" for="userpassword">Mot de passe</label>
-                                            <input type="password" class="form-control" name="password"
-                                                id="userpassword" placeholder="Entrer votre mot de passe" required>
-                                        </div><!--end form-group-->
+                                        <div class="form-group position-relative mb-2">
+                                    <label class="form-label" for="userpassword">Mot de passe</label>
+
+                                    <input type="password"
+                                        class="form-control pe-5"
+                                        name="password"
+                                        id="userpassword"
+                                        placeholder="Entrer votre mot de passe"
+                                        required>
+
+                                    <span class="toggle-password" data-target="userpassword">
+                                        <i class="iconoir-eye-closed"></i>
+                                    </span>
+                                </div>
+                                <!--end form-group-->
 
                                         
                                         <div class="form-group row mt-3">
@@ -101,5 +111,41 @@
   <script src="./assets/js/index.js"></script><!-- Ajax pour le login  -->
 </body>
 <!--end body-->
+
+<style>.toggle-password {
+    position: absolute;
+    right: 14px;
+    top: 60%;
+    transform: translateY(-10%);
+    cursor: pointer;
+    font-size: 18px;
+    color: #6c757d;
+    z-index: 5;
+}
+
+.toggle-password:hover {
+    color: #000;
+}
+
+
+</style>
+
+<script>
+document.querySelectorAll('.toggle-password').forEach(btn => {
+    btn.addEventListener('click', function () {
+        const input = document.getElementById(this.dataset.target);
+        const icon = this.querySelector('i');
+
+        if (input.type === 'password') {
+            input.type = 'text';
+            icon.classList.replace('iconoir-eye-closed', 'iconoir-eye');
+        } else {
+            input.type = 'password';
+            icon.classList.replace('iconoir-eye', 'iconoir-eye-closed');
+        }
+    });
+});
+</script>
+
 
 </php>
