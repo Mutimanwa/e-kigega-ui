@@ -19,6 +19,9 @@
     <link href="<?= CSS_URL ?>bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="<?= CSS_URL ?>icons.min.css" rel="stylesheet" type="text/css" />
     <link href="<?= CSS_URL ?>app.min.css" rel="stylesheet" type="text/css" />
+    <link href="<?= CSS_URL ?>all_style.css" rel="stylesheet" type="text/css" />
+
+
 
 </head>
 <!-- Top Bar Start -->
@@ -51,15 +54,24 @@
                                             <input type="email" class="form-control" id="useremail" name="user email" placeholder="Entrez votre email">                               
                                         </div><!--end form-group--> 
             
-                                        <div class="form-group mb-2">
-                                            <label class="form-label" for="userpassword">Mot de passe</label>                                            
-                                            <input type="password" class="form-control" name="password" id="userpassword" placeholder="Entrez votre mot de passe">                            
-                                        </div><!--end form-group--> 
+                                        <div class="form-group mb-2 position-relative">
+                                <label class="form-label" for="userpassword">Mot de passe</label>
+                                <input type="password" class="form-control pe-5" name="password" id="userpassword"
+                                    placeholder="Entrez votre mot de passe">
+                                <span class="toggle-password" data-target="userpassword">
+                                    <i class="iconoir-eye-closed"></i>
+                                </span>
+                            </div>
 
-                                        <div class="form-group mb-2">
-                                            <label class="form-label" for="Confirmpassword">Confirmer le mot de passe</label>                                            
-                                            <input type="password" class="form-control" name="password" id="Confirmpassword" placeholder="Entrez votre mot de passe">                            
-                                        </div><!--end form-group--> 
+                            <div class="form-group mb-2 position-relative">
+                                <label class="form-label" for="Confirmpassword">Confirmer le mot de passe</label>
+                                <input type="password" class="form-control pe-5" name="password_confirm" id="Confirmpassword"
+                                    placeholder="Confirmez votre mot de passe">
+                                <span class="toggle-password" data-target="Confirmpassword">
+                                    <i class="iconoir-eye-closed"></i>
+                                </span>
+                            </div>
+
 
                                         <div class="form-group mb-2">
                                             <label class="form-label" for="mobileNo">Numéro de mobile</label>
@@ -94,7 +106,33 @@
             </div><!--end col-->
         </div><!--end row-->                                        
     </div><!-- container -->
+
+   
+
+
+
 </body>
 <!--end body-->
 
+
+<script>
+
+    
+document.querySelectorAll('.toggle-password').forEach(toggle => {
+    toggle.addEventListener('click', function () {
+        const input = document.getElementById(this.dataset.target);
+        const icon = this.querySelector('i');
+
+        if (input.type === 'password') {
+            input.type = 'text';
+            icon.classList.remove('iconoir-eye-closed');
+            icon.classList.add('iconoir-eye');
+        } else {
+            input.type = 'password';
+            icon.classList.remove('iconoir-eye');
+            icon.classList.add('iconoir-eye-closed');
+        }
+    });
+});
+</script>
 </php>

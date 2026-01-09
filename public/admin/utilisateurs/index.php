@@ -220,7 +220,7 @@ include "../../../includes/footer.php"; ?>
                                 <span class="input-group-text"><i class="fa-solid fa-lock"></i></span>
                                 <input type="password" class="form-control password-input" id="passwordAdd" placeholder="Mot de passe">
                                 <span class="input-group-text toggle-password" data-target="passwordAdd">
-                                    <i class="fa-solid fa-eye-slash"></i>
+                                    <i class="iconoir-eye-closed"></i>
                                 </span>
                             </div>
                         </div>
@@ -230,7 +230,7 @@ include "../../../includes/footer.php"; ?>
                                 <span class="input-group-text"><i class="fa-solid fa-lock"></i></span>
                                 <input type="password" class="form-control password-input" id="confirmPasswordAdd" placeholder="Confirmer mot de passe">
                                 <span class="input-group-text toggle-password" data-target="confirmPasswordAdd">
-                                    <i class="fa-solid fa-eye-slash"></i>
+                                    <i class="iconoir-eye-closed"></i>
                                 </span>
                             </div>
                         </div>
@@ -337,7 +337,7 @@ include "../../../includes/footer.php"; ?>
                                 <span class="input-group-text"><i class="fa-solid fa-lock"></i></span>
                                 <input type="password" class="form-control password-input" id="passwordEdit" placeholder="Mot de passe">
                                 <span class="input-group-text toggle-password" data-target="passwordEdit">
-                                    <i class="fa-solid fa-eye-slash"></i>
+                                    <i class="iconoir-eye-closed"></i>
                                 </span>
                             </div>
                         </div>
@@ -347,7 +347,7 @@ include "../../../includes/footer.php"; ?>
                                 <span class="input-group-text"><i class="fa-solid fa-lock"></i></span>
                                 <input type="password" class="form-control password-input" id="confirmPasswordEdit" placeholder="Confirmer mot de passe">
                                 <span class="input-group-text toggle-password" data-target="confirmPasswordEdit">
-                                    <i class="fa-solid fa-eye-slash"></i>
+                                    <i class="iconoir-eye-closed"></i>
                                 </span>
                             </div>
                         </div>
@@ -389,16 +389,16 @@ document.querySelectorAll(".toggle-password").forEach(toggle => {
         const input = this.parentElement.querySelector(".password-input"); // prend l'input dans le même groupe
         const icon = this.querySelector("i");
 
-        if (icon.classList.contains("fa-eye")) {
+        if (icon.classList.contains("iconoir-eye")) {
             // Icon = eye → mot de passe visible → on masque
             input.type = "password";
-            icon.classList.remove("fa-eye");
-            icon.classList.add("fa-eye-slash");
+            icon.classList.remove("iconoir-eye");
+            icon.classList.add("iconoir-eye-closed");
         } else {
             // Icon = eye-slash → mot de passe masqué → on rend visible
             input.type = "text";
-            icon.classList.remove("fa-eye-slash");
-            icon.classList.add("fa-eye");
+            icon.classList.remove("iconoir-eye-closed");
+            icon.classList.add("iconoir-eye");
         }
     });
 });

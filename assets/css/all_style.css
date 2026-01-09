@@ -1,0 +1,13 @@
+.toggle-password {
+    position: absolute;
+    right: 12px;
+    top: 38px;
+    cursor: pointer;
+    color: #6c757d;
+    font-size: 18px;
+    user-select: none;
+}
+
+.toggle-password:hover {
+    color: #000;
+}
