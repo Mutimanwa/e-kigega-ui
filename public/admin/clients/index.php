@@ -1,7 +1,31 @@
 <?php
-include "./../../../includes/header.php";
 
-include "./../../../includes/sidebar.php";
+    ini_set('session.cookie_httponly', 1);
+    ini_set('session.cookie_secure', 1);
+    session_start();
+
+    require_once('./../../../backend/function/function.php');
+    $role="ADMIN";
+
+    //================== gerer les session 
+    if(requireRole($role)==="Accès interdit"){
+        header("Location: ./../../../index.php");
+        session_destroy();
+    }
+
+    //=========== verifier l'abonnement de cet entreprise
+    $url="./../../../index.php";
+    abonnement($url);
+
+    //================== fetch les produits
+    $clients=getApi('/api/partners/') ?? [];
+    if (!is_array($clients)) {
+      echo "<div class='alert alert-danger'>API error</div>";
+      $clients = [];
+    } 
+
+    include "./../../../includes/header.php";
+    include "./../../../includes/sidebar.php";
 ?>
 <div class="page-wrapper">
 
@@ -53,33 +77,47 @@ include "./../../../includes/sidebar.php";
                     </tr>
                   </thead>
                   <tbody>
-
+                  <?php foreach($clients as $c): ?>
                     <tr>
-                      <td> Audry</td>
-                      <td>Wakanda</td>
-                      <td>62661187</td>
+                      <td> <?= htmlspecialchars($c['nom']) ?></td>
+                      <td><?= htmlspecialchars( $c['prenom']) ?></td>
+                      <td><?= htmlspecialchars($c['telephone']) ?></td>
                       <td>
-                        <a href="mailto:audrywakanda@gmail.com" class="text-primary text-decoration-underline">
-                          audrywakanda@gmail.com
+                        <a href="mailto:<?= htmlspecialchars($c['email']) ?>" class="text-primary text-decoration-underline">
+                          <?= htmlspecialchars($c['email']) ?>
                         </a>
                       </td>
-                      <td>Carama-gahahe</td>
-                      <td>2024-06-01</td>
+                      <td><?= htmlspecialchars($c['adresse']) ?></td>
+                      <td><?= htmlspecialchars((new DateTime($c['created_at']))->format('d/m/Y')) ?></td>
                       <td class="text-end">
+
                         <!-- Modifier -->
-                        <a href="#" data-bs-toggle="modal" data-bs-target="#modifyRate" class="edit-product"
-                          data-produit="Ordinateur HP" data-categorie="Informatique" data-prix="1200"
-                          data-quantite="10">
+                        <a href="#"
+                          class="editBtn"
+                          data-bs-toggle="modal"
+                          data-bs-target="#modifyProductModal"
+                          data-id="<?= $c['id'] ?>"
+                          data-nom="<?= htmlspecialchars($c['nom']) ?>"
+                          data-prenom="<?= htmlspecialchars($c['prenom']) ?>"
+                          data-email="<?= $c['email'] ?>"
+                          data-telephone="<?= $c['telephone'] ?>"
+                          data-adresse="<?= $c['adresse'] ?>">
                           <i class="las la-pen text-secondary fs-18"></i>
                         </a>
 
                         <!-- Supprimer -->
-                        <a href="#" data-bs-toggle="modal" data-bs-target="#deleteModal"><i
-                            class="las la-trash-alt text-secondary fs-18"></i></a>
+                        <a href="#"
+                          class="text-danger delete-btn"
+                          data-bs-toggle="modal"
+                          data-bs-target="#deleteModal"
+                          data-id="<?= $c['id'] ?>"
+                          data-nom="<?= htmlentities($c['nom']) ?> <?= htmlentities($c['prenom']) ?>">
+                          <i class="las la-trash-alt fs-18"></i>
+                        </a>
 
                       </td>
                     </tr>
-
+                   <?php endforeach ; ?>
                   </tbody>
                 </table>
 
@@ -100,12 +138,25 @@ include "./../../../includes/sidebar.php";
       ];
       include "./../../../includes/footer.php";
       ?>
+      <!-- #integration des toast-->
+      <script>
+        // toast success
+        <?php if (isset($_GET['success'])): ?>
+          showToast("<?= htmlspecialchars($_GET['success']) ?>", 'success');
+   
+        <?php endif; ?>
+        // toast error
+        <?php if (isset($_GET['error'])): ?>
+         showToast("<?= htmlspecialchars($_GET['error']) ?>", 'danger');
+       
+        <?php endif; ?>
+      </script>
 
 
       <!-- Popup Ajouter -->
       <div class="modal fade" id="addRate" tabindex="-1" aria-labelledby="addRateLabel" aria-hidden="true">
         <div class="modal-dialog">
-          <form action="#">
+          <form action="./../../../backend/admin/clients/add.php" method="post">
             <div class="modal-content">
               <div class="modal-header">
                 <h5 class="modal-title" id="addRateLabel">Ajouter un client</h5>
@@ -120,7 +171,7 @@ include "./../../../includes/sidebar.php";
                     <span class="input-group-text">
                       <i class="fas fa-user"></i>
                     </span>
-                    <input type="text" id="add-nom" class="form-control" placeholder="Nom du client">
+                    <input type="text" id="add-nom" name="nom" class="form-control" placeholder="Nom du client">
                   </div>
                 </div>
 
@@ -130,7 +181,7 @@ include "./../../../includes/sidebar.php";
                     <span class="input-group-text">
                       <i class="fas fa-user-tag"></i>
                     </span>
-                    <input type="text" id="add-prenom" class="form-control" placeholder="Prénom du client">
+                    <input type="text" id="add-prenom" name="prenom" class="form-control" placeholder="Prénom du client">
                   </div>
                 </div>
 
@@ -140,7 +191,7 @@ include "./../../../includes/sidebar.php";
                     <span class="input-group-text">
                       <i class="fas fa-phone"></i>
                     </span>
-                    <input type="number" id="add-telephone" class="form-control" placeholder="Numéro de téléphone">
+                    <input type="number" id="add-telephone" name="telephone" class="form-control" placeholder="Numéro de téléphone">
                   </div>
                 </div>
 
@@ -150,7 +201,7 @@ include "./../../../includes/sidebar.php";
                     <span class="input-group-text">
                       <i class="fas fa-envelope"></i>
                     </span>
-                    <input type="email" id="add-email" class="form-control" placeholder="Email du client">
+                    <input type="email" id="add-email" name="email" class="form-control" placeholder="Email du client">
                   </div>
                 </div>
 
@@ -160,14 +211,14 @@ include "./../../../includes/sidebar.php";
                     <span class="input-group-text">
                       <i class="fas fa-map-marker-alt"></i>
                     </span>
-                    <input type="text" id="add-adresse" class="form-control" placeholder="Adresse du client">
+                    <input type="text" id="add-adresse" name="adresse" class="form-control" placeholder="Adresse du client">
                   </div>
                 </div>
 
               </div>
 
               <div class="modal-footer">
-                <button type="submit" class="btn btn-primary w-100">Ajouter</button>
+                <button type="submit" name="send" class="btn btn-primary w-100">Ajouter</button>
               </div>
             </div>
           </form>
@@ -176,94 +227,127 @@ include "./../../../includes/sidebar.php";
       </div>
 
       <!-- Popup Modifier  -->
-      <div class="modal fade" id="modifyRate" tabindex="-1" aria-labelledby="modifyRateLabel" aria-hidden="true">
+      <div class="modal fade" id="modifyProductModal" tabindex="-1" aria-labelledby="modifyProductLabel" aria-hidden="true">
         <div class="modal-dialog">
-          <form action="#">
+          <form action="./../../../backend/admin/clients/edit.php" method="post" id="form-edit-produit">
+            <input type="hidden" name="id" id="edit-id">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="modifyRateLabel">Modifier un client</h5>
+                <h5 class="modal-title" id="modifyProductLabel">Modifier le Client</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
               </div>
               <div class="modal-body">
 
+                <!-- Nom du client -->
                 <div class="mb-2">
                   <label>Nom</label>
                   <div class="input-group">
-                    <span class="input-group-text">
-                      <i class="fas fa-user"></i>
-                    </span>
-                    <input type="text" id="add-nom" class="form-control" placeholder="Nom du client">
+                    <span class="input-group-text"><i class="fas fa-user"></i></span>
+                    <input type="text" name="nom" id="edit-nom" class="form-control" placeholder="Nom du produit" required>
                   </div>
                 </div>
 
+                <!-- prenom -->
                 <div class="mb-2">
-                  <label>Prénom</label>
+                  <label>Prenom</label>
                   <div class="input-group">
-                    <span class="input-group-text">
-                      <i class="fas fa-user-tag"></i>
-                    </span>
-                    <input type="text" id="add-prenom" class="form-control" placeholder="Prénom du client">
+                    <span class="input-group-text"><i class="fas fa-user-tag"></i></span>
+                    <input type="text" name="prenom" id="edit-prenom" class="form-control" placeholder="Nom du produit" required>
                   </div>
                 </div>
 
+                <!-- email -->
                 <div class="mb-2">
-                  <label>Téléphone</label>
+                  <label>E-mail</label>
                   <div class="input-group">
-                    <span class="input-group-text">
-                      <i class="fas fa-phone"></i>
-                    </span>
-                    <input type="number" id="add-telephone" class="form-control" placeholder="Numéro de téléphone">
+                    <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                    <input type="mail" name="email" id="edit-email" class="form-control" placeholder="Nom du produit" required>
                   </div>
                 </div>
 
+                <!-- Telephone -->
                 <div class="mb-2">
-                  <label>Email</label>
+                  <label>Telephone</label>
                   <div class="input-group">
-                    <span class="input-group-text">
-                      <i class="fas fa-envelope"></i>
-                    </span>
-                    <input type="email" id="add-email" class="form-control" placeholder="Email du client">
+                    <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                    <input type="number" name="telephone" id="edit-telephone" class="form-control" placeholder="Prix du produit" required>
                   </div>
                 </div>
 
+                <!-- adresse -->
                 <div class="mb-2">
                   <label>Adresse</label>
                   <div class="input-group">
-                    <span class="input-group-text">
-                      <i class="fas fa-map-marker-alt"></i>
-                    </span>
-                    <input type="text" id="add-adresse" class="form-control" placeholder="Adresse du client">
+                    <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
+                    <input type="text" name="adresse" id="edit-adresse" class="form-control" placeholder="Prix du produit" required>
                   </div>
                 </div>
+
               </div>
               <div class="modal-footer">
-                <button type="submit" class="btn btn-primary w-100">Modifier</button>
+                <button type="submit" name="send" class="btn btn-primary w-100">Modifier</button>
               </div>
             </div>
           </form>
         </div>
       </div>
-
-
-      <!-- modal de suppression -->
-      <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="DeleteUserLabel" aria-hidden="true">
+     <!-- Popup Suppression -->
+      <div class="modal fade" id="deleteModal" tabindex="-1">
         <div class="modal-dialog">
           <div class="modal-content">
+
             <div class="modal-header bg-white">
-              <h5 class="modal-title text-danger" id="addUserLabel">Supprimer</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              <h5 class="modal-title text-danger">Supprimer un client</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
+
             <div class="modal-body">
-              <p class="text-muted">Êtes-vous sûr de vouloir supprimer cet utilisateur ? Cette action est irréversible.
+              <p>
+                Voulez-vous vraiment supprimer
+                <strong id="catName"></strong> ?
               </p>
             </div>
-            <div class="modal-footer">
-              <button type="submit" class="btn btn-outline-danger">Oui</button>
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                Annuler
-              </button>
 
+            <div class="modal-footer">
+              <form method="POST" action="./../../../backend/admin/clients/delete.php">
+                <input type="hidden" name="id" id="deleteId">
+                <button type="submit" class="btn btn-danger">Oui, supprimer</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                  Annuler
+                </button>
+              </form>
             </div>
+
           </div>
         </div>
       </div>
+
+      <!-- Js pour recuper l'id lors de suppression  -->
+      <script>
+        document.querySelectorAll('.delete-btn').forEach(btn => {
+            btn.addEventListener('click', function () {
+                document.getElementById('deleteId').value = this.dataset.id;
+                document.getElementById('catName').innerText = this.dataset.nom;
+            });
+        });
+      </script>
+
+      <!-- Js pour recuperl'id lors de modification  -->
+       <script>
+          document.addEventListener('DOMContentLoaded', function() {
+            const editButtons = document.querySelectorAll('.editBtn');
+            const modal = document.getElementById('modifyProductModal');
+
+            editButtons.forEach(btn => {
+              btn.addEventListener('click', function() {
+                document.getElementById('edit-id').value = this.dataset.id;
+                document.getElementById('edit-nom').value = this.dataset.nom;
+                document.getElementById('edit-prenom').value = this.dataset.prenom;
+                document.getElementById('edit-email').value = this.dataset.email;
+                document.getElementById('edit-telephone').value = this.dataset.telephone;
+                document.getElementById('edit-adresse').value = this.dataset.adresse;
+
+              });
+            });
+          });
+       </script>

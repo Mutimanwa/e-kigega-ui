@@ -1,4 +1,29 @@
 <?php 
+
+    ini_set('session.cookie_httponly', 1);
+    ini_set('session.cookie_secure', 1);
+    session_start();
+
+    require_once('./../backend/function/function.php');
+    $role="ADMIN";
+
+    //================== gerer les session 
+    if(requireRole($role)==="Accès interdit"){
+        header("Location: ./../index.php");
+        session_destroy();
+    }
+
+    //=========== verifier l'abonnement de cet entreprise
+    $url="./../index.php";
+    abonnement($url);
+
+    //================== fetch les produits
+    $users=getApi('/api/auth/me/') ?? [];
+    if (!is_array($users)) {
+      echo "<div class='alert alert-danger'>API error</div>";
+      $users = [];
+    } 
+
 require_once '../includes/header.php';
 require_once '../includes/sidebar.php';
 ?>
@@ -38,7 +63,7 @@ require_once '../includes/sidebar.php';
                         <div class="col">
                             <div class="d-flex align-items-center">
                                 <div class="position-relative">
-                                    <img src="<?= IMAGES_URL ?>users/avatar-5.jpg" alt="" class="rounded-circle img-fluid" width="100">
+                                    <img src="https://ekigega-backend.onrender.com<?= htmlspecialchars($users['profile']) ?>" alt="" class="rounded-circle img-fluid" width="100">
                                     <div class="position-absolute top-50 start-100 translate-middle">
                                         <div class="thumb-sm border border-3 border-white bg-success rounded-circle d-flex align-items-center justify-content-center">
                                             <i class="las la-user text-white fs-12"></i>
@@ -46,8 +71,8 @@ require_once '../includes/sidebar.php';
                                     </div>
                                 </div>
                                 <div class="flex-grow-1 text-truncate ms-3 mb-1 align-self-end"> 
-                                    <h5 class="m-0 fs-3 fw-bold">Jean Ndayishimiye</h5>
-                                    <p class="text-muted mb-0">Administrateur</p>                                                                                                                                 
+                                    <h5 class="m-0 fs-3 fw-bold"><?= htmlspecialchars($users['nom']) ?> <?= htmlspecialchars($users['prenom']) ?></h5>
+                                    <p class="text-muted mb-0"><?= htmlspecialchars($users['role']) ?></p>                                                                                                                                 
                                 </div><!--end media body-->
                             </div><!--end media-->
                         </div><!--end col-->
@@ -59,27 +84,27 @@ require_once '../includes/sidebar.php';
                                 <div class="text-body mb-2 d-flex align-items-center">
                                     <i class="las la-user-tag fs-18 me-2 text-muted"></i>
                                     <span class="text-body fw-semibold">Rôle:</span> 
-                                    <span class="badge bg-primary ms-2">Administrateur</span>
+                                    <span class="badge bg-primary ms-2"><?= htmlspecialchars($users['role']) ?></span>
                                 </div>                                    
                                 
                                 <div class="text-muted mb-2 d-flex align-items-center">
                                     <i class="las la-envelope fs-18 me-2"></i>
                                     <span class="text-body fw-semibold">Email:</span>
-                                    <a href="mailto:jean.ndayishimiye@example.com" class="text-primary text-decoration-underline ms-2">
-                                        jean.ndayishimiye@example.com
+                                    <a href="mailto:<?= htmlspecialchars($users['email']) ?>" class="text-primary text-decoration-underline ms-2">
+                                        <?= htmlspecialchars($users['email']) ?>
                                     </a>
                                 </div>
                                 
                                 <div class="text-body mb-3 d-flex align-items-center">
                                     <i class="las la-phone fs-18 me-2 text-muted"></i>
                                     <span class="text-body fw-semibold">Téléphone:</span> 
-                                    <span class="ms-2">+257 79 123 456</span>
+                                    <span class="ms-2"><?= htmlspecialchars($users['telephone']) ?></span>
                                 </div>  
                                 
                                 <div class="text-body mb-3 d-flex align-items-center">
                                     <i class="las la-calendar fs-18 me-2 text-muted"></i>
                                     <span class="text-body fw-semibold">Date d'inscription:</span> 
-                                    <span class="ms-2">15/01/2024</span>
+                                    <span class="ms-2"><?= htmlspecialchars((new DateTime($users['created_at']))->format('d/m/Y')) ?></span>
                                 </div>                                  
                                 
                                 <div class="d-flex gap-2">

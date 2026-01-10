@@ -1,7 +1,38 @@
 <?php
-include "./../../../includes/header.php";
 
-include "./../../../includes/sidebar.php";
+    ini_set('session.cookie_httponly', 1);
+    ini_set('session.cookie_secure', 1);
+    session_start();
+
+    require_once('./../../../backend/function/function.php');
+    $role="ADMIN";
+
+    //================== gerer les session 
+    if(requireRole($role)==="Accès interdit"){
+        header("Location: ./../../../index.php");
+        session_destroy();
+    }
+
+    //=========== verifier l'abonnement de cet entreprise
+    $url="./../../../index.php";
+    abonnement($url);
+
+    //================== fetch les produits
+    $produits=getApi('/api/produits/') ?? [];
+    if (!is_array($produits)) {
+      echo "<div class='alert alert-danger'>API error</div>";
+      $produits = [];
+    } 
+
+    // ================== fetch les categories
+    $depenses = getApi('/api/depenses/') ?? [];
+    if (!is_array($depenses)) {
+        echo "<div class='alert alert-danger'>Erreur API Categories</div>";
+        $depenses = [];
+    }
+
+  include "./../../../includes/header.php";
+  include "./../../../includes/sidebar.php";
 ?>
 <div class="page-wrapper">
 
@@ -43,9 +74,10 @@ include "./../../../includes/sidebar.php";
                 <table class="table " id="datatable_1">
                   <thead class="table-light">
                     <tr>
-                      <th>Categorie</th>
+                      <th>Type de depense</th>
                       <th>Description</th>
                       <th>Montant</th>
+                      <th>Justificatif</th>
                       <th>Date</th>
                       <th class="text-end">Action</th>
                     </tr>
@@ -53,9 +85,10 @@ include "./../../../includes/sidebar.php";
                   <tbody>
 
                     <tr>
-                      <td>Alminium</td>
+                      <td><?= htmlspecialchars($depenses['']) ?></td>
                       <td> this is wakanda product</td>
                       <td> 1400</td>
+                      <td><a href="">Download</a></td>
                       <td>2024-06-01</td>
                       <td class="text-end">
                         <!-- Modifier -->
@@ -108,15 +141,12 @@ include "./../../../includes/sidebar.php";
 
 
                 <div class="mb-2">
-                  <label for="add-categorie" class="form-label">Catégorie</label>
+                  <label for="add-categorie" class="form-label">Type de la depense</label>
                   <div class="input-group">
                     <span class="input-group-text">
                       <i class="fas fa-tags"></i>
                     </span>
-                    <select id="add-categorie" class="form-select">
-                      <option value="" selected disabled>Choisir une catégorie</option>
-                      <option value="autre">Autre</option>
-                    </select>
+                      <input type="text" id="add-type" class="form-control" placeholder="Type de la dépense">
                   </div>
                 </div>
 
@@ -130,6 +160,7 @@ include "./../../../includes/sidebar.php";
                       placeholder="Description de la dépense"></textarea>
                   </div>
                 </div>
+
                 <div class="mb-2">
                   <label>Montant</label>
                   <div class="input-group">
@@ -138,7 +169,13 @@ include "./../../../includes/sidebar.php";
                   </div>
                 </div>
 
-
+                <div class="mb-2">
+                  <label>Justificatif si necessaire </label>
+                  <div class="input-group">
+                    <span class="input-group-text"><i class="fas fa-file"></i></span>
+                    <input type="file" id="add-prix" class="form-control" placeholder="Montant de la dépense">
+                  </div>
+                </div>
 
               </div>
               <div class="modal-footer">

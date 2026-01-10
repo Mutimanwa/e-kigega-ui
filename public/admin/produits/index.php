@@ -231,75 +231,75 @@
       </div>
 
       <!-- Popup Modifier  -->
-<div class="modal fade" id="modifyProductModal" tabindex="-1" aria-labelledby="modifyProductLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <form action="./../../../backend/admin/produit/edit.php" method="post" id="form-edit-produit">
-      <input type="hidden" name="id" id="edit-id">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="modifyProductLabel">Modifier le produit</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-        </div>
-        <div class="modal-body">
+      <div class="modal fade" id="modifyProductModal" tabindex="-1" aria-labelledby="modifyProductLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <form action="./../../../backend/admin/produit/edit.php" method="post" id="form-edit-produit">
+            <input type="hidden" name="id" id="edit-id">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="modifyProductLabel">Modifier le produit</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+              </div>
+              <div class="modal-body">
 
-          <!-- Nom du produit -->
-          <div class="mb-2">
-            <label>Produit</label>
-            <div class="input-group">
-              <span class="input-group-text"><i class="fas fa-box"></i></span>
-              <input type="text" name="nom" id="edit-nom" class="form-control" placeholder="Nom du produit" required>
+                <!-- Nom du produit -->
+                <div class="mb-2">
+                  <label>Produit</label>
+                  <div class="input-group">
+                    <span class="input-group-text"><i class="fas fa-box"></i></span>
+                    <input type="text" name="nom" id="edit-nom" class="form-control" placeholder="Nom du produit" required>
+                  </div>
+                </div>
+
+                <!-- Catégorie -->
+                <div class="mb-2">
+                  <label class="form-label">Catégorie</label>
+                  <div class="input-group">
+                    <span class="input-group-text"><i class="fas fa-tags"></i></span>
+                    <select name="categorie" id="edit-categorie" class="form-select" required>
+                      <option value="" disabled>Choisir une catégorie</option>
+                      <?php foreach($categories as $c): ?>
+                        <option value="<?= htmlspecialchars($c['nom']) ?>"><?= htmlspecialchars($c['nom']) ?></option>
+                      <?php endforeach; ?>
+                    </select>
+                  </div>
+                </div>
+
+                <!-- Unité -->
+                <div class="mb-2">
+                  <label class="form-label">Unité de mesure</label>
+                  <div class="input-group">
+                    <span class="input-group-text"><i class="fas fa-ruler"></i></span>
+                    <select name="unite" id="edit-unite" class="form-select" required>
+                      <option value="" disabled>Choisir une unité</option>
+                      <option value="kg">Kg</option>
+                      <option value="L">L</option>
+                      <option value="m">m</option>
+                      <option value="unite">Unité</option>
+                      <option value="paire">Paire</option>
+                      <option value="piece">Pièce</option>
+                      <option value="carton">Carton</option>
+                    </select>
+                  </div>
+                </div>
+
+                <!-- Prix -->
+                <div class="mb-2">
+                  <label>Prix</label>
+                  <div class="input-group">
+                    <span class="input-group-text"><i class="fas fa-money-bill-wave"></i></span>
+                    <input type="number" name="prix" id="edit-prix" class="form-control" placeholder="Prix du produit" required>
+                  </div>
+                </div>
+
+              </div>
+              <div class="modal-footer">
+                <button type="submit" name="send" class="btn btn-primary w-100">Modifier</button>
+              </div>
             </div>
-          </div>
-
-          <!-- Catégorie -->
-          <div class="mb-2">
-            <label class="form-label">Catégorie</label>
-            <div class="input-group">
-              <span class="input-group-text"><i class="fas fa-tags"></i></span>
-              <select name="categorie" id="edit-categorie" class="form-select" required>
-                <option value="" disabled>Choisir une catégorie</option>
-                <?php foreach($categories as $c): ?>
-                  <option value="<?= htmlspecialchars($c['nom']) ?>"><?= htmlspecialchars($c['nom']) ?></option>
-                <?php endforeach; ?>
-              </select>
-            </div>
-          </div>
-
-          <!-- Unité -->
-          <div class="mb-2">
-            <label class="form-label">Unité de mesure</label>
-            <div class="input-group">
-              <span class="input-group-text"><i class="fas fa-ruler"></i></span>
-              <select name="unite" id="edit-unite" class="form-select" required>
-                <option value="" disabled>Choisir une unité</option>
-                <option value="kg">Kg</option>
-                <option value="L">L</option>
-                <option value="m">m</option>
-                <option value="unite">Unité</option>
-                <option value="paire">Paire</option>
-                <option value="piece">Pièce</option>
-                <option value="carton">Carton</option>
-              </select>
-            </div>
-          </div>
-
-          <!-- Prix -->
-          <div class="mb-2">
-            <label>Prix</label>
-            <div class="input-group">
-              <span class="input-group-text"><i class="fas fa-money-bill-wave"></i></span>
-              <input type="number" name="prix" id="edit-prix" class="form-control" placeholder="Prix du produit" required>
-            </div>
-          </div>
-
-        </div>
-        <div class="modal-footer">
-          <button type="submit" name="send" class="btn btn-primary w-100">Modifier</button>
+          </form>
         </div>
       </div>
-    </form>
-  </div>
-</div>
 
 
       <!-- modal de suppression -->
@@ -359,5 +359,5 @@
               });
             });
           });
-        </script>
+       </script>
 

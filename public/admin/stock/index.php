@@ -1,6 +1,44 @@
 <?php
-include "./../../../includes/header.php";
 
+    ini_set('session.cookie_httponly', 1);
+    ini_set('session.cookie_secure', 1);
+    session_start();
+
+    require_once('./../../../backend/function/function.php');
+    $role="ADMIN";
+
+    //================== gerer les session 
+    if(requireRole($role)==="Accès interdit"){
+        header("Location: ./../../../index.php");
+        session_destroy();
+    }
+
+    //=========== verifier l'abonnement de cet entreprise
+    $url="./../../../index.php";
+    abonnement($url);
+
+    //================== fetch les produits
+    $produits=getApi('/api/produits/') ?? [];
+    if (!is_array($produits)) {
+      echo "<div class='alert alert-danger'>API error</div>";
+      $produits = [];
+    } 
+
+    //===================== fetch fournisseurs
+     $fournisseurs=getApi('/api/partners/fournisseurs/') ?? [];
+      if (!is_array($fournisseurs)) {
+        echo "<div class='alert alert-danger'>API error</div>";
+        $fournisseurs = [];
+      }    
+
+    // ================== fetch les categories
+    $stocks = getApi('/api/stocks/') ?? [];
+    if (!is_array($stocks)) {
+        echo "<div class='alert alert-danger'>Erreur API Categories</div>";
+        $stocks = [];
+    }
+
+include "./../../../includes/header.php";
 include "./../../../includes/sidebar.php";
 ?>
 <div class="page-wrapper">

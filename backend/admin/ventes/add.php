@@ -84,3 +84,5 @@ if (isset($_POST['send'])) {
     header("Location: ./../../../public/admin/ventes/index.php?success=Produit ajouté avec succès");
     exit;
 }
+
+?>
