@@ -77,6 +77,7 @@
                       <th>Nom</th>
                       <th>Categorie</th>
                       <th>Quantite</th>
+                      <th>Unite de mesure</th>
                       <th>Prix</th>
                       <th>Date</th>
                       <th class="text-end">Action</th>
@@ -88,10 +89,11 @@
                       <td><?= htmlspecialchars($p['nom']) ?></td>
                       <td><?= htmlspecialchars($p['categorie']) ?></td>
                       <td> <?= htmlspecialchars($p['quantite']) ?></td>
+                      <td><?= htmlspecialchars($p['mesure']) ?></td>
                       <td><?= htmlspecialchars($p['prix']) ?> FBu</td>
                       <td><?= htmlspecialchars((new DateTime($p['created_at']))->format('d/m/Y')) ?></td>
                       <td class="text-end">
-                        
+
                         <!-- Modifier -->
                         <a href="#"
                           class="editBtn"

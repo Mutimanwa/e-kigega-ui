@@ -114,10 +114,11 @@ include "./../../../includes/sidebar.php";
                           data-bs-toggle="modal"
                           data-bs-target="#modifyProductModal"
                           data-id="<?= $s['id'] ?>"
-                          data-nom="<?= htmlspecialchars($p['nom']) ?>"
-                          data-categorie="<?= htmlspecialchars($p['categorie']) ?>"
-                          data-prix="<?= $p['prix'] ?>"
-                          data-unite="<?= $p['mesure'] ?>">
+                          data-prix_achat="<?= htmlspecialchars($s['prix_achat']) ?>"
+                          data-date_entree="<?= htmlspecialchars($s['date_entree']) ?>"
+                          data-quantite="<?= $s['quantite'] ?>"
+                          data-produit="<?= $s['produit'] ?>"
+                          data-fournisseur="<?= $s['fournisseur'] ?>">
                           <i class="las la-pen text-secondary fs-18"></i>
                         </a>
 
@@ -136,8 +137,7 @@ include "./../../../includes/sidebar.php";
                   </tbody>
                 </table>
 
-              </div>
-          
+              </div>          
             </div>
           </div> <!-- end col -->
         </div> <!-- end row -->
@@ -248,25 +248,31 @@ include "./../../../includes/sidebar.php";
       </div>
 
       <!-- Popup Modifier  -->
-      <div class="modal fade" id="modifyRate" tabindex="-1" aria-labelledby="modifyRateLabel" aria-hidden="true">
+      <div class="modal fade" id="modifyProductModal" tabindex="-1" aria-labelledby="modifyProductLabel" aria-hidden="true">
         <div class="modal-dialog">
-          <form action="#">
+          <form action="./../../../backend/admin/stocks/edit.php" method="post" id="form-edit-produit">
+            <input type="hidden" name="id" id="edit-id">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="modifyRateLabel">Modifier un produit</h5>
+                <h5 class="modal-title" id="modifyProductLabel">Modifier l'entree dans le stock</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
               </div>
               <div class="modal-body">
 
+                <!-- Nom du Fournisseurs -->
                 <div class="mb-2">
                   <label for="add-categorie" class="form-label">Fournisseurs</label>
                   <div class="input-group">
                     <span class="input-group-text">
                       <i class="fas fa-user"></i>
                     </span>
-                    <select id="add-categorie" class="form-select">
+                    <select id="edit-fournisseur" name="fournisseur" class="form-select">
                       <option value="" selected disabled>Choisir un fournisseur</option>
-                      <option value="autre">Autre</option>
+                      <?php foreach($fournisseurs as $f): ?>
+                        <option value="<?= htmlspecialchars($f['id']) ?>">
+                          <?= htmlspecialchars($f['nom']) ?> <?= htmlspecialchars($f['prenom']) ?>
+                        </option>
+                      <?php endforeach; ?>
                     </select>
                   </div>
                 </div>
@@ -277,9 +283,13 @@ include "./../../../includes/sidebar.php";
                     <span class="input-group-text">
                       <i class="fas fa-tags"></i>
                     </span>
-                    <select id="add-categorie" class="form-select">
+                    <select id="edit-produit" name="produit" class="form-select">
                       <option value="" selected disabled>Choisir un produit</option>
-                      <option value="autre">Autre</option>
+                      <?php foreach($produits as $p): ?>
+                        <option value="<?= htmlspecialchars($p['id']) ?>">
+                          <?= htmlspecialchars($p['nom']) ?>
+                        </option>
+                      <?php endforeach; ?>
                     </select>
                   </div>
                 </div>
@@ -288,10 +298,9 @@ include "./../../../includes/sidebar.php";
                   <label>Prix d'achat</label>
                   <div class="input-group">
                     <span class="input-group-text"><i class="fas fa-money-bill-wave"></i></span>
-                    <input type="number" id="add-prix" class="form-control" placeholder="Prix d'achat du produit">
+                    <input type="number" id="edit-prix_achat" name="prix_achat" class="form-control" placeholder="Prix d'achat du produit">
                   </div>
                 </div>
-
 
 
 
@@ -299,18 +308,28 @@ include "./../../../includes/sidebar.php";
                   <label>Quantité</label>
                   <div class="input-group">
                     <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
-                    <input type="number" id="add-quantite" class="form-control" placeholder="Quantité">
+                    <input type="number" id="edit-quantite" name="quantite" class="form-control" placeholder="Quantité">
                   </div>
                 </div>
 
+                <div class="mb-2">
+                  <label>Data d'entree</label>
+                  <div class="input-group">
+                    <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
+                    <input type="date" id="edit-date_entree" name="date_entree" class="form-control" placeholder="Data d'entree">
+                  </div>
+                </div>
+
+
               </div>
               <div class="modal-footer">
-                <button type="submit" class="btn btn-primary w-100">Modifier</button>
+                <button type="submit" name="send" class="btn btn-primary w-100">Modifier</button>
               </div>
             </div>
           </form>
         </div>
       </div>
+
 
 
       <!-- modal de suppression -->
@@ -353,3 +372,22 @@ include "./../../../includes/sidebar.php";
             });
         });
       </script>
+
+      <!-- Js pour recuperl'id lors de modification  -->
+       <script>
+          document.addEventListener('DOMContentLoaded', function() {
+            const editButtons = document.querySelectorAll('.editBtn');
+            const modal = document.getElementById('modifyProductModal');
+
+            editButtons.forEach(btn => {
+              btn.addEventListener('click', function() {
+                document.getElementById('edit-id').value = this.dataset.id;
+                document.getElementById('edit-fournisseur').value = this.dataset.fournisseur;
+                document.getElementById('edit-produit').value = this.dataset.produit;
+                document.getElementById('edit-prix_achat').value = this.dataset.prix_achat;
+                document.getElementById('edit-quantite').value = this.dataset.quantite;
+                document.getElementById('edit-date_entree').value = this.dataset.date_entree;
+              });
+            });
+          });
+       </script>
