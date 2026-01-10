@@ -24,6 +24,7 @@
       $produits = [];
     } 
 
+
     //===================== fetch fournisseurs
      $fournisseurs=getApi('/api/partners/fournisseurs/') ?? [];
       if (!is_array($fournisseurs)) {
@@ -40,6 +41,7 @@
 
 include "./../../../includes/header.php";
 include "./../../../includes/sidebar.php";
+
 ?>
 <div class="page-wrapper">
 
@@ -85,34 +87,52 @@ include "./../../../includes/sidebar.php";
                       <th>Fournisseurs</th>
                       <th>Quantite</th>
                       <th>Prix d'achat</th>
+                      <th>Prix total </th>
                       <th>Date</th>
                       <th class="text-end">Action</th>
                     </tr>
                   </thead>
                   <tbody>
-
+                  <?php foreach($stocks as $s): ?>
+                    <?php 
+                        $quantite = floatval($s['quantite']);
+                        $prix = floatval($s['prix_achat']);
+                        $total = $quantite * $prix;
+                    ?>
                     <tr>
-                      <td>Fer</td>
-                      <td>Wakanda</td>
-                      <td> 14</td>
-                      <td>5000 FBu</td>
-                      <td>2024-06-01</td>
+                      <td><?= getAPI_id('/api/produits/',$s['produit'])['nom'] ?></td>
+                      <td><?= getAPI_id('/api/partners/',$s['fournisseur'])['nom'] ?> <?= getAPI_id('/api/partners/',$s['fournisseur'])['prenom'] ?></td>
+                      <td> <?=  htmlspecialchars(number_format($s['quantite']),2)?></td>
+                      <td><?=  htmlspecialchars(number_format($s['prix_achat']),2)?></td>
+                      <td><?=  htmlspecialchars(number_format($total),2)?></td>
+                      <td><?= htmlspecialchars((new DateTime($s['date_entree']))->format('d/m/Y')) ?></td>
                       <td class="text-end">
+
                         <!-- Modifier -->
-                        <a href="#" data-bs-toggle="modal" data-bs-target="#modifyRate" class="edit-product"
-                          data-produit="Ordinateur HP" data-categorie="Informatique" data-prix="1200"
-                          data-quantite="10">
+                        <a href="#"
+                          class="editBtn"
+                          data-bs-toggle="modal"
+                          data-bs-target="#modifyProductModal"
+                          data-id="<?= $s['id'] ?>"
+                          data-nom="<?= htmlspecialchars($p['nom']) ?>"
+                          data-categorie="<?= htmlspecialchars($p['categorie']) ?>"
+                          data-prix="<?= $p['prix'] ?>"
+                          data-unite="<?= $p['mesure'] ?>">
                           <i class="las la-pen text-secondary fs-18"></i>
                         </a>
 
                         <!-- Supprimer -->
-                        <a href="#" data-bs-toggle="modal" data-bs-target="#deleteModal"><i
-                            class="las la-trash-alt text-secondary fs-18"></i></a>
-
-                      </td>
+                        <a href="#"
+                          class="text-danger delete-btn"
+                          data-bs-toggle="modal"
+                          data-bs-target="#deleteModal"
+                          data-id="<?= $s['id'] ?>"
+                          data-nom="la tracabilite de l'entree de <?= getAPI_id('/api/produits/',$s['produit'])['nom'] ?> ">
+                          <i class="las la-trash-alt fs-18"></i>
+                        </a>
 
                     </tr>
-
+                  <?php endforeach; ?>
                   </tbody>
                 </table>
 
@@ -134,11 +154,23 @@ include "./../../../includes/sidebar.php";
       include "./../../../includes/footer.php";
       ?>
 
+      <script>
+        // toast success
+        <?php if (isset($_GET['success'])): ?>
+          showToast("<?= htmlspecialchars($_GET['success']) ?>", 'success');
+   
+        <?php endif; ?>
+        // toast error
+        <?php if (isset($_GET['error'])): ?>
+         showToast("<?= htmlspecialchars($_GET['error']) ?>", 'danger');
+       
+        <?php endif; ?>
+      </script>
 
       <!-- Popup Ajouter -->
       <div class="modal fade" id="addRate" tabindex="-1" aria-labelledby="addRateLabel" aria-hidden="true">
         <div class="modal-dialog">
-          <form action="#">
+          <form action="./../../../backend/admin/stocks/add.php" method="post">
             <div class="modal-content">
               <div class="modal-header">
                 <h5 class="modal-title" id="addRateLabel">Ajouter un produit</h5>
@@ -152,9 +184,13 @@ include "./../../../includes/sidebar.php";
                     <span class="input-group-text">
                       <i class="fas fa-user"></i>
                     </span>
-                    <select id="add-categorie" class="form-select">
+                    <select id="add-categorie" name="fournisseur" class="form-select">
                       <option value="" selected disabled>Choisir un fournisseur</option>
-                      <option value="autre">Autre</option>
+                      <?php foreach($fournisseurs as $f): ?>
+                        <option value="<?= htmlspecialchars($f['id']) ?>">
+                          <?= htmlspecialchars($f['nom']) ?> <?= htmlspecialchars($f['prenom']) ?>
+                        </option>
+                      <?php endforeach; ?>
                     </select>
                   </div>
                 </div>
@@ -165,9 +201,13 @@ include "./../../../includes/sidebar.php";
                     <span class="input-group-text">
                       <i class="fas fa-tags"></i>
                     </span>
-                    <select id="add-categorie" class="form-select">
+                    <select id="add-categorie" name="produit" class="form-select">
                       <option value="" selected disabled>Choisir un produit</option>
-                      <option value="autre">Autre</option>
+                      <?php foreach($produits as $p): ?>
+                        <option value="<?= htmlspecialchars($p['id']) ?>">
+                          <?= htmlspecialchars($p['nom']) ?>
+                        </option>
+                      <?php endforeach; ?>
                     </select>
                   </div>
                 </div>
@@ -176,7 +216,7 @@ include "./../../../includes/sidebar.php";
                   <label>Prix d'achat</label>
                   <div class="input-group">
                     <span class="input-group-text"><i class="fas fa-money-bill-wave"></i></span>
-                    <input type="number" id="add-prix" class="form-control" placeholder="Prix d'achat du produit">
+                    <input type="number" id="add-prix" name="prix_achat" class="form-control" placeholder="Prix d'achat du produit">
                   </div>
                 </div>
 
@@ -186,13 +226,21 @@ include "./../../../includes/sidebar.php";
                   <label>Quantité</label>
                   <div class="input-group">
                     <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
-                    <input type="number" id="add-quantite" class="form-control" placeholder="Quantité">
+                    <input type="number" id="add-quantite" name="quantite" class="form-control" placeholder="Quantité">
+                  </div>
+                </div>
+
+                <div class="mb-2">
+                  <label>Data d'entree</label>
+                  <div class="input-group">
+                    <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
+                    <input type="date" id="add-data" name="date_entree" class="form-control" placeholder="Data d'entree">
                   </div>
                 </div>
 
               </div>
               <div class="modal-footer">
-                <button type="submit" class="btn btn-primary w-100">Ajouter</button>
+                <button type="submit" class="btn btn-primary w-100" name="send">Ajouter</button>
               </div>
             </div>
           </form>
@@ -265,27 +313,43 @@ include "./../../../includes/sidebar.php";
       </div>
 
 
-
-
       <!-- modal de suppression -->
-      <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="DeleteUserLabel" aria-hidden="true">
+      <div class="modal fade" id="deleteModal" tabindex="-1">
         <div class="modal-dialog">
           <div class="modal-content">
+
             <div class="modal-header bg-white">
-              <h5 class="modal-title text-danger" id="addUserLabel">Supprimer</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              <h5 class="modal-title text-danger">Supprimer l'entree</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
+
             <div class="modal-body">
-              <p class="text-muted">Êtes-vous sûr de vouloir supprimer cet utilisateur ? Cette action est irréversible.
+              <p>
+                Voulez-vous vraiment supprimer
+                <strong id="catName"></strong> ?
               </p>
             </div>
-            <div class="modal-footer">
-              <button type="submit" class="btn btn-outline-danger">Oui</button>
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                Annuler
-              </button>
 
+            <div class="modal-footer">
+              <form method="POST" action="./../../../backend/admin/stocks/delete.php">
+                <input type="hidden" name="id" id="deleteId">
+                <button type="submit" class="btn btn-danger">Oui, supprimer</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                  Annuler
+                </button>
+              </form>
             </div>
+
           </div>
         </div>
       </div>
+
+      <!-- Js pour recuper l'id lors de suppression  -->
+      <script>
+        document.querySelectorAll('.delete-btn').forEach(btn => {
+            btn.addEventListener('click', function () {
+                document.getElementById('deleteId').value = this.dataset.id;
+                document.getElementById('catName').innerText = this.dataset.nom;
+            });
+        });
+      </script>

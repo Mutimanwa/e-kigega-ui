@@ -285,4 +285,16 @@
         }
     }
 
+
+    //=========== fetch produit via son ID
+    function getAPI_id($endpoint,$id){
+
+      $api=getApi($endpoint . $id.'/') ?? [];
+        if (!is_array($api)) {
+          echo "<div class='alert alert-danger'>API error</div>";
+          $api = [];
+        }  
+
+      return $api;
+    }
 ?>

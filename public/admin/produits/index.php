@@ -91,6 +91,7 @@
                       <td><?= htmlspecialchars($p['prix']) ?> FBu</td>
                       <td><?= htmlspecialchars((new DateTime($p['created_at']))->format('d/m/Y')) ?></td>
                       <td class="text-end">
+                        
                         <!-- Modifier -->
                         <a href="#"
                           class="editBtn"
@@ -149,7 +150,6 @@
        
         <?php endif; ?>
       </script>
-
 
       <!-- Popup Ajouter -->
       <div class="modal fade" id="addRate" tabindex="-1" aria-labelledby="addRateLabel" aria-hidden="true">
