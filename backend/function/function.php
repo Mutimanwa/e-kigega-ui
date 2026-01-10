@@ -244,5 +244,45 @@
         ];
     }
 
+    //=========== verifier l'abonnement de l'entreprise connecte 
+    function abonnement($redirection){
+
+        $entreprise=$_SESSION['entreprise'];
+        // Fetch tous les abonnements de l'entreprise
+        $getAbonnement = getApi('/api/abonnements/?entreprise=' . $entreprise);
+
+        // Si API vide ou erreur
+        if (!is_array($getAbonnement) || count($getAbonnement) === 0) {
+            session_destroy();
+            header("Location: ".$redirection."?error=Pas_d_abonnement");
+            exit;
+        }
+
+        $today = date("Y-m-d");
+        $abonnementValide = false;
+
+        // Vérifier tous les abonnements
+        foreach ($getAbonnement as $abonnement) {
+
+            $dateDebut = substr($abonnement['date_debut'], 0, 10);
+            $dateFin   = substr($abonnement['date_fin'], 0, 10);
+
+            if (
+                $abonnement['status'] === 'actif' &&
+                $today >= $dateDebut &&
+                $today <= $dateFin
+            ) {
+                $abonnementValide = true;
+                break; // very good abonnement encours
+            }
+        }
+
+        // Si aucun abonnement valide trouvé
+        if (!$abonnementValide) {
+            session_destroy();
+            header("Location: ".$redirection."?error=Abonnement_expire");
+            exit;
+        }
+    }
 
 ?>

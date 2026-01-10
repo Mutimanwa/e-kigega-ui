@@ -44,7 +44,7 @@ if (isset($_POST['send'])) {
         $e = "Erreur lors de la création";
         header("Location: ./../../../public/admin/produits/categories.php?error=" . urlencode($e));
         exit;
-    } elseif (isset($add['id'])) { // API renvoie l'objet créé
+    } elseif ($add['Message']==="ajouter avec succes") { // API renvoie l'objet créé
         $success = "Catégorie ajoutée avec succès";
         header("Location: ./../../../public/admin/produits/categories.php?success=" . urlencode($success));
         exit;

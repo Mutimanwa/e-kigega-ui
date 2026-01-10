@@ -13,6 +13,10 @@
         session_destroy();
     }
 
+    //=========== verifier l'abonnement de cet entreprise
+    $url="./../../../index.php";
+    abonnement($url);
+
     //================== fetch les produits
     $produits=getApi('/api/produits/') ?? [];
     if (!is_array($produits)) {

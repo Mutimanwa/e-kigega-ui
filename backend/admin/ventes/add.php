@@ -33,30 +33,34 @@ if (isset($_POST['send'])) {
 
     // Validation simple
     if ($nom === "" || $categorie === "" || $unite === "" || $prix <= 0) {
-        header("Location: ./../../../public/admin/produits/index.php?error=Données invalides");
+        header("Location: ./../../../public/admin/ventes/index.php?error=Données invalides");
         exit;
     }
 
-    // Vérifier les doublons de produit (dans la même entreprise)
-    foreach ($produits as $p) {
-        if (
-            strcasecmp($p['nom'], $nom) === 0 &&
-            $p['entreprise'] === $entreprise
-        ) {
-            $e = "Ce produit existe déjà";
-            header("Location: ./../../../public/admin/produits/index.php?error=" . urlencode($e));
-            exit;
-        }
-    }
+    // // Vérifier les doublons de produit (dans la même entreprise)
+    // foreach ($produits as $p) {
+    //     if (
+    //         strcasecmp($p['nom'], $nom) === 0 &&
+    //         $p['entreprise'] === $entreprise
+    //     ) {
+    //         $e = "Ce produit existe déjà";
+    //         header("Location: ./../../../public/admin/ventes/index.php?error=" . urlencode($e));
+    //         exit;
+    //     }
+    // }
 
     // Données à envoyer à l’API
     $donnee = [
-        "nom"        => $nom,
-        "categorie" => $categorie,
-        "prix"      => $prix,
-        "quantite"  => 0,
-        "entreprise"=> $entreprise,
-        "mesure"    => $unite
+        "client" => $client_id,
+        "statut" => "payee",
+        "items" => [
+            [
+                "produit" => $produit_id,
+                "quantite" => $quantite,
+                "unite" => $unite,
+                "prix_unitaire" => $prix
+            ]
+        ]
     ];
 
     $add = apiPost('/api/produits/', $donnee);
@@ -68,15 +72,15 @@ if (isset($_POST['send'])) {
     }
 
     if ($add === "Erreur lors de la création") {
-        header("Location: ./../../../public/admin/produits/index.php?error=Erreur lors de l’ajout");
+        header("Location: ./../../../public/admin/ventes/index.php?error=Erreur lors de l’ajout");
         exit;
     }
 
     if (isset($add['id'])) {
-        header("Location: ./../../../public/admin/produits/index.php?success=Produit ajouté avec succès");
+        header("Location: ./../../../public/admin/ventes/index.php?success=Produit ajouté avec succès");
         exit;
     }
 
-    header("Location: ./../../../public/admin/produits/index.php?success=Produit ajouté avec succès");
+    header("Location: ./../../../public/admin/ventes/index.php?success=Produit ajouté avec succès");
     exit;
 }

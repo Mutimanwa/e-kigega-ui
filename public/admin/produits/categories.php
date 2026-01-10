@@ -13,6 +13,10 @@ if (requireRole($role) === "Accès interdit") {
   session_destroy();
 }
 
+//=========== verifier l'abonnement de cet entreprise
+$url="./../../../index.php";
+abonnement($url);
+
 //================== fetch les categories
 $categories = getApi('/api/categories/') ?? [];
 if (!is_array($categories)) {
