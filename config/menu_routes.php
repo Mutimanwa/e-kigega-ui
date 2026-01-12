@@ -39,7 +39,7 @@ $menu_structure = [
             'permission' => 'admin'
         ],
         'clients' => [
-            'title' => 'Gestion des clients',
+            'title' => 'Gestion des Clients',
             'icon' => 'iconoir-user-square',
             'path' => '/public/admin/clients/',
             'active' => ['clients', 'clients.php', 'clients/'],
@@ -53,21 +53,21 @@ $menu_structure = [
             'permission' => 'admin'
         ],
         'stock' => [
-            'title' => 'Gestion de stock',
+            'title' => 'Gestion de Stock',
             'icon' => 'iconoir-database',
             'path' => '/public/admin/stock/',
             'active' => ['stock', 'stock.php', 'stock/'],
             'permission' => 'admin'
         ],
         'formations' => [
-            'title' => 'Formations',
+            'title' => 'Gestion des Formations',
             'icon' => 'iconoir-graduation-cap',
             'path' => '/public/admin/formations/',
             'active' => ['formations', 'formations.php', 'formations/'],
             'permission' => 'admin'
         ],
         'rapports' => [
-            'title' => 'Rapports',
+            'title' => 'Gestion des Rapports',
             'icon' => 'iconoir-stats-report',
             'path' => '/public/admin/rapports/',
             'active' => ['rapports', 'rapports.php', 'rapports/'],
@@ -83,7 +83,7 @@ $menu_structure = [
             'permission' => 'admin'
         ],
         'utilisateurs' => [
-            'title' => 'Utilisateurs',
+            'title' => 'Gestion des Utilisateurs',
             'icon' => 'iconoir-user-circle',
             'path' => '/public/admin/utilisateurs/',
             'active' => ['utilisateurs', 'utilisateurs.php', 'utilisateurs/'],
@@ -97,7 +97,7 @@ $menu_structure = [
             'permission' => 'admin'
         ],
         'fournisseurs' => [
-            'title' => 'Fournisseurs',
+            'title' => 'Gestion des Fournisseurs',
             'icon' => 'iconoir-truck',
             'path' => '/public/admin/fournisseurs/',
             'active' => ['fournisseurs', 'fournisseurs.php', 'fournisseurs/'],
@@ -141,14 +141,14 @@ $menu_structure = [
             'permission' => 'comptable'
         ],
         'ventes' => [
-            'title' => 'Ventes',
+            'title' => 'Gestion des Ventes',
             'icon' => 'iconoir-shopping-bag',
             'path' => '/public/comptable/ventes/',
             'active' => ['ventes', 'ventes.php', 'ventes/'],
             'permission' => 'comptable'
         ],
         'formations' => [
-            'title' => 'Formations',
+            'title' => 'Gestion des Formations',
             'icon' => 'iconoir-graduation-cap',
             'path' => '/public/comptable/formations/',
             'active' => ['formations', 'formations.php', 'formations/'],
@@ -165,7 +165,7 @@ $menu_structure = [
             'permission' => 'responsable'
         ],
         'gestion_produits' => [
-            'title' => 'Gestion de produits',
+            'title' => 'Gestion de Produits',
             'icon' => 'iconoir-box',
             'type' => 'collapse',
             'id' => 'sidebarProduits',
@@ -192,7 +192,7 @@ $menu_structure = [
             'permission' => 'responsable'
         ],
         'formations' => [
-            'title' => 'Formations',
+            'title' => 'Gestion desFormations',
             'icon' => 'iconoir-graduation-cap',
             'path' => '/public/responsable/formations/',
             'active' => ['formations', 'formations.php', 'formations/'],
