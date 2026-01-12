@@ -114,10 +114,8 @@ $menu_structure = [
         'fournisseurs' => [
             'title' => 'Fournisseurs',
             'icon' => 'iconoir-truck',
-            'path' => '#',
-            'active' => ['fournisseurs'],
-            'badge' => 'coming soon',
-            'badge_class' => 'text-bg-blue',
+            'path' => '/public/admin/fournisseurs/',
+            'active' => ['fournisseurs', 'fournisseurs.php', 'fournisseurs/'],
             'permission' => 'admin'
         ]
     ],
