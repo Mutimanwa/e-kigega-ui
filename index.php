@@ -96,7 +96,10 @@
                                                 </div><!--end col-->
                                             </div> <!--end form-group-->
                                         </form><!--end form-->
-                                      
+                                      <div class="text-center  mb-2">
+                                        <p class="text-muted">Vous avez pas de compte  ?  <a href="public/pricing.php" class="text-warning ms-2">Enregistrement </a></p>
+                                        
+                                    </div>
                                     </div><!--end card-body-->
                                 </div><!--end card-->
                             </div><!--end col-->

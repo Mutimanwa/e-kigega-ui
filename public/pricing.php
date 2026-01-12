@@ -86,10 +86,10 @@ include_once "../config/constantes.php";
                         <a class="nav-link" href="<?= BASE_URL ?>#contact">Contact</a>
                     </li>
                     <li class="nav-item ms-3">
-                        <a href="<?= BASE_URL ?>login.php" class="btn btn-outline-warning">Connexion</a>
+                        <a href="<?= BASE_URL ?>" class="btn btn-outline-warning">Connexion</a>
                     </li>
                     <li class="nav-item ms-2">
-                        <a href="<?= BASE_URL ?>register.php" class="btn btn-warning">Essai Gratuit</a>
+                        <a href="<?= BASE_URL ?>public/register.php" class="btn btn-warning">Essai Gratuit</a>
                     </li>
                 </ul>
             </div>
