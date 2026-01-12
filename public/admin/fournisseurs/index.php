@@ -314,7 +314,7 @@ include "./../../../includes/sidebar.php";
             </div>
 
             <div class="modal-footer">
-              <form method="POST" action="./../../../backend/admin/clients/delete.php">
+              <form method="POST" action="./../../../backend/admin/fournisseurs/delete.php">
                 <input type="hidden" name="id" id="deleteId">
                 <button type="submit" class="btn btn-danger">Oui, supprimer</button>
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">

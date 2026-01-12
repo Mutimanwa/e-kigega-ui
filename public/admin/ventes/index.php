@@ -1,38 +1,54 @@
 <?php
 
-    ini_set('session.cookie_httponly', 1);
-    ini_set('session.cookie_secure', 1);
-    session_start();
 
-    require_once('./../../../backend/function/function.php');
-    $role="ADMIN";
+ini_set('session.cookie_httponly', 1);
+ini_set('session.cookie_secure', 1);
+session_start();
 
-    //================== gerer les session 
-    if(requireRole($role)==="Accès interdit"){
-        header("Location: ./../../../index.php");
-        session_destroy();
-    }
+require_once('./../../../backend/function/function.php');
+$role = "ADMIN";
 
-    //=========== verifier l'abonnement de cet entreprise
-    $url="./../../../index.php";
-    abonnement($url);
+//================== gerer les session 
+if (requireRole($role) === "Accès interdit") {
+    header("Location: ./../../../index.php");
+    session_destroy();
+}
 
-    //================== fetch les produits
-    $produits=getApi('/api/produits/') ?? [];
-    if (!is_array($produits)) {
-      echo "<div class='alert alert-danger'>API error</div>";
-      $produits = [];
-    } 
+//=========== verifier l'abonnement de cet entreprise
+$url = "./../../../index.php";
+abonnement($url);
 
-    //=============== fetch les ventes
-    $ventes=getApi('/api/produits/') ?? [];
-    if (!is_array($ventes)) {
-      echo "<div class='alert alert-danger'>API error</div>";
-      $ventes = [];
-    }   
+// //================== fetch les produits
+// $produits = getApi('/api/produits/') ?? [];
+// if (!is_array($produits)) {
+//     echo "<div class='alert alert-danger'>API error</div>";
+//     $produits = [];
+// }
 
-    include "./../../../includes/header.php";
-    include "./../../../includes/sidebar.php";
+
+// //===================== fetch fournisseurs
+// $fournisseurs = getApi('/api/partners/fournisseurs/') ?? [];
+// if (!is_array($fournisseurs)) {
+//     echo "<div class='alert alert-danger'>API error</div>";
+//     $fournisseurs = [];
+// }
+
+// // ================== fetch les categories
+// $stocks = getApi('/api/stocks/') ?? [];
+// if (!is_array($stocks)) {
+//     echo "<div class='alert alert-danger'>Erreur API Categories</div>";
+//     $stocks = [];
+// }
+
+//=============== fetch les ventes
+$ventes = getApi('/api/produits/') ?? [];
+if (!is_array($ventes)) {
+    echo "<div class='alert alert-danger'>API error</div>";
+    $ventes = [];
+}
+
+include "./../../../includes/header.php";
+include "./../../../includes/sidebar.php";
 ?>
 <div class="page-wrapper">
 
@@ -85,184 +101,42 @@
                                             <th class="text-end">Action</th>
                                         </tr>
                                     </thead>
-                                   <tbody>
+                                    <tbody>
+                                        <tr>
+                                            <td>Urbain</td>
+                                            <td>umuhwi</td>
+                                            <td>10</td>
+                                            <td>12000 FBu</td>
+                                            <td>2024-06-01</td>
+                                            <td>
+                                                <span class="badge rounded text-warning bg-warning-subtle">
+                                                    En attente
+                                                </span>
+                                            </td>
+                                            <td class="text-end">
+                                                <!-- Modifier -->
+                                                <a href="#"
+                                                    class="edit-product"
+                                                    data-bs-toggle="modal"
+                                                    data-bs-target="#modifyRate">
+                                                    <i class="las la-pen text-secondary fs-18"
+                                                        data-bs-toggle="tooltip"
+                                                        data-bs-placement="top"
+                                                        title="Modifier"></i>
+                                                </a>
 
-  <tr>
-    <td>Fer</td>
-    <td>Aluminium</td>
-    <td>10</td>
-    <td>12000 FBu</td>
-    <td>2024-06-01</td>
-    <td>
-      <span class="badge rounded text-warning bg-warning-subtle">
-        En attente
-      </span>
-    </td>
-    <td class="text-end">
-      <!-- Modifier -->
-      <a href="#"
-         class="edit-product"
-         data-bs-toggle="modal"
-         data-bs-target="#modifyRate">
-        <i class="las la-pen text-secondary fs-18"
-           data-bs-toggle="tooltip"
-           data-bs-placement="top"
-           title="Modifier"></i>
-      </a>
-
-      <!-- Supprimer -->
-      <a href="#"
-         data-bs-toggle="modal"
-         data-bs-target="#deleteModal">
-        <i class="las la-trash-alt text-secondary fs-18"
-           data-bs-toggle="tooltip"
-           data-bs-placement="top"
-           title="Supprimer"></i>
-      </a>
-    </td>
-  </tr>
-
-  <tr>
-    <td>Jean</td>
-    <td>Ordinateur</td>
-    <td>5</td>
-    <td>12000 FBu</td>
-    <td>2024-06-01</td>
-    <td>
-      <span class="badge rounded text-success bg-success-subtle">
-        Payée
-      </span>
-    </td>
-    <td class="text-end">
-      <!-- Modifier -->
-      <a href="#"
-         class="edit-product"
-         data-bs-toggle="modal"
-         data-bs-target="#modifyRate">
-        <i class="las la-pen text-secondary fs-18"
-           data-bs-toggle="tooltip"
-           data-bs-placement="top"
-           title="Modifier"></i>
-      </a>
-
-      <!-- Supprimer -->
-      <a href="#"
-         data-bs-toggle="modal"
-         data-bs-target="#deleteModal">
-        <i class="las la-trash-alt text-secondary fs-18"
-           data-bs-toggle="tooltip"
-           data-bs-placement="top"
-           title="Supprimer"></i>
-      </a>
-    </td>
-  </tr>
-
-  <tr>
-    <td>Marie</td>
-    <td>Smartphone</td>
-    <td>8</td>
-    <td>12000 FBu</td>
-    <td>2024-06-01</td>
-    <td>
-      <span class="badge rounded text-info bg-info-subtle">
-        Paiement partiel
-      </span>
-    </td>
-    <td class="text-end">
-      <!-- Modifier -->
-      <a href="#"
-         class="edit-product"
-         data-bs-toggle="modal"
-         data-bs-target="#modifyRate">
-        <i class="las la-pen text-secondary fs-18"
-           data-bs-toggle="tooltip"
-           data-bs-placement="top"
-           title="Modifier"></i>
-      </a>
-
-      <!-- Supprimer -->
-      <a href="#"
-         data-bs-toggle="modal"
-         data-bs-target="#deleteModal">
-        <i class="las la-trash-alt text-secondary fs-18"
-           data-bs-toggle="tooltip"
-           data-bs-placement="top"
-           title="Supprimer"></i>
-      </a>
-    </td>
-  </tr>
-
-  <tr>
-    <td>Paul</td>
-    <td>Tablette</td>
-    <td>3</td>
-    <td>12000 FBu</td>
-    <td>2024-06-01</td>
-    <td>
-      <span class="badge rounded text-danger bg-danger-subtle">
-        Annulée
-      </span>
-    </td>
-    <td class="text-end">
-      <!-- Modifier -->
-      <a href="#"
-         class="edit-product"
-         data-bs-toggle="modal"
-         data-bs-target="#modifyRate">
-        <i class="las la-pen text-secondary fs-18"
-           data-bs-toggle="tooltip"
-           data-bs-placement="top"
-           title="Modifier"></i>
-      </a>
-
-      <!-- Supprimer -->
-      <a href="#"
-         data-bs-toggle="modal"
-         data-bs-target="#deleteModal">
-        <i class="las la-trash-alt text-secondary fs-18"
-           data-bs-toggle="tooltip"
-           data-bs-placement="top"
-           title="Supprimer"></i>
-      </a>
-    </td>
-  </tr>
-
-  <tr>
-    <td>Lucie</td>
-    <td>Imprimante</td>
-    <td>2</td>
-    <td>12000 FBu</td>
-    <td>2024-06-01</td>
-    <td>
-      <span class="badge rounded text-primary bg-primary-subtle">
-        Remboursée
-      </span>
-    </td>
-    <td class="text-end">
-      <!-- Modifier -->
-      <a href="#"
-         class="edit-product"
-         data-bs-toggle="modal"
-         data-bs-target="#modifyRate">
-        <i class="las la-pen text-secondary fs-18"
-           data-bs-toggle="tooltip"
-           data-bs-placement="top"
-           title="Modifier"></i>
-      </a>
-
-      <!-- Supprimer -->
-      <a href="#"
-         data-bs-toggle="modal"
-         data-bs-target="#deleteModal">
-        <i class="las la-trash-alt text-secondary fs-18"
-           data-bs-toggle="tooltip"
-           data-bs-placement="top"
-           title="Supprimer"></i>
-      </a>
-    </td>
-  </tr>
-
-</tbody>
+                                                <!-- Supprimer -->
+                                                <a href="#"
+                                                    data-bs-toggle="modal"
+                                                    data-bs-target="#deleteModal">
+                                                    <i class="las la-trash-alt text-secondary fs-18"
+                                                        data-bs-toggle="tooltip"
+                                                        data-bs-placement="top"
+                                                        title="Supprimer"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
 
                                 </table>
 
@@ -472,14 +346,14 @@
                 </div>
             </div>
 
-            
 
-   <!-- js pour le tooltip -->
-    <script>
-  var tooltipTriggerList = [].slice.call(
-    document.querySelectorAll('[data-bs-toggle="tooltip"]')
-  );
-  tooltipTriggerList.map(function (tooltipTriggerEl) {
-    return new bootstrap.Tooltip(tooltipTriggerEl);
-  });
-</script>
+
+            <!-- js pour le tooltip -->
+            <script>
+                var tooltipTriggerList = [].slice.call(
+                    document.querySelectorAll('[data-bs-toggle="tooltip"]')
+                );
+                tooltipTriggerList.map(function(tooltipTriggerEl) {
+                    return new bootstrap.Tooltip(tooltipTriggerEl);
+                });
+            </script>

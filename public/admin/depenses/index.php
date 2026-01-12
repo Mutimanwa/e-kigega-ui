@@ -88,7 +88,15 @@ include "./../../../includes/sidebar.php";
                       <td><?= htmlspecialchars($d['type']) ?></td>
                       <td> <?= htmlspecialchars($d['description']) ?></td>
                       <td> <?= number_format(htmlspecialchars($d['montant']),2) ?></td>
-                      <td><a href="<?= $d['justificatif'] or 'null' ?>" download>Download</a></td>
+                      <td>
+                      <?php if (!empty($d['justificatif'])): ?>
+                          <a href="./../../../backend/download/index.php?url=<?= urlencode($d['justificatif']) ?>" class="btn btn-sm btn-primary">
+                              Télécharger
+                          </a>
+                      <?php else: ?>
+                          <span class="text-muted">Pas de Justificatif</span>
+                      <?php endif; ?>
+                      </td>
                       <td><?= htmlspecialchars((new DateTime($d['created_at']))->format('d/m/Y')) ?></td>
                       <td class="text-end">
                         <!-- Modifier -->
@@ -122,18 +130,31 @@ include "./../../../includes/sidebar.php";
 
 
       <?php
-      $pageLibs = [
-        LIBS_URL . "simple-datatables/umd/simple-datatables.js",
-        JS_URL . "pages/datatables.init.js"
-      ];
-      include "./../../../includes/footer.php";
+        $pageLibs = [
+          LIBS_URL . "simple-datatables/umd/simple-datatables.js",
+          JS_URL . "pages/datatables.init.js"
+        ];
+        include "./../../../includes/footer.php";
       ?>
 
+
+      <script>
+          // toast success
+          <?php if (isset($_GET['success'])): ?>
+            showToast("<?= htmlspecialchars($_GET['success']) ?>", 'success');
+    
+          <?php endif; ?>
+          // toast error
+          <?php if (isset($_GET['error'])): ?>
+          showToast("<?= htmlspecialchars($_GET['error']) ?>", 'danger');
+        
+          <?php endif; ?>
+      </script>
 
       <!-- Popup Ajouter -->
       <div class="modal fade" id="addRate" tabindex="-1" aria-labelledby="addRateLabel" aria-hidden="true">
         <div class="modal-dialog">
-          <form action="#">
+          <form action="./../../../backend/admin/depenses/add.php" method="post" enctype="multipart/form-data">
             <div class="modal-content">
               <div class="modal-header">
                 <h5 class="modal-title" id="addRateLabel">Ajouter une dépense</h5>
@@ -148,7 +169,7 @@ include "./../../../includes/sidebar.php";
                     <span class="input-group-text">
                       <i class="fas fa-tags"></i>
                     </span>
-                    <input type="text" id="add-type" class="form-control" placeholder="Type de la dépense">
+                    <input type="text" id="add-type" name="type" class="form-control" placeholder="Type de la dépense">
                   </div>
                 </div>
 
@@ -158,8 +179,9 @@ include "./../../../includes/sidebar.php";
                     <span class="input-group-text">
                       <i class="fas fa-align-left"></i>
                     </span>
-                    <textarea id="add-description" class="form-control" rows="3"
-                      placeholder="Description de la dépense"></textarea>
+                    <textarea id="add-description" name="description" class="form-control" rows="3"
+                      placeholder="Description de la dépense">
+                    </textarea>
                   </div>
                 </div>
 
@@ -167,7 +189,7 @@ include "./../../../includes/sidebar.php";
                   <label>Montant</label>
                   <div class="input-group">
                     <span class="input-group-text"><i class="fas fa-money-bill-wave"></i></span>
-                    <input type="number" id="add-prix" class="form-control" placeholder="Montant de la dépense">
+                    <input type="number" id="add-prix" name="montant" class="form-control" placeholder="Montant de la dépense">
                   </div>
                 </div>
 
@@ -175,13 +197,13 @@ include "./../../../includes/sidebar.php";
                   <label>Justificatif si necessaire </label>
                   <div class="input-group">
                     <span class="input-group-text"><i class="fas fa-file"></i></span>
-                    <input type="file" id="add-prix" class="form-control" placeholder="Montant de la dépense">
+                    <input type="file" id="add-justificatif" name="justificatif" class="form-control">
                   </div>
                 </div>
 
               </div>
               <div class="modal-footer">
-                <button type="submit" class="btn btn-primary w-100">Ajouter</button>
+                <button type="submit" name="send" class="btn btn-primary w-100">Ajouter</button>
               </div>
             </div>
           </form>
@@ -238,8 +260,6 @@ include "./../../../includes/sidebar.php";
           </form>
         </div>
       </div>
-
-
 
       <!-- modal de suppression -->
       <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="DeleteUserLabel" aria-hidden="true">
