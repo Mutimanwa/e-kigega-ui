@@ -1,38 +1,38 @@
 <?php
 
-    ini_set('session.cookie_httponly', 1);
-    ini_set('session.cookie_secure', 1);
-    session_start();
+ini_set('session.cookie_httponly', 1);
+ini_set('session.cookie_secure', 1);
+session_start();
 
-    require_once('./../../../backend/function/function.php');
-    $role="ADMIN";
+require_once('./../../../backend/function/function.php');
+$role = "ADMIN";
 
-    //================== gerer les session 
-    if(requireRole($role)==="Accès interdit"){
-        header("Location: ./../../../index.php");
-        session_destroy();
-    }
+//================== gerer les session 
+if (requireRole($role) === "Accès interdit") {
+  header("Location: ./../../../index.php");
+  session_destroy();
+}
 
-    //=========== verifier l'abonnement de cet entreprise
-    $url="./../../../index.php";
-    abonnement($url);
+//=========== verifier l'abonnement de cet entreprise
+$url = "./../../../index.php";
+abonnement($url);
 
-    //================== fetch les produits
-    $produits=getApi('/api/produits/') ?? [];
-    if (!is_array($produits)) {
-      echo "<div class='alert alert-danger'>API error</div>";
-      $produits = [];
-    } 
+//================== fetch les produits
+$produits = getApi('/api/produits/') ?? [];
+if (!is_array($produits)) {
+  echo "<div class='alert alert-danger'>API error</div>";
+  $produits = [];
+}
 
-    // ================== fetch les categories
-    $depenses = getApi('/api/depenses/') ?? [];
-    if (!is_array($depenses)) {
-        echo "<div class='alert alert-danger'>Erreur API Categories</div>";
-        $depenses = [];
-    }
+// ================== fetch les categories
+$depenses = getApi('/api/depenses/') ?? [];
+if (!is_array($depenses)) {
+  echo "<div class='alert alert-danger'>Erreur API Categories</div>";
+  $depenses = [];
+}
 
-  include "./../../../includes/header.php";
-  include "./../../../includes/sidebar.php";
+include "./../../../includes/header.php";
+include "./../../../includes/sidebar.php";
 ?>
 <div class="page-wrapper">
 
@@ -83,32 +83,31 @@
                     </tr>
                   </thead>
                   <tbody>
-
+                  <?php foreach($depenses as $d): ?>
                     <tr>
-                      <td><?= htmlspecialchars($depenses['']) ?></td>
-                      <td> this is wakanda product</td>
-                      <td> 1400</td>
-                      <td><a href="">Download</a></td>
-                      <td>2024-06-01</td>
+                      <td><?= htmlspecialchars($d['type']) ?></td>
+                      <td> <?= htmlspecialchars($d['description']) ?></td>
+                      <td> <?= number_format(htmlspecialchars($d['montant']),2) ?></td>
+                      <td><a href="<?= $d['justificatif'] or 'null' ?>" download>Download</a></td>
+                      <td><?= htmlspecialchars((new DateTime($d['created_at']))->format('d/m/Y')) ?></td>
                       <td class="text-end">
                         <!-- Modifier -->
                         <a href="#" data-bs-toggle="modal" data-bs-target="#modifyRate" class="edit-product"
                           data-produit="Ordinateur HP" data-categorie="Informatique" data-prix="1200"
                           data-quantite="10">
-                         <i class="las la-pen text-secondary fs-18"  data-bs-toggle="tooltip"
-        data-bs-placement="top"
-        title="Modifier"></i>
+                          <i class="las la-pen text-secondary fs-18" data-bs-toggle="tooltip"
+                            data-bs-placement="top"
+                            title="Modifier"></i>
                         </a>
 
                         <!-- Supprimer -->
-                        <a href="#" data-bs-toggle="modal" data-bs-target="#deleteModal"><i class="las la-trash-alt text-secondary fs-18 "  data-bs-toggle="tooltip"
-   data-bs-placement="top"
-   title="Supprimer"></i></a>
+                        <a href="#" data-bs-toggle="modal" data-bs-target="#deleteModal"><i class="las la-trash-alt text-secondary fs-18 " data-bs-toggle="tooltip"
+                            data-bs-placement="top"
+                            title="Supprimer"></i></a>
 
                       </td>
-
                     </tr>
-
+                  <?php endforeach; ?>
                   </tbody>
                 </table>
 
@@ -149,7 +148,7 @@
                     <span class="input-group-text">
                       <i class="fas fa-tags"></i>
                     </span>
-                      <input type="text" id="add-type" class="form-control" placeholder="Type de la dépense">
+                    <input type="text" id="add-type" class="form-control" placeholder="Type de la dépense">
                   </div>
                 </div>
 
@@ -265,13 +264,13 @@
         </div>
       </div>
 
-        
-        <!-- js pour le tooltip -->
-        <script>
-  var tooltipTriggerList = [].slice.call(
-    document.querySelectorAll('[data-bs-toggle="tooltip"]')
-  );
-  tooltipTriggerList.map(function (tooltipTriggerEl) {
-    return new bootstrap.Tooltip(tooltipTriggerEl);
-  });
-</script>
+
+      <!-- js pour le tooltip -->
+      <script>
+        var tooltipTriggerList = [].slice.call(
+          document.querySelectorAll('[data-bs-toggle="tooltip"]')
+        );
+        tooltipTriggerList.map(function(tooltipTriggerEl) {
+          return new bootstrap.Tooltip(tooltipTriggerEl);
+        });
+      </script>

@@ -18,7 +18,7 @@ $url = "./../../../index.php";
 abonnement($url);
 
 //================== fetch les produits
-$clients = getApi('/api/partners/') ?? [];
+$clients = getApi('/api/partners/fournisseurs/') ?? [];
 if (!is_array($clients)) {
   echo "<div class='alert alert-danger'>API error</div>";
   $clients = [];
