@@ -14,21 +14,8 @@ $menu_structure = [
         'gestion_depenses' => [
             'title' => 'Gestion des Dépenses',
             'icon' => 'iconoir-wallet',
-            'type' => 'collapse',
-            'id' => 'sidebarDepenses',
-            'items' => [
-                'categories_depenses' => [
-                    'title' => 'Catégories',
-                    'path' => '/public/admin/depenses/categories.php',
-                    'active' => ['depenses/categories.php', 'depenses/categories', 'categories-depenses']
-                ],
-                'depenses' => [
-                    'title' => 'Dépenses',
-                    'path' => '/public/admin/depenses/',
-                    'active' => ['depenses', 'depenses.php', 'depenses/']
-                ],
-            ],
-            'active' => ['depenses', 'depenses.php', 'depenses/', 'depenses/categories.php', 'depenses/categories'],
+            'path' => '/public/admin/depenses/',
+            'active' => ['depenses', 'depenses.php', 'depenses/'],
             'permission' => 'admin'
         ],
         'gestion_produits' => [
@@ -126,24 +113,11 @@ $menu_structure = [
             'active' => ['index.php'],
             'permission' => 'comptable'
         ],
-        'gestion_depenses' => [
+           'gestion_depenses' => [
             'title' => 'Gestion des Dépenses',
             'icon' => 'iconoir-wallet',
-            'type' => 'collapse',
-            'id' => 'sidebarDepenses',
-            'items' => [
-                'depenses' => [
-                    'title' => 'Dépenses',
-                    'path' => '/public/comptable/depenses/',
-                    'active' => ['depenses', 'depenses.php', 'depenses/']
-                ],
-                'categories_depenses' => [
-                    'title' => 'Catégories',
-                    'path' => '/public/comptable/depenses/categories.php',
-                    'active' => ['depenses/categories.php', 'depenses/categories', 'categories-depenses']
-                ]
-            ],
-            'active' => ['depenses', 'depenses.php', 'depenses/', 'depenses/categories.php', 'depenses/categories'],
+            'path' => '/public/comptable/depenses/',
+            'active' => ['depenses', 'depenses.php', 'depenses/'],
             'permission' => 'comptable'
         ],
         'gestion_produits' => [
