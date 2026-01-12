@@ -104,7 +104,7 @@
                           data-categorie="<?= htmlspecialchars($p['categorie']) ?>"
                           data-prix="<?= $p['prix'] ?>"
                           data-unite="<?= $p['mesure'] ?>">
-                          <i class="las la-pen text-secondary fs-18"  data-bs-toggle="tooltip"
+                          <i class="las la-pen  fs-18"  data-bs-toggle="tooltip"
         data-bs-placement="top"
         title="Modifier"></i>
                         </a>
@@ -117,7 +117,7 @@
                           data-bs-target="#deleteModal"
                           data-id="<?= $p['id'] ?>"
                           data-nom="<?= htmlentities($p['nom']) ?>">
-                          "><i class="las la-trash-alt text-secondary fs-18 "  data-bs-toggle="tooltip"
+                          <i class="las la-trash-alt  fs-18 "  data-bs-toggle="tooltip"
    data-bs-placement="top"
    title="Supprimer"></i>
                         </a>
