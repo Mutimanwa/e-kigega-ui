@@ -91,7 +91,7 @@ $menu_structure = [
         ],
          'log de connexion' => [
             'title' => 'Log de connexion',
-            'icon' => 'iconoir-wallet',
+            'icon' => 'iconoir-book',
             'path' => '/public/admin/logs/',
             'active' => ['logs', 'logs.php', 'logs/'],
             'permission' => 'admin'
