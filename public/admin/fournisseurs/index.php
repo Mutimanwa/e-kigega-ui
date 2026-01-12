@@ -102,7 +102,7 @@
                           data-email="<?= $c['email'] ?>"
                           data-telephone="<?= $c['telephone'] ?>"
                           data-adresse="<?= $c['adresse'] ?>">
-                          <i class="las la-pen text-secondary fs-18"  data-bs-toggle="tooltip"
+                          <i class="las la-pen  fs-18"  data-bs-toggle="tooltip"
    data-bs-placement="top"
    title="Modifier"></i>
                         </a>
@@ -115,7 +115,7 @@
                           data-bs-target="#deleteModal"
                           data-id="<?= $c['id'] ?>"
                           data-nom="<?= htmlentities($c['nom']) ?> <?= htmlentities($c['prenom']) ?>">
-                          <i class="las la-trash-alt text-secondary fs-18 "  data-bs-toggle="tooltip"
+                          <i class="las la-trash-alt  fs-18 "  data-bs-toggle="tooltip"
    data-bs-placement="top"
    title="Supprimer"></i>
                         </a>

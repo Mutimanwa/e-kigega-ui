@@ -104,7 +104,7 @@
          class="edit-product"
          data-bs-toggle="modal"
          data-bs-target="#modifyRate">
-        <i class="las la-pen text-secondary fs-18"
+        <i class="las la-pen  fs-18"
            data-bs-toggle="tooltip"
            data-bs-placement="top"
            title="Modifier"></i>
@@ -112,9 +112,10 @@
 
       <!-- Supprimer -->
       <a href="#"
+      class="text-danger delete-btn"
          data-bs-toggle="modal"
          data-bs-target="#deleteModal">
-        <i class="las la-trash-alt text-secondary fs-18"
+        <i class="las la-trash-alt  fs-18"
            data-bs-toggle="tooltip"
            data-bs-placement="top"
            title="Supprimer"></i>
@@ -139,7 +140,7 @@
          class="edit-product"
          data-bs-toggle="modal"
          data-bs-target="#modifyRate">
-        <i class="las la-pen text-secondary fs-18"
+        <i class="las la-pen  fs-18"
            data-bs-toggle="tooltip"
            data-bs-placement="top"
            title="Modifier"></i>
@@ -147,9 +148,10 @@
 
       <!-- Supprimer -->
       <a href="#"
+      class="text-danger delete-btn"
          data-bs-toggle="modal"
          data-bs-target="#deleteModal">
-        <i class="las la-trash-alt text-secondary fs-18"
+        <i class="las la-trash-alt  fs-18"
            data-bs-toggle="tooltip"
            data-bs-placement="top"
            title="Supprimer"></i>
@@ -174,7 +176,7 @@
          class="edit-product"
          data-bs-toggle="modal"
          data-bs-target="#modifyRate">
-        <i class="las la-pen text-secondary fs-18"
+        <i class="las la-pen  fs-18"
            data-bs-toggle="tooltip"
            data-bs-placement="top"
            title="Modifier"></i>
@@ -182,9 +184,10 @@
 
       <!-- Supprimer -->
       <a href="#"
+      class="text-danger delete-btn"
          data-bs-toggle="modal"
          data-bs-target="#deleteModal">
-        <i class="las la-trash-alt text-secondary fs-18"
+        <i class="las la-trash-alt  fs-18"
            data-bs-toggle="tooltip"
            data-bs-placement="top"
            title="Supprimer"></i>
@@ -209,7 +212,7 @@
          class="edit-product"
          data-bs-toggle="modal"
          data-bs-target="#modifyRate">
-        <i class="las la-pen text-secondary fs-18"
+        <i class="las la-pen  fs-18"
            data-bs-toggle="tooltip"
            data-bs-placement="top"
            title="Modifier"></i>
@@ -217,9 +220,10 @@
 
       <!-- Supprimer -->
       <a href="#"
+      class="text-danger delete-btn"
          data-bs-toggle="modal"
          data-bs-target="#deleteModal">
-        <i class="las la-trash-alt text-secondary fs-18"
+        <i class="las la-trash-alt  fs-18"
            data-bs-toggle="tooltip"
            data-bs-placement="top"
            title="Supprimer"></i>
@@ -244,7 +248,7 @@
          class="edit-product"
          data-bs-toggle="modal"
          data-bs-target="#modifyRate">
-        <i class="las la-pen text-secondary fs-18"
+        <i class="las la-pen  fs-18"
            data-bs-toggle="tooltip"
            data-bs-placement="top"
            title="Modifier"></i>
@@ -252,9 +256,10 @@
 
       <!-- Supprimer -->
       <a href="#"
+      class="text-danger delete-btn"
          data-bs-toggle="modal"
          data-bs-target="#deleteModal">
-        <i class="las la-trash-alt text-secondary fs-18"
+        <i class="las la-trash-alt  fs-18"
            data-bs-toggle="tooltip"
            data-bs-placement="top"
            title="Supprimer"></i>

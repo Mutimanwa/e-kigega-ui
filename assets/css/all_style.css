@@ -23,3 +23,7 @@
     opacity: 1;
     transform: translateY(0);
 }
+
+.icon-delete {
+  color: #ff4d4f; /* rouge vif */
+}
