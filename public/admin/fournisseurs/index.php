@@ -1,4 +1,28 @@
 <?php
+
+    ini_set('session.cookie_httponly', 1);
+    ini_set('session.cookie_secure', 1);
+    session_start();
+
+    require_once('./../../../backend/function/function.php');
+    $role="ADMIN";
+
+    //================== gerer les session 
+    if(requireRole($role)==="Accès interdit"){
+        header("Location: ./../../../index.php");
+        session_destroy();
+    }
+
+    //=========== verifier l'abonnement de cet entreprise
+    $url="./../../../index.php";
+    abonnement($url);
+
+    //================== fetch les produits
+    $clients=getApi('/api/partners/') ?? [];
+    if (!is_array($clients)) {
+      echo "<div class='alert alert-danger'>API error</div>";
+      $clients = [];
+    } 
 include "./../../../includes/header.php";
 
 include "./../../../includes/sidebar.php";
@@ -74,11 +98,15 @@ include "./../../../includes/sidebar.php";
                                 data-categorie="Informatique"
                                 data-prix="1200"
                                 data-quantite="10">
-                                <i class="las la-pen text-secondary fs-18"></i>
+                                <i class="las la-pen text-secondary fs-18"  data-bs-toggle="tooltip"
+   data-bs-placement="top"
+   title="Modifier"></i>
                                 </a>
 
                                 <!-- Supprimer -->
-                                                                <a href="#" data-bs-toggle="modal" data-bs-target="#deleteModal"><i class="las la-trash-alt text-secondary fs-18"></i></a>
+                                                                <a href="#" data-bs-toggle="modal" data-bs-target="#deleteModal"><i class="las la-trash-alt text-secondary fs-18 "  data-bs-toggle="tooltip"
+   data-bs-placement="top"
+   title="Supprimer"></i></a>
 
                             </td>
                                                                     </tr>
@@ -88,25 +116,7 @@ include "./../../../includes/sidebar.php";
 
                             </div>
                                   <br>
-                                                                    <div class="d-flex justify-content-center">
-                    <ul class="pagination">
-                        <li class="page-item disabled">
-                            <a class="page-link" href="#" tabindex="-1">Précédent</a>
-                        </li>
-                        <li class="page-item active">
-                            <a class="page-link" href="#">1</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">2</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">3</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">Suivant</a>
-                        </li>
-                    </ul>
-                </div>
+                                                                  
 
 
                         </div>
@@ -313,4 +323,14 @@ include "./../../../includes/footer.php";
         </div>
   </div>
 
+
+   <!-- js pour le tooltip -->
+    <script>
+  var tooltipTriggerList = [].slice.call(
+    document.querySelectorAll('[data-bs-toggle="tooltip"]')
+  );
+  tooltipTriggerList.map(function (tooltipTriggerEl) {
+    return new bootstrap.Tooltip(tooltipTriggerEl);
+  });
+</script>
 

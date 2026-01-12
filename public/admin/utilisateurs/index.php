@@ -1,4 +1,29 @@
 <?php 
+
+    ini_set('session.cookie_httponly', 1);
+    ini_set('session.cookie_secure', 1);
+    session_start();
+
+    require_once('./../../../backend/function/function.php');
+    $role="ADMIN";
+
+    //================== gerer les session 
+    if(requireRole($role)==="Accès interdit"){
+        header("Location: ./../../../index.php");
+        session_destroy();
+    }
+
+    //=========== verifier l'abonnement de cet entreprise
+    $url="./../../../index.php";
+    abonnement($url);
+
+    //================== fetch les produits
+    $clients=getApi('/api/partners/') ?? [];
+    if (!is_array($clients)) {
+      echo "<div class='alert alert-danger'>API error</div>";
+      $clients = [];
+    } 
+
 include "../../../includes/header.php";
 include "../../../includes/sidebar.php";
 ?>
@@ -52,65 +77,110 @@ include "../../../includes/sidebar.php";
                                             <th class="text-end">Action</th>
                                           </tr>
                                         </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td class="d-flex align-items-center">
-                                                    <div class="d-flex align-items-center">
-                                                        <img src="<?= IMAGES_URL ?>users/avatar-1.jpg" class="me-2 thumb-md align-self-center rounded" alt="...">
-                                                        <div class="flex-grow-1 text-truncate"> 
-                                                            <h6 class="m-0">Audry Wakanda</h6>
-                                                        </div><!--end media body-->
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <a href="mailto:audrywakanda@gmail.com" class="text-primary text-decoration-underline">
-                                                        audrywakanda@gmail.com
-                                                    </a>
-                                                </td>
-                                                <td>+1 234 567 890</td>
-                                                <td>Administrateur</td>
-                                                <td><span class="badge rounded text-success bg-success-subtle">Active</span></td>
-                                                <td>22 August 2024</td>
+                                       <tbody>
+  <tr>
+    <td class="d-flex align-items-center">
+      <div class="d-flex align-items-center">
+        <img src="<?= IMAGES_URL ?>users/avatar-1.jpg"
+             class="me-2 thumb-md align-self-center rounded" alt="...">
+        <div class="flex-grow-1 text-truncate"> 
+          <h6 class="m-0">Audry Wakanda</h6>
+        </div>
+      </div>
+    </td>
 
-                                                <td class="text-end">                                                       
-                                                    <a href="#" class="edit-user" data-bs-toggle="modal" data-bs-target="#editUser" data-user-id="1">
-                                                        <i class="las la-pen text-secondary fs-18"></i>
-                                                    </a>
-                                                    <a href="#" data-bs-toggle="modal" data-bs-target="#deleteModal"><i class="las la-trash-alt text-secondary fs-18"></i></a>
-                                                </td>
-                                            </tr>
+    <td>
+      <a href="mailto:audrywakanda@gmail.com"
+         class="text-primary text-decoration-underline">
+        audrywakanda@gmail.com
+      </a>
+    </td>
 
-                                              <tr>
-                                                <td class="d-flex align-items-center">
-                                                    <div class="d-flex align-items-center">
-                                                        <img src="<?= IMAGES_URL ?>users/avatar-1.jpg" class="me-2 thumb-md align-self-center rounded" alt="...">
-                                                        <div class="flex-grow-1 text-truncate"> 
-                                                            <h6 class="m-0"> Kamana Urbain</h6>
-                                                        </div><!--end media body-->
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <a href="mailto:urbain@gmail.com" class="text-primary text-decoration-underline">
-                                                        urbain@gmail.com
-                                                    </a>
-                                                </td>
-                                                <td>+1 234 567 890</td>
-                                                <td>Utilisateur</td>
-                                                <td>
-                                                    <span class="badge rounded text-secondary bg-secondary-subtle">
-                                                        Inactive
-                                                    </span>
-                                                </td>
-                                                <td>22 August 2024</td>
+    <td>+1 234 567 890</td>
+    <td>Administrateur</td>
+    <td>
+      <span class="badge rounded text-success bg-success-subtle">Active</span>
+    </td>
+    <td>22 August 2024</td>
 
-                                                <td class="text-end">                                                       
-                                                    <a href="#" class="edit-user" data-bs-toggle="modal" data-bs-target="#editUser" data-user-id="2">
-                                                        <i class="las la-pen text-secondary fs-18"></i>
-                                                    </a>
-                                                    <a href="#" data-bs-toggle="modal" data-bs-target="#deleteModal"><i class="las la-trash-alt text-secondary fs-18"></i></a>
-                                                </td>
-                                            </tr>
-                                        </tbody>
+    <td class="text-end">                                                       
+      <!-- Modifier -->
+      <a href="#"
+         class="edit-user"
+         data-bs-toggle="modal"
+         data-bs-target="#editUser"
+         data-user-id="1">
+        <i class="las la-pen text-secondary fs-18"
+           data-bs-toggle="tooltip"
+           data-bs-placement="top"
+           title="Modifier"></i>
+      </a>
+
+      <!-- Supprimer -->
+      <a href="#"
+         data-bs-toggle="modal"
+         data-bs-target="#deleteModal">
+        <i class="las la-trash-alt text-secondary fs-18"
+           data-bs-toggle="tooltip"
+           data-bs-placement="top"
+           title="Supprimer"></i>
+      </a>
+    </td>
+  </tr>
+
+  <tr>
+    <td class="d-flex align-items-center">
+      <div class="d-flex align-items-center">
+        <img src="<?= IMAGES_URL ?>users/avatar-1.jpg"
+             class="me-2 thumb-md align-self-center rounded" alt="...">
+        <div class="flex-grow-1 text-truncate"> 
+          <h6 class="m-0">Kamana Urbain</h6>
+        </div>
+      </div>
+    </td>
+
+    <td>
+      <a href="mailto:urbain@gmail.com"
+         class="text-primary text-decoration-underline">
+        urbain@gmail.com
+      </a>
+    </td>
+
+    <td>+1 234 567 890</td>
+    <td>Utilisateur</td>
+    <td>
+      <span class="badge rounded text-secondary bg-secondary-subtle">
+        Inactive
+      </span>
+    </td>
+    <td>22 August 2024</td>
+
+    <td class="text-end">                                                       
+      <!-- Modifier -->
+      <a href="#"
+         class="edit-user"
+         data-bs-toggle="modal"
+         data-bs-target="#editUser"
+         data-user-id="2">
+        <i class="las la-pen text-secondary fs-18"
+           data-bs-toggle="tooltip"
+           data-bs-placement="top"
+           title="Modifier"></i>
+      </a>
+
+      <!-- Supprimer -->
+      <a href="#"
+         data-bs-toggle="modal"
+         data-bs-target="#deleteModal">
+        <i class="las la-trash-alt text-secondary fs-18"
+           data-bs-toggle="tooltip"
+           data-bs-placement="top"
+           title="Supprimer"></i>
+      </a>
+    </td>
+  </tr>
+</tbody>
+
                                       </table>
                                 </div>
                             </div>
@@ -492,6 +562,18 @@ document.querySelectorAll('.edit-user').forEach(button => {
         }
     });
 });
+</script>
+
+
+
+   <!-- js pour le tooltip -->
+    <script>
+  var tooltipTriggerList = [].slice.call(
+    document.querySelectorAll('[data-bs-toggle="tooltip"]')
+  );
+  tooltipTriggerList.map(function (tooltipTriggerEl) {
+    return new bootstrap.Tooltip(tooltipTriggerEl);
+  });
 </script>
 
 <style>
