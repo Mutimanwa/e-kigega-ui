@@ -136,7 +136,7 @@ foreach ($categories as $key => $label) {
 
 <div class="page-wrapper">
     <div class="page-content p-0">
-        <div class="tiktok-container">
+        <div class="container-fluid bg-body p-0">
             <!-- En-tête fixe -->
             <div class="tiktok-header">
                 <div class="category-filters">
@@ -748,14 +748,14 @@ foreach ($categories as $key => $label) {
                 return `
                     <button class="share-option" onclick="shareToFacebook('${encodedUrl}', '${encodedText}')">
                         <div class="share-icon facebook">
-                            <i class="lab la-facebook-f"></i>
+                            <i class="iconoir-facebook"></i>
                         </div>
                         <span>Facebook</span>
                     </button>
                     
                     <button class="share-option" onclick="shareToTwitter('${encodedUrl}', '${encodedText}')">
                         <div class="share-icon twitter">
-                            <i class="lab la-twitter"></i>
+                            <i class="iconoir-twitter"></i>
                         </div>
                         <span>Twitter</span>
                     </button>
@@ -769,7 +769,7 @@ foreach ($categories as $key => $label) {
                     
                     <button class="share-option" onclick="shareToTelegram('${encodedUrl}', '${encodedText}')">
                         <div class="share-icon telegram">
-                            <i class="lab la-telegram"></i>
+                            <i class="iconoir-telegram"></i>
                         </div>
                         <span>Telegram</span>
                     </button>

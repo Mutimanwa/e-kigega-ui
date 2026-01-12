@@ -35,13 +35,13 @@ include "./../../../includes/sidebar.php";
       <div class="row">
         <div class="col-sm-12">
           <div class="page-title-box d-md-flex justify-content-md-between align-items-center">
-            <h4 class="page-title">Client</h4>
+            <h4 class="page-title">Fournisseurs</h4>
             <div class="">
               <ol class="breadcrumb mb-0">
                 <li class="breadcrumb-item"><a href="#">E-Kigega</a></li>
                 <li class="breadcrumb-item"><a href="#">Admin</a>
                 </li><!--end nav-item-->
-                <li class="breadcrumb-item active">Client</li>
+                <li class="breadcrumb-item active">Fournisseurs</li>
               </ol>
             </div>
           </div><!--end page-title-box-->
@@ -58,7 +58,7 @@ include "./../../../includes/sidebar.php";
                 </div><!--end col-->
                 <div class="col-auto">
                   <button class="btn bg-primary text-white" data-bs-toggle="modal" data-bs-target="#addRate"><i
-                      class="fas fa-plus me-1"></i> Ajouter un client</button>
+                      class="fas fa-plus me-1"></i> Ajouter un fournisseur</button>
                 </div><!--end col-->
               </div><!--end row-->
             </div><!--end card-header-->
@@ -161,10 +161,10 @@ include "./../../../includes/sidebar.php";
       <!-- Popup Ajouter -->
       <div class="modal fade" id="addRate" tabindex="-1" aria-labelledby="addRateLabel" aria-hidden="true">
         <div class="modal-dialog">
-          <form action="./../../../backend/admin/clients/add.php" method="post">
+          <form action="./../../../backend/admin/fournisseurs/add.php" method="post">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="addRateLabel">Ajouter un client</h5>
+                <h5 class="modal-title" id="addRateLabel">Ajouter un fournisseur</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
               </div>
 
@@ -176,7 +176,7 @@ include "./../../../includes/sidebar.php";
                     <span class="input-group-text">
                       <i class="fas fa-user"></i>
                     </span>
-                    <input type="text" id="add-nom" name="nom" class="form-control" placeholder="Nom du client">
+                    <input type="text" id="add-nom" name="nom" class="form-control" placeholder="Nom du fournisseur">
                   </div>
                 </div>
 
@@ -186,7 +186,7 @@ include "./../../../includes/sidebar.php";
                     <span class="input-group-text">
                       <i class="fas fa-user-tag"></i>
                     </span>
-                    <input type="text" id="add-prenom" name="prenom" class="form-control" placeholder="Prénom du client">
+                    <input type="text" id="add-prenom" name="prenom" class="form-control" placeholder="Prénom du fournisseur">
                   </div>
                 </div>
 
@@ -206,7 +206,7 @@ include "./../../../includes/sidebar.php";
                     <span class="input-group-text">
                       <i class="fas fa-envelope"></i>
                     </span>
-                    <input type="email" id="add-email" name="email" class="form-control" placeholder="Email du client">
+                    <input type="email" id="add-email" name="email" class="form-control" placeholder="Email du fournisseur">
                   </div>
                 </div>
 
@@ -216,7 +216,7 @@ include "./../../../includes/sidebar.php";
                     <span class="input-group-text">
                       <i class="fas fa-map-marker-alt"></i>
                     </span>
-                    <input type="text" id="add-adresse" name="adresse" class="form-control" placeholder="Adresse du client">
+                    <input type="text" id="add-adresse" name="adresse" class="form-control" placeholder="Adresse du fournisseur">
                   </div>
                 </div>
 
@@ -234,11 +234,11 @@ include "./../../../includes/sidebar.php";
       <!-- Popup Modifier  -->
       <div class="modal fade" id="modifyProductModal" tabindex="-1" aria-labelledby="modifyProductLabel" aria-hidden="true">
         <div class="modal-dialog">
-          <form action="./../../../backend/admin/clients/edit.php" method="post" id="form-edit-produit">
+          <form action="./../../../backend/admin/fournisseurs/edit.php" method="post" id="form-edit-produit">
             <input type="hidden" name="id" id="edit-id">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="modifyProductLabel">Modifier le Client</h5>
+                <h5 class="modal-title" id="modifyProductLabel">Modifier le Fournisseur</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
               </div>
               <div class="modal-body">
@@ -248,7 +248,7 @@ include "./../../../includes/sidebar.php";
                   <label>Nom</label>
                   <div class="input-group">
                     <span class="input-group-text"><i class="fas fa-user"></i></span>
-                    <input type="text" name="nom" id="edit-nom" class="form-control" placeholder="Nom du produit" required>
+                    <input type="text" name="nom" id="edit-nom" class="form-control" placeholder="Nom du fournisseur" required>
                   </div>
                 </div>
 
@@ -257,7 +257,7 @@ include "./../../../includes/sidebar.php";
                   <label>Prenom</label>
                   <div class="input-group">
                     <span class="input-group-text"><i class="fas fa-user-tag"></i></span>
-                    <input type="text" name="prenom" id="edit-prenom" class="form-control" placeholder="Nom du produit" required>
+                    <input type="text" name="prenom" id="edit-prenom" class="form-control" placeholder="Prénom du fournisseur" required>
                   </div>
                 </div>
 
@@ -266,7 +266,7 @@ include "./../../../includes/sidebar.php";
                   <label>E-mail</label>
                   <div class="input-group">
                     <span class="input-group-text"><i class="fas fa-envelope"></i></span>
-                    <input type="mail" name="email" id="edit-email" class="form-control" placeholder="Nom du produit" required>
+                    <input type="mail" name="email" id="edit-email" class="form-control" placeholder="Email du fournisseur" required>
                   </div>
                 </div>
 
@@ -275,7 +275,7 @@ include "./../../../includes/sidebar.php";
                   <label>Telephone</label>
                   <div class="input-group">
                     <span class="input-group-text"><i class="fas fa-phone"></i></span>
-                    <input type="number" name="telephone" id="edit-telephone" class="form-control" placeholder="Prix du produit" required>
+                    <input type="number" name="telephone" id="edit-telephone" class="form-control" placeholder="Numéro de téléphone" required>
                   </div>
                 </div>
 
@@ -284,7 +284,7 @@ include "./../../../includes/sidebar.php";
                   <label>Adresse</label>
                   <div class="input-group">
                     <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
-                    <input type="text" name="adresse" id="edit-adresse" class="form-control" placeholder="Prix du produit" required>
+                    <input type="text" name="adresse" id="edit-adresse" class="form-control" placeholder="Adresse du fournisseur" required>
                   </div>
                 </div>
 
@@ -302,7 +302,7 @@ include "./../../../includes/sidebar.php";
           <div class="modal-content">
 
             <div class="modal-header bg-white">
-              <h5 class="modal-title text-danger">Supprimer un client</h5>
+              <h5 class="modal-title text-danger">Supprimer un fournisseur</h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
 

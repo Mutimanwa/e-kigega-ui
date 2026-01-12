@@ -18,11 +18,15 @@
     padding-bottom: 70px;
     height: calc(100vh - 140px);
     overflow-y: auto;
-    /* scroll-snap-type: y mandatory; */
+    scroll-snap-type: y mandatory;
     
+    /* Masquer la scrollbar pour tous les navigateurs */
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* Internet Explorer 10+ */
 }
-.shorts-feed::-webkit-scrollbar{
-    width: 0px;
+
+.shorts-feed::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
 }
 .short-item {
     min-height: 81vh;
