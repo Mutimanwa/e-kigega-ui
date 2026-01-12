@@ -119,7 +119,9 @@ include "./../../../includes/sidebar.php";
                           data-quantite="<?= $s['quantite'] ?>"
                           data-produit="<?= $s['produit'] ?>"
                           data-fournisseur="<?= $s['fournisseur'] ?>">
-                          <i class="las la-pen text-secondary fs-18"></i>
+                          <i class="las la-pen text-secondary fs-18"  data-bs-toggle="tooltip"
+        data-bs-placement="top"
+        title="Modifier"></i>
                         </a>
 
                         <!-- Supprimer -->
@@ -129,9 +131,15 @@ include "./../../../includes/sidebar.php";
                           data-bs-target="#deleteModal"
                           data-id="<?= $s['id'] ?>"
                           data-nom="la tracabilite de l'entree de <?= getAPI_id('/api/produits/',$s['produit'])['nom'] ?> ">
-                          <i class="las la-trash-alt fs-18"></i>
+                          <i class="las la-trash-alt text-secondary fs-18 "  data-bs-toggle="tooltip"
+   data-bs-placement="top"
+   title="Supprimer"></i>
                         </a>
 
+
+
+                        
+                        
                     </tr>
                   <?php endforeach; ?>
                   </tbody>
@@ -391,3 +399,15 @@ include "./../../../includes/sidebar.php";
             });
           });
        </script>
+
+       
+
+   <!-- js pour le tooltip -->
+    <script>
+  var tooltipTriggerList = [].slice.call(
+    document.querySelectorAll('[data-bs-toggle="tooltip"]')
+  );
+  tooltipTriggerList.map(function (tooltipTriggerEl) {
+    return new bootstrap.Tooltip(tooltipTriggerEl);
+  });
+</script>

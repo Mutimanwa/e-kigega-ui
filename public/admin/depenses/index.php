@@ -95,12 +95,15 @@
                         <a href="#" data-bs-toggle="modal" data-bs-target="#modifyRate" class="edit-product"
                           data-produit="Ordinateur HP" data-categorie="Informatique" data-prix="1200"
                           data-quantite="10">
-                          <i class="las la-pen text-secondary fs-18"></i>
+                         <i class="las la-pen text-secondary fs-18"  data-bs-toggle="tooltip"
+        data-bs-placement="top"
+        title="Modifier"></i>
                         </a>
 
                         <!-- Supprimer -->
-                        <a href="#" data-bs-toggle="modal" data-bs-target="#deleteModal"><i
-                            class="las la-trash-alt text-secondary fs-18"></i></a>
+                        <a href="#" data-bs-toggle="modal" data-bs-target="#deleteModal"><i class="las la-trash-alt text-secondary fs-18 "  data-bs-toggle="tooltip"
+   data-bs-placement="top"
+   title="Supprimer"></i></a>
 
                       </td>
 
@@ -261,3 +264,14 @@
           </div>
         </div>
       </div>
+
+        
+        <!-- js pour le tooltip -->
+        <script>
+  var tooltipTriggerList = [].slice.call(
+    document.querySelectorAll('[data-bs-toggle="tooltip"]')
+  );
+  tooltipTriggerList.map(function (tooltipTriggerEl) {
+    return new bootstrap.Tooltip(tooltipTriggerEl);
+  });
+</script>

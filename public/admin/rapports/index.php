@@ -1,4 +1,28 @@
 <?php
+
+    ini_set('session.cookie_httponly', 1);
+    ini_set('session.cookie_secure', 1);
+    session_start();
+
+    require_once('./../../../backend/function/function.php');
+    $role="ADMIN";
+
+    //================== gerer les session 
+    if(requireRole($role)==="Accès interdit"){
+        header("Location: ./../../../index.php");
+        session_destroy();
+    }
+
+    //=========== verifier l'abonnement de cet entreprise
+    $url="./../../../index.php";
+    abonnement($url);
+
+    //================== fetch les produits
+    $clients=getApi('/api/partners/') ?? [];
+    if (!is_array($clients)) {
+      echo "<div class='alert alert-danger'>API error</div>";
+      $clients = [];
+    } 
 include "../../../includes/header.php";
 include "../../../includes/sidebar.php";
 
