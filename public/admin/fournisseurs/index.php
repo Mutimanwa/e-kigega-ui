@@ -91,7 +91,7 @@ include "./../../../includes/sidebar.php";
                         <td><?= htmlspecialchars((new DateTime($c['created_at']))->format('d/m/Y')) ?></td>
                         <td class="text-end">
 
-<<<<<<< HEAD
+
                         <!-- Modifier -->
                         <a href="#"
                           class="editBtn"
@@ -120,36 +120,9 @@ include "./../../../includes/sidebar.php";
    data-bs-placement="top"
    title="Supprimer"></i>
                         </a>
-=======
-                          <!-- Modifier -->
-                          <a href="#"
-                            class="editBtn"
-                            data-bs-toggle="modal"
-                            data-bs-target="#modifyProductModal"
-                            data-id="<?= $c['id'] ?>"
-                            data-nom="<?= htmlspecialchars($c['nom']) ?>"
-                            data-prenom="<?= htmlspecialchars($c['prenom']) ?>"
-                            data-email="<?= $c['email'] ?>"
-                            data-telephone="<?= $c['telephone'] ?>"
-                            data-adresse="<?= $c['adresse'] ?>">
-                            <i class="las la-pen text-secondary fs-18" data-bs-toggle="tooltip"
-                              data-bs-placement="top"
-                              title="Modifier"></i>
-                          </a>
 
+                         
 
-                          <!-- Supprimer -->
-                          <a href="#"
-                            class="text-danger delete-btn"
-                            data-bs-toggle="modal"
-                            data-bs-target="#deleteModal"
-                            data-id="<?= $c['id'] ?>"
-                            data-nom="<?= htmlentities($c['nom']) ?> <?= htmlentities($c['prenom']) ?>">
-                            <i class="las la-trash-alt text-secondary fs-18 " data-bs-toggle="tooltip"
-                              data-bs-placement="top"
-                              title="Supprimer"></i>
-                          </a>
->>>>>>> 7b2c031903628a30ff948fdf2dd415c96a8fa3ad
 
                         </td>
                       </tr>

@@ -90,7 +90,7 @@ include "./../../../includes/sidebar.php";
                       <td> <?= number_format(htmlspecialchars($d['montant']),2) ?></td>
                       <td>
                       <?php if (!empty($d['justificatif'])): ?>
-                          <a href="./../../../backend/download/index.php?url=<?= urlencode($d['justificatif']) ?>" class="btn btn-sm btn-primary">
+                          <a href="./../../../backend/download/index.php?url=<?= urlencode($d['justificatif']) ?>" class="btn btn-primary btn-sm">
                               Télécharger
                           </a>
                       <?php else: ?>
@@ -103,13 +103,13 @@ include "./../../../includes/sidebar.php";
                         <a href="#" data-bs-toggle="modal" data-bs-target="#modifyRate" class="edit-product"
                           data-produit="Ordinateur HP" data-categorie="Informatique" data-prix="1200"
                           data-quantite="10">
-                          <i class="las la-pen text-secondary fs-18" data-bs-toggle="tooltip"
+                          <i class="las la-pen  fs-18" data-bs-toggle="tooltip"
                             data-bs-placement="top"
                             title="Modifier"></i>
                         </a>
 
                         <!-- Supprimer -->
-                        <a href="#" data-bs-toggle="modal" data-bs-target="#deleteModal"><i class="las la-trash-alt text-secondary fs-18 " data-bs-toggle="tooltip"
+                        <a href="#" class="text-danger delete-btn" data-bs-toggle="modal" data-bs-target="#deleteModal"><i class="las la-trash-alt  fs-18 " data-bs-toggle="tooltip"
                             data-bs-placement="top"
                             title="Supprimer"></i></a>
 
