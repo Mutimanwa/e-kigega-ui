@@ -1,28 +1,44 @@
 <?php
+ini_set('session.cookie_httponly', 1);
+ini_set('session.cookie_secure', 1);
+session_start();
 
-    ini_set('session.cookie_httponly', 1);
-    ini_set('session.cookie_secure', 1);
-    session_start();
+require_once('./../../../backend/function/function.php');
+$role = "ADMIN";
 
-    require_once('./../../../backend/function/function.php');
-    $role="ADMIN";
+//================== gerer les session 
+if (requireRole($role) === "Accès interdit") {
+    header("Location: ./../../../index.php");
+    session_destroy();
+}
 
-    //================== gerer les session 
-    if(requireRole($role)==="Accès interdit"){
-        header("Location: ./../../../index.php");
-        session_destroy();
-    }
+//=========== verifier l'abonnement de cet entreprise
+$url = "./../../../index.php";
+abonnement($url);
 
-    //=========== verifier l'abonnement de cet entreprise
-    $url="./../../../index.php";
-    abonnement($url);
+//================== fetch les produits
+$produits = getApi('/api/produits/') ?? [];
+if (!is_array($produits)) {
+    echo "<div class='alert alert-danger'>API error</div>";
+    $produits = [];
+}
 
-    //================== fetch les produits
-    $clients=getApi('/api/partners/') ?? [];
-    if (!is_array($clients)) {
-      echo "<div class='alert alert-danger'>API error</div>";
-      $clients = [];
-    } 
+
+//===================== fetch clients
+$clients = getApi('/api/partners/clients/') ?? [];
+if (!is_array($clients)) {
+    echo "<div class='alert alert-danger'>API error</div>";
+    $clients = [];
+}
+
+// ================== fetch les ventes
+$ventes = getApi('/api/ventes/') ?? [];
+if (!is_array($ventes)) {
+    echo "<div class='alert alert-danger'>Erreur API Categories</div>";
+    $ventes = [];
+}
+
+
 include "../../../includes/header.php";
 include "../../../includes/sidebar.php";
 
@@ -73,200 +89,61 @@ include "../../../includes/sidebar.php";
                                             <th>Client</th>
                                             <th>Produit</th>
                                             <th>Quantité</th>
-                                            <th>Prix de vente</th>
+                                            <th>Prix unitaire</th>
+                                            <th>Prix Total</th>
                                             <th>Date</th>
                                             <th>Statut</th>
                                             <th class="text-end">Action</th>
                                         </tr>
                                     </thead>
-                                  <tbody>
+                                    <tbody>
+                                        <?php foreach ($ventes as $v): ?>
+                                            <tr>
+                                                <td><?= getAPI_id('/api/partners/', $v['client'])['nom'] ?> <?= getAPI_id('/api/partners/', $v['client'])['prenom'] ?></td>
+                                                <td><?= getAPI_id('/api/produits/', $v['produit'])['nom'] ?></td>
+                                                <td><?= number_format($v['quantite'], 2) ?></td>
+                                                <td><?= number_format($v['prix_unitaire'], 2) ?></td>
+                                                <td><?= number_format($v['prix_vente'], 2) ?> FBu</td>
+                                                <td><?= htmlspecialchars((new DateTime($v['created_at']))->format('d/m/Y')) ?></td>
+                                                <td>
+                                                    <span class="badge rounded text-warning bg-warning-subtle">
+                                                        <?= htmlspecialchars($v['statut']) ?>
+                                                    </span>
+                                                </td>
+                                                <td class="text-end">
 
-                            <tr>
-                                <td>Fer</td>
-                                <td>Aluminium</td>
-                                <td>10</td>
-                                <td>12000 FBu</td>
-                                <td>2024-06-01</td>
-                                <td>
-                                <span class="badge rounded text-warning bg-warning-subtle">
-                                    En attente
-                                </span>
-                                </td>
-                                <td class="text-end">
-                                <!-- Modifier -->
-                                <a href="#"
-                                    class="edit-product"
-                                    data-bs-toggle="modal"
-                                    data-bs-target="#modifyRate">
-                                    <i class="las la-pen  fs-18"
-                                    data-bs-toggle="tooltip"
-                                    data-bs-placement="top"
-                                    title="Modifier"></i>
-                                </a>
+                                                    <!-- Modifier -->
+                                                    <a href="#"
+                                                        class="editBtn"
+                                                        data-bs-toggle="modal"
+                                                        data-bs-target="#modifyProductModal"
+                                                        data-id="<?= $v['id'] ?>"
+                                                        data-quantite="<?= $v['quantite'] ?>"
+                                                        data-produit="<?= $v['produit'] ?>"
+                                                        data-statut="<?= $v['statut'] ?>"
+                                                        data-client="<?= $v['client'] ?>">
+                                                        <i class="las la-pen  fs-18" data-bs-toggle="tooltip"
+                                                            data-bs-placement="top"
+                                                            title="Modifier"></i>
+                                                    </a>
 
-                                <!-- Supprimer -->
-                                <a href="#"
-                                   class="text-danger delete-btn"
-                                    data-bs-toggle="modal"
-                                    data-bs-target="#deleteModal">
-                                    <i class="las la-trash-alt  fs-18"
-                                    data-bs-toggle="tooltip"
-                                    data-bs-placement="top"
-                                    title="Supprimer"></i>
-                                </a>
-                                </td>
-                            </tr>
+                                                    <!-- Supprimer -->
+                                                    <a href="#"
+                                                        class="text-danger delete-btn"
+                                                        data-bs-toggle="modal"
+                                                        data-bs-target="#deleteModal"
+                                                        data-id="<?= $v['id'] ?>"
+                                                        data-nom="<?= getAPI_id('/api/produits/', $v['produit'])['nom'] ?>">
+                                                        <i class="las la-trash-alt  fs-18 " data-bs-toggle="tooltip"
+                                                            data-bs-placement="top"
+                                                            title="Supprimer"></i>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        <?php endforeach; ?>
 
-                            <tr>
-                                <td>Jean</td>
-                                <td>Ordinateur</td>
-                                <td>5</td>
-                                <td>12000 FBu</td>
-                                <td>2024-06-01</td>
-                                <td>
-                                <span class="badge rounded text-success bg-success-subtle">
-                                    Payée
-                                </span>
-                                </td>
-                                <td class="text-end">
-                                <!-- Modifier -->
-                                <a href="#"
-                                    class="edit-product"
-                                    data-bs-toggle="modal"
-                                    data-bs-target="#modifyRate">
-                                    <i class="las la-pen  fs-18"
-                                    data-bs-toggle="tooltip"
-                                    data-bs-placement="top"
-                                    title="Modifier"></i>
-                                </a>
-
-                                <!-- Supprimer -->
-                                <a href="#"
-                                    class="text-danger delete-btn"
-                                    data-bs-toggle="modal"
-                                    data-bs-target="#deleteModal">
-                                    <i class="las la-trash-alt  fs-18"
-                                    data-bs-toggle="tooltip"
-                                    data-bs-placement="top"
-                                    title="Supprimer"></i>
-                                </a>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>Marie</td>
-                                <td>Smartphone</td>
-                                <td>8</td>
-                                <td>12000 FBu</td>
-                                <td>2024-06-01</td>
-                                <td>
-                                <span class="badge rounded text-info bg-info-subtle">
-                                    Paiement partiel
-                                </span>
-                                </td>
-                                <td class="text-end">
-                                <!-- Modifier -->
-                                <a href="#"
-                                    class="edit-product"
-                                    data-bs-toggle="modal"
-                                    data-bs-target="#modifyRate">
-                                    <i class="las la-pen  fs-18"
-                                    data-bs-toggle="tooltip"
-                                    data-bs-placement="top"
-                                    title="Modifier"></i>
-                                </a>
-
-                                <!-- Supprimer -->
-                                <a href="#"
-                                    class="text-danger delete-btn"
-                                    data-bs-toggle="modal"
-                                    data-bs-target="#deleteModal">
-                                    <i class="las la-trash-alt  fs-18"
-                                    data-bs-toggle="tooltip"
-                                    data-bs-placement="top"
-                                    title="Supprimer"></i>
-                                </a>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>Paul</td>
-                                <td>Tablette</td>
-                                <td>3</td>
-                                <td>12000 FBu</td>
-                                <td>2024-06-01</td>
-                                <td>
-                                <span class="badge rounded text-danger bg-danger-subtle">
-                                    Annulée
-                                </span>
-                                </td>
-                                <td class="text-end">
-                                <!-- Modifier -->
-                                <a href="#"
-                                    
-                                    class="edit-product"
-                                    data-bs-toggle="modal"
-                                    data-bs-target="#modifyRate">
-                                    <i class="las la-pen  fs-18"
-                                    data-bs-toggle="tooltip"
-                                    data-bs-placement="top"
-                                    title="Modifier"></i>
-                                </a>
-
-                                <!-- Supprimer -->
-                                <a href="#"
-                                    class="text-danger delete-btn"
-                                    data-bs-toggle="modal"
-                                    data-bs-target="#deleteModal">
-                                    <i class="las la-trash-alt  fs-18"
-                                    data-bs-toggle="tooltip"
-                                    data-bs-placement="top"
-                                    title="Supprimer"></i>
-                                </a>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>Lucie</td>
-                                <td>Imprimante</td>
-                                <td>2</td>
-                                <td>12000 FBu</td>
-                                <td>2024-06-01</td>
-                                <td>
-                                <span class="badge rounded text-primary bg-primary-subtle">
-                                    Remboursée
-                                </span>
-                                </td>
-                                <td class="text-end">
-                                <!-- Modifier -->
-                                <a href="#"
-                                    class="edit-product"
-                                    data-bs-toggle="modal"
-                                    data-bs-target="#modifyRate">
-                                    <i class="las la-pen  fs-18"
-                                    data-bs-toggle="tooltip"
-                                    data-bs-placement="top"
-                                    title="Modifier"></i>
-                                </a>
-
-                                <!-- Supprimer -->
-                                <a href="#"
-                                    class="text-danger delete-btn"
-                                    data-bs-toggle="modal"
-                                    data-bs-target="#deleteModal">
-                                    <i class="las la-trash-alt  fs-18"
-                                    data-bs-toggle="tooltip"
-                                    data-bs-placement="top"
-                                    title="Supprimer"></i>
-                                </a>
-                                </td>
-                            </tr>
-
-                            </tbody>
-
+                                    </tbody>
                                 </table>
-
-
                             </div>
                         </div>
                     </div> <!-- end col -->
@@ -275,20 +152,33 @@ include "../../../includes/sidebar.php";
             </div>
             <!--Start Footer-->
 
-
             <?php
+
             $pageLibs = [
                 LIBS_URL . "simple-datatables/umd/simple-datatables.js",
                 JS_URL . "pages/datatables.init.js"
             ];
             include "./../../../includes/footer.php";
+
             ?>
+
+            <script>
+                // toast success
+                <?php if (isset($_GET['success'])): ?>
+                    showToast("<?= htmlspecialchars($_GET['success']) ?>", 'success');
+                <?php endif; ?>
+                // toast error
+                <?php if (isset($_GET['error'])): ?>
+                    showToast("<?= htmlspecialchars($_GET['error']) ?>", 'danger');
+
+                <?php endif; ?>
+            </script>
 
 
             <!-- Popup Ajouter -->
             <div class="modal fade" id="addRate" tabindex="-1" aria-labelledby="addRateLabel" aria-hidden="true">
                 <div class="modal-dialog">
-                    <form action="#">
+                    <form action="./../../../backend/admin/ventes/add.php" method="post">
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h5 class="modal-title" id="addRateLabel">Ajouter une vente</h5>
@@ -303,9 +193,13 @@ include "../../../includes/sidebar.php";
                                         <span class="input-group-text">
                                             <i class="fas fa-user"></i>
                                         </span>
-                                        <select id="add-categorie" class="form-select">
+                                        <select id="add-categorie" name="client" class="form-select">
                                             <option value="" selected disabled>Choisir un client</option>
-                                            <option value="autre">Autre</option>
+                                            <?php foreach ($clients as $f): ?>
+                                                <option value="<?= htmlspecialchars($f['id']) ?>">
+                                                    <?= htmlspecialchars($f['nom']) ?> <?= htmlspecialchars($f['prenom']) ?>
+                                                </option>
+                                            <?php endforeach; ?>
                                         </select>
                                     </div>
                                 </div>
@@ -317,9 +211,13 @@ include "../../../includes/sidebar.php";
                                         <span class="input-group-text">
                                             <i class="fas fa-tags"></i>
                                         </span>
-                                        <select id="add-categorie" class="form-select">
+                                        <select id="add-categorie" name="produit" class="form-select">
                                             <option value="" selected disabled>Choisir un produit</option>
-                                            <option value="autre">Autre</option>
+                                            <?php foreach ($produits as $p): ?>
+                                                <option value="<?= htmlspecialchars($p['id']) ?>">
+                                                    <?= htmlspecialchars($p['nom']) ?>
+                                                </option>
+                                            <?php endforeach; ?>
                                         </select>
                                     </div>
                                 </div>
@@ -330,7 +228,7 @@ include "../../../includes/sidebar.php";
                                     <label>Quantité</label>
                                     <div class="input-group">
                                         <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
-                                        <input type="number" id="add-quantite" class="form-control"
+                                        <input type="number" id="add-quantite" name="quantite" class="form-control"
                                             placeholder="Quantité">
                                     </div>
                                 </div>
@@ -341,14 +239,13 @@ include "../../../includes/sidebar.php";
                                         <span class="input-group-text">
                                             <i class="fas fa-tags"></i>
                                         </span>
-                                        <select id="add-statut" class="form-select">
+                                        <select id="add-statut" name="statut" class="form-select">
                                             <option value="" selected disabled>Choisir un statut</option>
-
-                                            <option value="en-attente">En attente</option>
-                                            <option value="payee">Payée</option>
-                                            <option value="paiement-partiel">Paiement partiel</option>
+                                            <!-- <option value="en-attente">En attente</option> -->
+                                            <option value="payee" selected>Payée</option>
+                                            <!-- <option value="paiement-partiel">Paiement partiel</option>
                                             <option value="annulee">Annulée</option>
-                                            <option value="rembourse">Remboursée</option>
+                                            <option value="rembourse">Remboursée</option> -->
                                         </select>
                                     </div>
                                 </div>
@@ -356,7 +253,7 @@ include "../../../includes/sidebar.php";
 
                             </div>
                             <div class="modal-footer">
-                                <button type="submit" class="btn btn-primary w-100">Ajouter</button>
+                                <button type="submit" name="send" class="btn btn-primary w-100">Ajouter</button>
                             </div>
                         </div>
                     </form>
@@ -364,12 +261,13 @@ include "../../../includes/sidebar.php";
             </div>
 
             <!-- Popup Modifier  -->
-            <div class="modal fade" id="modifyRate" tabindex="-1" aria-labelledby="modifyRateLabel" aria-hidden="true">
+            <div class="modal fade" id="modifyProductModal" tabindex="-1" aria-labelledby="modifyProductLabel" aria-hidden="true">
                 <div class="modal-dialog">
-                    <form action="#">
+                    <form action="./../../../backend/admin/ventes/edit.php" method="post" id="form-edit-produit">
+                        <input type="hidden" name="id" id="edit-id">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="modifyRateLabel">Modifier une vente</h5>
+                                <h5 class="modal-title" id="modifyProductLabel">Modifier la vente</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                             </div>
                             <div class="modal-body">
@@ -380,9 +278,13 @@ include "../../../includes/sidebar.php";
                                         <span class="input-group-text">
                                             <i class="fas fa-user"></i>
                                         </span>
-                                        <select id="add-categorie" class="form-select">
+                                        <select id="edit-client" name="client" class="form-select">
                                             <option value="" selected disabled>Choisir un client</option>
-                                            <option value="autre">Autre</option>
+                                            <?php foreach ($clients as $f): ?>
+                                                <option value="<?= htmlspecialchars($f['id']) ?>">
+                                                    <?= htmlspecialchars($f['nom']) ?> <?= htmlspecialchars($f['prenom']) ?>
+                                                </option>
+                                            <?php endforeach; ?>
                                         </select>
                                     </div>
                                 </div>
@@ -394,9 +296,13 @@ include "../../../includes/sidebar.php";
                                         <span class="input-group-text">
                                             <i class="fas fa-tags"></i>
                                         </span>
-                                        <select id="add-categorie" class="form-select">
+                                        <select id="edit-produit" name="produit" class="form-select">
                                             <option value="" selected disabled>Choisir un produit</option>
-                                            <option value="autre">Autre</option>
+                                            <?php foreach ($produits as $p): ?>
+                                                <option value="<?= htmlspecialchars($p['id']) ?>">
+                                                    <?= htmlspecialchars($p['nom']) ?>
+                                                </option>
+                                            <?php endforeach; ?>
                                         </select>
                                     </div>
                                 </div>
@@ -407,20 +313,10 @@ include "../../../includes/sidebar.php";
                                     <label>Quantité</label>
                                     <div class="input-group">
                                         <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
-                                        <input type="number" id="add-quantite" class="form-control"
+                                        <input type="number" id="edit-quantite" name="quantite" class="form-control"
                                             placeholder="Quantité">
                                     </div>
                                 </div>
-
-                                <div class="mb-2">
-                                    <label>Prix de vente</label>
-                                    <div class="input-group">
-                                        <span class="input-group-text"><i class="fas fa-money-bill-wave"></i></span>
-                                        <input type="number" id="add-prix" class="form-control"
-                                            placeholder="Prix de vente du produit">
-                                    </div>
-                                </div>
-
 
                                 <div class="mb-2">
                                     <label for="add-statut" class="form-label">Statut</label>
@@ -428,21 +324,21 @@ include "../../../includes/sidebar.php";
                                         <span class="input-group-text">
                                             <i class="fas fa-tags"></i>
                                         </span>
-                                        <select id="add-statut" class="form-select">
+                                        <select id="edit-statut" name="statut" class="form-select">
                                             <option value="" selected disabled>Choisir un statut</option>
-
-                                            <option value="en-attente">En attente</option>
-                                            <option value="payee">Payée</option>
-                                            <option value="paiement-partiel">Paiement partiel</option>
+                                            <!-- <option value="en-attente">En attente</option> -->
+                                            <option value="payee" selected>Payée</option>
+                                            <!-- <option value="paiement-partiel">Paiement partiel</option>
                                             <option value="annulee">Annulée</option>
-                                            <option value="rembourse">Remboursée</option>
+                                            <option value="rembourse">Remboursée</option> -->
                                         </select>
                                     </div>
                                 </div>
 
+
                             </div>
                             <div class="modal-footer">
-                                <button type="submit" class="btn btn-primary w-100">Modifier</button>
+                                <button type="submit" name="send" class="btn btn-primary w-100">Modifier</button>
                             </div>
                         </div>
                     </form>
@@ -450,35 +346,71 @@ include "../../../includes/sidebar.php";
             </div>
 
             <!-- modal de suppression -->
-            <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="DeleteUserLabel" aria-hidden="true">
+            <div class="modal fade" id="deleteModal" tabindex="-1">
                 <div class="modal-dialog">
                     <div class="modal-content">
-                        <div class="modal-header bg-white">
-                            <h5 class="modal-title text-danger" id="addUserLabel">Supprimer</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <p class="text-muted">Êtes-vous sûr de vouloir supprimer cet utilisateur ? Cette action est
-                                irréversible.</p>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="submit" class="btn btn-outline-danger">Oui</button>
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                                Annuler
-                            </button>
 
+                        <div class="modal-header bg-white">
+                            <h5 class="modal-title text-danger">Supprimer Vente</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                         </div>
+
+                        <div class="modal-body">
+                            <p>
+                                Voulez-vous vraiment supprimer cet vente
+                                <strong id="catName"></strong> ?
+                            </p>
+                        </div>
+
+                        <div class="modal-footer">
+                            <form method="POST" action="./../../../backend/admin/ventes/delete.php">
+                                <input type="hidden" name="id" id="deleteId">
+                                <button type="submit" class="btn btn-danger">Oui, supprimer</button>
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                    Annuler
+                                </button>
+                            </form>
+                        </div>
+
                     </div>
                 </div>
             </div>
 
-            
-      <!-- js pour le tooltip -->
-      <script>
-        var tooltipTriggerList = [].slice.call(
-          document.querySelectorAll('[data-bs-toggle="tooltip"]')
-        );
-        tooltipTriggerList.map(function(tooltipTriggerEl) {
-          return new bootstrap.Tooltip(tooltipTriggerEl);
-        });
-      </script>
+            <!-- Js pour recuper l'id lors de suppression  -->
+            <script>
+                document.querySelectorAll('.delete-btn').forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        document.getElementById('deleteId').value = this.dataset.id;
+                        document.getElementById('catName').innerText = this.dataset.nom;
+                    });
+                });
+            </script>
+
+            <!-- Js pour recuperl'id lors de modification  -->
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                const editButtons = document.querySelectorAll('.editBtn');
+                const modal = document.getElementById('modifyProductModal');
+
+                editButtons.forEach(btn => {
+                    btn.addEventListener('click', function() {
+                    document.getElementById('edit-id').value = this.dataset.id;
+                    document.getElementById('edit-client').value = this.dataset.client;
+                    document.getElementById('edit-produit').value = this.dataset.produit;
+                    document.getElementById('edit-statut').value = this.dataset.statut;
+                    document.getElementById('edit-quantite').value = this.dataset.quantite;
+                    });
+                  });
+                });
+            </script>
+
+
+            <!-- js pour le tooltip -->
+            <script>
+                var tooltipTriggerList = [].slice.call(
+                    document.querySelectorAll('[data-bs-toggle="tooltip"]')
+                );
+                tooltipTriggerList.map(function(tooltipTriggerEl) {
+                    return new bootstrap.Tooltip(tooltipTriggerEl);
+                });
+            </script>

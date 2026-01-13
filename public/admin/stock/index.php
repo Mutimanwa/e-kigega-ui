@@ -1,43 +1,43 @@
 <?php
 
-    ini_set('session.cookie_httponly', 1);
-    ini_set('session.cookie_secure', 1);
-    session_start();
+ini_set('session.cookie_httponly', 1);
+ini_set('session.cookie_secure', 1);
+session_start();
 
-    require_once('./../../../backend/function/function.php');
-    $role="ADMIN";
+require_once('./../../../backend/function/function.php');
+$role = "ADMIN";
 
-    //================== gerer les session 
-    if(requireRole($role)==="Accès interdit"){
-        header("Location: ./../../../index.php");
-        session_destroy();
-    }
+//================== gerer les session 
+if (requireRole($role) === "Accès interdit") {
+  header("Location: ./../../../index.php");
+  session_destroy();
+}
 
-    //=========== verifier l'abonnement de cet entreprise
-    $url="./../../../index.php";
-    abonnement($url);
+//=========== verifier l'abonnement de cet entreprise
+$url = "./../../../index.php";
+abonnement($url);
 
-    //================== fetch les produits
-    $produits=getApi('/api/produits/') ?? [];
-    if (!is_array($produits)) {
-      echo "<div class='alert alert-danger'>API error</div>";
-      $produits = [];
-    } 
+//================== fetch les produits
+$produits = getApi('/api/produits/') ?? [];
+if (!is_array($produits)) {
+  echo "<div class='alert alert-danger'>API error</div>";
+  $produits = [];
+}
 
 
-    //===================== fetch fournisseurs
-     $fournisseurs=getApi('/api/partners/fournisseurs/') ?? [];
-      if (!is_array($fournisseurs)) {
-        echo "<div class='alert alert-danger'>API error</div>";
-        $fournisseurs = [];
-      }    
+//===================== fetch fournisseurs
+$fournisseurs = getApi('/api/partners/fournisseurs/') ?? [];
+if (!is_array($fournisseurs)) {
+  echo "<div class='alert alert-danger'>API error</div>";
+  $fournisseurs = [];
+}
 
-    // ================== fetch les categories
-    $stocks = getApi('/api/stocks/') ?? [];
-    if (!is_array($stocks)) {
-        echo "<div class='alert alert-danger'>Erreur API Categories</div>";
-        $stocks = [];
-    }
+// ================== fetch les stocks
+$stocks = getApi('/api/stocks/') ?? [];
+if (!is_array($stocks)) {
+  echo "<div class='alert alert-danger'>Erreur API Categories</div>";
+  $stocks = [];
+}
 
 include "./../../../includes/header.php";
 include "./../../../includes/sidebar.php";
@@ -93,59 +93,55 @@ include "./../../../includes/sidebar.php";
                     </tr>
                   </thead>
                   <tbody>
-                  <?php foreach($stocks as $s): ?>
-                    <?php 
-                        $quantite = floatval($s['quantite']);
-                        $prix = floatval($s['prix_achat']);
-                        $total = $quantite * $prix;
-                    ?>
-                    <tr>
-                      <td><?= getAPI_id('/api/produits/',$s['produit'])['nom'] ?></td>
-                      <td><?= getAPI_id('/api/partners/',$s['fournisseur'])['nom'] ?> <?= getAPI_id('/api/partners/',$s['fournisseur'])['prenom'] ?></td>
-                      <td> <?=  htmlspecialchars(number_format($s['quantite']),2)?></td>
-                      <td><?=  htmlspecialchars(number_format($s['prix_achat']),2)?></td>
-                      <td><?=  htmlspecialchars(number_format($total),2)?></td>
-                      <td><?= htmlspecialchars((new DateTime($s['date_entree']))->format('d/m/Y')) ?></td>
-                      <td class="text-end">
+                    <?php foreach ($stocks as $s): ?>
+                      <?php
+                      $quantite = floatval($s['quantite']);
+                      $prix = floatval($s['prix_achat']);
+                      $total = $quantite * $prix;
+                      ?>
+                      <tr>
+                        <td><?= getAPI_id('/api/produits/', $s['produit'])['nom'] ?></td>
+                        <td><?= getAPI_id('/api/partners/', $s['fournisseur'])['nom'] ?> <?= getAPI_id('/api/partners/', $s['fournisseur'])['prenom'] ?></td>
+                        <td> <?= htmlspecialchars(number_format($s['quantite']), 2) ?></td>
+                        <td><?= htmlspecialchars(number_format($s['prix_achat']), 2) ?></td>
+                        <td><?= htmlspecialchars(number_format($total), 2) ?></td>
+                        <td><?= htmlspecialchars((new DateTime($s['date_entree']))->format('d/m/Y')) ?></td>
+                        <td class="text-end">
 
-                        <!-- Modifier -->
-                        <a href="#"
-                          class="editBtn"
-                          data-bs-toggle="modal"
-                          data-bs-target="#modifyProductModal"
-                          data-id="<?= $s['id'] ?>"
-                          data-prix_achat="<?= htmlspecialchars($s['prix_achat']) ?>"
-                          data-date_entree="<?= htmlspecialchars($s['date_entree']) ?>"
-                          data-quantite="<?= $s['quantite'] ?>"
-                          data-produit="<?= $s['produit'] ?>"
-                          data-fournisseur="<?= $s['fournisseur'] ?>">
-                          <i class="las la-pen  fs-18"  data-bs-toggle="tooltip"
-        data-bs-placement="top"
-        title="Modifier"></i>
-                        </a>
+                          <!-- Modifier -->
+                          <a href="#"
+                            class="editBtn"
+                            data-bs-toggle="modal"
+                            data-bs-target="#modifyProductModal"
+                            data-id="<?= $s['id'] ?>"
+                            data-prix_achat="<?= htmlspecialchars($s['prix_achat']) ?>"
+                            data-date_entree="<?= htmlspecialchars($s['date_entree']) ?>"
+                            data-quantite="<?= $s['quantite'] ?>"
+                            data-produit="<?= $s['produit'] ?>"
+                            data-fournisseur="<?= $s['fournisseur'] ?>">
+                            <i class="las la-pen  fs-18" data-bs-toggle="tooltip"
+                              data-bs-placement="top"
+                              title="Modifier"></i>
+                          </a>
 
-                        <!-- Supprimer -->
-                        <a href="#"
-                          class="text-danger delete-btn"
-                          data-bs-toggle="modal"
-                          data-bs-target="#deleteModal"
-                          data-id="<?= $s['id'] ?>"
-                          data-nom="la tracabilite de l'entree de <?= getAPI_id('/api/produits/',$s['produit'])['nom'] ?> ">
-                          <i class="las la-trash-alt  fs-18 "  data-bs-toggle="tooltip"
-   data-bs-placement="top"
-   title="Supprimer"></i>
-                        </a>
+                          <!-- Supprimer -->
+                          <a href="#"
+                            class="text-danger delete-btn"
+                            data-bs-toggle="modal"
+                            data-bs-target="#deleteModal"
+                            data-id="<?= $s['id'] ?>"
+                            data-nom="la tracabilite de l'entree de <?= getAPI_id('/api/produits/', $s['produit'])['nom'] ?> ">
+                            <i class="las la-trash-alt  fs-18 " data-bs-toggle="tooltip"
+                              data-bs-placement="top"
+                              title="Supprimer"></i>
+                          </a>
 
-
-
-                        
-                        
-                    </tr>
-                  <?php endforeach; ?>
+                      </tr>
+                    <?php endforeach; ?>
                   </tbody>
                 </table>
 
-              </div>          
+              </div>
             </div>
           </div> <!-- end col -->
         </div> <!-- end row -->
@@ -166,12 +162,12 @@ include "./../../../includes/sidebar.php";
         // toast success
         <?php if (isset($_GET['success'])): ?>
           showToast("<?= htmlspecialchars($_GET['success']) ?>", 'success');
-   
+
         <?php endif; ?>
         // toast error
         <?php if (isset($_GET['error'])): ?>
-         showToast("<?= htmlspecialchars($_GET['error']) ?>", 'danger');
-       
+          showToast("<?= htmlspecialchars($_GET['error']) ?>", 'danger');
+
         <?php endif; ?>
       </script>
 
@@ -194,7 +190,7 @@ include "./../../../includes/sidebar.php";
                     </span>
                     <select id="add-categorie" name="fournisseur" class="form-select">
                       <option value="" selected disabled>Choisir un fournisseur</option>
-                      <?php foreach($fournisseurs as $f): ?>
+                      <?php foreach ($fournisseurs as $f): ?>
                         <option value="<?= htmlspecialchars($f['id']) ?>">
                           <?= htmlspecialchars($f['nom']) ?> <?= htmlspecialchars($f['prenom']) ?>
                         </option>
@@ -211,7 +207,7 @@ include "./../../../includes/sidebar.php";
                     </span>
                     <select id="add-categorie" name="produit" class="form-select">
                       <option value="" selected disabled>Choisir un produit</option>
-                      <?php foreach($produits as $p): ?>
+                      <?php foreach ($produits as $p): ?>
                         <option value="<?= htmlspecialchars($p['id']) ?>">
                           <?= htmlspecialchars($p['nom']) ?>
                         </option>
@@ -276,7 +272,7 @@ include "./../../../includes/sidebar.php";
                     </span>
                     <select id="edit-fournisseur" name="fournisseur" class="form-select">
                       <option value="" selected disabled>Choisir un fournisseur</option>
-                      <?php foreach($fournisseurs as $f): ?>
+                      <?php foreach ($fournisseurs as $f): ?>
                         <option value="<?= htmlspecialchars($f['id']) ?>">
                           <?= htmlspecialchars($f['nom']) ?> <?= htmlspecialchars($f['prenom']) ?>
                         </option>
@@ -293,7 +289,7 @@ include "./../../../includes/sidebar.php";
                     </span>
                     <select id="edit-produit" name="produit" class="form-select">
                       <option value="" selected disabled>Choisir un produit</option>
-                      <?php foreach($produits as $p): ?>
+                      <?php foreach ($produits as $p): ?>
                         <option value="<?= htmlspecialchars($p['id']) ?>">
                           <?= htmlspecialchars($p['nom']) ?>
                         </option>
@@ -338,8 +334,6 @@ include "./../../../includes/sidebar.php";
         </div>
       </div>
 
-
-
       <!-- modal de suppression -->
       <div class="modal fade" id="deleteModal" tabindex="-1">
         <div class="modal-dialog">
@@ -374,40 +368,40 @@ include "./../../../includes/sidebar.php";
       <!-- Js pour recuper l'id lors de suppression  -->
       <script>
         document.querySelectorAll('.delete-btn').forEach(btn => {
-            btn.addEventListener('click', function () {
-                document.getElementById('deleteId').value = this.dataset.id;
-                document.getElementById('catName').innerText = this.dataset.nom;
-            });
+          btn.addEventListener('click', function() {
+            document.getElementById('deleteId').value = this.dataset.id;
+            document.getElementById('catName').innerText = this.dataset.nom;
+          });
         });
       </script>
 
       <!-- Js pour recuperl'id lors de modification  -->
-       <script>
-          document.addEventListener('DOMContentLoaded', function() {
-            const editButtons = document.querySelectorAll('.editBtn');
-            const modal = document.getElementById('modifyProductModal');
+      <script>
+        document.addEventListener('DOMContentLoaded', function() {
+          const editButtons = document.querySelectorAll('.editBtn');
+          const modal = document.getElementById('modifyProductModal');
 
-            editButtons.forEach(btn => {
-              btn.addEventListener('click', function() {
-                document.getElementById('edit-id').value = this.dataset.id;
-                document.getElementById('edit-fournisseur').value = this.dataset.fournisseur;
-                document.getElementById('edit-produit').value = this.dataset.produit;
-                document.getElementById('edit-prix_achat').value = this.dataset.prix_achat;
-                document.getElementById('edit-quantite').value = this.dataset.quantite;
-                document.getElementById('edit-date_entree').value = this.dataset.date_entree;
-              });
+          editButtons.forEach(btn => {
+            btn.addEventListener('click', function() {
+              document.getElementById('edit-id').value = this.dataset.id;
+              document.getElementById('edit-fournisseur').value = this.dataset.fournisseur;
+              document.getElementById('edit-produit').value = this.dataset.produit;
+              document.getElementById('edit-prix_achat').value = this.dataset.prix_achat;
+              document.getElementById('edit-quantite').value = this.dataset.quantite;
+              document.getElementById('edit-date_entree').value = this.dataset.date_entree;
             });
           });
-       </script>
+        });
+      </script>
 
-       
 
-   <!-- js pour le tooltip -->
-    <script>
-  var tooltipTriggerList = [].slice.call(
-    document.querySelectorAll('[data-bs-toggle="tooltip"]')
-  );
-  tooltipTriggerList.map(function (tooltipTriggerEl) {
-    return new bootstrap.Tooltip(tooltipTriggerEl);
-  });
-</script>
+
+      <!-- js pour le tooltip -->
+      <script>
+        var tooltipTriggerList = [].slice.call(
+          document.querySelectorAll('[data-bs-toggle="tooltip"]')
+        );
+        tooltipTriggerList.map(function(tooltipTriggerEl) {
+          return new bootstrap.Tooltip(tooltipTriggerEl);
+        });
+      </script>

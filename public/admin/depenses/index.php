@@ -17,13 +17,6 @@ if (requireRole($role) === "Accès interdit") {
 $url = "./../../../index.php";
 abonnement($url);
 
-//================== fetch les produits
-$produits = getApi('/api/produits/') ?? [];
-if (!is_array($produits)) {
-  echo "<div class='alert alert-danger'>API error</div>";
-  $produits = [];
-}
-
 // ================== fetch les categories
 $depenses = getApi('/api/depenses/') ?? [];
 if (!is_array($depenses)) {
@@ -99,19 +92,33 @@ include "./../../../includes/sidebar.php";
                       </td>
                       <td><?= htmlspecialchars((new DateTime($d['created_at']))->format('d/m/Y')) ?></td>
                       <td class="text-end">
-                        <!-- Modifier -->
-                        <a href="#" data-bs-toggle="modal" data-bs-target="#modifyRate" class="edit-product"
-                          data-produit="Ordinateur HP" data-categorie="Informatique" data-prix="1200"
-                          data-quantite="10">
-                          <i class="las la-pen  fs-18" data-bs-toggle="tooltip"
-                            data-bs-placement="top"
-                            title="Modifier"></i>
-                        </a>
+
+                          <!-- Modifier -->
+                          <a href="#"
+                            class="editBtn"
+                            data-bs-toggle="modal"
+                            data-bs-target="#modifyProductModal"
+                            data-id="<?= $d['id'] ?>"
+                            data-type="<?= htmlspecialchars($d['type']) ?>"
+                            data-description="<?= htmlspecialchars($d['description']) ?>"
+                            data-montant="<?= $d['montant'] ?>">
+                            <i class="las la-pen  fs-18" data-bs-toggle="tooltip"
+                              data-bs-placement="top"
+                              title="Modifier"></i>
+                          </a>
 
                         <!-- Supprimer -->
-                        <a href="#" class="text-danger delete-btn" data-bs-toggle="modal" data-bs-target="#deleteModal"><i class="las la-trash-alt  fs-18 " data-bs-toggle="tooltip"
-                            data-bs-placement="top"
-                            title="Supprimer"></i></a>
+                          <!-- Supprimer -->
+                          <a href="#"
+                            class="text-danger delete-btn"
+                            data-bs-toggle="modal"
+                            data-bs-target="#deleteModal"
+                            data-id="<?= $d['id'] ?>"
+                            data-nom="<?= htmlentities($d['type']) ?>">
+                            <i class="las la-trash-alt  fs-18 " data-bs-toggle="tooltip"
+                              data-bs-placement="top"
+                              title="Supprimer"></i>
+                          </a>
 
                       </td>
                     </tr>
@@ -126,8 +133,6 @@ include "./../../../includes/sidebar.php";
 
       </div>
       <!--Start Footer-->
-
-
 
       <?php
         $pageLibs = [
@@ -210,27 +215,25 @@ include "./../../../includes/sidebar.php";
         </div>
       </div>
 
-      <!-- Popup Modifier  -->
-      <div class="modal fade" id="modifyRate" tabindex="-1" aria-labelledby="modifyRateLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <form action="#">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="modifyRateLabel">Modifier une dépense</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-              </div>
-              <div class="modal-body">
+        <!-- Popup Modifier  -->
+        <div class="modal fade" id="modifyProductModal" tabindex="-1" aria-labelledby="modifyProductLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <form action="./../../../backend/admin/depenses/edit.php" method="post" id="form-edit-produit">
+              <input type="hidden" name="id" id="edit-id">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="modifyProductLabel">Modifier la Depense</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
 
                 <div class="mb-2">
-                  <label for="add-categorie" class="form-label">Catégorie</label>
+                  <label for="add-categorie" class="form-label">Type de la depense</label>
                   <div class="input-group">
                     <span class="input-group-text">
                       <i class="fas fa-tags"></i>
                     </span>
-                    <select id="add-categorie" class="form-select">
-                      <option value="" selected disabled>Choisir une catégorie</option>
-                      <option value="autre">Autre</option>
-                    </select>
+                    <input type="text" id="edit-type" name="type" class="form-control" placeholder="Type de la dépense">
                   </div>
                 </div>
 
@@ -240,26 +243,28 @@ include "./../../../includes/sidebar.php";
                     <span class="input-group-text">
                       <i class="fas fa-align-left"></i>
                     </span>
-                    <textarea id="add-description" class="form-control" rows="3"
-                      placeholder="Description de la dépense"></textarea>
+                    <textarea id="edit-description" name="description" class="form-control" rows="3"
+                      placeholder="Description de la dépense">
+                    </textarea>
                   </div>
                 </div>
+
                 <div class="mb-2">
                   <label>Montant</label>
                   <div class="input-group">
                     <span class="input-group-text"><i class="fas fa-money-bill-wave"></i></span>
-                    <input type="number" id="add-prix" class="form-control" placeholder="Montant de la prduit">
+                    <input type="number" id="edit-montant" name="montant" class="form-control" placeholder="Montant de la dépense">
                   </div>
                 </div>
 
+                </div>
+                <div class="modal-footer">
+                  <button type="submit" name="send" class="btn btn-primary w-100">Modifier</button>
+                </div>
               </div>
-              <div class="modal-footer">
-                <button type="submit" class="btn btn-primary w-100">Modifier</button>
-              </div>
-            </div>
-          </form>
+            </form>
+          </div>
         </div>
-      </div>
 
       <!-- modal de suppression -->
       <div class="modal fade" id="deleteModal" tabindex="-1">
@@ -302,6 +307,22 @@ include "./../../../includes/sidebar.php";
         });
       </script>
 
+        <!-- Js pour recuperl'id lors de modification  -->
+        <script>
+          document.addEventListener('DOMContentLoaded', function() {
+            const editButtons = document.querySelectorAll('.editBtn');
+            const modal = document.getElementById('modifyProductModal');
+
+            editButtons.forEach(btn => {
+              btn.addEventListener('click', function() {
+                document.getElementById('edit-id').value = this.dataset.id;
+                document.getElementById('edit-type').value = this.dataset.type;
+                document.getElementById('edit-description').value = this.dataset.description;
+                document.getElementById('edit-montant').value = this.dataset.montant;
+              });
+            });
+          });
+        </script>
 
       <!-- js pour le tooltip -->
       <script>

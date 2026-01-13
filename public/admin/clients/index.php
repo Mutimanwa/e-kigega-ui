@@ -1,31 +1,31 @@
 <?php
 
-    ini_set('session.cookie_httponly', 1);
-    ini_set('session.cookie_secure', 1);
-    session_start();
+  ini_set('session.cookie_httponly', 1);
+  ini_set('session.cookie_secure', 1);
+  session_start();
 
-    require_once('./../../../backend/function/function.php');
-    $role="ADMIN";
+  require_once('./../../../backend/function/function.php');
+  $role = "ADMIN";
 
-    //================== gerer les session 
-    if(requireRole($role)==="Accès interdit"){
-        header("Location: ./../../../index.php");
-        session_destroy();
-    }
+  //================== gerer les session 
+  if (requireRole($role) === "Accès interdit") {
+    header("Location: ./../../../index.php");
+    session_destroy();
+  }
 
-    //=========== verifier l'abonnement de cet entreprise
-    $url="./../../../index.php";
-    abonnement($url);
+  //=========== verifier l'abonnement de cet entreprise
+  $url = "./../../../index.php";
+  abonnement($url);
 
-    //================== fetch les produits
-    $clients=getApi('/api/partners/clients/') ?? [];
-    if (!is_array($clients)) {
-      echo "<div class='alert alert-danger'>API error</div>";
-      $clients = [];
-    } 
+  //================== fetch les clients
+  $clients = getApi('/api/partners/clients/') ?? [];
+  if (!is_array($clients)) {
+    echo "<div class='alert alert-danger'>API error</div>";
+    $clients = [];
+  }
 
-    include "./../../../includes/header.php";
-    include "./../../../includes/sidebar.php";
+  include "./../../../includes/header.php";
+  include "./../../../includes/sidebar.php";
 ?>
 <div class="page-wrapper">
 
@@ -77,52 +77,52 @@
                     </tr>
                   </thead>
                   <tbody>
-                  <?php foreach($clients as $c): ?>
-                    <tr>
-                      <td> <?= htmlspecialchars($c['nom']) ?></td>
-                      <td><?= htmlspecialchars( $c['prenom']) ?></td>
-                      <td><?= htmlspecialchars($c['telephone']) ?></td>
-                      <td>
-                        <a href="mailto:<?= htmlspecialchars($c['email']) ?>" class="text-primary text-decoration-underline">
-                          <?= htmlspecialchars($c['email']) ?>
-                        </a>
-                      </td>
-                      <td><?= htmlspecialchars($c['adresse']) ?></td>
-                      <td><?= htmlspecialchars((new DateTime($c['created_at']))->format('d/m/Y')) ?></td>
-                      <td class="text-end">
+                    <?php foreach ($clients as $c): ?>
+                      <tr>
+                        <td> <?= htmlspecialchars($c['nom']) ?></td>
+                        <td><?= htmlspecialchars($c['prenom']) ?></td>
+                        <td><?= htmlspecialchars($c['telephone']) ?></td>
+                        <td>
+                          <a href="mailto:<?= htmlspecialchars($c['email']) ?>" class="text-primary text-decoration-underline">
+                            <?= htmlspecialchars($c['email']) ?>
+                          </a>
+                        </td>
+                        <td><?= htmlspecialchars($c['adresse']) ?></td>
+                        <td><?= htmlspecialchars((new DateTime($c['created_at']))->format('d/m/Y')) ?></td>
+                        <td class="text-end">
 
-                        <!-- Modifier -->
-                        <a href="#"
-                          class="editBtn"
-                          data-bs-toggle="modal"
-                          data-bs-target="#modifyProductModal"
-                          data-id="<?= $c['id'] ?>"
-                          data-nom="<?= htmlspecialchars($c['nom']) ?>"
-                          data-prenom="<?= htmlspecialchars($c['prenom']) ?>"
-                          data-email="<?= $c['email'] ?>"
-                          data-telephone="<?= $c['telephone'] ?>"
-                          data-adresse="<?= $c['adresse'] ?>">
-                          <i class="las la-pen  fs-18"  data-bs-toggle="tooltip"
-   data-bs-placement="top"
-   title="Modifier"></i>
-                        </a>
+                          <!-- Modifier -->
+                          <a href="#"
+                            class="editBtn"
+                            data-bs-toggle="modal"
+                            data-bs-target="#modifyProductModal"
+                            data-id="<?= $c['id'] ?>"
+                            data-nom="<?= htmlspecialchars($c['nom']) ?>"
+                            data-prenom="<?= htmlspecialchars($c['prenom']) ?>"
+                            data-email="<?= $c['email'] ?>"
+                            data-telephone="<?= $c['telephone'] ?>"
+                            data-adresse="<?= $c['adresse'] ?>">
+                            <i class="las la-pen  fs-18" data-bs-toggle="tooltip"
+                              data-bs-placement="top"
+                              title="Modifier"></i>
+                          </a>
 
 
-                        <!-- Supprimer -->
-                        <a href="#"
-                          class="text-danger delete-btn"
-                          data-bs-toggle="modal"
-                          data-bs-target="#deleteModal"
-                          data-id="<?= $c['id'] ?>"
-                          data-nom="<?= htmlentities($c['nom']) ?> <?= htmlentities($c['prenom']) ?>">
-                          <i class="las la-trash-alt  fs-18 "  data-bs-toggle="tooltip"
-   data-bs-placement="top"
-   title="Supprimer"></i>
-                        </a>
+                          <!-- Supprimer -->
+                          <a href="#"
+                            class="text-danger delete-btn"
+                            data-bs-toggle="modal"
+                            data-bs-target="#deleteModal"
+                            data-id="<?= $c['id'] ?>"
+                            data-nom="<?= htmlentities($c['nom']) ?> <?= htmlentities($c['prenom']) ?>">
+                            <i class="las la-trash-alt  fs-18 " data-bs-toggle="tooltip"
+                              data-bs-placement="top"
+                              title="Supprimer"></i>
+                          </a>
 
-                      </td>
-                    </tr>
-                   <?php endforeach ; ?>
+                        </td>
+                      </tr>
+                    <?php endforeach; ?>
                   </tbody>
                 </table>
 
@@ -148,12 +148,12 @@
         // toast success
         <?php if (isset($_GET['success'])): ?>
           showToast("<?= htmlspecialchars($_GET['success']) ?>", 'success');
-   
+
         <?php endif; ?>
         // toast error
         <?php if (isset($_GET['error'])): ?>
-         showToast("<?= htmlspecialchars($_GET['error']) ?>", 'danger');
-       
+          showToast("<?= htmlspecialchars($_GET['error']) ?>", 'danger');
+
         <?php endif; ?>
       </script>
 
@@ -296,7 +296,7 @@
           </form>
         </div>
       </div>
-     <!-- Popup Suppression -->
+      <!-- Popup Suppression -->
       <div class="modal fade" id="deleteModal" tabindex="-1">
         <div class="modal-dialog">
           <div class="modal-content">
@@ -330,39 +330,39 @@
       <!-- Js pour recuper l'id lors de suppression  -->
       <script>
         document.querySelectorAll('.delete-btn').forEach(btn => {
-            btn.addEventListener('click', function () {
-                document.getElementById('deleteId').value = this.dataset.id;
-                document.getElementById('catName').innerText = this.dataset.nom;
-            });
+          btn.addEventListener('click', function() {
+            document.getElementById('deleteId').value = this.dataset.id;
+            document.getElementById('catName').innerText = this.dataset.nom;
+          });
         });
       </script>
 
       <!-- Js pour recuperl'id lors de modification  -->
-       <script>
-          document.addEventListener('DOMContentLoaded', function() {
-            const editButtons = document.querySelectorAll('.editBtn');
-            const modal = document.getElementById('modifyProductModal');
+      <script>
+        document.addEventListener('DOMContentLoaded', function() {
+          const editButtons = document.querySelectorAll('.editBtn');
+          const modal = document.getElementById('modifyProductModal');
 
-            editButtons.forEach(btn => {
-              btn.addEventListener('click', function() {
-                document.getElementById('edit-id').value = this.dataset.id;
-                document.getElementById('edit-nom').value = this.dataset.nom;
-                document.getElementById('edit-prenom').value = this.dataset.prenom;
-                document.getElementById('edit-email').value = this.dataset.email;
-                document.getElementById('edit-telephone').value = this.dataset.telephone;
-                document.getElementById('edit-adresse').value = this.dataset.adresse;
+          editButtons.forEach(btn => {
+            btn.addEventListener('click', function() {
+              document.getElementById('edit-id').value = this.dataset.id;
+              document.getElementById('edit-nom').value = this.dataset.nom;
+              document.getElementById('edit-prenom').value = this.dataset.prenom;
+              document.getElementById('edit-email').value = this.dataset.email;
+              document.getElementById('edit-telephone').value = this.dataset.telephone;
+              document.getElementById('edit-adresse').value = this.dataset.adresse;
 
-              });
             });
           });
-       </script>
+        });
+      </script>
 
-<!-- js pour le tooltip -->
-    <script>
-  var tooltipTriggerList = [].slice.call(
-    document.querySelectorAll('[data-bs-toggle="tooltip"]')
-  );
-  tooltipTriggerList.map(function (tooltipTriggerEl) {
-    return new bootstrap.Tooltip(tooltipTriggerEl);
-  });
-</script>
+      <!-- js pour le tooltip -->
+      <script>
+        var tooltipTriggerList = [].slice.call(
+          document.querySelectorAll('[data-bs-toggle="tooltip"]')
+        );
+        tooltipTriggerList.map(function(tooltipTriggerEl) {
+          return new bootstrap.Tooltip(tooltipTriggerEl);
+        });
+      </script>

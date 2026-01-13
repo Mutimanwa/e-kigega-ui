@@ -1,6 +1,24 @@
 <?php 
-include '../includes/header.php';
-include '../includes/sidebar.php';
+
+ini_set('session.cookie_httponly', 1);
+ini_set('session.cookie_secure', 1);
+session_start();
+
+require_once('./../backend/function/function.php');
+$role = "ADMIN";
+
+//================== gerer les session 
+if (requireRole($role) === "Accès interdit") {
+  header("Location: ./../index.php");
+  session_destroy();
+}
+
+//=========== verifier l'abonnement de cet entreprise
+$url = "./../index.php";
+abonnement($url);
+
+include './../includes/header.php';
+include './../includes/sidebar.php';
 
 ?>
 
@@ -278,9 +296,9 @@ include '../includes/sidebar.php';
                 </div>
             </div>
 
+        <!-- include le footer -->
+    <?php  include "./../includes/footer.php"; ?>
  
-
-
 <script>
     // Fonctions utilitaires pour PHP (à mettre dans un fichier séparé en production)
     <?php

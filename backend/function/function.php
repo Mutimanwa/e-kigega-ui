@@ -197,6 +197,42 @@
         return true;
     }
 
+    //========== GESTION DES UPDATES WITH PATCH DES DONNEES  {api/ex/:id} 
+    function apiPATCH($endpoint, $body){
+
+        $apiBase = "https://ekigega-backend.onrender.com";
+        $token = $_SESSION['token'];
+
+        $ch = curl_init($apiBase.$endpoint);
+
+        curl_setopt_array($ch, [
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_CUSTOMREQUEST => "PATCH",
+            CURLOPT_HTTPHEADER => [
+                "Authorization: Bearer $token",
+                "Content-Type: application/json"
+            ],
+            CURLOPT_POSTFIELDS => json_encode($body),
+
+            //======== performance
+            CURLOPT_CONNECTTIMEOUT => 5,
+            CURLOPT_TIMEOUT => 10,
+            
+            //=========verification ssl
+            CURLOPT_SSL_VERIFYPEER => false,
+            CURLOPT_SSL_VERIFYHOST => false
+        ]);
+
+        $response = curl_exec($ch);
+        $status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        curl_close($ch);
+
+        if ($status === 401) return "login";
+        if ($status < 200 || $status > 299) return "error";
+
+        return true;
+    }
+
     //================== post method create 
     function apiPost( $endpoint, $body) {
 

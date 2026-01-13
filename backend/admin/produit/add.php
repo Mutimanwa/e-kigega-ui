@@ -55,7 +55,7 @@ if (isset($_POST['send'])) {
         "categorie" => $categorie,
         "prix"      => $prix,
         "quantite"  => 0,
-        "entreprise"=> $entreprise,
+        "entreprise" => $entreprise,
         "mesure"    => $unite
     ];
 
