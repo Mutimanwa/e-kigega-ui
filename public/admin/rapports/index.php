@@ -40,7 +40,8 @@ include "../../../includes/sidebar.php";
                         <h4 class="mb-0">Rapports & Statistiques</h4>
                         <div class="page-title-right">
                             <ol class="breadcrumb m-0">
-                                <li class="breadcrumb-item"><a href="<?= BASE_URL ?>">Tableau de bord</a></li>
+                                <li class="breadcrumb-item"><a href="#">E-Kigega</a></li>
+                                <li class="breadcrumb-item"><a href="#">Admin</a></li>
                                 <li class="breadcrumb-item active">Rapports</li>
                             </ol>
                         </div>
