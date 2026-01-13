@@ -112,12 +112,12 @@
 
                         <!-- Supprimer -->
                         <a href="#"
-                          class="text-danger delete-btn"
+                          class="text-danger delete-btn ms-2"
                           data-bs-toggle="modal"
                           data-bs-target="#deleteModal"
                           data-id="<?= $p['id'] ?>"
                           data-nom="<?= htmlentities($p['nom']) ?>">
-                          "><i class="las la-trash-alt text-secondary fs-18 "  data-bs-toggle="tooltip"
+                       <i class="las la-trash-alt text-secondary fs-18 "  data-bs-toggle="tooltip"
    data-bs-placement="top"
    title="Supprimer"></i>
                         </a>
