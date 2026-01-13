@@ -18,22 +18,16 @@
     abonnement($url);
 
     //================== fetch les produits
-    $produits=getApi('/api/produits/') ?? [];
-    if (!is_array($produits)) {
+    $clients=getApi('/api/partners/') ?? [];
+    if (!is_array($clients)) {
       echo "<div class='alert alert-danger'>API error</div>";
-      $produits = [];
+      $clients = [];
     } 
+include "../../../includes/header.php";
+include "../../../includes/sidebar.php";
 
-    //=============== fetch les ventes
-    $ventes=getApi('/api/produits/') ?? [];
-    if (!is_array($ventes)) {
-      echo "<div class='alert alert-danger'>API error</div>";
-      $ventes = [];
-    }   
-
-    include "./../../../includes/header.php";
-    include "./../../../includes/sidebar.php";
 ?>
+
 <div class="page-wrapper">
 
     <!-- Page Content-->
@@ -85,184 +79,190 @@
                                             <th class="text-end">Action</th>
                                         </tr>
                                     </thead>
-                                   <tbody>
+                                  <tbody>
 
-  <tr>
-    <td>Fer</td>
-    <td>Aluminium</td>
-    <td>10</td>
-    <td>12000 FBu</td>
-    <td>2024-06-01</td>
-    <td>
-      <span class="badge rounded text-warning bg-warning-subtle">
-        En attente
-      </span>
-    </td>
-    <td class="text-end">
-      <!-- Modifier -->
-      <a href="#"
-         class="edit-product"
-         data-bs-toggle="modal"
-         data-bs-target="#modifyRate">
-        <i class="las la-pen text-secondary fs-18"
-           data-bs-toggle="tooltip"
-           data-bs-placement="top"
-           title="Modifier"></i>
-      </a>
+                            <tr>
+                                <td>Fer</td>
+                                <td>Aluminium</td>
+                                <td>10</td>
+                                <td>12000 FBu</td>
+                                <td>2024-06-01</td>
+                                <td>
+                                <span class="badge rounded text-warning bg-warning-subtle">
+                                    En attente
+                                </span>
+                                </td>
+                                <td class="text-end">
+                                <!-- Modifier -->
+                                <a href="#"
+                                    class="edit-product"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#modifyRate">
+                                    <i class="las la-pen  fs-18"
+                                    data-bs-toggle="tooltip"
+                                    data-bs-placement="top"
+                                    title="Modifier"></i>
+                                </a>
 
-      <!-- Supprimer -->
-      <a href="#"
-         data-bs-toggle="modal"
-         data-bs-target="#deleteModal">
-        <i class="las la-trash-alt text-secondary fs-18"
-           data-bs-toggle="tooltip"
-           data-bs-placement="top"
-           title="Supprimer"></i>
-      </a>
-    </td>
-  </tr>
+                                <!-- Supprimer -->
+                                <a href="#"
+                                   class="text-danger delete-btn"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#deleteModal">
+                                    <i class="las la-trash-alt  fs-18"
+                                    data-bs-toggle="tooltip"
+                                    data-bs-placement="top"
+                                    title="Supprimer"></i>
+                                </a>
+                                </td>
+                            </tr>
 
-  <tr>
-    <td>Jean</td>
-    <td>Ordinateur</td>
-    <td>5</td>
-    <td>12000 FBu</td>
-    <td>2024-06-01</td>
-    <td>
-      <span class="badge rounded text-success bg-success-subtle">
-        Payée
-      </span>
-    </td>
-    <td class="text-end">
-      <!-- Modifier -->
-      <a href="#"
-         class="edit-product"
-         data-bs-toggle="modal"
-         data-bs-target="#modifyRate">
-        <i class="las la-pen text-secondary fs-18"
-           data-bs-toggle="tooltip"
-           data-bs-placement="top"
-           title="Modifier"></i>
-      </a>
+                            <tr>
+                                <td>Jean</td>
+                                <td>Ordinateur</td>
+                                <td>5</td>
+                                <td>12000 FBu</td>
+                                <td>2024-06-01</td>
+                                <td>
+                                <span class="badge rounded text-success bg-success-subtle">
+                                    Payée
+                                </span>
+                                </td>
+                                <td class="text-end">
+                                <!-- Modifier -->
+                                <a href="#"
+                                    class="edit-product"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#modifyRate">
+                                    <i class="las la-pen  fs-18"
+                                    data-bs-toggle="tooltip"
+                                    data-bs-placement="top"
+                                    title="Modifier"></i>
+                                </a>
 
-      <!-- Supprimer -->
-      <a href="#"
-         data-bs-toggle="modal"
-         data-bs-target="#deleteModal">
-        <i class="las la-trash-alt text-secondary fs-18"
-           data-bs-toggle="tooltip"
-           data-bs-placement="top"
-           title="Supprimer"></i>
-      </a>
-    </td>
-  </tr>
+                                <!-- Supprimer -->
+                                <a href="#"
+                                    class="text-danger delete-btn"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#deleteModal">
+                                    <i class="las la-trash-alt  fs-18"
+                                    data-bs-toggle="tooltip"
+                                    data-bs-placement="top"
+                                    title="Supprimer"></i>
+                                </a>
+                                </td>
+                            </tr>
 
-  <tr>
-    <td>Marie</td>
-    <td>Smartphone</td>
-    <td>8</td>
-    <td>12000 FBu</td>
-    <td>2024-06-01</td>
-    <td>
-      <span class="badge rounded text-info bg-info-subtle">
-        Paiement partiel
-      </span>
-    </td>
-    <td class="text-end">
-      <!-- Modifier -->
-      <a href="#"
-         class="edit-product"
-         data-bs-toggle="modal"
-         data-bs-target="#modifyRate">
-        <i class="las la-pen text-secondary fs-18"
-           data-bs-toggle="tooltip"
-           data-bs-placement="top"
-           title="Modifier"></i>
-      </a>
+                            <tr>
+                                <td>Marie</td>
+                                <td>Smartphone</td>
+                                <td>8</td>
+                                <td>12000 FBu</td>
+                                <td>2024-06-01</td>
+                                <td>
+                                <span class="badge rounded text-info bg-info-subtle">
+                                    Paiement partiel
+                                </span>
+                                </td>
+                                <td class="text-end">
+                                <!-- Modifier -->
+                                <a href="#"
+                                    class="edit-product"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#modifyRate">
+                                    <i class="las la-pen  fs-18"
+                                    data-bs-toggle="tooltip"
+                                    data-bs-placement="top"
+                                    title="Modifier"></i>
+                                </a>
 
-      <!-- Supprimer -->
-      <a href="#"
-         data-bs-toggle="modal"
-         data-bs-target="#deleteModal">
-        <i class="las la-trash-alt text-secondary fs-18"
-           data-bs-toggle="tooltip"
-           data-bs-placement="top"
-           title="Supprimer"></i>
-      </a>
-    </td>
-  </tr>
+                                <!-- Supprimer -->
+                                <a href="#"
+                                    class="text-danger delete-btn"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#deleteModal">
+                                    <i class="las la-trash-alt  fs-18"
+                                    data-bs-toggle="tooltip"
+                                    data-bs-placement="top"
+                                    title="Supprimer"></i>
+                                </a>
+                                </td>
+                            </tr>
 
-  <tr>
-    <td>Paul</td>
-    <td>Tablette</td>
-    <td>3</td>
-    <td>12000 FBu</td>
-    <td>2024-06-01</td>
-    <td>
-      <span class="badge rounded text-danger bg-danger-subtle">
-        Annulée
-      </span>
-    </td>
-    <td class="text-end">
-      <!-- Modifier -->
-      <a href="#"
-         class="edit-product"
-         data-bs-toggle="modal"
-         data-bs-target="#modifyRate">
-        <i class="las la-pen text-secondary fs-18"
-           data-bs-toggle="tooltip"
-           data-bs-placement="top"
-           title="Modifier"></i>
-      </a>
+                            <tr>
+                                <td>Paul</td>
+                                <td>Tablette</td>
+                                <td>3</td>
+                                <td>12000 FBu</td>
+                                <td>2024-06-01</td>
+                                <td>
+                                <span class="badge rounded text-danger bg-danger-subtle">
+                                    Annulée
+                                </span>
+                                </td>
+                                <td class="text-end">
+                                <!-- Modifier -->
+                                <a href="#"
+                                    
+                                    class="edit-product"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#modifyRate">
+                                    <i class="las la-pen  fs-18"
+                                    data-bs-toggle="tooltip"
+                                    data-bs-placement="top"
+                                    title="Modifier"></i>
+                                </a>
 
-      <!-- Supprimer -->
-      <a href="#"
-         data-bs-toggle="modal"
-         data-bs-target="#deleteModal">
-        <i class="las la-trash-alt text-secondary fs-18"
-           data-bs-toggle="tooltip"
-           data-bs-placement="top"
-           title="Supprimer"></i>
-      </a>
-    </td>
-  </tr>
+                                <!-- Supprimer -->
+                                <a href="#"
+                                    class="text-danger delete-btn"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#deleteModal">
+                                    <i class="las la-trash-alt  fs-18"
+                                    data-bs-toggle="tooltip"
+                                    data-bs-placement="top"
+                                    title="Supprimer"></i>
+                                </a>
+                                </td>
+                            </tr>
 
-  <tr>
-    <td>Lucie</td>
-    <td>Imprimante</td>
-    <td>2</td>
-    <td>12000 FBu</td>
-    <td>2024-06-01</td>
-    <td>
-      <span class="badge rounded text-primary bg-primary-subtle">
-        Remboursée
-      </span>
-    </td>
-    <td class="text-end">
-      <!-- Modifier -->
-      <a href="#"
-         class="edit-product"
-         data-bs-toggle="modal"
-         data-bs-target="#modifyRate">
-        <i class="las la-pen text-secondary fs-18"
-           data-bs-toggle="tooltip"
-           data-bs-placement="top"
-           title="Modifier"></i>
-      </a>
+                            <tr>
+                                <td>Lucie</td>
+                                <td>Imprimante</td>
+                                <td>2</td>
+                                <td>12000 FBu</td>
+                                <td>2024-06-01</td>
+                                <td>
+                                <span class="badge rounded text-primary bg-primary-subtle">
+                                    Remboursée
+                                </span>
+                                </td>
+                                <td class="text-end">
+                                <!-- Modifier -->
+                                <a href="#"
+                                    class="edit-product"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#modifyRate">
+                                    <i class="las la-pen  fs-18"
+                                    data-bs-toggle="tooltip"
+                                    data-bs-placement="top"
+                                    title="Modifier"></i>
+                                </a>
 
-      <!-- Supprimer -->
-      <a href="#"
-         data-bs-toggle="modal"
-         data-bs-target="#deleteModal">
-        <i class="las la-trash-alt text-secondary fs-18"
-           data-bs-toggle="tooltip"
-           data-bs-placement="top"
-           title="Supprimer"></i>
-      </a>
-    </td>
-  </tr>
+                                <!-- Supprimer -->
+                                <a href="#"
+                                    class="text-danger delete-btn"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#deleteModal">
+                                    <i class="las la-trash-alt  fs-18"
+                                    data-bs-toggle="tooltip"
+                                    data-bs-placement="top"
+                                    title="Supprimer"></i>
+                                </a>
+                                </td>
+                            </tr>
 
-</tbody>
+                            </tbody>
 
                                 </table>
 
@@ -473,13 +473,12 @@
             </div>
 
             
-
-   <!-- js pour le tooltip -->
-    <script>
-  var tooltipTriggerList = [].slice.call(
-    document.querySelectorAll('[data-bs-toggle="tooltip"]')
-  );
-  tooltipTriggerList.map(function (tooltipTriggerEl) {
-    return new bootstrap.Tooltip(tooltipTriggerEl);
-  });
-</script>
+      <!-- js pour le tooltip -->
+      <script>
+        var tooltipTriggerList = [].slice.call(
+          document.querySelectorAll('[data-bs-toggle="tooltip"]')
+        );
+        tooltipTriggerList.map(function(tooltipTriggerEl) {
+          return new bootstrap.Tooltip(tooltipTriggerEl);
+        });
+      </script>

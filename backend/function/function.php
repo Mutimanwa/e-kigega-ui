@@ -244,6 +244,37 @@
         ];
     }
 
+    //==================== post with file 
+    function apiPostMultipart($endpoint, $body) {
+        $apiBase = "https://ekigega-backend.onrender.com";
+        $token   = $_SESSION['token'] ?? '';
+
+        $ch = curl_init($apiBase . $endpoint);
+
+        curl_setopt_array($ch, [
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_POST => true,
+            CURLOPT_POSTFIELDS => $body,
+            CURLOPT_HTTPHEADER => [
+                "Authorization: Bearer $token"
+                // Ne pas mettre Content-Type, cURL va gérer multipart automatiquement
+            ],
+            CURLOPT_CONNECTTIMEOUT => 5,
+            CURLOPT_TIMEOUT => 30,
+            CURLOPT_SSL_VERIFYPEER => false,
+            CURLOPT_SSL_VERIFYHOST => false
+        ]);
+
+        $response = curl_exec($ch);
+        $status   = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        curl_close($ch);
+
+        if ($status === 401) return "login first";
+        if ($status < 200 || $status >= 300) return "Erreur lors de la création";
+
+        return json_decode($response, true);
+    }
+
     //=========== verifier l'abonnement de l'entreprise connecte 
     function abonnement($redirection){
 
@@ -285,7 +316,6 @@
         }
     }
 
-
     //=========== fetch produit via son ID
     function getAPI_id($endpoint,$id){
 
@@ -297,4 +327,44 @@
 
       return $api;
     }
+
+    function isAllowedSource($url) {
+        $host = parse_url($url, PHP_URL_HOST);
+        return in_array($host, [
+            "ekigega-backend.onrender.com",
+            "www.ekigega-backend.onrender.com"
+        ]);
+    }
+
+    
+    function forceDownloadFromURL($url)
+    {
+        if (!isAllowedSource($url)) {
+            die("Source non autorisée");
+        }
+
+        $filename = basename(parse_url($url, PHP_URL_PATH));
+
+        header("Content-Description: File Transfer");
+        header("Content-Type: application/octet-stream");
+        header("Content-Disposition: attachment; filename=\"$filename\"");
+        header("Cache-Control: no-cache");
+        header("Pragma: public");
+
+        $fp = fopen($url, "rb");
+
+        if (!$fp) {
+            die("Impossible d’ouvrir le fichier");
+        }
+
+        while (!feof($fp)) {
+            echo fread($fp, 8192);
+            flush();
+        }
+
+        fclose($fp);
+        exit;
+    }
+
+
 ?>

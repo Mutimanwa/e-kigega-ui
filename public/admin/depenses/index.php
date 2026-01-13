@@ -1,38 +1,38 @@
 <?php
 
-    ini_set('session.cookie_httponly', 1);
-    ini_set('session.cookie_secure', 1);
-    session_start();
+ini_set('session.cookie_httponly', 1);
+ini_set('session.cookie_secure', 1);
+session_start();
 
-    require_once('./../../../backend/function/function.php');
-    $role="ADMIN";
+require_once('./../../../backend/function/function.php');
+$role = "ADMIN";
 
-    //================== gerer les session 
-    if(requireRole($role)==="Accès interdit"){
-        header("Location: ./../../../index.php");
-        session_destroy();
-    }
+//================== gerer les session 
+if (requireRole($role) === "Accès interdit") {
+  header("Location: ./../../../index.php");
+  session_destroy();
+}
 
-    //=========== verifier l'abonnement de cet entreprise
-    $url="./../../../index.php";
-    abonnement($url);
+//=========== verifier l'abonnement de cet entreprise
+$url = "./../../../index.php";
+abonnement($url);
 
-    //================== fetch les produits
-    $produits=getApi('/api/produits/') ?? [];
-    if (!is_array($produits)) {
-      echo "<div class='alert alert-danger'>API error</div>";
-      $produits = [];
-    } 
+//================== fetch les produits
+$produits = getApi('/api/produits/') ?? [];
+if (!is_array($produits)) {
+  echo "<div class='alert alert-danger'>API error</div>";
+  $produits = [];
+}
 
-    // ================== fetch les categories
-    $depenses = getApi('/api/depenses/') ?? [];
-    if (!is_array($depenses)) {
-        echo "<div class='alert alert-danger'>Erreur API Categories</div>";
-        $depenses = [];
-    }
+// ================== fetch les categories
+$depenses = getApi('/api/depenses/') ?? [];
+if (!is_array($depenses)) {
+  echo "<div class='alert alert-danger'>Erreur API Categories</div>";
+  $depenses = [];
+}
 
-  include "./../../../includes/header.php";
-  include "./../../../includes/sidebar.php";
+include "./../../../includes/header.php";
+include "./../../../includes/sidebar.php";
 ?>
 <div class="page-wrapper">
 
@@ -83,32 +83,39 @@
                     </tr>
                   </thead>
                   <tbody>
-
+                  <?php foreach($depenses as $d): ?>
                     <tr>
-                      <td><?= htmlspecialchars($depenses['']) ?></td>
-                      <td> this is wakanda product</td>
-                      <td> 1400</td>
-                      <td><a href="">Download</a></td>
-                      <td>2024-06-01</td>
+                      <td><?= htmlspecialchars($d['type']) ?></td>
+                      <td> <?= htmlspecialchars($d['description']) ?></td>
+                      <td> <?= number_format(htmlspecialchars($d['montant']),2) ?></td>
+                      <td>
+                      <?php if (!empty($d['justificatif'])): ?>
+                          <a href="./../../../backend/download/index.php?url=<?= urlencode($d['justificatif']) ?>" class="btn btn-primary btn-sm">
+                              Télécharger
+                          </a>
+                      <?php else: ?>
+                          <span class="text-muted">Pas de Justificatif</span>
+                      <?php endif; ?>
+                      </td>
+                      <td><?= htmlspecialchars((new DateTime($d['created_at']))->format('d/m/Y')) ?></td>
                       <td class="text-end">
                         <!-- Modifier -->
                         <a href="#" data-bs-toggle="modal" data-bs-target="#modifyRate" class="edit-product"
                           data-produit="Ordinateur HP" data-categorie="Informatique" data-prix="1200"
                           data-quantite="10">
-                         <i class="las la-pen text-secondary fs-18"  data-bs-toggle="tooltip"
-        data-bs-placement="top"
-        title="Modifier"></i>
+                          <i class="las la-pen  fs-18" data-bs-toggle="tooltip"
+                            data-bs-placement="top"
+                            title="Modifier"></i>
                         </a>
 
                         <!-- Supprimer -->
-                        <a href="#" data-bs-toggle="modal" data-bs-target="#deleteModal"><i class="las la-trash-alt text-secondary fs-18 "  data-bs-toggle="tooltip"
-   data-bs-placement="top"
-   title="Supprimer"></i></a>
+                        <a href="#" class="text-danger delete-btn" data-bs-toggle="modal" data-bs-target="#deleteModal"><i class="las la-trash-alt  fs-18 " data-bs-toggle="tooltip"
+                            data-bs-placement="top"
+                            title="Supprimer"></i></a>
 
                       </td>
-
                     </tr>
-
+                  <?php endforeach; ?>
                   </tbody>
                 </table>
 
@@ -123,18 +130,31 @@
 
 
       <?php
-      $pageLibs = [
-        LIBS_URL . "simple-datatables/umd/simple-datatables.js",
-        JS_URL . "pages/datatables.init.js"
-      ];
-      include "./../../../includes/footer.php";
+        $pageLibs = [
+          LIBS_URL . "simple-datatables/umd/simple-datatables.js",
+          JS_URL . "pages/datatables.init.js"
+        ];
+        include "./../../../includes/footer.php";
       ?>
 
+
+      <script>
+          // toast success
+          <?php if (isset($_GET['success'])): ?>
+            showToast("<?= htmlspecialchars($_GET['success']) ?>", 'success');
+    
+          <?php endif; ?>
+          // toast error
+          <?php if (isset($_GET['error'])): ?>
+          showToast("<?= htmlspecialchars($_GET['error']) ?>", 'danger');
+        
+          <?php endif; ?>
+      </script>
 
       <!-- Popup Ajouter -->
       <div class="modal fade" id="addRate" tabindex="-1" aria-labelledby="addRateLabel" aria-hidden="true">
         <div class="modal-dialog">
-          <form action="#">
+          <form action="./../../../backend/admin/depenses/add.php" method="post" enctype="multipart/form-data">
             <div class="modal-content">
               <div class="modal-header">
                 <h5 class="modal-title" id="addRateLabel">Ajouter une dépense</h5>
@@ -149,7 +169,7 @@
                     <span class="input-group-text">
                       <i class="fas fa-tags"></i>
                     </span>
-                      <input type="text" id="add-type" class="form-control" placeholder="Type de la dépense">
+                    <input type="text" id="add-type" name="type" class="form-control" placeholder="Type de la dépense">
                   </div>
                 </div>
 
@@ -159,8 +179,9 @@
                     <span class="input-group-text">
                       <i class="fas fa-align-left"></i>
                     </span>
-                    <textarea id="add-description" class="form-control" rows="3"
-                      placeholder="Description de la dépense"></textarea>
+                    <textarea id="add-description" name="description" class="form-control" rows="3"
+                      placeholder="Description de la dépense">
+                    </textarea>
                   </div>
                 </div>
 
@@ -168,7 +189,7 @@
                   <label>Montant</label>
                   <div class="input-group">
                     <span class="input-group-text"><i class="fas fa-money-bill-wave"></i></span>
-                    <input type="number" id="add-prix" class="form-control" placeholder="Montant de la dépense">
+                    <input type="number" id="add-prix" name="montant" class="form-control" placeholder="Montant de la dépense">
                   </div>
                 </div>
 
@@ -176,13 +197,13 @@
                   <label>Justificatif si necessaire </label>
                   <div class="input-group">
                     <span class="input-group-text"><i class="fas fa-file"></i></span>
-                    <input type="file" id="add-prix" class="form-control" placeholder="Montant de la dépense">
+                    <input type="file" id="add-justificatif" name="justificatif" class="form-control">
                   </div>
                 </div>
 
               </div>
               <div class="modal-footer">
-                <button type="submit" class="btn btn-primary w-100">Ajouter</button>
+                <button type="submit" name="send" class="btn btn-primary w-100">Ajouter</button>
               </div>
             </div>
           </form>
@@ -240,38 +261,54 @@
         </div>
       </div>
 
-
-
       <!-- modal de suppression -->
-      <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="DeleteUserLabel" aria-hidden="true">
+      <div class="modal fade" id="deleteModal" tabindex="-1">
         <div class="modal-dialog">
           <div class="modal-content">
+
             <div class="modal-header bg-white">
-              <h5 class="modal-title text-danger" id="addUserLabel">Supprimer</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              <h5 class="modal-title text-danger">Supprimer Depense</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
+
             <div class="modal-body">
-              <p class="text-muted">Êtes-vous sûr de vouloir supprimer cet utilisateur ? Cette action est irréversible.
+              <p>
+                Voulez-vous vraiment supprimer
+                <strong id="catName"></strong> ?
               </p>
             </div>
-            <div class="modal-footer">
-              <button type="submit" class="btn btn-outline-danger">Oui</button>
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                Annuler
-              </button>
 
+            <div class="modal-footer">
+              <form method="POST" action="./../../../backend/admin/depenses/delete.php">
+                <input type="hidden" name="id" id="deleteId">
+                <button type="submit" class="btn btn-danger">Oui, supprimer</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                  Annuler
+                </button>
+              </form>
             </div>
+
           </div>
         </div>
       </div>
 
-        
-        <!-- js pour le tooltip -->
-        <script>
-  var tooltipTriggerList = [].slice.call(
-    document.querySelectorAll('[data-bs-toggle="tooltip"]')
-  );
-  tooltipTriggerList.map(function (tooltipTriggerEl) {
-    return new bootstrap.Tooltip(tooltipTriggerEl);
-  });
-</script>
+      <!-- Js pour recuper l'id lors de suppression  -->
+      <script>
+        document.querySelectorAll('.delete-btn').forEach(btn => {
+            btn.addEventListener('click', function () {
+                document.getElementById('deleteId').value = this.dataset.id;
+                document.getElementById('catName').innerText = this.dataset.nom;
+            });
+        });
+      </script>
+
+
+      <!-- js pour le tooltip -->
+      <script>
+        var tooltipTriggerList = [].slice.call(
+          document.querySelectorAll('[data-bs-toggle="tooltip"]')
+        );
+        tooltipTriggerList.map(function(tooltipTriggerEl) {
+          return new bootstrap.Tooltip(tooltipTriggerEl);
+        });
+      </script>

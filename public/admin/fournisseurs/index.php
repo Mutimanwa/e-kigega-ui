@@ -18,7 +18,7 @@ $url = "./../../../index.php";
 abonnement($url);
 
 //================== fetch les produits
-$clients = getApi('/api/partners/') ?? [];
+$clients = getApi('/api/partners/fournisseurs/') ?? [];
 if (!is_array($clients)) {
   echo "<div class='alert alert-danger'>API error</div>";
   $clients = [];
@@ -91,34 +91,38 @@ include "./../../../includes/sidebar.php";
                         <td><?= htmlspecialchars((new DateTime($c['created_at']))->format('d/m/Y')) ?></td>
                         <td class="text-end">
 
-                          <!-- Modifier -->
-                          <a href="#"
-                            class="editBtn"
-                            data-bs-toggle="modal"
-                            data-bs-target="#modifyProductModal"
-                            data-id="<?= $c['id'] ?>"
-                            data-nom="<?= htmlspecialchars($c['nom']) ?>"
-                            data-prenom="<?= htmlspecialchars($c['prenom']) ?>"
-                            data-email="<?= $c['email'] ?>"
-                            data-telephone="<?= $c['telephone'] ?>"
-                            data-adresse="<?= $c['adresse'] ?>">
-                            <i class="las la-pen text-secondary fs-18" data-bs-toggle="tooltip"
-                              data-bs-placement="top"
-                              title="Modifier"></i>
-                          </a>
+
+                        <!-- Modifier -->
+                        <a href="#"
+                          class="editBtn"
+                          data-bs-toggle="modal"
+                          data-bs-target="#modifyProductModal"
+                          data-id="<?= $c['id'] ?>"
+                          data-nom="<?= htmlspecialchars($c['nom']) ?>"
+                          data-prenom="<?= htmlspecialchars($c['prenom']) ?>"
+                          data-email="<?= $c['email'] ?>"
+                          data-telephone="<?= $c['telephone'] ?>"
+                          data-adresse="<?= $c['adresse'] ?>">
+                          <i class="las la-pen  fs-18"  data-bs-toggle="tooltip"
+   data-bs-placement="top"
+   title="Modifier"></i>
+                        </a>
 
 
-                          <!-- Supprimer -->
-                          <a href="#"
-                            class="text-danger delete-btn"
-                            data-bs-toggle="modal"
-                            data-bs-target="#deleteModal"
-                            data-id="<?= $c['id'] ?>"
-                            data-nom="<?= htmlentities($c['nom']) ?> <?= htmlentities($c['prenom']) ?>">
-                            <i class="las la-trash-alt text-secondary fs-18 " data-bs-toggle="tooltip"
-                              data-bs-placement="top"
-                              title="Supprimer"></i>
-                          </a>
+                        <!-- Supprimer -->
+                        <a href="#"
+                          class="text-danger delete-btn"
+                          data-bs-toggle="modal"
+                          data-bs-target="#deleteModal"
+                          data-id="<?= $c['id'] ?>"
+                          data-nom="<?= htmlentities($c['nom']) ?> <?= htmlentities($c['prenom']) ?>">
+                          <i class="las la-trash-alt  fs-18 "  data-bs-toggle="tooltip"
+   data-bs-placement="top"
+   title="Supprimer"></i>
+                        </a>
+
+                         
+
 
                         </td>
                       </tr>
@@ -314,7 +318,7 @@ include "./../../../includes/sidebar.php";
             </div>
 
             <div class="modal-footer">
-              <form method="POST" action="./../../../backend/admin/clients/delete.php">
+              <form method="POST" action="./../../../backend/admin/fournisseurs/delete.php">
                 <input type="hidden" name="id" id="deleteId">
                 <button type="submit" class="btn btn-danger">Oui, supprimer</button>
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">

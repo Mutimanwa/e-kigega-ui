@@ -88,7 +88,7 @@ include "./../../../includes/sidebar.php";
                           data-bs-target="#modifyRate"
                           data-id="<?= $c['id'] ?>"
                           data-nom="<?= htmlspecialchars($c['nom']) ?>">
-                           <i class="las la-pen text-secondary fs-18"  data-bs-toggle="tooltip"
+                           <i class="las la-pen  fs-18"  data-bs-toggle="tooltip"
         data-bs-placement="top"
         title="Modifier"></i>
                         </a>
@@ -100,10 +100,10 @@ include "./../../../includes/sidebar.php";
                           data-bs-toggle="modal"
                           data-bs-target="#deleteModal"
                           data-id="<?= $c['id'] ?>"
-                          data-nom="<?= htmlentities($c['nom']) ?>">
-                         <i class="las la-trash-alt text-secondary fs-18 "  data-bs-toggle="tooltip"
+                          data-nom="<?= htmlentities($c['nom']) ?>" >
+                         <i class="las la-trash-alt  fs-18 "  data-bs-toggle="tooltip"
    data-bs-placement="top"
-   title="Supprimer"></i>
+   title="Supprimer" ></i>
                         </a>
 
 
