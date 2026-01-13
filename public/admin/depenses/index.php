@@ -262,27 +262,45 @@ include "./../../../includes/sidebar.php";
       </div>
 
       <!-- modal de suppression -->
-      <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="DeleteUserLabel" aria-hidden="true">
+      <div class="modal fade" id="deleteModal" tabindex="-1">
         <div class="modal-dialog">
           <div class="modal-content">
+
             <div class="modal-header bg-white">
-              <h5 class="modal-title text-danger" id="addUserLabel">Supprimer</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              <h5 class="modal-title text-danger">Supprimer Depense</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
+
             <div class="modal-body">
-              <p class="text-muted">Êtes-vous sûr de vouloir supprimer cet utilisateur ? Cette action est irréversible.
+              <p>
+                Voulez-vous vraiment supprimer
+                <strong id="catName"></strong> ?
               </p>
             </div>
-            <div class="modal-footer">
-              <button type="submit" class="btn btn-outline-danger">Oui</button>
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                Annuler
-              </button>
 
+            <div class="modal-footer">
+              <form method="POST" action="./../../../backend/admin/depenses/delete.php">
+                <input type="hidden" name="id" id="deleteId">
+                <button type="submit" class="btn btn-danger">Oui, supprimer</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                  Annuler
+                </button>
+              </form>
             </div>
+
           </div>
         </div>
       </div>
+
+      <!-- Js pour recuper l'id lors de suppression  -->
+      <script>
+        document.querySelectorAll('.delete-btn').forEach(btn => {
+            btn.addEventListener('click', function () {
+                document.getElementById('deleteId').value = this.dataset.id;
+                document.getElementById('catName').innerText = this.dataset.nom;
+            });
+        });
+      </script>
 
 
       <!-- js pour le tooltip -->

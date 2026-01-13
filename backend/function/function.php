@@ -275,7 +275,6 @@
         return json_decode($response, true);
     }
 
-
     //=========== verifier l'abonnement de l'entreprise connecte 
     function abonnement($redirection){
 
@@ -329,43 +328,43 @@
       return $api;
     }
 
-function isAllowedSource($url) {
-    $host = parse_url($url, PHP_URL_HOST);
-    return in_array($host, [
-        "ekigega-backend.onrender.com",
-        "www.ekigega-backend.onrender.com"
-    ]);
-}
-
- 
-function forceDownloadFromURL($url)
-{
-    if (!isAllowedSource($url)) {
-        die("Source non autorisée");
+    function isAllowedSource($url) {
+        $host = parse_url($url, PHP_URL_HOST);
+        return in_array($host, [
+            "ekigega-backend.onrender.com",
+            "www.ekigega-backend.onrender.com"
+        ]);
     }
 
-    $filename = basename(parse_url($url, PHP_URL_PATH));
+    
+    function forceDownloadFromURL($url)
+    {
+        if (!isAllowedSource($url)) {
+            die("Source non autorisée");
+        }
 
-    header("Content-Description: File Transfer");
-    header("Content-Type: application/octet-stream");
-    header("Content-Disposition: attachment; filename=\"$filename\"");
-    header("Cache-Control: no-cache");
-    header("Pragma: public");
+        $filename = basename(parse_url($url, PHP_URL_PATH));
 
-    $fp = fopen($url, "rb");
+        header("Content-Description: File Transfer");
+        header("Content-Type: application/octet-stream");
+        header("Content-Disposition: attachment; filename=\"$filename\"");
+        header("Cache-Control: no-cache");
+        header("Pragma: public");
 
-    if (!$fp) {
-        die("Impossible d’ouvrir le fichier");
+        $fp = fopen($url, "rb");
+
+        if (!$fp) {
+            die("Impossible d’ouvrir le fichier");
+        }
+
+        while (!feof($fp)) {
+            echo fread($fp, 8192);
+            flush();
+        }
+
+        fclose($fp);
+        exit;
     }
-
-    while (!feof($fp)) {
-        echo fread($fp, 8192);
-        flush();
-    }
-
-    fclose($fp);
-    exit;
-}
 
 
 ?>
