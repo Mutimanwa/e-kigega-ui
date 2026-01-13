@@ -95,7 +95,7 @@ $formations = [
 <div class="page-wrapper">
     <!-- Page Content-->
     <div class="page-content">
-        <div class="container-fluid">
+ <div class="container-fluid">
     <!-- Page Header -->
     <div class="row">
         <div class="col-12">
