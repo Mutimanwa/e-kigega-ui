@@ -11,6 +11,7 @@ include_once "includes/sidebar.php";
                 <div class="">
                     <ol class="breadcrumb mb-0">
                         <li class="breadcrumb-item"><a href="#">E-kigega</a>
+                        </li><li class="breadcrumb-item"><a href="#">Super Admin</a>
                         </li><!--end nav-item-->
                         <li class="breadcrumb-item active">Tableau de bord</li>
                     </ol>

@@ -7,12 +7,12 @@
                                     <p class="text-muted mb-0">
                                         ©
                                         <script> document.write(new Date().getFullYear()) </script>
-                                        E-kigega
+                                        E-Kigega
                                         <span
                                             class="text-muted d-none d-sm-inline-block float-end">
                                             créé par
                                           
-                                            Plc lab</span>
+                                            Plc Lab</span>
                                     </p>
                                 </div>
                             </div>

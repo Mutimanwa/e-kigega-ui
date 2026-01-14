@@ -99,7 +99,8 @@ $formations = [
                 <h4 class="mb-0">Gestion des Formations</h4>
                 <div class="page-title-right">
                     <ol class="breadcrumb m-0">
-                        <li class="breadcrumb-item"><a href="">Tableau de bord</a></li>
+                        <li class="breadcrumb-item"><a href="#">e-Kigega</a></li>
+                        <li class="breadcrumb-item"><a href="#">Super Admin</a></li>
                         <li class="breadcrumb-item active">Formations</li>
                     </ol>
                 </div>
@@ -217,74 +218,259 @@ $formations = [
                         <div class="col-md-12 d-flex align-items-center justify-content-between">
                             <h5 class="card-title mb-0">Liste des Formations</h5>
                             <a href="#" data-bs-toggle="modal" data-bs-target="#creationModal" class="btn btn-primary">
-                                    <i class="las la-plus-circle me-1"></i> Nouvelle Formation
-                                </a>
-                        </div>                                  
+                                <i class="las la-plus-circle me-1"></i> Nouvelle Formation
+                            </a>
+                        </div>
                     </div>
 
                     <!-- table -->
                     <div class="table-responsive" id="tab">
-                        <table class="table table-hover mb-0">
+                        <table class="table table-hover mb-0" id="datatable_1">
+
                             <thead class="table-light">
                                 <tr>
-                                    <th width="60">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" id="selectAll">
-                                        </div>
-                                    </th>
+                                 
                                     <th>Formation</th>
                                     <th>Catégorie</th>
+                                    <th>Niveau</th>
+                                    <th>Langue</th>
+                                    <th>Date</th>
+                                    <th class="text-center">Statut</th>
                                     <th class="text-center">Durée</th>
-                        
                                     <th class="text-end">Actions</th>
                                 </tr>
                             </thead>
+
                             <tbody>
 
+
                                 <tr>
-                                    <td>
-                                        <div class="form-check">
-                                            <input class="form-check-input formation-checkbox" type="checkbox" value="">
-                                        </div>
-                                    </td>
+                                 
+
+                                    <!-- Formation -->
                                     <td>
                                         <div class="d-flex align-items-center">
                                             <div class="flex-shrink-0 me-3">
-                                                <img src="https://via.placeholder.com/60x40" class="rounded"
-                                                    alt="Miniature" width="60">
+                                                <img src="https://via.placeholder.com/80x50" class="rounded"
+                                                    alt="Image de couverture" width="80">
                                             </div>
                                             <div class="flex-grow-1">
-                                                <h6 class="mb-1">Test</h6>
-                                                <small class="text-muted">Lorem ipsum dolor sit amet.</small>
+                                                <h6 class="mb-1">Gestion du budget personnel</h6>
+                                                <!-- Titre de la formation -->
+                                                <small class="text-muted">
+                                                    Apprendre à gérer efficacement ses finances personnelles.
+                                                </small> <!-- Description courte -->
                                             </div>
                                         </div>
                                     </td>
+
+                                    <!-- Catégorie -->
                                     <td>
                                         <span class="badge bg-primary-subtle text-primary">
-                                            Lorem.
+                                            Finance
                                         </span>
                                     </td>
 
+                                    <!-- Niveau -->
+                                    <td>
+                                        <span class="badge bg-success-subtle text-success">
+                                            Débutant
+                                        </span>
+                                    </td>
+
+                                    <!-- Langue -->
+                                    <td>
+                                        <span class="badge bg-secondary-subtle text-secondary">
+                                            Français
+                                        </span>
+                                    </td>
+
+                                    <!-- Date -->
+                                    <td>
+                                        15 Mar 2024
+                                    </td>
+
+                                    <!-- Statut -->
+                                    <td class="text-center">
+                                        <span class="badge bg-success">
+                                            <i class="las la-video me-1"></i> Vidéo disponible
+                                        </span>
+                                    </td>
+
+                                    <!-- Durée -->
                                     <td class="text-center">04:20</td>
 
+                                    <!-- Actions -->
                                     <td class="text-end">
-                                        <div class="btn-group btn-group-sm ">
-                                            <a href="#" class="btn btn-outline-transparent" data-bs-toggle="modal" data-bs-target="#modificationModal">
-                                                <i class="las la-pen fs-18 text-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="modifier" ></i>
+                                        <div class="d-flex justify-content-end gap-2">
+
+                                            <!-- Modifier -->
+                                            <a href="#" class="text-primary" data-bs-toggle="modal"
+                                                data-bs-target="#modificationModal">
+                                                <i class="las la-pen fs-18" data-bs-toggle="tooltip" title="Modifier"
+                                                    data-bs-placement="top"></i>
                                             </a>
-                                            <a href="videos.php?id="
-                                                class="btn btn-outline-transparent">
-                                                <i class="las la-video fs-18 text-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="Voir la video"></i>
+
+
+                                            <!-- Voir la vidéo -->
+                                            <a href="videos.php?id=1" class="text-info" data-bs-toggle="tooltip"
+                                                title="Voir la vidéo" data-bs-placement="top">
+                                                <i class="las la-video fs-18"></i>
                                             </a>
-                                            <a href="" class="btn btn-outline-transparent" onclick="supprimerFormation()">
-                                                <i class="las la-trash fs-18 text-warning" data-bs-toggle="tooltip" data-bs-placement="top" title="supprimer"></i>
+
+                                            <!-- Supprimer -->
+                                            <a href="#" class="text-danger" data-bs-toggle="modal"
+                                                data-bs-target="#deleteModal" onclick="supprimerFormation()">
+                                                <i class="las la-trash fs-18" data-bs-toggle="tooltip" title="Supprimer"
+                                                    data-bs-placement="top"></i>
                                             </a>
+
+
                                         </div>
                                     </td>
+
+                                </tr>
+
+                                <!-- ===== EXEMPLE 2 ===== -->
+                                <tr>
+                                 
+
+                                    <td>
+                                        <div class="d-flex align-items-center">
+                                            <img src="https://via.placeholder.com/80x50" class="rounded me-3"
+                                                width="80">
+                                            <div>
+                                                <h6 class="mb-1">Épargne et investissement</h6>
+                                                <small class="text-muted">Bases pour bien investir.</small>
+                                            </div>
+                                        </div>
+                                    </td>
+
+                                    <td>
+                                        <span class="badge bg-warning-subtle text-warning">Économie</span>
+                                    </td>
+
+                                    <td>
+                                        <span class="badge bg-info-subtle text-info">Intermédiaire</span>
+                                    </td>
+
+                                    <td>
+                                        <span class="badge bg-secondary-subtle text-secondary">Kirundi</span>
+                                    </td>
+
+                                    <!-- Date -->
+                                    <td>
+                                        15 Mar 2024
+                                    </td>
+
+                                    <td class="text-center">
+                                        <span class="badge bg-warning text-dark">
+                                            <i class="las la-clock me-1"></i> En cours
+                                        </span>
+                                    </td>
+
+                                    <td class="text-center">--:--</td>
+
+                                    <!-- Actions -->
+                                    <td class="text-end">
+                                        <div class="d-flex justify-content-end gap-2">
+                                            <!-- Modifier -->
+                                            <a href="#" class="text-primary" data-bs-toggle="modal"
+                                                data-bs-target="#modificationModal">
+                                                <i class="las la-pen fs-18" data-bs-toggle="tooltip" title="Modifier"
+                                                    data-bs-placement="top"></i>
+                                            </a>
+
+                                            <!-- Voir la vidéo -->
+                                            <a href="videos.php?id=1" class="text-info" data-bs-toggle="tooltip"
+                                                title="Voir la vidéo" data-bs-placement="top">
+                                                <i class="las la-video fs-18"></i>
+                                            </a>
+                                            <!-- Supprimer -->
+                                            <a href="#" class="text-danger" data-bs-toggle="modal"
+                                                data-bs-target="#deleteModal" onclick="supprimerFormation()">
+                                                <i class="las la-trash fs-18" data-bs-toggle="tooltip" title="Supprimer"
+                                                    data-bs-placement="top"></i>
+                                            </a>
+
+
+                                        </div>
+                                    </td>
+
+                                </tr>
+
+                                <!-- ===== EXEMPLE 3 ===== -->
+                                <tr>
+                                 
+
+                                    <td>
+                                        <div class="d-flex align-items-center">
+                                            <img src="https://via.placeholder.com/80x50" class="rounded me-3"
+                                                width="80">
+                                            <div>
+                                                <h6 class="mb-1">Stratégies financières avancées</h6>
+                                                <small class="text-muted">Pour utilisateurs expérimentés.</small>
+                                            </div>
+                                        </div>
+                                    </td>
+
+                                    <td>
+                                        <span class="badge bg-danger-subtle text-danger">Business</span>
+                                    </td>
+
+                                    <td>
+                                        <span class="badge bg-danger">Avancé</span>
+                                    </td>
+
+                                    <td>
+                                        <span class="badge bg-secondary-subtle text-secondary">Français</span>
+                                    </td>
+
+                                    <!-- Date -->
+                                    <td>
+                                        15 Mar 2024
+                                    </td>
+
+                                    <td class="text-center">
+                                        <span class="badge bg-danger">
+                                            <i class="las la-video-slash me-1"></i> Aucune vidéo
+                                        </span>
+                                    </td>
+
+                                    <td class="text-center">--:--</td>
+
+                                    <!-- Actions -->
+                                    <td class="text-end">
+                                        <div class="d-flex justify-content-end gap-2">
+
+                                            <!-- Modifier -->
+                                            <a href="#" class="text-primary" data-bs-toggle="modal"
+                                                data-bs-target="#modificationModal">
+                                                <i class="las la-pen fs-18" data-bs-toggle="tooltip" title="Modifier"
+                                                    data-bs-placement="top"></i>
+                                            </a>
+
+                                            <!-- Voir la vidéo -->
+                                            <a href="videos.php?id=1" class="text-info" data-bs-toggle="tooltip"
+                                                title="Voir la vidéo" data-bs-placement="top">
+                                                <i class="las la-video fs-18"></i>
+                                            </a>
+
+                                            <!-- Supprimer -->
+                                            <a href="#" class="text-danger" data-bs-toggle="modal"
+                                                data-bs-target="#deleteModal" onclick="supprimerFormation()">
+                                                <i class="las la-trash fs-18" data-bs-toggle="tooltip" title="Supprimer"
+                                                    data-bs-placement="top"></i>
+                                            </a>
+
+                                        </div>
+                                    </td>
+
                                 </tr>
 
                             </tbody>
                         </table>
+
                     </div>
 
                 </div>
@@ -294,43 +480,270 @@ $formations = [
 </div>
 
 
-    <!-- Modal de création -->
-    <div class="modal fade" id="creationModal" tabindex="-1">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content ">
-                <div class="modal-header border-secondary">
-                    <h5 class="modal-title">Créer un nouveau short</h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
-                </div>
-                <div class="modal-body">
-                    <form id="shortForm" onsubmit="createShort(event)">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="mb-3">
-                                    <label class="form-label">Télécharger une vidéo *</label>
-                                    <input type="file" class="form-control  border-secondary" accept="video/*"
+<!-- Modal de création -->
+<div class="modal fade" id="creationModal" tabindex="-1">
+    <div class="modal-dialog modal-lg ">
+        <div class="modal-content ">
+            <div class="modal-header border-secondary">
+                <h5 class="modal-title">Créer un nouveau short</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form id="shortForm" onsubmit="createShort(event)">
+                    <!-- ROW 1 -->
+                    <div class="row">
+
+                        <!-- Vidéo -->
+                        <div class="col-md-4">
+                            <div class="mb-3">
+                                <label class="form-label">Télécharger une vidéo *</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-video"></i></span>
+                                    <input type="file" class="form-control border-secondary" accept="video/*" required>
+                                </div>
+                                <small class="text-muted">Durée maximale : 60 secondes • Formats : MP4, MOV</small>
+                            </div>
+                        </div>
+
+                        <!-- Image de couverture -->
+                        <div class="col-md-4">
+                            <div class="mb-3">
+                                <label class="form-label">Image de couverture *</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-image"></i></span>
+                                    <input type="file" class="form-control border-secondary" accept="image/*" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Titre -->
+                        <div class="col-md-4">
+                            <div class="mb-3">
+                                <label class="form-label">Titre *</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-heading"></i></span>
+                                    <input type="text" class="form-control border-secondary" maxlength="60"
+                                        placeholder="Titre accrocheur (max. 60 caractères)" required>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- ROW 2 -->
+                    <div class="row">
+
+                        <!-- Catégorie -->
+                        <div class="col-md-4">
+                            <div class="mb-3">
+                                <label class="form-label">Catégorie *</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-list"></i></span>
+                                    <select class="form-select border-secondary" required>
+                                        <option value="" selected disabled>Choisir une catégorie</option>
+                                        <?php foreach ($categories as $key => $label): ?>
+                                            <?php if ($key !== 'tous'): ?>
+                                                <option value="<?= $key ?>"><?= $label ?></option>
+                                            <?php endif; ?>
+                                        <?php endforeach; ?>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Langue -->
+                        <div class="col-md-4">
+                            <div class="mb-3">
+                                <label class="form-label">Langue *</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-language"></i></span>
+                                    <select class="form-select border-secondary" required>
+                                        <option value="" selected disabled>Choisir une langue</option>
+                                        <option value="kirundi">Kirundi</option>
+                                        <option value="francais">Français</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Description -->
+                        <div class="col-md-4">
+                            <div class="mb-3">
+                                <label class="form-label">Description</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-align-left"></i></span>
+                                    <textarea class="form-control border-secondary" rows="3"
+                                        placeholder="Décrivez votre contenu..."></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- ROW 3 -->
+                    <div class="row">
+
+                        <!-- Référence -->
+                        <div class="col-md-4">
+                            <div class="mb-3">
+                                <label class="form-label">Référence *</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-barcode"></i></span>
+                                    <input type="text" class="form-control border-secondary" placeholder="Ex. : REF-001"
                                         required>
-                                    <small class="text-muted">Max 60 secondes, formats MP4, MOV</small>
-                                </div>
-
-                                <div class="mb-3">
-                                    <label class="form-label">Titre *</label>
-                                    <input type="text" class="form-control  border-secondary" maxlength="60"
-                                        placeholder="Titre accrocheur (max 60 caractères)" required>
-                                </div>
-
-                                <div class="mb-3">
-                                    <label class="form-label">Description</label>
-                                    <textarea class="form-control  border-secondary" rows="3"
-                                        placeholder="Décrivez votre contenu..."></textarea>
                                 </div>
                             </div>
+                        </div>
 
-                            <div class="col-md-6">
-                                <div class="mb-3">
-                                    <label class="form-label">Catégorie *</label>
-                                    <select class="form-select  border-secondary" required>
-                                        <option value="">Choisir une catégorie</option>
+                        <!-- Niveau -->
+                        <div class="col-md-4">
+                            <div class="mb-3">
+                                <label class="form-label">Niveau *</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-signal"></i></span>
+                                    <select class="form-select border-secondary" required>
+                                        <option value="" selected disabled>Choisir le niveau</option>
+                                        <option value="debutant">Débutant</option>
+                                        <option value="intermediaire">Intermédiaire</option>
+                                        <option value="avance">Avancé</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Pré-requis -->
+                        <div class="col-md-4">
+                            <div class="mb-3">
+                                <label class="form-label">Pré-requis</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-check-circle"></i></span>
+                                    <input type="text" class="form-control border-secondary"
+                                        placeholder="Ex. : Connaissances de base en informatique">
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- ROW 4 -->
+                    <div class="row">
+
+                        <!-- Objectif -->
+                        <div class="col-md-4">
+                            <div class="mb-3">
+                                <label class="form-label">Objectif</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-bullseye"></i></span>
+                                    <input type="text" class="form-control border-secondary"
+                                        placeholder="Ex. : Apprendre à gérer son budget efficacement">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Hashtags -->
+                        <div class="col-md-4">
+                            <div class="mb-3">
+                                <label class="form-label">Hashtags</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-hashtag"></i></span>
+                                    <input type="text" class="form-control border-secondary"
+                                        placeholder="#finance #conseil #argent">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Statut -->
+                        <div class="col-md-4">
+                            <div class="mb-3">
+                                <label class="form-label">Statut *</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-toggle-on"></i></span>
+                                    <select class="form-select border-secondary" required>
+                                        <option value="" selected disabled>Choisir un statut</option>
+                                        <option value="disponible">Vidéo disponible</option>
+                                        <option value="en-cours">En cours</option>
+                                        <option value="aucune">Aucune vidéo</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </form>
+
+            </div>
+            <div class="modal-footer border-secondary">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                <button type="submit" form="shortForm" class="btn btn-primary">
+                    <i class="las la-upload me-1"></i> Publier
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal de modification -->
+<div class="modal fade" id="modificationModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content ">
+            <div class="modal-header border-secondary">
+                <h5 class="modal-title">Modifier le short</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form id="shortFormUpdate" onsubmit="updateShort(event)">
+
+                    <!-- ROW 1 -->
+                    <div class="row">
+
+                        <!-- Vidéo -->
+                        <div class="col-md-4">
+                            <div class="mb-3">
+                                <label class="form-label">Télécharger une vidéo *</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-video"></i></span>
+                                    <input type="file" class="form-control border-secondary" accept="video/*" required>
+                                </div>
+                                <small class="text-muted">Durée maximale : 60 secondes • Formats : MP4, MOV</small>
+                            </div>
+                        </div>
+
+                        <!-- Image de couverture -->
+                        <div class="col-md-4">
+                            <div class="mb-3">
+                                <label class="form-label">Image de couverture *</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-image"></i></span>
+                                    <input type="file" class="form-control border-secondary" accept="image/*" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Titre -->
+                        <div class="col-md-4">
+                            <div class="mb-3">
+                                <label class="form-label">Titre *</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-heading"></i></span>
+                                    <input type="text" class="form-control border-secondary" maxlength="60"
+                                        placeholder="Titre accrocheur (max. 60 caractères)" required>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- ROW 2 -->
+                    <div class="row">
+
+                        <!-- Catégorie -->
+                        <div class="col-md-4">
+                            <div class="mb-3">
+                                <label class="form-label">Catégorie *</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-list"></i></span>
+                                    <select class="form-select border-secondary" required>
+                                        <option value="" selected disabled>Choisir une catégorie</option>
                                         <?php foreach ($categories as $key => $label): ?>
                                             <?php if ($key !== 'tous'): ?>
                                                 <option value="<?= $key ?>"><?= $label ?></option>
@@ -338,89 +751,175 @@ $formations = [
                                         <?php endforeach; ?>
                                     </select>
                                 </div>
+                            </div>
+                        </div>
 
-                                <div class="mb-3">
-                                    <label class="form-label">Hashtags</label>
-                                    <input type="text" class="form-control  border-secondary"
-                                        placeholder="#finance #conseil #argent (séparés par des espaces)">
+                        <!-- Langue -->
+                        <div class="col-md-4">
+                            <div class="mb-3">
+                                <label class="form-label">Langue *</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-language"></i></span>
+                                    <select class="form-select border-secondary" required>
+                                        <option value="" selected disabled>Choisir une langue</option>
+                                        <option value="kirundi">Kirundi</option>
+                                        <option value="francais">Français</option>
+                                    </select>
                                 </div>
                             </div>
                         </div>
-                    </form>
-                </div>
-                <div class="modal-footer border-secondary">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
-                    <button type="submit" form="shortForm" class="btn btn-primary">
-                        <i class="las la-upload me-1"></i> Publier
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
 
-    <!-- Modal de modification -->
-    <div class="modal fade" id="modificationModal" tabindex="-1">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content ">
-                <div class="modal-header border-secondary">
-                    <h5 class="modal-title">Modifier le short</h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
-                </div>
-                <div class="modal-body">
-                    <form id="shortFormUpdate" onsubmit="updateShort(event)">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="mb-3">
-                                    <label class="form-label">Télécharger une nouvelle vidéo</label>
-                                    <input type="file" class="form-control  border-secondary" accept="video/*">
-                                    <small class="text-muted">Max 60 secondes, formats MP4, MOV</small>
-                                </div>
-
-                                <div class="mb-3">
-                                    <label class="form-label">Titre *</label>
-                                    <input type="text" class="form-control  border-secondary" maxlength="60"
-                                        placeholder="Titre accrocheur (max 60 caractères)" required>
-                                </div>
-
-                                <div class="mb-3">
-                                    <label class="form-label">Description</label>
-                                    <textarea class="form-control  border-secondary" rows="3"
+                        <!-- Description -->
+                        <div class="col-md-4">
+                            <div class="mb-3">
+                                <label class="form-label">Description</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-align-left"></i></span>
+                                    <textarea class="form-control border-secondary" rows="3"
                                         placeholder="Décrivez votre contenu..."></textarea>
                                 </div>
                             </div>
+                        </div>
 
-                            <div class="col-md-6">
-                                <div class="mb-3">
-                                    <label class="form-label">Catégorie *</label>
-                                    <select class="form-select  border-secondary" required>
-                                        <option value="">Choisir une catégorie</option>
-                                        <?php foreach ($categories as $key => $label): ?>
-                                            <?php if ($key !== 'tous'): ?>
-                                                <option value="<?= $key ?>"><?= $label ?></option>
-                                            <?php endif; ?>
-                                        <?php endforeach; ?>
-                                    </select>
-                                </div>
+                    </div>
 
-                                <div class="mb-3">
-                                    <label class="form-label">Hashtags</label>
-                                    <input type="text" class="form-control  border-secondary"
-                                        placeholder="#finance #conseil #argent (séparés par des espaces)">
+                    <!-- ROW 3 -->
+                    <div class="row">
+
+                        <!-- Référence -->
+                        <div class="col-md-4">
+                            <div class="mb-3">
+                                <label class="form-label">Référence *</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-barcode"></i></span>
+                                    <input type="text" class="form-control border-secondary" placeholder="Ex. : REF-001"
+                                        required>
                                 </div>
                             </div>
                         </div>
-                    </form>
-                </div>
-                <div class="modal-footer border-secondary">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
-                    <button type="submit" form="shortFormUpdate" class="btn btn-primary">
-                        <i class="las la-save me-1"></i> Enregistrer les modifications
-                    </button>
-                </div>
+
+                        <!-- Niveau -->
+                        <div class="col-md-4">
+                            <div class="mb-3">
+                                <label class="form-label">Niveau *</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-signal"></i></span>
+                                    <select class="form-select border-secondary" required>
+                                        <option value="" selected disabled>Choisir le niveau</option>
+                                        <option value="debutant">Débutant</option>
+                                        <option value="intermediaire">Intermédiaire</option>
+                                        <option value="avance">Avancé</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Pré-requis -->
+                        <div class="col-md-4">
+                            <div class="mb-3">
+                                <label class="form-label">Pré-requis</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-check-circle"></i></span>
+                                    <input type="text" class="form-control border-secondary"
+                                        placeholder="Ex. : Connaissances de base en informatique">
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- ROW 4 -->
+                    <div class="row">
+
+                        <!-- Objectif -->
+                        <div class="col-md-4">
+                            <div class="mb-3">
+                                <label class="form-label">Objectif</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-bullseye"></i></span>
+                                    <input type="text" class="form-control border-secondary"
+                                        placeholder="Ex. : Apprendre à gérer son budget efficacement">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Hashtags -->
+                        <div class="col-md-4">
+                            <div class="mb-3">
+                                <label class="form-label">Hashtags</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-hashtag"></i></span>
+                                    <input type="text" class="form-control border-secondary"
+                                        placeholder="#finance #conseil #argent">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Statut -->
+                        <div class="col-md-4">
+                            <div class="mb-3">
+                                <label class="form-label">Statut *</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-toggle-on"></i></span>
+                                    <select class="form-select border-secondary" required>
+                                        <option value="" selected disabled>Choisir un statut</option>
+                                        <option value="disponible">Vidéo disponible</option>
+                                        <option value="en-cours">En cours</option>
+                                        <option value="aucune">Aucune vidéo</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                </form>
+            </div>
+            <div class="modal-footer border-secondary">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                <button type="submit" form="shortFormUpdate" class="btn btn-primary">
+                    <i class="las la-save me-1"></i> Enregistrer les modifications
+                </button>
             </div>
         </div>
     </div>
+</div>
 
 <?php
+$pageLibs = [
+    LIBS_URL . 'simple-datatables/umd/simple-datatables.js',
+    JS_URL . 'pages/datatables.init.js'
+];
 include_once "../includes/footer.php";
 ?>
+
+<!-- Modal de suppression -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="DeleteUserLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-white">
+                <h5 class="modal-title text-danger" id="deleteUserLabel">Supprimer</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p class="text-muted">Êtes-vous sûr de vouloir supprimer cet formation ? Cette action est irréversible.
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-outline-danger">Oui</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- js pour le tooltip -->
+<script>
+    var tooltipTriggerList = [].slice.call(
+        document.querySelectorAll('[data-bs-toggle="tooltip"]')
+    );
+    tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl);
+    });
+</script>

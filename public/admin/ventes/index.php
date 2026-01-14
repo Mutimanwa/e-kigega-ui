@@ -106,7 +106,8 @@ include "../../../includes/sidebar.php";
                                                 <td><?= number_format($v['prix_vente'], 2) ?> FBu</td>
                                                 <td><?= htmlspecialchars((new DateTime($v['created_at']))->format('d/m/Y')) ?></td>
                                                 <td>
-                                                    <span class="badge rounded text-warning bg-warning-subtle">
+                                                  <span class="badge rounded text-success bg-success-subtle">
+
                                                         <?= htmlspecialchars($v['statut']) ?>
                                                     </span>
                                                 </td>

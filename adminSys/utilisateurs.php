@@ -12,7 +12,7 @@ include_once "includes/sidebar.php";
                     <ol class="breadcrumb mb-0">
                         <li class="breadcrumb-item"><a href="#">E-kigega</a>
                         </li><!--end nav-item-->
-                        <li class="breadcrumb-item"><a href="#">Admin</a>
+                        <li class="breadcrumb-item"><a href="#">Super Admin</a>
                         </li>
                         <li class="breadcrumb-item active">Utilisateurs</li>
                     </ol>
@@ -82,13 +82,56 @@ include_once "includes/sidebar.php";
                                         <!-- Modifier -->
                                         <a href="#" class="edit-user" data-bs-toggle="modal" data-bs-target="#editUser"
                                             data-user-id="1">
-                                            <i class="las la-pen text-secondary fs-18" data-bs-toggle="tooltip"
+                                            <i class="las la-pen  fs-18" data-bs-toggle="tooltip"
                                                 data-bs-placement="top" title="Modifier"></i>
                                         </a>
 
                                         <!-- Supprimer -->
-                                        <a href="#" data-bs-toggle="modal" data-bs-target="#deleteModal">
-                                            <i class="las la-trash-alt text-secondary fs-18" data-bs-toggle="tooltip"
+                                        <a href="#" class="text-danger delete-btn" data-bs-toggle="modal"
+                                            data-bs-target="#deleteModal">
+                                            <i class="las la-trash-alt  fs-18" data-bs-toggle="tooltip"
+                                                data-bs-placement="top" title="Supprimer"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="d-flex align-items-center">
+                                        <div class="d-flex align-items-center">
+                                            <img src="users/avatar-1.jpg"
+                                                class="me-2 thumb-md align-self-center rounded" alt="...">
+                                            <div class="flex-grow-1 text-truncate">
+                                                <h6 class="m-0">Audry Wakanda</h6>
+                                            </div>
+                                        </div>
+                                    </td>
+
+                                    <td>
+                                        <a href="mailto:audrywakanda@gmail.com"
+                                            class="text-primary text-decoration-underline">
+                                            audrywakanda@gmail.com
+                                        </a>
+                                    </td>
+
+                                    <td>+1 234 567 890</td>
+                                    <td>Agro burundi</td>
+                                    <td>Administrateur</td>
+                                    <td>
+                                        <span class="badge rounded text-secondary bg-secondary-subtle">Inactive</span>
+                                    </td>
+                                    <td>22 August 2024</td>
+
+                                    <td class="text-end">
+                                        <!-- Modifier -->
+                                        <a href="#" class="edit-user" data-bs-toggle="modal" data-bs-target="#editUser"
+                                            data-user-id="1">
+                                            <i class="las la-pen  fs-18" data-bs-toggle="tooltip"
+                                                data-bs-placement="top" title="Modifier"></i>
+                                        </a>
+
+                                        <!-- Supprimer -->
+                                        <a href="#" class="text-danger delete-btn" data-bs-toggle="modal"
+                                            data-bs-target="#deleteModal">
+                                            <i class="las la-trash-alt  fs-18" data-bs-toggle="tooltip"
                                                 data-bs-placement="top" title="Supprimer"></i>
                                         </a>
                                     </td>
@@ -121,7 +164,7 @@ include_once "includes/sidebar.php";
                         <i id="profileIconAdd"
                             class="fa-solid fa-user text-muted thumb-xl rounded me-2 border-dashed"></i>
                         <div class="flex-grow-1">
-                            <label  class="btn btn-primary text-light">
+                            <label class="btn btn-primary text-light">
                                 Ajouter une photo
                                 <input required type="file" id="profileInputAdd" accept="image/*" class="profile-input"
                                     data-target="profileIconAdd" hidden>
@@ -160,7 +203,8 @@ include_once "includes/sidebar.php";
                             <label class="form-label" for="phoneAdd">N° Téléphone</label>
                             <div class="input-group">
                                 <span class="input-group-text"><i class="fa-solid fa-phone"></i></span>
-                                <input required type="text" class="form-control" id="phoneAdd" placeholder="+1 234 567 890">
+                                <input required type="text" class="form-control" id="phoneAdd"
+                                    placeholder="+1 234 567 890">
                             </div>
                         </div>
                     </div>
@@ -170,7 +214,7 @@ include_once "includes/sidebar.php";
                             <label class="form-label" for="companyAdd">Entreprise</label>
                             <div class="input-group">
                                 <span class="input-group-text"><i class="fa-solid fa-building"></i></span>
-                                <select  class="form-select" name="" id="" required>
+                                <select class="form-select" name="" id="" required>
                                     <option value="">Selectionnez une entreprise</option>
                                     <option value="">Agro Burundi</option>
                                 </select>
@@ -221,8 +265,8 @@ include_once "includes/sidebar.php";
                             <label class="form-label" for="confirmPasswordAdd">Confirmer mot de passe</label>
                             <div class="input-group">
                                 <span class="input-group-text"><i class="fa-solid fa-lock"></i></span>
-                                <input required type="password" class="form-control password-input" id="confirmPasswordAdd"
-                                    placeholder="Confirmer mot de passe">
+                                <input required type="password" class="form-control password-input"
+                                    id="confirmPasswordAdd" placeholder="Confirmer mot de passe">
                                 <span class="input-group-text toggle-password" data-target="confirmPasswordAdd">
                                     <i class="iconoir-eye-closed"></i>
                                 </span>
@@ -248,16 +292,15 @@ include_once "includes/sidebar.php";
                     <h5 class="modal-title" id="editUserLabel">Modifier un utilisateur</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
-
                 <div class="modal-body">
                     <!-- Photo -->
                     <div class="form-group mb-3 d-flex align-items-center">
                         <i id="profileIconEdit"
                             class="fa-solid fa-user text-muted thumb-xl rounded me-2 border-dashed"></i>
                         <div class="flex-grow-1">
-                            <label class="form-label" class="btn btn-primary text-light">
+                            <label class="btn btn-primary text-light">
                                 Modifier une photo
-                                <input required type="file" id="profileInputEdit" accept="image/*" class="profile-input"
+                                <input type="file" id="profileInputEdit" accept="image/*" class="profile-input"
                                     data-target="profileIconEdit" hidden>
                             </label>
                         </div>
@@ -265,58 +308,72 @@ include_once "includes/sidebar.php";
 
                     <!-- Nom / Prenom -->
                     <div class="row">
-                        <div class="col-md-6 mb-2">
-                            <label class="form-label" for="firstNameEdit">Nom</label>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label" for="firstNameAdd">Nom</label>
                             <div class="input-group">
                                 <span class="input-group-text"><i class="fas fa-user"></i></span>
-                                <input required type="text" class="form-control" id="firstNameEdit" placeholder="Nom">
+                                <input required type="text" class="form-control" id="firstNameAdd" placeholder="Nom">
                             </div>
                         </div>
-                        <div class="col-md-6 mb-2">
-                            <label class="form-label" for="lastNameEdit">Prénom</label>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label" for="lastNameAdd">Prénom</label>
                             <div class="input-group">
                                 <span class="input-group-text"><i class="fas fa-user-tag"></i></span>
-                                <input required type="text" class="form-control" id="lastNameEdit" placeholder="Prénom">
+                                <input required type="text" class="form-control" id="lastNameAdd" placeholder="Prénom">
                             </div>
                         </div>
                     </div>
 
                     <!-- Email / Téléphone -->
                     <div class="row">
-                        <div class="col-md-6 mb-2">
-                            <label class="form-label" for="emailEdit">Email</label>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label" for="emailAdd">Email</label>
                             <div class="input-group">
-                                <span class="input-group-text"><i class="fas fa-envelope"></i></i></span>
-                                <input required type="email" class="form-control" id="emailEdit" placeholder="Email">
+                                <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                                <input required type="email" class="form-control" id="emailAdd" placeholder="Email">
                             </div>
                         </div>
-                        <div class="col-md-6 mb-2">
-                            <label class="form-label" for="phoneEdit">N° Téléphone</label>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label" for="phoneAdd">N° Téléphone</label>
                             <div class="input-group">
                                 <span class="input-group-text"><i class="fa-solid fa-phone"></i></span>
-                                <input required type="text" class="form-control" id="phoneEdit" placeholder="+1 234 567 890">
+                                <input required type="text" class="form-control" id="phoneAdd"
+                                    placeholder="+1 234 567 890">
                             </div>
                         </div>
                     </div>
+                    <!-- Entreprise -->
+                    <div class="row">
+                        <div class="col-md-12 mb-3">
+                            <label class="form-label" for="companyAdd">Entreprise</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="fa-solid fa-building"></i></span>
+                                <select class="form-select" name="" id="" required>
+                                    <option value="">Selectionnez une entreprise</option>
+                                    <option value="">Agro Burundi</option>
+                                </select>
+                            </div>
 
+                        </div>
+                    </div>
                     <!-- Role / Statut -->
                     <div class="row">
-                        <div class="col-md-6 mb-2">
-                            <label class="form-label" for="roleEdit">Rôle</label>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label" for="roleAdd">Rôle</label>
                             <div class="input-group">
                                 <span class="input-group-text"><i class="fa-solid fa-tags"></i></span>
-                                <select id="roleEdit" class="form-select">
+                                <select id="roleAdd" class="form-select" required>
                                     <option value="" selected disabled>Choisir un rôle</option>
                                     <option value="comptable">Comptable</option>
                                     <option value="responsable">Responsable</option>
                                 </select>
                             </div>
                         </div>
-                        <div class="col-md-6 mb-2">
-                            <label class="form-label" for="statusEdit">Statut</label>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label" for="statusAdd">Statut</label>
                             <div class="input-group">
                                 <span class="input-group-text"><i class="fa-solid fa-tags"></i></span>
-                                <select id="statusEdit" class="form-select">
+                                <select id="statusAdd" class="form-select">
                                     <option value="" selected disabled>Choisir un statut</option>
                                     <option value="active">Active</option>
                                     <option value="inactive">Inactive</option>
@@ -327,30 +384,31 @@ include_once "includes/sidebar.php";
 
                     <!-- Mot de passe / Confirmer mot de passe -->
                     <div class="row">
-                        <div class="col-md-6 mb-2">
-                            <label class="form-label" for="passwordEdit">Mot de passe</label>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label" for="passwordAdd">Mot de passe</label>
                             <div class="input-group">
                                 <span class="input-group-text"><i class="fa-solid fa-lock"></i></span>
-                                <input required type="password" class="form-control password-input" id="passwordEdit"
+                                <input required type="password" class="form-control password-input" id="passwordAdd"
                                     placeholder="Mot de passe">
-                                <span class="input-group-text toggle-password" data-target="passwordEdit">
+                                <span class="input-group-text toggle-password" data-target="passwordAdd">
                                     <i class="iconoir-eye-closed"></i>
                                 </span>
                             </div>
                         </div>
-                        <div class="col-md-6 mb-2">
-                            <label class="form-label" for="confirmPasswordEdit">Confirmer mot de passe</label>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label" for="confirmPasswordAdd">Confirmer mot de passe</label>
                             <div class="input-group">
                                 <span class="input-group-text"><i class="fa-solid fa-lock"></i></span>
-                                <input required type="password" class="form-control password-input" id="confirmPasswordEdit"
-                                    placeholder="Confirmer mot de passe">
-                                <span class="input-group-text toggle-password" data-target="confirmPasswordEdit">
+                                <input required type="password" class="form-control password-input"
+                                    id="confirmPasswordAdd" placeholder="Confirmer mot de passe">
+                                <span class="input-group-text toggle-password" data-target="confirmPasswordAdd">
                                     <i class="iconoir-eye-closed"></i>
                                 </span>
                             </div>
                         </div>
                     </div>
                 </div>
+
 
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-primary w-100">Modifier</button>
@@ -380,5 +438,173 @@ include_once "includes/sidebar.php";
     </div>
 </div>
 <?php
+$pageLibs = [
+    LIBS_URL . 'simple-datatables/umd/simple-datatables.js',
+    JS_URL . 'pages/datatables.init.js'
+];
 include_once "includes/footer.php";
 ?>
+
+
+
+<!-- Modal de suppression -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="DeleteUserLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-white">
+                <h5 class="modal-title text-danger" id="deleteUserLabel">Supprimer</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p class="text-muted">Êtes-vous sûr de vouloir supprimer cet utilisateur ? Cette action est
+                    irréversible.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-outline-danger">Oui</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Script JavaScript pour toutes les fonctionnalités -->
+<script>
+    // Fonction pour le toggle des mots de passe
+    document.querySelectorAll(".toggle-password").forEach(toggle => {
+        toggle.addEventListener("click", function () {
+            const input = this.parentElement.querySelector(".password-input"); // prend l'input dans le même groupe
+            const icon = this.querySelector("i");
+
+            if (icon.classList.contains("iconoir-eye")) {
+                // Icon = eye → mot de passe visible → on masque
+                input.type = "password";
+                icon.classList.remove("iconoir-eye");
+                icon.classList.add("iconoir-eye-closed");
+            } else {
+                // Icon = eye-slash → mot de passe masqué → on rend visible
+                input.type = "text";
+                icon.classList.remove("iconoir-eye-closed");
+                icon.classList.add("iconoir-eye");
+            }
+        });
+    });
+
+    // Fonction pour la prévisualisation d'image
+    function setupImagePreview(inputId, iconId) {
+        const profileInput = document.getElementById(inputId);
+        const profileIcon = document.getElementById(iconId);
+
+        if (profileInput && profileIcon) {
+            profileInput.addEventListener('change', function (event) {
+                const file = event.target.files[0];
+                if (!file) return;
+
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    let img = document.getElementById('profilePreview_' + iconId);
+
+                    // Si l'image n'existe pas encore, la créer
+                    if (!img) {
+                        img = document.createElement('img');
+                        img.id = 'profilePreview_' + iconId;
+                        img.className = 'thumb-xl rounded me-2 border-dashed';
+                        profileIcon.replaceWith(img);
+                    }
+
+                    // Définir la source de l'image sélectionnée
+                    img.src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            });
+        }
+    }
+
+    // Initialiser la prévisualisation pour les deux modals
+    setupImagePreview('profileInputAdd', 'profileIconAdd');
+    setupImagePreview('profileInputEdit', 'profileIconEdit');
+
+    // Fonction pour réinitialiser les formulaires quand les modals sont fermés
+    document.querySelectorAll('.modal').forEach(modal => {
+        modal.addEventListener('hidden.bs.modal', function () {
+            // Réinitialiser les prévisualisations d'image
+            const modalId = this.id;
+            let iconId, inputId;
+
+            if (modalId === 'addUser') {
+                iconId = 'profileIconAdd';
+                inputId = 'profileInputAdd';
+            } else if (modalId === 'editUser') {
+                iconId = 'profileIconEdit';
+                inputId = 'profileInputEdit';
+            }
+
+            // Réinitialiser l'icône si elle a été remplacée par une image
+            const previewImg = document.getElementById('profilePreview_' + iconId);
+            const iconElement = document.getElementById(iconId);
+            const inputElement = document.getElementById(inputId);
+
+            if (previewImg && iconElement) {
+                // Remplacer l'image par l'icône originale
+                previewImg.replaceWith(iconElement);
+            }
+
+            // Réinitialiser l'input file
+            if (inputElement) {
+                inputElement.value = '';
+            }
+        });
+    });
+
+    // Gestion du chargement des données utilisateur pour la modification
+    document.querySelectorAll('.edit-user').forEach(button => {
+        button.addEventListener('click', function () {
+            const userId = this.getAttribute('data-user-id');
+            // Ici vous pouvez charger les données de l'utilisateur depuis une API
+            // Exemple avec des données statiques pour la démonstration
+            if (userId === '1') {
+                document.getElementById('firstNameEdit').value = 'Audry';
+                document.getElementById('lastNameEdit').value = 'Wakanda';
+                document.getElementById('emailEdit').value = 'audrywakanda@gmail.com';
+                document.getElementById('phoneEdit').value = '+1 234 567 890';
+                document.getElementById('roleEdit').value = 'administrateur';
+                document.getElementById('statusEdit').value = 'active';
+            } else if (userId === '2') {
+                document.getElementById('firstNameEdit').value = 'Kamana';
+                document.getElementById('lastNameEdit').value = 'Urbain';
+                document.getElementById('emailEdit').value = 'urbain@gmail.com';
+                document.getElementById('phoneEdit').value = '+1 234 567 890';
+                document.getElementById('roleEdit').value = 'utilisateur';
+                document.getElementById('statusEdit').value = 'inactive';
+            }
+        });
+    });
+</script>
+
+
+
+<!-- js pour le tooltip -->
+<script>
+    var tooltipTriggerList = [].slice.call(
+        document.querySelectorAll('[data-bs-toggle="tooltip"]')
+    );
+    tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl);
+    });
+</script>
+
+<style>
+    .toggle-password {
+        cursor: pointer;
+    }
+
+    .border-dashed {
+        border: 2px dashed #dee2e6;
+        padding: 2px;
+    }
+
+    .thumb-xl {
+        width: 60px;
+        height: 60px;
+        object-fit: cover;
+    }
+</style>

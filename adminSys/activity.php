@@ -9,17 +9,33 @@ $activities =[
 ?>
 
 <div class="container-fluid mt-4">
+      <div class="row">
+        <div class="col-sm-12">
+            <div class="page-title-box d-md-flex justify-content-md-between align-items-center">
+                <h4 class="page-title">Gestion des activites des utilisateurs</h4>
+                <div class="">
+                    <ol class="breadcrumb mb-0">
+                        <li class="breadcrumb-item"><a href="#">E-kigega</a>
+                        </li><!--end nav-item-->
+                        <li class="breadcrumb-item"><a href="#">Super Admin</a>
+                        </li>
+                        <li class="breadcrumb-item active">Activités des utilisateurs</li>
+                    </ol>
+                </div>
+            </div><!--end page-title-box-->
+        </div><!--end col-->
+    </div><!--end row-->
     <div class="row">
         <div class="col-12">
             <div class="card">
                 <div class="card-header d-flex justify-content-between align-items-center">
-                    <h4 class="card-title">Activités utilisateurs</h4>
+                    <h4 class="card-title">details</h4>
                     <button class="btn btn-primary" onclick="location.reload();"><i class="fas fa-sync me-1"></i> Actualiser</button>
                 </div>
 
                 <div class="card-body pt-0">
                     <div class="table-responsive">
-                        <table class="table table-hover mb-0">
+                        <table class="table table-hover mb-0" id="datatable_2">
                             <thead class="table-light">
                                 <tr>
                                     <th>Utilisateur</th>
@@ -47,6 +63,10 @@ $activities =[
     </div>
 </div>
 
-<?php 
-include_once "includes/footer.php";
-?>
+  <?php
+    $pageLibs = [
+        LIBS_URL . 'simple-datatables/umd/simple-datatables.js',
+        JS_URL . 'pages/datatables.init.js'
+    ];
+    include_once "includes/footer.php";
+    ?>

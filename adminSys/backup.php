@@ -1,16 +1,18 @@
-<?php 
+<?php
 include_once "includes/header.php";
 include_once "includes/sidebar.php";
 ?>
 <div class="container-fluid">
-        <div class="row">
+    <div class="row">
         <div class="col-12">
             <div class="page-title-box d-flex align-items-center justify-content-between">
                 <h4 class="mb-0">Sauvegarde de Données</h4>
                 <div class="page-title-right">
                     <ol class="breadcrumb m-0">
-                        <li class="breadcrumb-item"><a href="">Tableau de bord</a></li>
-                        <li class="breadcrumb-item active">Sauvegarde</li>
+                        <li class="breadcrumb-item"><a href="#">E-Kigega</a></li>
+                        <li class="breadcrumb-item"><a href="#">Super Admin</a></li>
+
+                        <li class="breadcrumb-item active">Sauvegarde de Données</li>
                     </ol>
                 </div>
             </div>
@@ -27,7 +29,7 @@ include_once "includes/sidebar.php";
                 </div>
                 <div class="card-body pt-0">
                     <div class="table-responsive">
-                        <table class="table table-striped mb-0">
+                        <table class="table table-striped mb-0" id="datatable_2">
                             <thead class="table-light">
                                 <tr>
                                     <th>Date de Création</th>
@@ -44,13 +46,13 @@ include_once "includes/sidebar.php";
                                     <td>1.2 GB</td>
                                     <td><span class="badge bg-success-subtle text-success">Succès</span></td>
                                     <td class="text-end">
-                                        <a href="#" class="me-2" title="Télécharger">
+                                        <a href="#" class="me-2" data-bs-toggle="tooltip" title="Télécharger">
                                             <i class="las la-download text-secondary fs-18"></i>
                                         </a>
-                                        <a href="#" class="me-2" title="Restaurer">
+                                        <a href="#" class="me-2" data-bs-toggle="tooltip" title="Restaurer">
                                             <i class="las la-sync-alt text-secondary fs-18"></i>
                                         </a>
-                                        <a href="#" title="Supprimer">
+                                        <a href="#" data-bs-toggle="tooltip" title="Supprimer">
                                             <i class="las la-trash-alt text-danger fs-18"></i>
                                         </a>
                                     </td>
@@ -61,13 +63,13 @@ include_once "includes/sidebar.php";
                                     <td>450 MB</td>
                                     <td><span class="badge bg-warning-subtle text-warning">En attente</span></td>
                                     <td class="text-end">
-                                        <a href="#" class="me-2" title="Télécharger">
+                                        <a href="#" class="me-2" data-bs-toggle="tooltip" title="Télécharger">
                                             <i class="las la-download text-secondary fs-18"></i>
                                         </a>
-                                        <a href="#" class="me-2" title="Restaurer">
+                                        <a href="#" class="me-2" data-bs-toggle="tooltip" title="Restaurer">
                                             <i class="las la-sync-alt text-secondary fs-18"></i>
                                         </a>
-                                        <a href="#" title="Supprimer">
+                                        <a href="#" data-bs-toggle="tooltip" title="Supprimer">
                                             <i class="las la-trash-alt text-danger fs-18"></i>
                                         </a>
                                     </td>
@@ -78,31 +80,22 @@ include_once "includes/sidebar.php";
                                     <td>1.1 GB</td>
                                     <td><span class="badge bg-success-subtle text-success">Succès</span></td>
                                     <td class="text-end">
-                                        <a href="#" class="me-2" title="Télécharger">
+                                        <a href="#" class="me-2" data-bs-toggle="tooltip" title="Télécharger">
                                             <i class="las la-download text-secondary fs-18"></i>
                                         </a>
-                                        <a href="#" class="me-2" title="Restaurer">
+                                        <a href="#" class="me-2" data-bs-toggle="tooltip" title="Restaurer">
                                             <i class="las la-sync-alt text-secondary fs-18"></i>
                                         </a>
-                                        <a href="#" title="Supprimer">
+                                        <a href="#" data-bs-toggle="tooltip" title="Supprimer">
                                             <i class="las la-trash-alt text-danger fs-18"></i>
                                         </a>
                                     </td>
                                 </tr>
                             </tbody>
+
                         </table>
                     </div>
-                    <!-- Pagination -->
-                    <div class="d-flex justify-content-between align-items-center mt-3">
-                        <button class="btn btn-outline-primary">Créer Nouveau Backup</button>
-                        <ul class="pagination mb-0">
-                            <li class="page-item disabled"><a class="page-link" href="#">Précédent</a></li>
-                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item"><a class="page-link" href="#">Suivant</a></li>
-                        </ul>
-                    </div>
+
                 </div>
             </div>
         </div>
@@ -121,23 +114,46 @@ include_once "includes/sidebar.php";
             </div>
             <div class="modal-body">
                 <form>
+                    <!-- Type de Backup -->
                     <div class="mb-3">
                         <label for="backupType" class="form-label">Type de Backup</label>
-                        <select id="backupType" class="form-select">
-                            <option value="full">Complet</option>
-                            <option value="diff">Différentiel</option>
-                        </select>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fas fa-database"></i></span>
+                            <select id="backupType" class="form-select">
+                                <option value="full" selected>Complet</option>
+                                <option value="diff">Différentiel</option>
+                            </select>
+                        </div>
                     </div>
+
+                    <!-- Notes -->
                     <div class="mb-3">
                         <label for="notes" class="form-label">Notes (optionnel)</label>
-                        <textarea id="notes" class="form-control" rows="3"></textarea>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fas fa-sticky-note"></i></span>
+                            <textarea id="notes" class="form-control" rows="3"
+                                placeholder="Ex: Notes sur ce backup"></textarea>
+                        </div>
                     </div>
+
+                    <!-- Bouton -->
                     <button type="submit" class="btn btn-primary w-100">Créer Backup</button>
                 </form>
+
             </div>
         </div>
     </div>
 </div>
-<?php 
+
+<?php
+$pageLibs = [
+    LIBS_URL . 'simple-datatables/umd/simple-datatables.js',
+    JS_URL . 'pages/datatables.init.js'
+];
 include_once "includes/footer.php";
 ?>
+
+<script>
+    const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+    const tooltipList = [...tooltipTriggerList].map(el => new bootstrap.Tooltip(el));
+</script>

@@ -11,7 +11,8 @@ include_once "includes/sidebar.php";
                 <h4 class="mb-0">Abonnements</h4>
                 <div class="page-title-right">
                     <ol class="breadcrumb m-0">
-                        <li class="breadcrumb-item"><a href="">Tableau de bord</a></li>
+                        <li class="breadcrumb-item"><a href="#">E-Kigega</a></li>
+                        <li class="breadcrumb-item"><a href="#">Super Admin</a></li>
                         <li class="breadcrumb-item active">Abonnements</li>
                     </ol>
                 </div>
@@ -30,13 +31,14 @@ include_once "includes/sidebar.php";
             </div>
             <div class="card-body pt-0">
                 <div class="table-responsive">
-                    <table class="table table-striped mb-0" id="plansTable">
+                    <table class="table table-striped mb-0"  id="datatable_1">
                         <thead class="table-light">
                             <tr>
                                 <th>Nom du Plan</th>
                                 <th>Prix</th>
                                 <th>Durée</th>
                                 <th>Modules Inclus</th>
+                                <th>Date</th>
                                 <th>Status</th>
                                 <th class="text-end">Actions</th>
                             </tr>
@@ -50,13 +52,19 @@ include_once "includes/sidebar.php";
                                     <span class="badge bg-primary-subtle text-primary">Comptabilité</span>
                                     <span class="badge bg-success-subtle text-success">Facturation</span>
                                 </td>
+                                <td>15 Mar 2024</td>
                                 <td><span class="badge bg-success-subtle text-success">Actif</span></td>
                                 <td class="text-end">
-                                    <a href="#" class="me-2" title="Modifier" data-bs-toggle="modal" data-bs-target="#editPlan">
-                                        <i class="las la-pen text-secondary fs-18"></i>
+                                    <a href="#" class="me-2 edit-user" title="Modifier" data-bs-toggle="modal" data-bs-target="#editPlan">
+                                         <i class="las la-pen  fs-18"
+           data-bs-toggle="tooltip"
+           data-bs-placement="top"
+           title="Modifier"></i>
                                     </a>
                                     <a href="#" title="Supprimer" data-bs-toggle="modal" data-bs-target="#deletePlan">
-                                        <i class="las la-trash-alt text-danger fs-18"></i>
+                                        <i class="las la-trash-alt text-danger fs-18" data-bs-toggle="tooltip"
+           data-bs-placement="top"
+           title="Supprimer"></i>
                                     </a>
                                 </td>
                             </tr>
@@ -69,13 +77,19 @@ include_once "includes/sidebar.php";
                                     <span class="badge bg-success-subtle text-success">Facturation</span>
                                     <span class="badge bg-warning-subtle text-warning">Rapports Avancés</span>
                                 </td>
+                                <td>15 Mar 2024</td>
                                 <td><span class="badge bg-success-subtle text-success">Actif</span></td>
                                 <td class="text-end">
-                                    <a href="#" class="me-2" title="Modifier" data-bs-toggle="modal" data-bs-target="#editPlan">
-                                        <i class="las la-pen text-secondary fs-18"></i>
+                                    <a href="#" class="me-2 edit-user" title="Modifier" data-bs-toggle="modal" data-bs-target="#editPlan">
+                                         <i class="las la-pen  fs-18"
+           data-bs-toggle="tooltip"
+           data-bs-placement="top"
+           title="Modifier"></i>
                                     </a>
                                     <a href="#" title="Supprimer" data-bs-toggle="modal" data-bs-target="#deletePlan">
-                                        <i class="las la-trash-alt text-danger fs-18"></i>
+                                        <i class="las la-trash-alt text-danger fs-18 " data-bs-toggle="tooltip"
+           data-bs-placement="top"
+           title="Supprimer"></i>
                                     </a>
                                 </td>
                             </tr>
@@ -89,13 +103,19 @@ include_once "includes/sidebar.php";
                                     <span class="badge bg-warning-subtle text-warning">Rapports Avancés</span>
                                     <span class="badge bg-info-subtle text-info">Support Prioritaire</span>
                                 </td>
+                                <td>15 Mar 2024</td>
                                 <td><span class="badge bg-success-subtle text-success">Actif</span></td>
                                 <td class="text-end">
-                                    <a href="#" class="me-2" title="Modifier" data-bs-toggle="modal" data-bs-target="#editPlan">
-                                        <i class="las la-pen text-secondary fs-18"></i>
+                                    <a href="#" class="me-2 edit-user" title="Modifier" data-bs-toggle="modal" data-bs-target="#editPlan">
+                                          <i class="las la-pen  fs-18"
+           data-bs-toggle="tooltip"
+           data-bs-placement="top"
+           title="Modifier"></i>
                                     </a>
                                     <a href="#" title="Supprimer" data-bs-toggle="modal" data-bs-target="#deletePlan">
-                                        <i class="las la-trash-alt text-danger fs-18"></i>
+                                        <i class="las la-trash-alt text-danger fs-18" data-bs-toggle="tooltip"
+           data-bs-placement="top"
+           title="Supprimer"></i>
                                     </a>
                                 </td>
                             </tr>
@@ -103,17 +123,7 @@ include_once "includes/sidebar.php";
                     </table>
                 </div>
 
-                <!-- Pagination -->
-                <div class="d-flex justify-content-between align-items-center mt-3">
-                    <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#addPlan">Ajouter Nouveau Plan</button>
-                    <ul class="pagination mb-0">
-                        <li class="page-item disabled"><a class="page-link" href="#">Précédent</a></li>
-                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item"><a class="page-link" href="#">Suivant</a></li>
-                    </ul>
-                </div>
+               
             </div>
         </div>
     </div>
@@ -128,34 +138,72 @@ include_once "includes/sidebar.php";
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
             </div>
             <div class="modal-body">
-                <form>
-                    <div class="mb-3">
-                        <label for="planName" class="form-label">Nom du Plan</label>
-                        <input type="text" id="planName" class="form-control" placeholder="Ex: Plan Basic">
-                    </div>
-                    <div class="mb-3">
-                        <label for="planPrice" class="form-label">Prix (Fbu)</label>
-                        <input type="number" id="planPrice" class="form-control" placeholder="Ex: 50000">
-                    </div>
-                    <div class="mb-3">
-                        <label for="planDuration" class="form-label">Durée</label>
-                        <select id="planDuration" class="form-select">
-                            <option value="1">1 Mois</option>
-                            <option value="3">3 Mois</option>
-                            <option value="12">12 Mois</option>
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <label for="planModules" class="form-label">Modules Inclus</label>
-                        <select id="planModules" class="form-select" multiple>
-                            <option value="comptabilite">Comptabilité</option>
-                            <option value="facturation">Facturation</option>
-                            <option value="rapports">Rapports Avancés</option>
-                            <option value="support">Support Prioritaire</option>
-                        </select>
-                    </div>
-                    <button type="submit" class="btn btn-primary w-100">Ajouter Plan</button>
-                </form>
+               <form>
+
+    <!-- Nom du Plan -->
+    <div class="mb-3">
+        <label for="planName" class="form-label">Nom du Plan</label>
+        <div class="input-group">
+            <span class="input-group-text">
+                <i class="fas fa-box"></i>
+            </span>
+            <input type="text" id="planName" class="form-control"
+                   placeholder="Ex : Plan Basic">
+        </div>
+    </div>
+
+    <!-- Prix -->
+    <div class="mb-3">
+        <label for="planPrice" class="form-label">Prix (Fbu)</label>
+        <div class="input-group">
+            <span class="input-group-text">
+                <i class="fas fa-money-bill-wave"></i>
+            </span>
+            <input type="number" id="planPrice" class="form-control"
+                   placeholder="Ex : 50000">
+            <span class="input-group-text">Fbu</span>
+        </div>
+    </div>
+
+    <!-- Durée -->
+    <div class="mb-3">
+        <label for="planDuration" class="form-label">Durée</label>
+        <div class="input-group">
+            <span class="input-group-text">
+                <i class="fas fa-clock"></i>
+            </span>
+            <select id="planDuration" class="form-select">
+                <option value="1">1 Mois</option>
+                <option value="3">3 Mois</option>
+                <option value="12">12 Mois</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- Modules Inclus -->
+    <div class="mb-3">
+        <label for="planModules" class="form-label">Modules Inclus</label>
+        <div class="input-group">
+            <span class="input-group-text">
+                <i class="fas fa-layer-group"></i>
+            </span>
+            <select id="planModules" class="form-select" multiple>
+                <option value="comptabilite">Comptabilité</option>
+                <option value="facturation">Facturation</option>
+                <option value="rapports">Rapports Avancés</option>
+                <option value="support">Support Prioritaire</option>
+            </select>
+        </div>
+        <small class="text-muted">Maintenez Ctrl (Windows) ou Cmd (Mac) pour sélectionner plusieurs</small>
+    </div>
+
+    <!-- Bouton -->
+    <button type="submit" class="btn btn-primary w-100">
+        <i class="fas fa-save me-1"></i> Ajouter Plan
+    </button>
+
+</form>
+
             </div>
         </div>
     </div>
@@ -170,34 +218,74 @@ include_once "includes/sidebar.php";
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
             </div>
             <div class="modal-body">
-                <form>
-                    <div class="mb-3">
-                        <label for="editPlanName" class="form-label">Nom du Plan</label>
-                        <input type="text" id="editPlanName" class="form-control" value="Plan Basic">
-                    </div>
-                    <div class="mb-3">
-                        <label for="editPlanPrice" class="form-label">Prix (Fbu)</label>
-                        <input type="number" id="editPlanPrice" class="form-control" value="50000">
-                    </div>
-                    <div class="mb-3">
-                        <label for="editPlanDuration" class="form-label">Durée</label>
-                        <select id="editPlanDuration" class="form-select">
-                            <option value="1" selected>1 Mois</option>
-                            <option value="3">3 Mois</option>
-                            <option value="12">12 Mois</option>
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <label for="editPlanModules" class="form-label">Modules Inclus</label>
-                        <select id="editPlanModules" class="form-select" multiple>
-                            <option value="comptabilite" selected>Comptabilité</option>
-                            <option value="facturation" selected>Facturation</option>
-                            <option value="rapports">Rapports Avancés</option>
-                            <option value="support">Support Prioritaire</option>
-                        </select>
-                    </div>
-                    <button type="submit" class="btn btn-primary w-100">Modifier Plan</button>
-                </form>
+               <form>
+
+    <!-- Nom du Plan -->
+    <div class="mb-3">
+        <label for="editPlanName" class="form-label">Nom du Plan</label>
+        <div class="input-group">
+            <span class="input-group-text">
+                <i class="fas fa-box"></i>
+            </span>
+            <input type="text" id="editPlanName" class="form-control"
+                   value="Plan Basic">
+        </div>
+    </div>
+
+    <!-- Prix -->
+    <div class="mb-3">
+        <label for="editPlanPrice" class="form-label">Prix (Fbu)</label>
+        <div class="input-group">
+            <span class="input-group-text">
+                <i class="fas fa-money-bill-wave"></i>
+            </span>
+            <input type="number" id="editPlanPrice" class="form-control"
+                   value="50000">
+            <span class="input-group-text">Fbu</span>
+        </div>
+    </div>
+
+    <!-- Durée -->
+    <div class="mb-3">
+        <label for="editPlanDuration" class="form-label">Durée</label>
+        <div class="input-group">
+            <span class="input-group-text">
+                <i class="fas fa-clock"></i>
+            </span>
+            <select id="editPlanDuration" class="form-select">
+                <option value="1" selected>1 Mois</option>
+                <option value="3">3 Mois</option>
+                <option value="12">12 Mois</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- Modules Inclus -->
+    <div class="mb-3">
+        <label for="editPlanModules" class="form-label">Modules Inclus</label>
+        <div class="input-group">
+            <span class="input-group-text">
+                <i class="fas fa-layer-group"></i>
+            </span>
+            <select id="editPlanModules" class="form-select" multiple>
+                <option value="comptabilite" selected>Comptabilité</option>
+                <option value="facturation" selected>Facturation</option>
+                <option value="rapports">Rapports Avancés</option>
+                <option value="support">Support Prioritaire</option>
+            </select>
+        </div>
+        <small class="text-muted">
+            Maintenez Ctrl (Windows) ou Cmd (Mac) pour modifier la sélection
+        </small>
+    </div>
+
+    <!-- Bouton -->
+    <button type="submit" class="btn btn-primary w-100">
+        <i class="fas fa-pen me-1"></i> Modifier Plan
+    </button>
+
+</form>
+
             </div>
         </div>
     </div>
@@ -222,6 +310,23 @@ include_once "includes/sidebar.php";
 
 
 </div>
+
+
 <?php
+$pageLibs = [
+    LIBS_URL . 'simple-datatables/umd/simple-datatables.js',
+    JS_URL . 'pages/datatables.init.js'
+];
 include_once "includes/footer.php";
 ?>
+
+
+   <!-- js pour le tooltip -->
+    <script>
+  var tooltipTriggerList = [].slice.call(
+    document.querySelectorAll('[data-bs-toggle="tooltip"]')
+  );
+  tooltipTriggerList.map(function (tooltipTriggerEl) {
+    return new bootstrap.Tooltip(tooltipTriggerEl);
+  });
+</script>
