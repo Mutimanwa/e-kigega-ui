@@ -51,6 +51,7 @@ $maintenances = [
                                 </tr>
                             </thead>
                             <tbody>
+<<<<<<< HEAD
                                 <?php foreach ($maintenances as $m): ?>
                                     <tr>
                                         <td><?= htmlspecialchars($m['equipement']) ?></td>
@@ -59,11 +60,22 @@ $maintenances = [
                                         <td>
                                             <?php
                                             $statusClass = match ($m['statut']) {
+=======
+                                <?php foreach($maintenances as $m): ?>
+                                <tr>
+                                    <td><?= htmlspecialchars($m['equipement']) ?></td>
+                                    <td><?= htmlspecialchars($m['type']) ?></td>
+                                    <td><?= htmlspecialchars($m['description']) ?></td>
+                                    <td>
+                                        <?php
+                                            $statusClass = match($m['statut']) {
+>>>>>>> refs/remotes/origin/main
                                                 "En cours" => "bg-warning-subtle text-warning",
                                                 "Terminé" => "bg-success-subtle text-success",
                                                 "En attente" => "bg-secondary-subtle text-secondary",
                                                 default => "bg-light text-dark"
                                             };
+<<<<<<< HEAD
                                             ?>
                                             <span class="badge rounded <?= $statusClass ?>"><?= $m['statut'] ?></span>
                                         </td>
@@ -80,6 +92,21 @@ $maintenances = [
                                             </a>
                                         </td>
                                     </tr>
+=======
+                                        ?>
+                                        <span class="badge rounded <?= $statusClass ?>"><?= $m['statut'] ?></span>
+                                    </td>
+                                    <td><?= date("d-m-Y H:i", strtotime($m['date'])) ?></td>
+                                    <td class="text-end">
+                                        <a href="#" class="edit-maintenance" data-bs-toggle="modal" data-bs-target="#editMaintenance" data-id="<?= $m['id'] ?>">
+                                            <i class="las la-pen text-secondary fs-18" title="Modifier"></i>
+                                        </a>
+                                        <a href="#" data-bs-toggle="modal" data-bs-target="#deleteModal">
+                                            <i class="las la-trash-alt text-secondary fs-18" title="Supprimer"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+>>>>>>> refs/remotes/origin/main
                                 <?php endforeach; ?>
                             </tbody>
                         </table>
