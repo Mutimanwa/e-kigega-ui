@@ -41,12 +41,12 @@ $maintenances = [
                                     <td><?= htmlspecialchars($m['description']) ?></td>
                                     <td>
                                         <?php
-                                        $statusClass = match($m['statut']) {
-                                            "En cours" => "bg-warning-subtle text-warning",
-                                            "Terminé" => "bg-success-subtle text-success",
-                                            "En attente" => "bg-secondary-subtle text-secondary",
-                                            default => "bg-light text-dark"
-                                        };
+                                            $statusClass = match($m['statut']) {
+                                                "En cours" => "bg-warning-subtle text-warning",
+                                                "Terminé" => "bg-success-subtle text-success",
+                                                "En attente" => "bg-secondary-subtle text-secondary",
+                                                default => "bg-light text-dark"
+                                            };
                                         ?>
                                         <span class="badge rounded <?= $statusClass ?>"><?= $m['statut'] ?></span>
                                     </td>
