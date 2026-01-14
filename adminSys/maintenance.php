@@ -51,7 +51,7 @@ $maintenances = [
                                 </tr>
                             </thead>
                             <tbody>
-<<<<<<< HEAD
+
                                 <?php foreach ($maintenances as $m): ?>
                                     <tr>
                                         <td><?= htmlspecialchars($m['equipement']) ?></td>
@@ -60,7 +60,7 @@ $maintenances = [
                                         <td>
                                             <?php
                                             $statusClass = match ($m['statut']) {
-=======
+
                                 <?php foreach($maintenances as $m): ?>
                                 <tr>
                                     <td><?= htmlspecialchars($m['equipement']) ?></td>
@@ -69,13 +69,13 @@ $maintenances = [
                                     <td>
                                         <?php
                                             $statusClass = match($m['statut']) {
->>>>>>> refs/remotes/origin/main
+
                                                 "En cours" => "bg-warning-subtle text-warning",
                                                 "Terminé" => "bg-success-subtle text-success",
                                                 "En attente" => "bg-secondary-subtle text-secondary",
                                                 default => "bg-light text-dark"
                                             };
-<<<<<<< HEAD
+
                                             ?>
                                             <span class="badge rounded <?= $statusClass ?>"><?= $m['statut'] ?></span>
                                         </td>
@@ -92,7 +92,7 @@ $maintenances = [
                                             </a>
                                         </td>
                                     </tr>
-=======
+
                                         ?>
                                         <span class="badge rounded <?= $statusClass ?>"><?= $m['statut'] ?></span>
                                     </td>
@@ -106,7 +106,7 @@ $maintenances = [
                                         </a>
                                     </td>
                                 </tr>
->>>>>>> refs/remotes/origin/main
+
                                 <?php endforeach; ?>
                             </tbody>
                         </table>
