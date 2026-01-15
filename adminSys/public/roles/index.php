@@ -16,14 +16,14 @@ $roles = [
     <div class="row">
         <div class="col-sm-12">
             <div class="page-title-box d-md-flex justify-content-md-between align-items-center">
-                <h4 class="page-title">Gestion des rôles</h4>
+                <h4 class="page-title">Rôles</h4>
                 <div class="">
                     <ol class="breadcrumb mb-0">
-                        <li class="breadcrumb-item"><a href="#">E-kigega</a>
+                        <li class="breadcrumb-item"><a href="#">E-Kigega</a>
                         </li><!--end nav-item-->
                         <li class="breadcrumb-item"><a href="#">Super Admin</a>
                         </li>
-                        <li class="breadcrumb-item active">Gestion des rôles</li>
+                        <li class="breadcrumb-item active">Rôles</li>
                     </ol>
                 </div>
             </div><!--end page-title-box-->

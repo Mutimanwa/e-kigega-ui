@@ -71,7 +71,7 @@ include "../../../includes/sidebar.php";
                         <div class="card-header">
                             <div class="row align-items-center">
                                 <div class="col">
-                                    <h4 class="card-title"> Details</h4>
+                                    <h4 class="card-title"> Détails</h4>
                                 </div><!--end col-->
                                 <div class="col-auto">
                                     <button class="btn bg-primary text-white" data-bs-toggle="modal"

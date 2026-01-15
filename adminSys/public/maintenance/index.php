@@ -14,14 +14,14 @@ $maintenances = [
     <div class="row">
         <div class="col-sm-12">
             <div class="page-title-box d-md-flex justify-content-md-between align-items-center">
-                <h4 class="page-title">Gestion des maintenances</h4>
+                <h4 class="page-title">Maintenances du Système</h4>
                 <div class="">
                     <ol class="breadcrumb mb-0">
-                        <li class="breadcrumb-item"><a href="#">E-kigega</a>
+                        <li class="breadcrumb-item"><a href="#">E-Kigega</a>
                         </li><!--end nav-item-->
                         <li class="breadcrumb-item"><a href="#">Super Admin</a>
                         </li>
-                        <li class="breadcrumb-item active">Gestion des maintenances</li>
+                        <li class="breadcrumb-item active">Maintenances du Système</li>
                     </ol>
                 </div>
             </div><!--end page-title-box-->
@@ -31,7 +31,7 @@ $maintenances = [
         <div class="col-12">
             <div class="card">
                 <div class="card-header d-flex justify-content-between align-items-center">
-                    <h4 class="card-title">Details</h4>
+                    <h4 class="card-title">Détails</h4>
                     <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addMaintenance">
                         <i class="fas fa-plus me-1"></i> Ajouter Maintenance
                     </button>

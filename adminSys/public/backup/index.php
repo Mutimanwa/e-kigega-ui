@@ -6,13 +6,13 @@ include_once "./../../includes/sidebar.php";
     <div class="row">
         <div class="col-12">
             <div class="page-title-box d-flex align-items-center justify-content-between">
-                <h4 class="mb-0">Sauvegarde de Données</h4>
+                <h4 class="mb-0">Sauvegarde</h4>
                 <div class="page-title-right">
                     <ol class="breadcrumb m-0">
                         <li class="breadcrumb-item"><a href="#">E-Kigega</a></li>
                         <li class="breadcrumb-item"><a href="#">Super Admin</a></li>
 
-                        <li class="breadcrumb-item active">Sauvegarde de Données</li>
+                        <li class="breadcrumb-item active">Sauvegarde </li>
                     </ol>
                 </div>
             </div>
@@ -22,7 +22,7 @@ include_once "./../../includes/sidebar.php";
         <div class="col-12">
             <div class="card">
                 <div class="card-header d-flex justify-content-between align-items-center">
-                    <h4 class="card-title mb-0">Backup Système</h4>
+                    <h4 class="card-title mb-0">Détails</h4>
                     <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createBackup">
                         <i class="fas fa-cloud-upload-alt me-1"></i> Créer un Backup
                     </button>

@@ -6,14 +6,14 @@ include_once "./../../includes/sidebar.php";
     <div class="row">
         <div class="col-sm-12">
             <div class="page-title-box d-md-flex justify-content-md-between align-items-center">
-                <h4 class="page-title">Gestion de l'IA</h4>
+                <h4 class="page-title">Assistant IA</h4>
                 <div class="">
                     <ol class="breadcrumb mb-0">
-                        <li class="breadcrumb-item"><a href="#">E-kigega</a>
+                        <li class="breadcrumb-item"><a href="#">E-Kigega</a>
                         </li><!--end nav-item-->
                         <li class="breadcrumb-item"><a href="#">Super Admin</a>
                         </li>
-                        <li class="breadcrumb-item active">l'IA</li>
+                        <li class="breadcrumb-item active">Assistant IA</li>
                     </ol>
                 </div>
             </div><!--end page-title-box-->
