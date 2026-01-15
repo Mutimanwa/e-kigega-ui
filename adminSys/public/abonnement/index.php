@@ -1,6 +1,6 @@
 <?php
-include_once "includes/header.php";
-include_once "includes/sidebar.php";
+include_once "./../../includes/header.php";
+include_once "./../../includes/sidebar.php";
 
 ?>
 
@@ -317,7 +317,7 @@ $pageLibs = [
     LIBS_URL . 'simple-datatables/umd/simple-datatables.js',
     JS_URL . 'pages/datatables.init.js'
 ];
-include_once "includes/footer.php";
+include_once "./../../includes/footer.php";
 ?>
 
 

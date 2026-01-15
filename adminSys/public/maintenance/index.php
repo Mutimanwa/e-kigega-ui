@@ -1,6 +1,6 @@
 <?php
-include_once "includes/header.php";
-include_once "includes/sidebar.php";
+include_once "./../../includes/header.php";
+include_once "./../../includes/sidebar.php";
 
 $maintenances = [
     ["id" => 1, "equipement" => "Serveur principal", "type" => "Hardware", "description" => "Redémarrage programmé", "statut" => "En cours", "date" => "2026-01-12 08:00"],
@@ -50,37 +50,25 @@ $maintenances = [
                                     <th class="text-end">Action</th>
                                 </tr>
                             </thead>
-                            <tbody>
-
-                                <?php foreach ($maintenances as $m): ?>
-                                    <tr>
-                                        <td><?= htmlspecialchars($m['equipement']) ?></td>
-                                        <td><?= htmlspecialchars($m['type']) ?></td>
-                                        <td><?= htmlspecialchars($m['description']) ?></td>
-                                        <td>
-                                            <?php
-                                            $statusClass = match ($m['statut']) {
-
-                                <?php foreach($maintenances as $m): ?>
-                                <tr>
-                                    <td><?= htmlspecialchars($m['equipement']) ?></td>
-                                    <td><?= htmlspecialchars($m['type']) ?></td>
-                                    <td><?= htmlspecialchars($m['description']) ?></td>
-                                    <td>
-                                        <?php
-                                            $statusClass = match($m['statut']) {
-
-                                                "En cours" => "bg-warning-subtle text-warning",
-                                                "Terminé" => "bg-success-subtle text-success",
-                                                "En attente" => "bg-secondary-subtle text-secondary",
-                                                default => "bg-light text-dark"
-                                            };
-
-                                            ?>
-                                            <span class="badge rounded <?= $statusClass ?>"><?= $m['statut'] ?></span>
-                                        </td>
-                                        <td><?= date("d-m-Y H:i", strtotime($m['date'])) ?></td>
-                                        <td class="text-end">
+                           <tbody>
+    <?php foreach ($maintenances as $m): ?>
+        <tr>
+            <td><?= htmlspecialchars($m['equipement']) ?></td>
+            <td><?= htmlspecialchars($m['type']) ?></td>
+            <td><?= htmlspecialchars($m['description']) ?></td>
+            <td>
+                <?php
+                $statusClass = match($m['statut']) {
+                    "En cours" => "bg-warning-subtle text-warning",
+                    "Terminé" => "bg-success-subtle text-success",
+                    "En attente" => "bg-secondary-subtle text-secondary",
+                    default => "bg-light text-dark"
+                };
+                ?>
+                <span class="badge rounded <?= $statusClass ?>"><?= $m['statut'] ?></span>
+            </td>
+            <td><?= date("d-m-Y H:i", strtotime($m['date'])) ?></td>
+          <td class="text-end">
                                             <a href="#" class="edit-maintenance" data-bs-toggle="modal"
                                                 data-bs-target="#editMaintenance" data-id="<?= $m['id'] ?>">
                                                 <i class="las la-pen  fs-18" data-bs-toggle="tooltip" title="Modifier"></i>
@@ -91,24 +79,9 @@ $maintenances = [
                                                     title="Supprimer"></i>
                                             </a>
                                         </td>
-                                    </tr>
-
-                                        ?>
-                                        <span class="badge rounded <?= $statusClass ?>"><?= $m['statut'] ?></span>
-                                    </td>
-                                    <td><?= date("d-m-Y H:i", strtotime($m['date'])) ?></td>
-                                    <td class="text-end">
-                                        <a href="#" class="edit-maintenance" data-bs-toggle="modal" data-bs-target="#editMaintenance" data-id="<?= $m['id'] ?>">
-                                            <i class="las la-pen text-secondary fs-18" title="Modifier"></i>
-                                        </a>
-                                        <a href="#" data-bs-toggle="modal" data-bs-target="#deleteModal">
-                                            <i class="las la-trash-alt text-secondary fs-18" title="Supprimer"></i>
-                                        </a>
-                                    </td>
-                                </tr>
-
-                                <?php endforeach; ?>
-                            </tbody>
+        </tr>
+    <?php endforeach; ?>
+</tbody>
                         </table>
                     </div>
 
@@ -259,7 +232,7 @@ $pageLibs = [
     LIBS_URL . 'simple-datatables/umd/simple-datatables.js',
     JS_URL . 'pages/datatables.init.js'
 ];
-include_once "includes/footer.php";
+include_once "./../../includes/footer.php";
 ?>
 
 <script>

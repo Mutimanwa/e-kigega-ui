@@ -1,6 +1,6 @@
 <?php
-include_once "includes/header.php";
-include_once "includes/sidebar.php";
+include_once "./../includes/header.php";
+include_once "./../includes/sidebar.php";
 ?>
 
 <div class="container-fluid">
@@ -250,5 +250,5 @@ $pageLibs = [
     "assets/libs/apexcharts/apexcharts.min.js",
     "assets/js/pages/payment.init.js"
 ];
-include_once "includes/footer.php";
+include_once "./../includes/footer.php";
 ?>

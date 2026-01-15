@@ -26,16 +26,23 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="<?= BASE_URL ?>dashboard.php">
+                        <a class="nav-link" href="<?= BASE_URL ?>public/index.php">
                             <i class="iconoir-report-columns menu-icon"></i>
                             <span>Dashboard Global</span>
                         </a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="<?= BASE_URL ?>formations/formations.php">
+                        <a class="nav-link" href="<?= BASE_URL ?>public/formations/index.php">
                             <i class="iconoir-graduation-cap menu-icon"></i>
                             <span>Formations</span>
+                        </a>
+                    </li>
+
+                     <li class="nav-item">
+                        <a class="nav-link" href="<?= BASE_URL ?>public/ai/index.php">
+                            <i class="iconoir-graduation-cap menu-icon"></i>
+                            <span>ai</span>
                         </a>
                     </li>
 
@@ -45,13 +52,13 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="<?= BASE_URL ?>entreprise.php">
+                        <a class="nav-link" href="<?= BASE_URL ?>public/entreprise/index.php">
                             <i class="iconoir-building menu-icon"></i>
                             <span>Gestion des entreprises</span>
                         </a>
                     </li>
                       <li class="nav-item">
-                        <a class="nav-link" href="<?= BASE_URL ?>abonnement.php">
+                        <a class="nav-link" href="<?= BASE_URL ?>public/abonnement/index.php">
                             <i class="iconoir-building menu-icon"></i>
                             <span>Abonement et Plan</span>
                         </a>
@@ -71,10 +78,10 @@
                         <div class="collapse" id="sidebarUsers">
                             <ul class="nav flex-column">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="<?= BASE_URL ?>utilisateurs.php">Liste des utilisateurs</a>
+                                    <a class="nav-link" href="<?= BASE_URL ?>public/utilisateurs/index.php">Liste des utilisateurs</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="<?= BASE_URL ?>roles.php">Rôles & Permissions</a>
+                                    <a class="nav-link" href="<?= BASE_URL ?>public/roles/index.php">Rôles & Permissions</a>
                                 </li>
                             </ul>
                         </div>
@@ -120,10 +127,10 @@
                         <div class="collapse" id="sidebarAudit">
                             <ul class="nav flex-column">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="<?= BASE_URL ?>logs.php">Logs système</a>
+                                    <a class="nav-link" href="<?= BASE_URL ?>public/logs/index.php">Logs système</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="<?= BASE_URL ?>activity.php">Activités</a>
+                                    <a class="nav-link" href="<?= BASE_URL ?>public/activite/index.php">Activités</a>
                                 </li>
                             </ul>
                         </div>
@@ -135,14 +142,14 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="<?= BASE_URL ?>backup.php">
+                        <a class="nav-link" href="<?= BASE_URL ?>public/backup/index.php">
                             <i class="iconoir-database-backup menu-icon"></i>
                             <span>Sauvegardes</span>
                         </a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="<?= BASE_URL ?>maintenance.php">
+                        <a class="nav-link" href="<?= BASE_URL ?>public/maintenance/index.php">
                             <i class="iconoir-refresh menu-icon"></i>
                             <span>Maintenance</span>
                         </a>
