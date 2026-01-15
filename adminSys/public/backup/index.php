@@ -46,16 +46,25 @@ include_once "./../../includes/sidebar.php";
                                     <td>1.2 GB</td>
                                     <td><span class="badge bg-success-subtle text-success">Succès</span></td>
                                     <td class="text-end">
-                                        <a href="#" class="me-2" data-bs-toggle="tooltip" title="Télécharger">
-                                            <i class="las la-download text-secondary fs-18"></i>
+                                        <a href="#" class="action-icon me-2 text-secondary" data-bs-toggle="tooltip"
+                                            title="Télécharger">
+                                            <i class="las la-download fs-18"></i>
                                         </a>
-                                        <a href="#" class="me-2" data-bs-toggle="tooltip" title="Restaurer">
-                                            <i class="las la-sync-alt text-secondary fs-18"></i>
+
+                                        <a href="#" class="action-icon me-2 text-info" data-bs-toggle="tooltip"
+                                            title="Restaurer">
+                                            <i class="las la-sync-alt fs-18"></i>
                                         </a>
-                                        <a href="#" data-bs-toggle="tooltip" title="Supprimer">
-                                            <i class="las la-trash-alt text-danger fs-18"></i>
+
+                                        <a href="#" class="action-icon text-danger" data-bs-toggle="modal"
+                                            data-bs-target="#deleteModal">
+
+                                            <i class="las la-trash-alt fs-18" data-bs-toggle="tooltip"
+                                                title="Supprimer"></i>
                                         </a>
                                     </td>
+
+
                                 </tr>
                                 <tr>
                                     <td>05 Janvier 2026 <span>10:10am</span></td>
@@ -63,16 +72,25 @@ include_once "./../../includes/sidebar.php";
                                     <td>450 MB</td>
                                     <td><span class="badge bg-warning-subtle text-warning">En attente</span></td>
                                     <td class="text-end">
-                                        <a href="#" class="me-2" data-bs-toggle="tooltip" title="Télécharger">
-                                            <i class="las la-download text-secondary fs-18"></i>
+                                        <a href="#" class="action-icon me-2 text-secondary" data-bs-toggle="tooltip"
+                                            title="Télécharger">
+                                            <i class="las la-download fs-18"></i>
                                         </a>
-                                        <a href="#" class="me-2" data-bs-toggle="tooltip" title="Restaurer">
-                                            <i class="las la-sync-alt text-secondary fs-18"></i>
+
+                                        <a href="#" class="action-icon me-2 text-info" data-bs-toggle="tooltip"
+                                            title="Restaurer">
+                                            <i class="las la-sync-alt fs-18"></i>
                                         </a>
-                                        <a href="#" data-bs-toggle="tooltip" title="Supprimer">
-                                            <i class="las la-trash-alt text-danger fs-18"></i>
+
+                                        <a href="#" class="action-icon text-danger" data-bs-toggle="modal"
+                                            data-bs-target="#deleteModal">
+
+                                            <i class="las la-trash-alt fs-18" data-bs-toggle="tooltip"
+                                                title="Supprimer"></i>
                                         </a>
                                     </td>
+
+
                                 </tr>
                                 <tr>
                                     <td>01 Janvier 2026 <span>08:30am</span></td>
@@ -80,16 +98,25 @@ include_once "./../../includes/sidebar.php";
                                     <td>1.1 GB</td>
                                     <td><span class="badge bg-success-subtle text-success">Succès</span></td>
                                     <td class="text-end">
-                                        <a href="#" class="me-2" data-bs-toggle="tooltip" title="Télécharger">
-                                            <i class="las la-download text-secondary fs-18"></i>
+                                        <a href="#" class="action-icon me-2 text-secondary" data-bs-toggle="tooltip"
+                                            title="Télécharger">
+                                            <i class="las la-download fs-18"></i>
                                         </a>
-                                        <a href="#" class="me-2" data-bs-toggle="tooltip" title="Restaurer">
-                                            <i class="las la-sync-alt text-secondary fs-18"></i>
+
+                                        <a href="#" class="action-icon me-2 text-info" data-bs-toggle="tooltip"
+                                            title="Restaurer">
+                                            <i class="las la-sync-alt fs-18"></i>
                                         </a>
-                                        <a href="#" data-bs-toggle="tooltip" title="Supprimer">
-                                            <i class="las la-trash-alt text-danger fs-18"></i>
+
+                                        <a href="#" class="action-icon text-danger" data-bs-toggle="modal"
+                                            data-bs-target="#deleteModal">
+
+                                            <i class="las la-trash-alt fs-18" data-bs-toggle="tooltip"
+                                                title="Supprimer"></i>
                                         </a>
                                     </td>
+
+
                                 </tr>
                             </tbody>
 
@@ -140,6 +167,27 @@ include_once "./../../includes/sidebar.php";
                     <button type="submit" class="btn btn-primary w-100">Créer Backup</button>
                 </form>
 
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal de suppression -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="DeleteUserLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-white">
+                <h5 class="modal-title text-danger" id="deleteUserLabel">Supprimer</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p class="text-muted">Êtes-vous sûr de vouloir supprimer cet sauvegarde ? Cette action est irréversible.
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-outline-danger">Oui</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
             </div>
         </div>
     </div>

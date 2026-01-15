@@ -227,6 +227,26 @@ $maintenances = [
 </div>
 
 
+        <!-- Modal de suppression -->
+        <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="DeleteUserLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header bg-white">
+                        <h5 class="modal-title text-danger" id="deleteUserLabel">Supprimer</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p class="text-muted">Êtes-vous sûr de vouloir supprimer cet maintenance  ? Cette action est irréversible.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-outline-danger">Oui</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
 <?php
 $pageLibs = [
     LIBS_URL . 'simple-datatables/umd/simple-datatables.js',
