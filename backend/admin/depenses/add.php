@@ -21,7 +21,6 @@ if (!$entreprise) {
     exit;
 }
 
-
 if (isset($_POST['send'])) {
 
     $type        = trim($_POST['type']);

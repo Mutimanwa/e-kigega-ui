@@ -94,6 +94,7 @@ include "../../../includes/sidebar.php";
                                             if (!is_array($u)) continue;
 
                                             // Préparer les valeurs avec fallback
+                                            $id=htmlspecialchars($u['id'] ?? '' );
                                             $nom = htmlspecialchars($u['nom'] ?? '');
                                             $prenom = htmlspecialchars($u['prenom'] ?? '');
                                             $email = htmlspecialchars($u['email'] ?? '');
@@ -145,11 +146,12 @@ include "../../../includes/sidebar.php";
                                                 <a href="#"
                                                     class="text-danger delete-btn"
                                                     data-bs-toggle="modal"
-                                                    data-bs-target="#deleteModal">
-                                                    <i class="las la-trash-alt fs-18"
-                                                        data-bs-toggle="tooltip"
-                                                        data-bs-placement="top"
-                                                        title="Supprimer"></i>
+                                                    data-bs-target="#deleteModal"
+                                                    data-id="<?= $id ?>"
+                                                    data-nom="<?= $email ?>">
+                                                    <i class="las la-trash-alt  fs-18 " data-bs-toggle="tooltip"
+                                                    data-bs-placement="top"
+                                                    title="Supprimer"></i>
                                                 </a>
                                             </td>
                                         </tr>
@@ -173,18 +175,18 @@ include "../../../includes/sidebar.php";
             include "../../../includes/footer.php"; 
         ?>
 
-      <script>
-        // toast success
-        <?php if (isset($_GET['success'])): ?>
-          showToast("<?= htmlspecialchars($_GET['success']) ?>", 'success');
+        <script>
+            // toast success
+            <?php if (isset($_GET['success'])): ?>
+            showToast("<?= htmlspecialchars($_GET['success']) ?>", 'success');
 
-        <?php endif; ?>
-        // toast error
-        <?php if (isset($_GET['error'])): ?>
-          showToast("<?= htmlspecialchars($_GET['error']) ?>", 'danger');
+            <?php endif; ?>
+            // toast error
+            <?php if (isset($_GET['error'])): ?>
+            showToast("<?= htmlspecialchars($_GET['error']) ?>", 'danger');
 
-        <?php endif; ?>
-      </script>
+            <?php endif; ?>
+        </script>
 
         <!-- Modal d'ajout -->
         <div class="modal fade" id="addUser" tabindex="-1" aria-labelledby="addUserLabel" aria-hidden="true">
@@ -421,24 +423,46 @@ include "../../../includes/sidebar.php";
             </div>
         </div>
 
-        <!-- Modal de suppression -->
-        <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="DeleteUserLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header bg-white">
-                        <h5 class="modal-title text-danger" id="deleteUserLabel">Supprimer</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <p class="text-muted">Êtes-vous sûr de vouloir supprimer cet utilisateur ? Cette action est irréversible.</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="submit" class="btn btn-outline-danger">Oui</button>
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
-                    </div>
-                </div>
+        <!-- modal de suppression -->
+        <div class="modal fade" id="deleteModal" tabindex="-1">
+          <div class="modal-dialog">
+            <div class="modal-content">
+
+              <div class="modal-header bg-white">
+                <h5 class="modal-title text-danger">Supprimer Un Utilisateur</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+              </div>
+
+              <div class="modal-body">
+                <p>
+                  Voulez-vous vraiment supprimer
+                  <strong id="catName"></strong> ?
+                </p>
+              </div>
+
+              <div class="modal-footer">
+                <form method="POST" action="./../../../backend/admin/users/delete.php">
+                  <input type="hidden" name="id" id="deleteId">
+                  <button type="submit" class="btn btn-danger">Oui, supprimer</button>
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                    Annuler
+                  </button>
+                </form>
+              </div>
+
             </div>
+          </div>
         </div>
+
+        <!-- Js pour recuper l'id lors de suppression  -->
+        <script>
+          document.querySelectorAll('.delete-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+              document.getElementById('deleteId').value = this.dataset.id;
+              document.getElementById('catName').innerText = this.dataset.nom;
+            });
+          });
+        </script>
 
         <!-- Script JavaScript pour toutes les fonctionnalités -->
         <script>
@@ -552,8 +576,6 @@ include "../../../includes/sidebar.php";
                 });
             });
         </script>
-
-
 
         <!-- js pour le tooltip -->
         <script>

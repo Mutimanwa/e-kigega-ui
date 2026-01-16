@@ -44,7 +44,10 @@ function sendlogin() {
 
           // =====when is a super admin loged
           if (["SUPER_ADMIN"].includes(result.role)) {
-            p.innerHTML = `${result.message} for : ${result.role}`;
+            // p.innerHTML = `${result.message} for : ${result.role}`;
+            // http://localhost/e-kigega-ui/adminSys/logs.php
+            window.location.href = "./adminSys/index.php";
+
           }
 
           // =====when is a COMPTABLE loged
@@ -62,6 +65,7 @@ function sendlogin() {
             window.location.href = "./public/admin/index.php";
           }
         }
+
       } catch (e) {
         p.innerHTML = "Réponse serveur invalide";
       }

@@ -45,13 +45,14 @@
 
         // Préparer les données
         $donnee = [
-            "email" => $email,
-            "nom" => $nom,
-            "prenom" => $prenom,
-            "telephone" => $telephone,
-            "password" => $password,
-            "password2" => $conf,
-            "role" => $role
+            "email"      => $email,
+            "nom"        => $nom,
+            "prenom"     => $prenom,
+            "telephone"  => $telephone,
+            "password"   => $password,
+            "password2"  => $conf,
+            "role"       => $role,
+            "entreprise" => $entreprise   
         ];
 
         // Ajouter le fichier s'il existe

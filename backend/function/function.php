@@ -293,13 +293,14 @@
             CURLOPT_POSTFIELDS => $body,
             CURLOPT_HTTPHEADER => [
                 "Authorization: Bearer $token"
-                // Ne pas mettre Content-Type, cURL va gérer multipart automatiquement
             ],
+            CURLOPT_SAFE_UPLOAD => true,  
             CURLOPT_CONNECTTIMEOUT => 5,
             CURLOPT_TIMEOUT => 30,
             CURLOPT_SSL_VERIFYPEER => false,
             CURLOPT_SSL_VERIFYHOST => false
         ]);
+
 
         $response = curl_exec($ch);
         $status   = curl_getinfo($ch, CURLINFO_HTTP_CODE);
