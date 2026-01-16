@@ -1,18 +1,18 @@
 <?php
-include_once "includes/header.php";
-include_once "includes/sidebar.php";
+include_once "./../../includes/header.php";
+include_once "./../../includes/sidebar.php";
 ?>
 <div class="container-fluid">
     <div class="row">
         <div class="col-12">
             <div class="page-title-box d-flex align-items-center justify-content-between">
-                <h4 class="mb-0">Sauvegarde de Données</h4>
+                <h4 class="mb-0">Sauvegarde</h4>
                 <div class="page-title-right">
                     <ol class="breadcrumb m-0">
                         <li class="breadcrumb-item"><a href="#">E-Kigega</a></li>
                         <li class="breadcrumb-item"><a href="#">Super Admin</a></li>
 
-                        <li class="breadcrumb-item active">Sauvegarde de Données</li>
+                        <li class="breadcrumb-item active">Sauvegarde </li>
                     </ol>
                 </div>
             </div>
@@ -22,7 +22,7 @@ include_once "includes/sidebar.php";
         <div class="col-12">
             <div class="card">
                 <div class="card-header d-flex justify-content-between align-items-center">
-                    <h4 class="card-title mb-0">Backup Système</h4>
+                    <h4 class="card-title mb-0">Détails</h4>
                     <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createBackup">
                         <i class="fas fa-cloud-upload-alt me-1"></i> Créer un Backup
                     </button>
@@ -46,16 +46,25 @@ include_once "includes/sidebar.php";
                                     <td>1.2 GB</td>
                                     <td><span class="badge bg-success-subtle text-success">Succès</span></td>
                                     <td class="text-end">
-                                        <a href="#" class="me-2" data-bs-toggle="tooltip" title="Télécharger">
-                                            <i class="las la-download text-secondary fs-18"></i>
+                                        <a href="#" class="action-icon me-2 text-secondary" data-bs-toggle="tooltip"
+                                            title="Télécharger">
+                                            <i class="las la-download fs-18"></i>
                                         </a>
-                                        <a href="#" class="me-2" data-bs-toggle="tooltip" title="Restaurer">
-                                            <i class="las la-sync-alt text-secondary fs-18"></i>
+
+                                        <a href="#" class="action-icon me-2 text-info" data-bs-toggle="tooltip"
+                                            title="Restaurer">
+                                            <i class="las la-sync-alt fs-18"></i>
                                         </a>
-                                        <a href="#" data-bs-toggle="tooltip" title="Supprimer">
-                                            <i class="las la-trash-alt text-danger fs-18"></i>
+
+                                        <a href="#" class="action-icon text-danger" data-bs-toggle="modal"
+                                            data-bs-target="#deleteModal">
+
+                                            <i class="las la-trash-alt fs-18" data-bs-toggle="tooltip"
+                                                title="Supprimer"></i>
                                         </a>
                                     </td>
+
+
                                 </tr>
                                 <tr>
                                     <td>05 Janvier 2026 <span>10:10am</span></td>
@@ -63,16 +72,25 @@ include_once "includes/sidebar.php";
                                     <td>450 MB</td>
                                     <td><span class="badge bg-warning-subtle text-warning">En attente</span></td>
                                     <td class="text-end">
-                                        <a href="#" class="me-2" data-bs-toggle="tooltip" title="Télécharger">
-                                            <i class="las la-download text-secondary fs-18"></i>
+                                        <a href="#" class="action-icon me-2 text-secondary" data-bs-toggle="tooltip"
+                                            title="Télécharger">
+                                            <i class="las la-download fs-18"></i>
                                         </a>
-                                        <a href="#" class="me-2" data-bs-toggle="tooltip" title="Restaurer">
-                                            <i class="las la-sync-alt text-secondary fs-18"></i>
+
+                                        <a href="#" class="action-icon me-2 text-info" data-bs-toggle="tooltip"
+                                            title="Restaurer">
+                                            <i class="las la-sync-alt fs-18"></i>
                                         </a>
-                                        <a href="#" data-bs-toggle="tooltip" title="Supprimer">
-                                            <i class="las la-trash-alt text-danger fs-18"></i>
+
+                                        <a href="#" class="action-icon text-danger" data-bs-toggle="modal"
+                                            data-bs-target="#deleteModal">
+
+                                            <i class="las la-trash-alt fs-18" data-bs-toggle="tooltip"
+                                                title="Supprimer"></i>
                                         </a>
                                     </td>
+
+
                                 </tr>
                                 <tr>
                                     <td>01 Janvier 2026 <span>08:30am</span></td>
@@ -80,16 +98,25 @@ include_once "includes/sidebar.php";
                                     <td>1.1 GB</td>
                                     <td><span class="badge bg-success-subtle text-success">Succès</span></td>
                                     <td class="text-end">
-                                        <a href="#" class="me-2" data-bs-toggle="tooltip" title="Télécharger">
-                                            <i class="las la-download text-secondary fs-18"></i>
+                                        <a href="#" class="action-icon me-2 text-secondary" data-bs-toggle="tooltip"
+                                            title="Télécharger">
+                                            <i class="las la-download fs-18"></i>
                                         </a>
-                                        <a href="#" class="me-2" data-bs-toggle="tooltip" title="Restaurer">
-                                            <i class="las la-sync-alt text-secondary fs-18"></i>
+
+                                        <a href="#" class="action-icon me-2 text-info" data-bs-toggle="tooltip"
+                                            title="Restaurer">
+                                            <i class="las la-sync-alt fs-18"></i>
                                         </a>
-                                        <a href="#" data-bs-toggle="tooltip" title="Supprimer">
-                                            <i class="las la-trash-alt text-danger fs-18"></i>
+
+                                        <a href="#" class="action-icon text-danger" data-bs-toggle="modal"
+                                            data-bs-target="#deleteModal">
+
+                                            <i class="las la-trash-alt fs-18" data-bs-toggle="tooltip"
+                                                title="Supprimer"></i>
                                         </a>
                                     </td>
+
+
                                 </tr>
                             </tbody>
 
@@ -145,12 +172,33 @@ include_once "includes/sidebar.php";
     </div>
 </div>
 
+
+<!-- Modal de suppression -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="DeleteUserLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-white">
+                <h5 class="modal-title text-danger" id="deleteUserLabel">Supprimer</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p class="text-muted">Êtes-vous sûr de vouloir supprimer cet sauvegarde ? Cette action est irréversible.
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-outline-danger">Oui</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <?php
 $pageLibs = [
     LIBS_URL . 'simple-datatables/umd/simple-datatables.js',
     JS_URL . 'pages/datatables.init.js'
 ];
-include_once "includes/footer.php";
+include_once "./../../includes/footer.php";
 ?>
 
 <script>

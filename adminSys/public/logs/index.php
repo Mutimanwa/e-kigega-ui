@@ -1,6 +1,6 @@
 <?php 
-include_once "includes/header.php";
-include_once "includes/sidebar.php";
+include_once "./../../includes/header.php";
+include_once "./../../includes/sidebar.php";
 
 $logs = [
     ["id"=>1, "user"=>"Audry Wakanda", "action"=>"Connexion", "module"=>"Dashboard", "date"=>"2026-01-12 08:32"],
@@ -13,14 +13,14 @@ $logs = [
        <div class="row">
         <div class="col-sm-12">
             <div class="page-title-box d-md-flex justify-content-md-between align-items-center">
-                <h4 class="page-title">Gestion des journales du système</h4>
+                <h4 class="page-title">Journaux du système</h4>
                 <div class="">
                     <ol class="breadcrumb mb-0">
-                        <li class="breadcrumb-item"><a href="#">E-kigega</a>
+                        <li class="breadcrumb-item"><a href="#">E-Kigega</a>
                         </li><!--end nav-item-->
                         <li class="breadcrumb-item"><a href="#">Super Admin</a>
                         </li>
-                        <li class="breadcrumb-item active">Journales du système</li>
+                        <li class="breadcrumb-item active">Journaux du système</li>
                     </ol>
                 </div>
             </div><!--end page-title-box-->
@@ -30,7 +30,7 @@ $logs = [
         <div class="col-12">
             <div class="card">
                 <div class="card-header d-flex justify-content-between align-items-center">
-                    <h4 class="card-title">Journal système</h4>
+                    <h4 class="card-title">Détails</h4>
                     <button class="btn btn-primary" onclick="location.reload();"><i class="fas fa-sync me-1"></i> Actualiser</button>
                 </div>
 
@@ -71,5 +71,5 @@ $logs = [
         LIBS_URL . 'simple-datatables/umd/simple-datatables.js',
         JS_URL . 'pages/datatables.init.js'
     ];
-    include_once "includes/footer.php";
+    include_once "./../../includes/footer.php";
     ?>

@@ -1,19 +1,19 @@
 <?php
-include_once "includes/header.php";
-include_once "includes/sidebar.php";
+include_once "./../../includes/header.php";
+include_once "./../../includes/sidebar.php";
 ?>
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm-12">
             <div class="page-title-box d-md-flex justify-content-md-between align-items-center">
-                <h4 class="page-title">Utilisateurs</h4>
+                <h4 class="page-title">Assistant IA</h4>
                 <div class="">
                     <ol class="breadcrumb mb-0">
-                        <li class="breadcrumb-item"><a href="#">E-kigega</a>
+                        <li class="breadcrumb-item"><a href="#">E-Kigega</a>
                         </li><!--end nav-item-->
-                        <li class="breadcrumb-item"><a href="#">Admin</a>
+                        <li class="breadcrumb-item"><a href="#">Super Admin</a>
                         </li>
-                        <li class="breadcrumb-item active">Utilisateurs</li>
+                        <li class="breadcrumb-item active">Assistant IA</li>
                     </ol>
                 </div>
             </div><!--end page-title-box-->
@@ -69,7 +69,7 @@ include_once "includes/sidebar.php";
         <h4 class="card-title">Utilisation de l’IA par module</h4>
     </div>
     <div class="card-body">
-        <table class="table mb-0">
+        <table class="table mb-0" id="datatable_2">
             <thead class="table-light">
                 <tr>
                     <th>Module</th>
@@ -173,5 +173,9 @@ include_once "includes/sidebar.php";
 </div>
 
     <?php
-    include_once "includes/footer.php";
-    ?>
+$pageLibs = [
+    LIBS_URL . 'simple-datatables/umd/simple-datatables.js',
+    JS_URL . 'pages/datatables.init.js'
+];
+include_once "./../../includes/footer.php";
+?>

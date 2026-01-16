@@ -1,6 +1,6 @@
 <?php 
-include_once "includes/header.php";
-include_once "includes/sidebar.php";
+include_once "./../../includes/header.php";
+include_once "./../../includes/sidebar.php";
 $activities =[
     ["id"=>1, "user"=>"Audry Wakanda", "activite"=>"Création d'une entreprise", "detail"=>"Entreprise XYZ ajoutée", "date"=>"2026-01-12 08:50"],
     ["id"=>2, "user"=>"Jean Claude", "activite"=>"Abonnement", "detail"=>"Plan Premium activé pour Entreprise ABC", "date"=>"2026-01-12 09:20"],
@@ -12,14 +12,14 @@ $activities =[
       <div class="row">
         <div class="col-sm-12">
             <div class="page-title-box d-md-flex justify-content-md-between align-items-center">
-                <h4 class="page-title">Gestion des activites des utilisateurs</h4>
+                <h4 class="page-title">Historique des activités</h4>
                 <div class="">
                     <ol class="breadcrumb mb-0">
-                        <li class="breadcrumb-item"><a href="#">E-kigega</a>
+                        <li class="breadcrumb-item"><a href="#">E-Kigega</a>
                         </li><!--end nav-item-->
                         <li class="breadcrumb-item"><a href="#">Super Admin</a>
                         </li>
-                        <li class="breadcrumb-item active">Activités des utilisateurs</li>
+                        <li class="breadcrumb-item active">Historique des activités</li>
                     </ol>
                 </div>
             </div><!--end page-title-box-->
@@ -29,7 +29,7 @@ $activities =[
         <div class="col-12">
             <div class="card">
                 <div class="card-header d-flex justify-content-between align-items-center">
-                    <h4 class="card-title">details</h4>
+                    <h4 class="card-title">Détails</h4>
                     <button class="btn btn-primary" onclick="location.reload();"><i class="fas fa-sync me-1"></i> Actualiser</button>
                 </div>
 
@@ -68,5 +68,5 @@ $activities =[
         LIBS_URL . 'simple-datatables/umd/simple-datatables.js',
         JS_URL . 'pages/datatables.init.js'
     ];
-    include_once "includes/footer.php";
+    include_once "./../../includes/footer.php";
     ?>

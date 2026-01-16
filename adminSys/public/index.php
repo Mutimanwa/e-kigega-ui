@@ -1,6 +1,6 @@
 <?php
-include_once "includes/header.php";
-include_once "includes/sidebar.php";
+include_once "./../includes/header.php";
+include_once "./../includes/sidebar.php";
 ?>
 
 <div class="container-fluid">
@@ -10,7 +10,7 @@ include_once "includes/sidebar.php";
                 <h4 class="page-title">Tableau de bord</h4>
                 <div class="">
                     <ol class="breadcrumb mb-0">
-                        <li class="breadcrumb-item"><a href="#">E-kigega</a>
+                        <li class="breadcrumb-item"><a href="#">E-Kigega</a>
                         </li><li class="breadcrumb-item"><a href="#">Super Admin</a>
                         </li><!--end nav-item-->
                         <li class="breadcrumb-item active">Tableau de bord</li>
@@ -250,5 +250,5 @@ $pageLibs = [
     "assets/libs/apexcharts/apexcharts.min.js",
     "assets/js/pages/payment.init.js"
 ];
-include_once "includes/footer.php";
+include_once "./../includes/footer.php";
 ?>

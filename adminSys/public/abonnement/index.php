@@ -1,6 +1,6 @@
 <?php
-include_once "includes/header.php";
-include_once "includes/sidebar.php";
+include_once "./../../includes/header.php";
+include_once "./../../includes/sidebar.php";
 
 ?>
 
@@ -24,7 +24,7 @@ include_once "includes/sidebar.php";
     <div class="col-12">
         <div class="card">
             <div class="card-header d-flex justify-content-between align-items-center">
-                <h4 class="card-title mb-0">Plans d'Abonnement</h4>
+                <h4 class="card-title mb-0">Détails</h4>
                 <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addPlan">
                     <i class="fas fa-plus me-1"></i> Ajouter un Plan
                 </button>
@@ -317,7 +317,7 @@ $pageLibs = [
     LIBS_URL . 'simple-datatables/umd/simple-datatables.js',
     JS_URL . 'pages/datatables.init.js'
 ];
-include_once "includes/footer.php";
+include_once "./../../includes/footer.php";
 ?>
 
 

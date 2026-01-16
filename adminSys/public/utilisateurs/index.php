@@ -1,6 +1,6 @@
 <?php
-include_once "includes/header.php";
-include_once "includes/sidebar.php";
+include_once "./../../includes/header.php";
+include_once "./../../includes/sidebar.php";
 ?>
 
 <div class="container-fluid">
@@ -10,7 +10,7 @@ include_once "includes/sidebar.php";
                 <h4 class="page-title">Utilisateurs</h4>
                 <div class="">
                     <ol class="breadcrumb mb-0">
-                        <li class="breadcrumb-item"><a href="#">E-kigega</a>
+                        <li class="breadcrumb-item"><a href="#">E-Kigega</a>
                         </li><!--end nav-item-->
                         <li class="breadcrumb-item"><a href="#">Super Admin</a>
                         </li>
@@ -442,7 +442,7 @@ $pageLibs = [
     LIBS_URL . 'simple-datatables/umd/simple-datatables.js',
     JS_URL . 'pages/datatables.init.js'
 ];
-include_once "includes/footer.php";
+include_once "./../../includes/footer.php";
 ?>
 
 
