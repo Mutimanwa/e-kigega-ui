@@ -1,0 +1,335 @@
+<?php
+
+ini_set('session.cookie_httponly', 1);
+ini_set('session.cookie_secure', 1);
+session_start();
+
+require_once('./../../../backend/function/function.php');
+$role = "ADMIN";
+
+//================== gerer les session 
+if (requireRole($role) === "Accès interdit") {
+  header("Location: ./../../../index.php");
+  session_destroy();
+}
+
+//=========== verifier l'abonnement de cet entreprise
+$url = "./../../../index.php";
+abonnement($url);
+
+// ================== fetch les categories
+$depenses = getApi('/api/depenses/') ?? [];
+if (!is_array($depenses)) {
+  echo "<div class='alert alert-danger'>Erreur API Categories</div>";
+  $depenses = [];
+}
+
+include "./../../../includes/header.php";
+include "./../../../includes/sidebar.php";
+?>
+<div class="page-wrapper">
+
+  <!-- Page Content-->
+  <div class="page-content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="page-title-box d-md-flex justify-content-md-between align-items-center">
+            <h4 class="page-title">Depenses</h4>
+            <div class="">
+              <ol class="breadcrumb mb-0">
+                <li class="breadcrumb-item"><a href="#">E-Kigega</a></li>
+                <li class="breadcrumb-item"><a href="#">Admin</a>
+                </li><!--end nav-item-->
+                <li class="breadcrumb-item active">Depenses</li>
+              </ol>
+            </div>
+          </div><!--end page-title-box-->
+        </div><!--end col-->
+      </div><!--end row-->
+
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-header">
+              <div class="row align-items-center">
+                <div class="col">
+                  <h4 class="card-title"> Details</h4>
+                </div><!--end col-->
+                <div class="col-auto">
+                  <button class="btn bg-primary text-white" data-bs-toggle="modal" data-bs-target="#addRate"><i
+                      class="fas fa-plus me-1"></i> Ajouter une dépense</button>
+                </div><!--end col-->
+              </div><!--end row-->
+            </div><!--end card-header-->
+            <div class="card-body pt-0">
+              <div class="table-responsive">
+                <table class="table " id="datatable_1">
+                  <thead class="table-light">
+                    <tr>
+                      <th>Type de depense</th>
+                      <th>Description</th>
+                      <th>Montant</th>
+                      <th>Justificatif</th>
+                      <th>Date</th>
+                      <th class="text-end">Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  <?php foreach($depenses as $d): ?>
+                    <tr>
+                      <td><?= htmlspecialchars($d['type']) ?></td>
+                      <td> <?= htmlspecialchars($d['description']) ?></td>
+                      <td> <?= number_format(htmlspecialchars($d['montant']),2) ?></td>
+                      <td>
+                      <?php if (!empty($d['justificatif'])): ?>
+                          <a href="./../../../backend/download/index.php?url=<?= urlencode($d['justificatif']) ?>" class="btn btn-primary btn-sm">
+                              Télécharger
+                          </a>
+                      <?php else: ?>
+                          <span class="text-muted">Pas de Justificatif</span>
+                      <?php endif; ?>
+                      </td>
+                      <td><?= htmlspecialchars((new DateTime($d['created_at']))->format('d/m/Y')) ?></td>
+                      <td class="text-end">
+
+                          <!-- Modifier -->
+                          <a href="#"
+                            class="editBtn"
+                            data-bs-toggle="modal"
+                            data-bs-target="#modifyProductModal"
+                            data-id="<?= $d['id'] ?>"
+                            data-type="<?= htmlspecialchars($d['type']) ?>"
+                            data-description="<?= htmlspecialchars($d['description']) ?>"
+                            data-montant="<?= $d['montant'] ?>">
+                            <i class="las la-pen  fs-18" data-bs-toggle="tooltip"
+                              data-bs-placement="top"
+                              title="Modifier"></i>
+                          </a>
+
+                        <!-- Supprimer -->
+                          <!-- Supprimer -->
+                          <a href="#"
+                            class="text-danger delete-btn"
+                            data-bs-toggle="modal"
+                            data-bs-target="#deleteModal"
+                            data-id="<?= $d['id'] ?>"
+                            data-nom="<?= htmlentities($d['type']) ?>">
+                            <i class="las la-trash-alt  fs-18 " data-bs-toggle="tooltip"
+                              data-bs-placement="top"
+                              title="Supprimer"></i>
+                          </a>
+
+                      </td>
+                    </tr>
+                  <?php endforeach; ?>
+                  </tbody>
+                </table>
+
+              </div>
+            </div>
+          </div> <!-- end col -->
+        </div> <!-- end row -->
+
+      </div>
+      <!--Start Footer-->
+
+      <?php
+        $pageLibs = [
+          LIBS_URL . "simple-datatables/umd/simple-datatables.js",
+          JS_URL . "pages/datatables.init.js"
+        ];
+        include "./../../../includes/footer.php";
+      ?>
+
+
+      <script>
+          // toast success
+          <?php if (isset($_GET['success'])): ?>
+            showToast("<?= htmlspecialchars($_GET['success']) ?>", 'success');
+    
+          <?php endif; ?>
+          // toast error
+          <?php if (isset($_GET['error'])): ?>
+          showToast("<?= htmlspecialchars($_GET['error']) ?>", 'danger');
+        
+          <?php endif; ?>
+      </script>
+
+      <!-- Popup Ajouter -->
+      <div class="modal fade" id="addRate" tabindex="-1" aria-labelledby="addRateLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <form action="./../../../backend/admin/depenses/add.php" method="post" enctype="multipart/form-data">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="addRateLabel">Ajouter une dépense</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+              </div>
+              <div class="modal-body">
+
+
+                <div class="mb-2">
+                  <label for="add-categorie" class="form-label">Type de la depense</label>
+                  <div class="input-group">
+                    <span class="input-group-text">
+                      <i class="fas fa-tags"></i>
+                    </span>
+                    <input type="text" id="add-type" name="type" class="form-control" placeholder="Type de la dépense">
+                  </div>
+                </div>
+
+                <div class="mb-2">
+                  <label for="add-description" class="form-label">Description</label>
+                  <div class="input-group">
+                    <span class="input-group-text">
+                      <i class="fas fa-align-left"></i>
+                    </span>
+                    <textarea id="add-description" name="description" class="form-control" rows="3"
+                      placeholder="Description de la dépense">
+                    </textarea>
+                  </div>
+                </div>
+
+                <div class="mb-2">
+                  <label>Montant</label>
+                  <div class="input-group">
+                    <span class="input-group-text"><i class="fas fa-money-bill-wave"></i></span>
+                    <input type="number" id="add-prix" name="montant" class="form-control" placeholder="Montant de la dépense">
+                  </div>
+                </div>
+
+                <div class="mb-2">
+                  <label>Justificatif si necessaire </label>
+                  <div class="input-group">
+                    <span class="input-group-text"><i class="fas fa-file"></i></span>
+                    <input type="file" id="add-justificatif" name="justificatif" class="form-control">
+                  </div>
+                </div>
+
+              </div>
+              <div class="modal-footer">
+                <button type="submit" name="send" class="btn btn-primary w-100">Ajouter</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+
+        <!-- Popup Modifier  -->
+        <div class="modal fade" id="modifyProductModal" tabindex="-1" aria-labelledby="modifyProductLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <form action="./../../../backend/admin/depenses/edit.php" method="post" id="form-edit-produit">
+              <input type="hidden" name="id" id="edit-id">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="modifyProductLabel">Modifier la Depense</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+
+                <div class="mb-2">
+                  <label for="add-categorie" class="form-label">Type de la depense</label>
+                  <div class="input-group">
+                    <span class="input-group-text">
+                      <i class="fas fa-tags"></i>
+                    </span>
+                    <input type="text" id="edit-type" name="type" class="form-control" placeholder="Type de la dépense">
+                  </div>
+                </div>
+
+                <div class="mb-2">
+                  <label for="add-description" class="form-label">Description</label>
+                  <div class="input-group">
+                    <span class="input-group-text">
+                      <i class="fas fa-align-left"></i>
+                    </span>
+                    <textarea id="edit-description" name="description" class="form-control" rows="3"
+                      placeholder="Description de la dépense">
+                    </textarea>
+                  </div>
+                </div>
+
+                <div class="mb-2">
+                  <label>Montant</label>
+                  <div class="input-group">
+                    <span class="input-group-text"><i class="fas fa-money-bill-wave"></i></span>
+                    <input type="number" id="edit-montant" name="montant" class="form-control" placeholder="Montant de la dépense">
+                  </div>
+                </div>
+
+                </div>
+                <div class="modal-footer">
+                  <button type="submit" name="send" class="btn btn-primary w-100">Modifier</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+
+      <!-- modal de suppression -->
+      <div class="modal fade" id="deleteModal" tabindex="-1">
+        <div class="modal-dialog">
+          <div class="modal-content">
+
+            <div class="modal-header bg-white">
+              <h5 class="modal-title text-danger">Supprimer Depense</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <div class="modal-body">
+              <p>
+                Voulez-vous vraiment supprimer
+                <strong id="catName"></strong> ?
+              </p>
+            </div>
+
+            <div class="modal-footer">
+              <form method="POST" action="./../../../backend/admin/depenses/delete.php">
+                <input type="hidden" name="id" id="deleteId">
+                <button type="submit" class="btn btn-danger">Oui, supprimer</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                  Annuler
+                </button>
+              </form>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- Js pour recuper l'id lors de suppression  -->
+      <script>
+        document.querySelectorAll('.delete-btn').forEach(btn => {
+            btn.addEventListener('click', function () {
+                document.getElementById('deleteId').value = this.dataset.id;
+                document.getElementById('catName').innerText = this.dataset.nom;
+            });
+        });
+      </script>
+
+        <!-- Js pour recuperl'id lors de modification  -->
+        <script>
+          document.addEventListener('DOMContentLoaded', function() {
+            const editButtons = document.querySelectorAll('.editBtn');
+            const modal = document.getElementById('modifyProductModal');
+
+            editButtons.forEach(btn => {
+              btn.addEventListener('click', function() {
+                document.getElementById('edit-id').value = this.dataset.id;
+                document.getElementById('edit-type').value = this.dataset.type;
+                document.getElementById('edit-description').value = this.dataset.description;
+                document.getElementById('edit-montant').value = this.dataset.montant;
+              });
+            });
+          });
+        </script>
+
+      <!-- js pour le tooltip -->
+      <script>
+        var tooltipTriggerList = [].slice.call(
+          document.querySelectorAll('[data-bs-toggle="tooltip"]')
+        );
+        tooltipTriggerList.map(function(tooltipTriggerEl) {
+          return new bootstrap.Tooltip(tooltipTriggerEl);
+        });
+      </script>

@@ -52,7 +52,7 @@ function sendlogin() {
 
           // =====when is a COMPTABLE loged
           if (["COMPTABLE"].includes(result.role)) {
-            p.innerHTML = `${result.message} for : ${result.role}`;
+             window.location.href = "./public/comptable/index.php";
           }
 
           // =====when is a VENTE loged
