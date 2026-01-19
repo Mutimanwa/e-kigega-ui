@@ -132,14 +132,20 @@ include "../../../includes/sidebar.php";
                                             <td class="text-end">
                                                 <!-- Modifier -->
                                                 <a href="#"
-                                                    class="edit-user"
+                                                    class="editBtn"
                                                     data-bs-toggle="modal"
-                                                    data-bs-target="#editUser"
-                                                    data-user-id="<?= $user_id ?>">
-                                                    <i class="las la-pen fs-18"
-                                                        data-bs-toggle="tooltip"
-                                                        data-bs-placement="top"
-                                                        title="Modifier"></i>
+                                                    data-bs-target="#modifyProductModal"
+                                                    data-id="<?= $id ?>"
+                                                    data-nom="<?= $nom ?>"
+                                                    data-prenom="<?= $prenom ?>"
+                                                    data-email="<?= $email ?>"
+                                                    data-telephone="<?= $telephone ?>"
+                                                    data-profile="<?= $profile ?>"
+                                                    data-status="<?= $status ?>"
+                                                    data-role="<?= $role ?>">
+                                                    <i class="las la-pen  fs-18" data-bs-toggle="tooltip"
+                                                    data-bs-placement="top"
+                                                    title="Modifier"></i>
                                                 </a>
 
                                                 <!-- Supprimer -->

@@ -72,14 +72,15 @@
             header("Location: ./../../../index.php");
             exit;
         }
-
-        if (!is_array($add) || !isset($add['id'])) {
-            header("Location: ./../../../public/admin/utilisateurs/index.php?error=Erreur lors de l’ajout");
+        
+        if($add === 'Erreur lors de la création'){
+            header("Location: ./../../../public/admin/utilisateurs/index.php?error=Utilisateur n'est pas ajoutee");
             exit;
         }
 
-        header("Location: ./../../../public/admin/utilisateurs/index.php?success=Utilisateur ajoutée avec justificatif");
+        header("Location: ./../../../public/admin/utilisateurs/index.php?success=Utilisateur ajoutée avec success");
         exit;
+
     }
 
 ?>
