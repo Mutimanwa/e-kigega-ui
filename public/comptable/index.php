@@ -5,7 +5,7 @@
     session_start();
 
     require_once('./../../backend/function/function.php');
-    $role="ADMIN";
+    $role="COMPTABLE";
     $entreprise=$_SESSION['entreprise'];
 
     //================== gerer les session 
@@ -17,6 +17,7 @@
     //=========== verifier l'abonnement de cet entreprise
     $url="./../../index.php";
     abonnement($url);
+
 
     // menu lateral admin et header
     include "../../includes/header.php";

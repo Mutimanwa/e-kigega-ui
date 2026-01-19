@@ -313,7 +313,7 @@
     }
 
     //=========== verifier l'abonnement de l'entreprise connecte 
-    function abonnement($redirection){
+    function abonnement(string  $redirection){
 
         $entreprise=$_SESSION['entreprise'];
         // Fetch tous les abonnements de l'entreprise
@@ -341,7 +341,7 @@
                 $today <= $dateFin
             ) {
                 $abonnementValide = true;
-                break; // very good abonnement encours
+                break;  // Abonnement valide trouvé
             }
         }
 
