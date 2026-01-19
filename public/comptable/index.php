@@ -1,28 +1,37 @@
 <?php
-
     ini_set('session.cookie_httponly', 1);
     ini_set('session.cookie_secure', 1);
     session_start();
 
     require_once('./../../backend/function/function.php');
-    $role="COMPTABLE";
-    $entreprise=$_SESSION['entreprise'];
 
-    //================== gerer les session 
-    if(requireRole($role)==="Accès interdit"){
-        header("Location: ./../../index.php");
+    $role = "VENTES";
+
+    // Vérifier la session entreprise
+    if (empty($_SESSION['entreprise'])) {
         session_destroy();
+        header("Location: ./../../index.php?error=Entreprise_non_definie");
+        exit;
     }
 
-    //=========== verifier l'abonnement de cet entreprise
-    $url="./../../index.php";
-    abonnement($url);
+    $entreprise = $_SESSION['entreprise'];
+
+    //================== gerer les sessions par rôle
+    if (requireRole($role) === "Accès interdit") {
+        session_destroy();
+        header("Location: ./../../index.php?error=Acces_interdit");
+        exit;
+    }
 
 
-    // menu lateral admin et header
+    $url = "./../../index.php";
+    abonnement($url,$entreprise);
+
+    // menu lateral et header
     include "../../includes/header.php";
     include "../../includes/sidebar.php";
 ?>
+
 
 <!-- Page Content Start -->
 <div class="page-wrapper">

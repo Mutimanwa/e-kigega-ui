@@ -56,8 +56,8 @@ function sendlogin() {
           }
 
           // =====when is a VENTE loged
-          if (["VENTE"].includes(result.role)) {
-            p.innerHTML = `${result.message} for : ${result.role}`;
+          if (["VENTES"].includes(result.role)) {
+             window.location.href = "./public/comptable/index.php";
           }
 
           //=========== when is a society admin loged

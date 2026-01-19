@@ -13,9 +13,11 @@ if (requireRole($role) === "Accès interdit") {
     session_destroy();
 }
 
-//=========== verifier l'abonnement de cet entreprise
-$url = "./../../../index.php";
-abonnement($url);
+  $entreprise=$_SESSION['entreprise'];
+
+  //=========== verifier l'abonnement de cet entreprise
+  $url = "./../../../index.php";
+  abonnement($url,$entreprise);
 
 //================== fetch les produits
 $roles = getApi('/api/auth/roles/') ?? [];

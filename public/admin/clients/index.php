@@ -13,9 +13,11 @@
     session_destroy();
   }
 
+  $entreprise=$_SESSION['entreprise'];
+
   //=========== verifier l'abonnement de cet entreprise
   $url = "./../../../index.php";
-  abonnement($url);
+  abonnement($url,$entreprise);
 
   //================== fetch les clients
   $clients = getApi('/api/partners/clients/') ?? [];

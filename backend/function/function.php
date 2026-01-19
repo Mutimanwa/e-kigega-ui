@@ -50,20 +50,19 @@
 
         $data = json_decode($response, true);
 
-        if ($data['user']['role']['nom']==='SUPER_ADMIN') {
-            $_SESSION['token'] = $data['access'];
-            $_SESSION['role']  = $data['user']['role']['nom'];
-        }else{
-            $_SESSION['token'] = $data['access'];
-            $_SESSION['role']  = $data['user']['role']['nom'];
-            $_SESSION['entreprise'] = $data['user']['entreprise']['id'];
-        }
+        // 🔐 Données communes
+        $_SESSION['token'] = $data['access'];
+        $_SESSION['role']  = $data['user']['role']['nom'] ?? null;
+        $_SESSION['user_id'] = $data['user']['id'] ?? null;
+
+        // 🏢 Entreprise (pour TOUS sauf SUPER_ADMIN)
+        $_SESSION['entreprise'] = $data['user']['entreprise']['id'] ?? null;
 
         return [
-    "success" => true,
-    "message" => "<span class='text-success'>Connexion réussie</span>",
-    "role"    => $_SESSION['role']
-];
+            "success" => true,
+            "message" => "<span class='text-success'>Connexion réussie</span>",
+            "role"    => $_SESSION['role']
+        ];
 
     }
 
@@ -313,46 +312,46 @@
     }
 
     //=========== verifier l'abonnement de l'entreprise connecte 
-    function abonnement(string  $redirection){
+function Abonnement(string $redirection, ?string $entrepriseId): void {
+    if (empty($entrepriseId)) {
+        session_destroy();
+        header("Location: $redirection?error=Entreprise_non_definie");
+        exit;
+    }
 
-        $entreprise=$_SESSION['entreprise'];
-        // Fetch tous les abonnements de l'entreprise
-        $getAbonnement = getApi('/api/abonnements/?entreprise=' . $entreprise);
+    $response = getApi("/api/abonnements/?entreprise=$entrepriseId");
+    if (is_string($response)) $response = json_decode($response, true);
 
-        // Si API vide ou erreur
-        if (!is_array($getAbonnement) || count($getAbonnement) === 0) {
-            session_destroy();
-            header("Location: ".$redirection."?error=Pas_d_abonnement");
-            exit;
-        }
+    if (!is_array($response) || count($response) === 0) {
+        session_destroy();
+        header("Location: $redirection?error=Pas_d_abonnement");
+        exit;
+    }
 
-        $today = date("Y-m-d");
-        $abonnementValide = false;
+    $today = new DateTimeImmutable('today');
+    $abonnementValide = false;
 
-        // Vérifier tous les abonnements
-        foreach ($getAbonnement as $abonnement) {
+    foreach ($response as $abonnement) {
+        if (!is_array($abonnement)) continue;
+        if (($abonnement['status'] ?? '') !== 'actif') continue;
 
-            $dateDebut = substr($abonnement['date_debut'], 0, 10);
-            $dateFin   = substr($abonnement['date_fin'], 0, 10);
+        $debut = isset($abonnement['date_debut']) ? (new DateTimeImmutable($abonnement['date_debut']))->setTime(0,0,0) : null;
+        $fin   = isset($abonnement['date_fin']) ? (new DateTimeImmutable($abonnement['date_fin']))->setTime(0,0,0) : null;
 
-            if (
-                $abonnement['status'] === 'actif' &&
-                $today >= $dateDebut &&
-                $today <= $dateFin
-            ) {
-                $abonnementValide = true;
-                break;  // Abonnement valide trouvé
-            }
-        }
+        if (!$debut || !$fin) continue;
 
-        // Si aucun abonnement valide trouvé
-        if (!$abonnementValide) {
-            session_destroy();
-            header("Location: ".$redirection."?error=Abonnement_expire");
-            exit;
+        if ($today >= $debut && $today <= $fin) {
+            $abonnementValide = true;
+            break;
         }
     }
 
+    if (!$abonnementValide) {
+        session_destroy();
+        header("Location: $redirection?error=Abonnement_expire");
+        exit;
+    }
+}
     //=========== fetch produit via son ID
     function getAPI_id($endpoint,$id){
 
