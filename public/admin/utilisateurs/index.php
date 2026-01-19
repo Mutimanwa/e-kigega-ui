@@ -134,15 +134,15 @@ include "../../../includes/sidebar.php";
                                                 <a href="#"
                                                     class="editBtn"
                                                     data-bs-toggle="modal"
-                                                    data-bs-target="#modifyProductModal"
-                                                    data-id="<?= $id ?>"
-                                                    data-nom="<?= $nom ?>"
-                                                    data-prenom="<?= $prenom ?>"
-                                                    data-email="<?= $email ?>"
-                                                    data-telephone="<?= $telephone ?>"
-                                                    data-profile="<?= $profile ?>"
-                                                    data-status="<?= $status ?>"
-                                                    data-role="<?= $role ?>">
+                                                    data-bs-target="#modifyUserModal"
+                                                    data-id="<?= $u['id'] ?>"
+                                                    data-nom="<?= $u['nom'] ?>"
+                                                    data-prenom="<?= $u['prenom'] ?>"
+                                                    data-email="<?= $u['email'] ?>"
+                                                    data-telephone="<?= $u['telephone'] ?>"
+                                                    data-profile="<?= $u['profile'] ?>"
+                                                    data-role-id="<?= $u['role']['id'] ?>"
+                                                    data-status="<?= $u['status'] ?>">
                                                     <i class="las la-pen  fs-18" data-bs-toggle="tooltip"
                                                     data-bs-placement="top"
                                                     title="Modifier"></i>
@@ -261,7 +261,9 @@ include "../../../includes/sidebar.php";
                                         <select id="roleAdd" name="role" class="form-select">
                                             <option value="" selected disabled>Choisir un rôle</option>
                                             <?php foreach($roles as $r): ?>
-                                             <option value="<?= htmlspecialchars($r['id']) ?>"><?= htmlspecialchars($r['nom']) ?></option>
+                                            <?php if (!in_array(strtoupper($r['nom']), ['ADMIN', 'SUPER_ADMIN'])): ?>
+                                                <option value="<?= htmlspecialchars($r['id']) ?>"><?= htmlspecialchars($r['nom']) ?></option>
+                                            <?php endif; ?>   
                                             <?php endforeach; ?>
                                         </select>
                                     </div>
@@ -312,121 +314,108 @@ include "../../../includes/sidebar.php";
             </div>
         </div>
 
+        <!-- Popup Modifier  -->
         <!-- Modal Modifier Utilisateur -->
-        <div class="modal fade" id="editUser" tabindex="-1" aria-labelledby="editUserLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg">
-                <form action="#">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="editUserLabel">Modifier un utilisateur</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                        </div>
+        <div class="modal fade" id="modifyUserModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <form action="./../../../backend/admin/users/edit.php"
+                method="POST"
+                enctype="multipart/form-data"
+                id="form-edit-user">
 
-                        <div class="modal-body">
-                            <!-- Photo -->
-                            <div class="form-group mb-3 d-flex align-items-center">
-                                <i id="profileIconEdit" class="fa-solid fa-user text-muted thumb-xl rounded me-2 border-dashed"></i>
-                                <div class="flex-grow-1">
-                                    <label class="btn btn-primary text-light">
-                                        Modifier une photo
-                                        <input type="file" id="profileInputEdit" accept="image/*" class="profile-input" data-target="profileIconEdit" hidden>
-                                    </label>
-                                </div>
-                            </div>
+            <!-- Champs cachés -->
+            <input type="hidden" name="id" id="edit-id">
+            <input type="hidden" name="old_profile" id="old-profile">
 
-                            <!-- Nom / Prenom -->
-                            <div class="row">
-                                <div class="col-md-6 mb-2">
-                                    <label for="firstNameEdit">Nom</label>
-                                    <div class="input-group">
-                                        <span class="input-group-text"><i class="fas fa-user"></i></span>
-                                        <input type="text" class="form-control" id="firstNameEdit" placeholder="Nom">
-                                    </div>
-                                </div>
-                                <div class="col-md-6 mb-2">
-                                    <label for="lastNameEdit">Prénom</label>
-                                    <div class="input-group">
-                                        <span class="input-group-text"><i class="fas fa-user-tag"></i></span>
-                                        <input type="text" class="form-control" id="lastNameEdit" placeholder="Prénom">
-                                    </div>
-                                </div>
-                            </div>
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title">Modifier l'utilisateur</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
 
-                            <!-- Email / Téléphone -->
-                            <div class="row">
-                                <div class="col-md-6 mb-2">
-                                    <label for="emailEdit">Email</label>
-                                    <div class="input-group">
-                                        <span class="input-group-text"><i class="fas fa-envelope"></i></i></span>
-                                        <input type="email" class="form-control" id="emailEdit" placeholder="Email">
-                                    </div>
-                                </div>
-                                <div class="col-md-6 mb-2">
-                                    <label for="phoneEdit">N° Téléphone</label>
-                                    <div class="input-group">
-                                        <span class="input-group-text"><i class="fa-solid fa-phone"></i></span>
-                                        <input type="text" class="form-control" id="phoneEdit" placeholder="+1 234 567 890">
-                                    </div>
-                                </div>
-                            </div>
+                <div class="modal-body">
 
-                            <!-- Role / Statut -->
-                            <div class="row">
-                                <div class="col-md-6 mb-2">
-                                    <label for="roleEdit">Rôle</label>
-                                    <div class="input-group">
-                                        <span class="input-group-text"><i class="fa-solid fa-tags"></i></span>
-                                        <select id="roleEdit" class="form-select">
-                                            <option value="" selected disabled>Choisir un rôle</option>
-                                            <option value="comptable">Comptable</option>
-                                            <option value="responsable">Responsable</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 mb-2">
-                                    <label for="statusEdit">Statut</label>
-                                    <div class="input-group">
-                                        <span class="input-group-text"><i class="fa-solid fa-tags"></i></span>
-                                        <select id="statusEdit" class="form-select">
-                                            <option value="" selected disabled>Choisir un statut</option>
-                                            <option value="active">Active</option>
-                                            <option value="inactive">Inactive</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
+                <!-- Photo de profil -->
+                <div class="d-flex align-items-center mb-3">
+                    <img id="profilePreview"
+                        src=""
+                        class="rounded-circle me-3"
+                        width="80"
+                        height="80"
+                        alt="Photo de profil">
 
-                            <!-- Mot de passe / Confirmer mot de passe -->
-                            <div class="row">
-                                <div class="col-md-6 mb-2">
-                                    <label for="passwordEdit">Mot de passe</label>
-                                    <div class="input-group">
-                                        <span class="input-group-text"><i class="fa-solid fa-lock"></i></span>
-                                        <input type="password" class="form-control password-input" id="passwordEdit" placeholder="Mot de passe">
-                                        <span class="input-group-text toggle-password" data-target="passwordEdit">
-                                            <i class="iconoir-eye-closed"></i>
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 mb-2">
-                                    <label for="confirmPasswordEdit">Confirmer mot de passe</label>
-                                    <div class="input-group">
-                                        <span class="input-group-text"><i class="fa-solid fa-lock"></i></span>
-                                        <input type="password" class="form-control password-input" id="confirmPasswordEdit" placeholder="Confirmer mot de passe">
-                                        <span class="input-group-text toggle-password" data-target="confirmPasswordEdit">
-                                            <i class="iconoir-eye-closed"></i>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                    <label class="btn btn-outline-primary mb-0">
+                    Changer la photo
+                    <input type="file"
+                            name="profile"
+                            accept="image/*"
+                            hidden
+                            onchange="previewProfile(this)">
+                    </label>
+                </div>
 
-                        <div class="modal-footer">
-                            <button type="submit" class="btn btn-primary w-100">Modifier</button>
-                        </div>
+                <!-- Nom / Prénom -->
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                    <label>Nom</label>
+                    <input type="text" name="nom" id="edit-nom" class="form-control" required>
                     </div>
-                </form>
+
+                    <div class="col-md-6 mb-3">
+                    <label>Prénom</label>
+                    <input type="text" name="prenom" id="edit-prenom" class="form-control" required>
+                    </div>
+                </div>
+
+                <!-- Email / Téléphone -->
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                    <label>Email</label>
+                    <input type="email" name="email" id="edit-email" class="form-control" required>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                    <label>Téléphone</label>
+                    <input type="text" name="telephone" id="edit-telephone" class="form-control">
+                    </div>
+                </div>
+
+                <!-- Rôle / Statut -->
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                    <label>Rôle</label>
+                    <select name="role_id" id="edit-role" class="form-select" required>
+                    <option value="" disabled>Choisir un rôle</option>
+                        <?php foreach ($roles as $r): ?>
+                        <?php if (!in_array(strtoupper($r['nom']), ['ADMIN', 'SUPER_ADMIN'])): ?>
+                            <option value="<?= $r['id'] ?>">
+                                <?= htmlspecialchars($r['nom']) ?>
+                            </option>
+                        <?php endif ; ?>
+                        <?php endforeach; ?>
+                    </select>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                    <label>Statut</label>
+                    <select name="status" id="edit-status" class="form-select" required>
+                        <option value="active">Actif</option>
+                        <option value="inactive">Inactif</option>
+                    </select>
+                    </div>
+                </div>
+
+                </div>
+
+                <div class="modal-footer">
+                <button type="submit" name="send" class="btn btn-primary w-100">
+                    Enregistrer les modifications
+                </button>
+                </div>
+
             </div>
+            </form>
+        </div>
         </div>
 
         <!-- modal de suppression -->
@@ -462,12 +451,42 @@ include "../../../includes/sidebar.php";
 
         <!-- Js pour recuper l'id lors de suppression  -->
         <script>
-          document.querySelectorAll('.delete-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-              document.getElementById('deleteId').value = this.dataset.id;
-              document.getElementById('catName').innerText = this.dataset.nom;
+            document.querySelectorAll('.delete-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                document.getElementById('deleteId').value = this.dataset.id;
+                document.getElementById('catName').innerText = this.dataset.nom;
+                });
             });
-          });
+        </script>
+
+        <!-- Js pour recuperl'id lors de modification  -->
+        <script>
+            document.querySelectorAll('.editBtn').forEach(btn => {
+            btn.addEventListener('click', function () {
+
+                document.getElementById('edit-id').value = this.dataset.id;
+                document.getElementById('edit-nom').value = this.dataset.nom;
+                document.getElementById('edit-prenom').value = this.dataset.prenom;
+                document.getElementById('edit-email').value = this.dataset.email;
+                document.getElementById('edit-telephone').value = this.dataset.telephone;
+                document.getElementById('edit-role').value = this.dataset.roleId;
+                document.getElementById('edit-status').value = this.dataset.status;
+
+                document.getElementById('profilePreview').src = this.dataset.profile;
+                document.getElementById('old-profile').value = this.dataset.profile;
+            });
+            });
+
+            // Prévisualisation image
+            function previewProfile(input) {
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                reader.onload = e => {
+                document.getElementById('profilePreview').src = e.target.result;
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+            }
         </script>
 
         <!-- Script JavaScript pour toutes les fonctionnalités -->
