@@ -232,6 +232,37 @@
         return true;
     }
 
+    //========== update with file
+    function apiPATCHUsers($endpoint, $body){
+            $apiBase = "https://ekigega-backend.onrender.com";
+            $token = $_SESSION['token'];
+
+            $ch = curl_init($apiBase.$endpoint);
+
+            curl_setopt_array($ch, [
+                CURLOPT_RETURNTRANSFER => true,
+                CURLOPT_CUSTOMREQUEST => "PATCH",
+                CURLOPT_HTTPHEADER => [
+                    "Authorization: Bearer $token"
+                ],
+                CURLOPT_POSTFIELDS => $body,
+
+                CURLOPT_CONNECTTIMEOUT => 5,
+                CURLOPT_TIMEOUT => 10,
+                CURLOPT_SSL_VERIFYPEER => false,
+                CURLOPT_SSL_VERIFYHOST => false
+            ]);
+
+            $response = curl_exec($ch);
+            $status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+            curl_close($ch);
+
+            if ($status === 401) return "login";
+            if ($status < 200 || $status > 299) return "error";
+
+            return true;
+    }
+
     //================== post method create 
     function apiPost( $endpoint, $body) {
 
@@ -312,46 +343,51 @@
     }
 
     //=========== verifier l'abonnement de l'entreprise connecte 
-function Abonnement(string $redirection, ?string $entrepriseId): void {
-    if (empty($entrepriseId)) {
-        session_destroy();
-        header("Location: $redirection?error=Entreprise_non_definie");
-        exit;
-    }
-
-    $response = getApi("/api/abonnements/?entreprise=$entrepriseId");
-    if (is_string($response)) $response = json_decode($response, true);
-
-    if (!is_array($response) || count($response) === 0) {
-        session_destroy();
-        header("Location: $redirection?error=Pas_d_abonnement");
-        exit;
-    }
-
-    $today = new DateTimeImmutable('today');
-    $abonnementValide = false;
-
-    foreach ($response as $abonnement) {
-        if (!is_array($abonnement)) continue;
-        if (($abonnement['status'] ?? '') !== 'actif') continue;
-
-        $debut = isset($abonnement['date_debut']) ? (new DateTimeImmutable($abonnement['date_debut']))->setTime(0,0,0) : null;
-        $fin   = isset($abonnement['date_fin']) ? (new DateTimeImmutable($abonnement['date_fin']))->setTime(0,0,0) : null;
-
-        if (!$debut || !$fin) continue;
-
-        if ($today >= $debut && $today <= $fin) {
-            $abonnementValide = true;
-            break;
+    function abonnement(string $redirection, ?string $entrepriseId): void {
+        if (empty($entrepriseId)) {
+            session_destroy();
+            header("Location: $redirection?error=Entreprise_non_definie");
+            exit;
         }
+
+        $response = getApi("/api/abonnements/?entreprise=$entrepriseId");
+
+        if (is_string($response)) $response = json_decode($response, true);
+
+        if (!is_array($response) || count($response) === 0) {
+            session_destroy();
+            header("Location: $redirection?error=Pas_d_abonnement");
+            exit;
+        }
+
+        $today = new DateTimeImmutable('today'); // On ignore l'heure
+        $abonnementValide = false;
+
+        foreach ($response as $abonnement) {
+            if (!is_array($abonnement)) continue;
+            if (($abonnement['status'] ?? '') !== 'actif') continue;
+
+            // On prend uniquement la date YYYY-MM-DD pour éviter les erreurs
+            $debut = isset($abonnement['date_debut']) ? new DateTimeImmutable(substr($abonnement['date_debut'],0,10)) : null;
+            $fin   = isset($abonnement['date_fin']) ? new DateTimeImmutable(substr($abonnement['date_fin'],0,10)) : null;
+
+            if (!$debut || !$fin) continue;
+
+            if ($today >= $debut && $today <= $fin) {
+                $abonnementValide = true;
+                break;
+            }
+        }
+
+        if (!$abonnementValide) {
+            session_destroy();
+            header("Location: $redirection?error=Abonnement_expire");
+            exit;
+        }
+
+        // ✅ Abonnement valide
     }
 
-    if (!$abonnementValide) {
-        session_destroy();
-        header("Location: $redirection?error=Abonnement_expire");
-        exit;
-    }
-}
     //=========== fetch produit via son ID
     function getAPI_id($endpoint,$id){
 

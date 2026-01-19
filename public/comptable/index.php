@@ -1,4 +1,5 @@
 <?php
+
     ini_set('session.cookie_httponly', 1);
     ini_set('session.cookie_secure', 1);
     session_start();
@@ -6,30 +7,24 @@
     require_once('./../../backend/function/function.php');
 
     $role = "VENTES";
+    $entreprise = $_SESSION['entreprise'] ?? null;
 
-    // Vérifier la session entreprise
-    if (empty($_SESSION['entreprise'])) {
-        session_destroy();
-        header("Location: ./../../index.php?error=Entreprise_non_definie");
-        exit;
-    }
-
-    $entreprise = $_SESSION['entreprise'];
-
-    //================== gerer les sessions par rôle
+    // Vérifier l’accès
     if (requireRole($role) === "Accès interdit") {
         session_destroy();
         header("Location: ./../../index.php?error=Acces_interdit");
         exit;
     }
 
+    // Vérifier l’abonnement (SUPER_ADMIN n’en a pas besoin)
+    if ($_SESSION['role'] !== "SUPER_ADMIN") {
+        abonnement("./../../index.php", $entreprise);
+    }
 
-    $url = "./../../index.php";
-    abonnement($url,$entreprise);
-
-    // menu lateral et header
+    // Inclure le menu et header
     include "../../includes/header.php";
     include "../../includes/sidebar.php";
+
 ?>
 
 

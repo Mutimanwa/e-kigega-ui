@@ -6,16 +6,18 @@
 
     require_once('./../backend/function/function.php');
     $role="ADMIN";
-
+    $entreprise=$_SESSION['entreprise'];
     //================== gerer les session 
-    if(requireRole($role)==="Accès interdit"){
+    if(!$_SESSION['token']){
         header("Location: ./../index.php");
         session_destroy();
     }
 
-    //=========== verifier l'abonnement de cet entreprise
-    $url="./../index.php";
-    abonnement($url);
+    // Vérifier l’abonnement (SUPER_ADMIN n’en a pas besoin)
+    if ($_SESSION['role'] !== "SUPER_ADMIN") {
+        abonnement("./../../index.php", $entreprise);
+    }
+
 
     //================== fetch les produits
     $users=getApi('/api/auth/me/') ?? [];
