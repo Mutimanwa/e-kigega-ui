@@ -1,11 +1,11 @@
 <?php
 
-  ini_set('session.cookie_httponly', 1);
-  ini_set('session.cookie_secure', 1);
-  session_start();
+ini_set('session.cookie_httponly', 1);
+ini_set('session.cookie_secure', 1);
+session_start();
 
-  require_once('./../../../backend/function/function.php');
-$role = "COMPTABLE";
+require_once('./../../../backend/function/function.php');
+$role = "VENTES";
     $entreprise = $_SESSION['entreprise'] ?? null;
 
     // Vérifier l’accès
@@ -21,15 +21,31 @@ $role = "COMPTABLE";
     }
 
 
-  //================== fetch les clients
-  $clients = getApi('/api/partners/clients/') ?? [];
-  if (!is_array($clients)) {
-    echo "<div class='alert alert-danger'>API error</div>";
-    $clients = [];
-  }
+//================== fetch les produits
+$produits = getApi('/api/produits/') ?? [];
+if (!is_array($produits)) {
+  echo "<div class='alert alert-danger'>API error</div>";
+  $produits = [];
+}
 
-  include "./../../../includes/header.php";
-  include "./../../../includes/sidebar.php";
+
+//===================== fetch fournisseurs
+$fournisseurs = getApi('/api/partners/fournisseurs/') ?? [];
+if (!is_array($fournisseurs)) {
+  echo "<div class='alert alert-danger'>API error</div>";
+  $fournisseurs = [];
+}
+
+// ================== fetch les stocks
+$stocks = getApi('/api/stocks/') ?? [];
+if (!is_array($stocks)) {
+  echo "<div class='alert alert-danger'>Erreur API Categories</div>";
+  $stocks = [];
+}
+
+include "./../../../includes/header.php";
+include "./../../../includes/sidebar.php";
+
 ?>
 <div class="page-wrapper">
 
@@ -39,13 +55,13 @@ $role = "COMPTABLE";
       <div class="row">
         <div class="col-sm-12">
           <div class="page-title-box d-md-flex justify-content-md-between align-items-center">
-            <h4 class="page-title">Client</h4>
+            <h4 class="page-title">Stock</h4>
             <div class="">
               <ol class="breadcrumb mb-0">
                 <li class="breadcrumb-item"><a href="#">E-Kigega</a></li>
-                <li class="breadcrumb-item"><a href="#">Comptable</a>
+                <li class="breadcrumb-item"><a href="#">Responsable des Ventes</a>
                 </li><!--end nav-item-->
-                <li class="breadcrumb-item active">Client</li>
+                <li class="breadcrumb-item active">Stock</li>
               </ol>
             </div>
           </div><!--end page-title-box-->
@@ -62,37 +78,38 @@ $role = "COMPTABLE";
                 </div><!--end col-->
                 <div class="col-auto">
                   <button class="btn bg-primary text-white" data-bs-toggle="modal" data-bs-target="#addRate"><i
-                      class="fas fa-plus me-1"></i> Ajouter un client</button>
+                      class="fas fa-plus me-1"></i> Ajouter un produit</button>
                 </div><!--end col-->
               </div><!--end row-->
             </div><!--end card-header-->
-            <div class="card-body ">
+            <div class="card-body pt-0">
               <div class="table-responsive">
-                <table class="table" id="datatable_1">
+                <table class="table " id="datatable_1">
                   <thead class="table-light">
                     <tr>
-                      <th class=>Nom</th>
-                      <th class=>Prenom</th>
-                      <th class=>N° Telephone</th>
-                      <th class=>Email</th>
-                      <th class=>adresse</th>
+                      <th>Produit</th>
+                      <th>Fournisseurs</th>
+                      <th>Quantite</th>
+                      <th>Prix d'achat</th>
+                      <th>Prix total </th>
                       <th>Date</th>
                       <th class="text-end">Action</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <?php foreach ($clients as $c): ?>
+                    <?php foreach ($stocks as $s): ?>
+                      <?php
+                      $quantite = floatval($s['quantite']);
+                      $prix = floatval($s['prix_achat']);
+                      $total = $quantite * $prix;
+                      ?>
                       <tr>
-                        <td> <?= htmlspecialchars($c['nom']) ?></td>
-                        <td><?= htmlspecialchars($c['prenom']) ?></td>
-                        <td><?= htmlspecialchars($c['telephone']) ?></td>
-                        <td>
-                          <a href="mailto:<?= htmlspecialchars($c['email']) ?>" class="text-primary text-decoration-underline">
-                            <?= htmlspecialchars($c['email']) ?>
-                          </a>
-                        </td>
-                        <td><?= htmlspecialchars($c['adresse']) ?></td>
-                        <td><?= htmlspecialchars((new DateTime($c['created_at']))->format('d/m/Y')) ?></td>
+                        <td><?= $s['produit']['nom'] ?></td>
+                        <td><?=  $s['fournisseur']['nom'] ?> <?=  $s['fournisseur']['prenom'] ?></td>
+                        <td> <?= htmlspecialchars(number_format($s['quantite']), 2) ?></td>
+                        <td><?= htmlspecialchars(number_format($s['prix_achat']), 2) ?></td>
+                        <td><?= htmlspecialchars(number_format($total), 2) ?></td>
+                        <td><?= htmlspecialchars((new DateTime($s['date_entree']))->format('d/m/Y')) ?></td>
                         <td class="text-end">
 
                           <!-- Modifier -->
@@ -100,45 +117,42 @@ $role = "COMPTABLE";
                             class="editBtn"
                             data-bs-toggle="modal"
                             data-bs-target="#modifyProductModal"
-                            data-id="<?= $c['id'] ?>"
-                            data-nom="<?= htmlspecialchars($c['nom']) ?>"
-                            data-prenom="<?= htmlspecialchars($c['prenom']) ?>"
-                            data-email="<?= $c['email'] ?>"
-                            data-telephone="<?= $c['telephone'] ?>"
-                            data-adresse="<?= $c['adresse'] ?>">
+                            data-id="<?= $s['id'] ?>"
+                            data-prix_achat="<?= htmlspecialchars($s['prix_achat']) ?>"
+                            data-date_entree="<?= htmlspecialchars($s['date_entree']) ?>"
+                            data-quantite="<?= $s['quantite'] ?>"
+                            data-produit="<?= $s['produit']['id'] ?>"
+                            data-fournisseur="<?= $s['fournisseur']['id'] ?>">
                             <i class="las la-pen  fs-18" data-bs-toggle="tooltip"
                               data-bs-placement="top"
                               title="Modifier"></i>
                           </a>
-
 
                           <!-- Supprimer -->
                           <a href="#"
                             class="text-danger delete-btn"
                             data-bs-toggle="modal"
                             data-bs-target="#deleteModal"
-                            data-id="<?= $c['id'] ?>"
-                            data-nom="<?= htmlentities($c['nom']) ?> <?= htmlentities($c['prenom']) ?>">
+                            data-id="<?= $s['id'] ?>"
+                            data-nom="la tracabilite de l'entree de <?=  $s['produit']['nom'] ?> ">
                             <i class="las la-trash-alt  fs-18 " data-bs-toggle="tooltip"
                               data-bs-placement="top"
                               title="Supprimer"></i>
                           </a>
 
-                        </td>
                       </tr>
                     <?php endforeach; ?>
                   </tbody>
                 </table>
 
               </div>
-              <br>
-
             </div>
           </div> <!-- end col -->
         </div> <!-- end row -->
 
       </div>
       <!--Start Footer-->
+
 
       <?php
       $pageLibs = [
@@ -147,7 +161,7 @@ $role = "COMPTABLE";
       ];
       include "./../../../includes/footer.php";
       ?>
-      <!-- #integration des toast-->
+
       <script>
         // toast success
         <?php if (isset($_GET['success'])): ?>
@@ -161,136 +175,159 @@ $role = "COMPTABLE";
         <?php endif; ?>
       </script>
 
-
       <!-- Popup Ajouter -->
       <div class="modal fade" id="addRate" tabindex="-1" aria-labelledby="addRateLabel" aria-hidden="true">
         <div class="modal-dialog">
-          <form action="./../../../backend/comptable/clients/add.php" method="post">
+          <form action="./../../../backend/responsable/stocks/add.php" method="post">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="addRateLabel">Ajouter un client</h5>
+                <h5 class="modal-title" id="addRateLabel">Ajouter un produit</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
               </div>
-
               <div class="modal-body">
 
                 <div class="mb-2">
-                  <label>Nom</label>
+                  <label for="add-categorie" class="form-label">Fournisseurs</label>
                   <div class="input-group">
                     <span class="input-group-text">
                       <i class="fas fa-user"></i>
                     </span>
-                    <input type="text" id="add-nom" name="nom" class="form-control" placeholder="Nom du client">
+                    <select id="add-categorie" name="fournisseur" class="form-select">
+                      <option value="" selected disabled>Choisir un fournisseur</option>
+                      <?php foreach ($fournisseurs as $f): ?>
+                        <option value="<?= htmlspecialchars($f['id']) ?>">
+                          <?= htmlspecialchars($f['nom']) ?> <?= htmlspecialchars($f['prenom']) ?>
+                        </option>
+                      <?php endforeach; ?>
+                    </select>
                   </div>
                 </div>
 
                 <div class="mb-2">
-                  <label>Prénom</label>
+                  <label for="add-categorie" class="form-label">Produits</label>
                   <div class="input-group">
                     <span class="input-group-text">
-                      <i class="fas fa-user-tag"></i>
+                      <i class="fas fa-tags"></i>
                     </span>
-                    <input type="text" id="add-prenom" name="prenom" class="form-control" placeholder="Prénom du client">
+                    <select id="add-categorie" name="produit" class="form-select">
+                      <option value="" selected disabled>Choisir un produit</option>
+                      <?php foreach ($produits as $p): ?>
+                        <option value="<?= htmlspecialchars($p['id']) ?>">
+                          <?= htmlspecialchars($p['nom']) ?>
+                        </option>
+                      <?php endforeach; ?>
+                    </select>
                   </div>
                 </div>
 
                 <div class="mb-2">
-                  <label>Téléphone</label>
+                  <label>Prix d'achat</label>
                   <div class="input-group">
-                    <span class="input-group-text">
-                      <i class="fas fa-phone"></i>
-                    </span>
-                    <input type="number" id="add-telephone" name="telephone" class="form-control" placeholder="Numéro de téléphone">
+                    <span class="input-group-text"><i class="fas fa-money-bill-wave"></i></span>
+                    <input type="number" id="add-prix" name="prix_achat" class="form-control" placeholder="Prix d'achat du produit">
+                  </div>
+                </div>
+
+
+
+                <div class="mb-2">
+                  <label>Quantité</label>
+                  <div class="input-group">
+                    <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
+                    <input type="number" id="add-quantite" name="quantite" class="form-control" placeholder="Quantité">
                   </div>
                 </div>
 
                 <div class="mb-2">
-                  <label>Email</label>
+                  <label>Data d'entree</label>
                   <div class="input-group">
-                    <span class="input-group-text">
-                      <i class="fas fa-envelope"></i>
-                    </span>
-                    <input type="email" id="add-email" name="email" class="form-control" placeholder="Email du client">
-                  </div>
-                </div>
-
-                <div class="mb-2">
-                  <label>Adresse</label>
-                  <div class="input-group">
-                    <span class="input-group-text">
-                      <i class="fas fa-map-marker-alt"></i>
-                    </span>
-                    <input type="text" id="add-adresse" name="adresse" class="form-control" placeholder="Adresse du client">
+                    <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
+                    <input type="date" id="add-data" name="date_entree" class="form-control" placeholder="Data d'entree">
                   </div>
                 </div>
 
               </div>
-
               <div class="modal-footer">
-                <button type="submit" name="send" class="btn btn-primary w-100">Ajouter</button>
+                <button type="submit" class="btn btn-primary w-100" name="send">Ajouter</button>
               </div>
             </div>
           </form>
-
         </div>
       </div>
 
       <!-- Popup Modifier  -->
       <div class="modal fade" id="modifyProductModal" tabindex="-1" aria-labelledby="modifyProductLabel" aria-hidden="true">
         <div class="modal-dialog">
-          <form action="./../../../backend/comptable/clients/edit.php" method="post" id="form-edit-produit">
+          <form action="./../../../backend/responsable/stocks/edit.php" method="post" id="form-edit-produit">
             <input type="hidden" name="id" id="edit-id">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="modifyProductLabel">Modifier le Client</h5>
+                <h5 class="modal-title" id="modifyProductLabel">Modifier l'entree dans le stock</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
               </div>
               <div class="modal-body">
 
-                <!-- Nom du client -->
+                <!-- Nom du Fournisseurs -->
                 <div class="mb-2">
-                  <label>Nom</label>
+                  <label for="add-categorie" class="form-label">Fournisseurs</label>
                   <div class="input-group">
-                    <span class="input-group-text"><i class="fas fa-user"></i></span>
-                    <input type="text" name="nom" id="edit-nom" class="form-control" placeholder="Nom du produit" required>
+                    <span class="input-group-text">
+                      <i class="fas fa-user"></i>
+                    </span>
+                    <select id="edit-fournisseur" name="fournisseur" class="form-select">
+                      <option value="" selected disabled>Choisir un fournisseur</option>
+                      <?php foreach ($fournisseurs as $f): ?>
+                        <option value="<?= htmlspecialchars($f['id']) ?>">
+                          <?= htmlspecialchars($f['nom']) ?> <?= htmlspecialchars($f['prenom']) ?>
+                        </option>
+                      <?php endforeach; ?>
+                    </select>
                   </div>
                 </div>
 
-                <!-- prenom -->
                 <div class="mb-2">
-                  <label>Prenom</label>
+                  <label for="add-categorie" class="form-label">Produits</label>
                   <div class="input-group">
-                    <span class="input-group-text"><i class="fas fa-user-tag"></i></span>
-                    <input type="text" name="prenom" id="edit-prenom" class="form-control" placeholder="Nom du produit" required>
+                    <span class="input-group-text">
+                      <i class="fas fa-tags"></i>
+                    </span>
+                    <select id="edit-produit" name="produit" class="form-select">
+                      <option value="" selected disabled>Choisir un produit</option>
+                      <?php foreach ($produits as $p): ?>
+                        <option value="<?= htmlspecialchars($p['id']) ?>">
+                          <?= htmlspecialchars($p['nom']) ?>
+                        </option>
+                      <?php endforeach; ?>
+                    </select>
                   </div>
                 </div>
 
-                <!-- email -->
                 <div class="mb-2">
-                  <label>E-mail</label>
+                  <label>Prix d'achat</label>
                   <div class="input-group">
-                    <span class="input-group-text"><i class="fas fa-envelope"></i></span>
-                    <input type="mail" name="email" id="edit-email" class="form-control" placeholder="Nom du produit" required>
+                    <span class="input-group-text"><i class="fas fa-money-bill-wave"></i></span>
+                    <input type="number" id="edit-prix_achat" name="prix_achat" class="form-control" placeholder="Prix d'achat du produit">
                   </div>
                 </div>
 
-                <!-- Telephone -->
+
+
                 <div class="mb-2">
-                  <label>Telephone</label>
+                  <label>Quantité</label>
                   <div class="input-group">
-                    <span class="input-group-text"><i class="fas fa-phone"></i></span>
-                    <input type="number" name="telephone" id="edit-telephone" class="form-control" placeholder="Prix du produit" required>
+                    <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
+                    <input type="number" id="edit-quantite" name="quantite" class="form-control" placeholder="Quantité">
                   </div>
                 </div>
 
-                <!-- adresse -->
                 <div class="mb-2">
-                  <label>Adresse</label>
+                  <label>Data d'entree</label>
                   <div class="input-group">
-                    <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
-                    <input type="text" name="adresse" id="edit-adresse" class="form-control" placeholder="Prix du produit" required>
+                    <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
+                    <input type="date" id="edit-date_entree" name="date_entree" class="form-control" placeholder="Data d'entree">
                   </div>
                 </div>
+
 
               </div>
               <div class="modal-footer">
@@ -300,13 +337,14 @@ $role = "COMPTABLE";
           </form>
         </div>
       </div>
-      <!-- Popup Suppression -->
+
+      <!-- modal de suppression -->
       <div class="modal fade" id="deleteModal" tabindex="-1">
         <div class="modal-dialog">
           <div class="modal-content">
 
             <div class="modal-header bg-white">
-              <h5 class="modal-title text-danger">Supprimer un client</h5>
+              <h5 class="modal-title text-danger">Supprimer l'entree</h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
 
@@ -318,7 +356,7 @@ $role = "COMPTABLE";
             </div>
 
             <div class="modal-footer">
-              <form method="POST" action="./../../../backend/comptable/clients/delete.php">
+              <form method="POST" action="./../../../backend/responsable/stocks/delete.php">
                 <input type="hidden" name="id" id="deleteId">
                 <button type="submit" class="btn btn-danger">Oui, supprimer</button>
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
@@ -350,16 +388,17 @@ $role = "COMPTABLE";
           editButtons.forEach(btn => {
             btn.addEventListener('click', function() {
               document.getElementById('edit-id').value = this.dataset.id;
-              document.getElementById('edit-nom').value = this.dataset.nom;
-              document.getElementById('edit-prenom').value = this.dataset.prenom;
-              document.getElementById('edit-email').value = this.dataset.email;
-              document.getElementById('edit-telephone').value = this.dataset.telephone;
-              document.getElementById('edit-adresse').value = this.dataset.adresse;
-
+              document.getElementById('edit-fournisseur').value = this.dataset.fournisseur;
+              document.getElementById('edit-produit').value = this.dataset.produit;
+              document.getElementById('edit-prix_achat').value = this.dataset.prix_achat;
+              document.getElementById('edit-quantite').value = this.dataset.quantite;
+              document.getElementById('edit-date_entree').value = this.dataset.date_entree;
             });
           });
         });
       </script>
+
+
 
       <!-- js pour le tooltip -->
       <script>

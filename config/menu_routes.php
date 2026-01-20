@@ -121,7 +121,7 @@ $menu_structure = [
             'permission' => 'comptable'
         ],
         'gestion_produits' => [
-            'title' => 'Produits',
+            'title' => 'Gestion des Produits',
             'icon' => 'iconoir-box',
             'type' => 'collapse',
             'id' => 'sidebarProduits',
@@ -147,11 +147,33 @@ $menu_structure = [
             'active' => ['ventes', 'ventes.php', 'ventes/'],
             'permission' => 'comptable'
         ],
-        'formations' => [
-            'title' => 'Gestion des Formations',
-            'icon' => 'iconoir-graduation-cap',
-            'path' => '/public/comptable/formations/',
-            'active' => ['formations', 'formations.php', 'formations/'],
+       
+         'clients' => [
+            'title' => 'Gestion des Clients',
+            'icon' => 'iconoir-user-square',
+            'path' => '/public/comptable/clients/',
+            'active' => ['clients', 'clients.php', 'clients/'],
+            'permission' => 'comptable'
+        ],
+         'stock' => [
+            'title' => 'Gestion de Stock',
+            'icon' => 'iconoir-database',
+            'path' => '/public/comptable/stock/',
+            'active' => ['stock', 'stock.php', 'stock/'],
+            'permission' => 'comptable'
+        ],
+           'stock' => [
+            'title' => 'Gestion de Stock',
+            'icon' => 'iconoir-database',
+            'path' => '/public/comptable/stock/',
+            'active' => ['stock', 'stock.php', 'stock/'],
+            'permission' => 'comptable'
+        ],
+         'fournisseurs' => [
+            'title' => 'Gestion des Fournisseurs',
+            'icon' => 'iconoir-truck',
+            'path' => '/public/comptable/fournisseurs/',
+            'active' => ['fournisseurs', 'fournisseurs.php', 'fournisseurs/'],
             'permission' => 'comptable'
         ]
     ],
@@ -165,7 +187,7 @@ $menu_structure = [
             'permission' => 'responsable'
         ],
         'gestion_produits' => [
-            'title' => 'Gestion de Produits',
+            'title' => 'Gestion des Produits',
             'icon' => 'iconoir-box',
             'type' => 'collapse',
             'id' => 'sidebarProduits',
@@ -191,11 +213,34 @@ $menu_structure = [
             'active' => ['ventes', 'ventes.php', 'ventes/'],
             'permission' => 'responsable'
         ],
-        'formations' => [
-            'title' => 'Gestion desFormations',
-            'icon' => 'iconoir-graduation-cap',
-            'path' => '/public/responsable/formations/',
-            'active' => ['formations', 'formations.php', 'formations/'],
+
+            
+         'clients' => [
+            'title' => 'Gestion des Clients',
+            'icon' => 'iconoir-user-square',
+            'path' => '/public/responsable/clients/',
+            'active' => ['clients', 'clients.php', 'clients/'],
+            'permission' => 'responsable'
+        ],
+         'stock' => [
+            'title' => 'Gestion des Stock',
+            'icon' => 'iconoir-database',
+            'path' => '/public/responsable/stock/',
+            'active' => ['stock', 'stock.php', 'stock/'],
+            'permission' => 'responsable'
+        ],
+           'stock' => [
+            'title' => 'Gestion des Stock',
+            'icon' => 'iconoir-database',
+            'path' => '/public/responsable/stock/',
+            'active' => ['stock', 'stock.php', 'stock/'],
+            'permission' => 'responsable'
+        ],
+         'fournisseurs' => [
+            'title' => 'Gestion des Fournisseurs',
+            'icon' => 'iconoir-truck',
+            'path' => '/public/responsable/fournisseurs/',
+            'active' => ['fournisseurs', 'fournisseurs.php', 'fournisseurs/'],
             'permission' => 'responsable'
         ]
     ]
@@ -214,7 +259,7 @@ $menu_groups = [
     [
         'label' => 'Administration',
         'items' => ['formations', 'rapports', 'ai'],
-        'roles' => ['admin']
+       // 'roles' => ['admin']
     ],
     [
         'label' => 'Système',
