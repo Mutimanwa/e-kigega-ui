@@ -18,6 +18,9 @@
     $url = "./../../../index.php";
     abonnement($url,$entreprise);
 
+    //============= Dashbord
+    $bord=getApi('/api/analytics/dashboard/');
+
     // menu lateral admin et header
     include "../../includes/header.php";
     include "../../includes/sidebar.php";
@@ -77,8 +80,9 @@
                                         </div>
 
                                         <h4 class="my-2 fs-24 fw-semibold">
-                                            12.256.920 <small class="font-14">FBU</small>
+                                            <?= htmlspecialchars(number_format($bord['cashflow']['current_month']['balance'],2)) ?> <small class="font-14">FBU</small>
                                         </h4>
+                                        
                                         <p class="mb-3 text-muted fw-semibold">
                                             <span class="text-success"><i class="fas fa-arrow-up me-1"></i>8.5%</span>
                                             Croissance mensuelle
@@ -111,7 +115,7 @@
                                             <p class="text-muted text-uppercase mb-0 fw-normal fs-13">
                                                 Chiffre d'Affaires
                                             </p>
-                                            <h4 class="mt-1 mb-0 fw-medium">8.365.000 FBU</h4>
+                                            <h4 class="mt-1 mb-0 fw-medium"><?= htmlspecialchars(number_format($bord['kpis']['chiffre_affaire'],2)) ?> FBU</h4>
                                         </div>
                                         <!--end col-->
                                         <div class="col-3 align-self-center">
@@ -138,7 +142,7 @@
                                             <p class="text-muted text-uppercase mb-0 fw-normal fs-13">
                                                Ventes du Mois
                                             </p>
-                                            <h4 class="mt-1 mb-0 fw-medium">722</h4>
+                                            <h4 class="mt-1 mb-0 fw-medium"><?= htmlspecialchars(number_format($bord['kpis']['total_ventes'],2)) ?></h4>
                                         </div>
                                         <!--end col-->
                                         <div class="col-3 align-self-center">
@@ -164,7 +168,7 @@
                                             <p class="text-muted text-uppercase mb-0 fw-normal fs-13">
                                                 Produits Stock
                                             </p>
-                                            <h4 class="mt-1 mb-0 fw-medium">181</h4>
+                                            <h4 class="mt-1 mb-0 fw-medium"><?= htmlspecialchars(number_format($bord['total_produits'],2)) ?></h4>
                                         </div>
                                         <!--end col-->
                                         <div class="col-3 align-self-center">
@@ -191,7 +195,7 @@
                                             <p class="text-muted text-uppercase mb-0 fw-normal fs-13">
                                                 Fournisseurs
                                             </p>
-                                            <h4 class="mt-1 mb-0 fw-medium">2</h4>
+                                            <h4 class="mt-1 mb-0 fw-medium"><?= htmlspecialchars(number_format($bord['total_fournisseurs'],2)) ?></h4>
                                         </div>
                                         <!--end col-->
                                         <div class="col-3 align-self-center">
@@ -359,24 +363,7 @@
                             <div class="table-responsive">
                                 <table class="table mb-0">
                                     <tbody>
-                                        <tr class="">
-                                            <td class="px-0">
-                                                <div class="d-flex align-items-center">
-                                                    <div
-                                                        class="me-2 align-self-center thumb-sm bg-success-subtle text-success rounded-circle d-flex align-items-center justify-content-center">
-                                                        <i class="iconoir-box fs-14"></i>
-                                                    </div>
-                                                    <h6 class="m-0 text-truncate">Ordinateurs</h6>
-                                                </div>
-                                                <!--end media-->
-                                            </td>
-                                            <td class="px-0 text-end">
-                                                <span class="text-body ps-2 align-self-center text-end fw-medium">42
-                                                    <span
-                                                        class="badge rounded text-success bg-success-subtle">+15%</span></span>
-                                            </td>
-                                        </tr>
-                                        <!--end tr-->
+                                     <?php foreach($bord['top_products'] as $top_produit): ?>
                                         <tr class="">
                                             <td class="px-0">
                                                 <div class="d-flex align-items-center">
@@ -384,88 +371,17 @@
                                                         class="me-2 align-self-center thumb-sm bg-info-subtle text-info rounded-circle d-flex align-items-center justify-content-center">
                                                         <i class="iconoir-mobile fs-14"></i>
                                                     </div>
-                                                    <h6 class="m-0 text-truncate">Téléphones</h6>
+                                                    <h6 class="m-0 text-truncate"><?= htmlspecialchars($top_produit['produit_nom']) ?></h6>
                                                 </div>
                                                 <!--end media-->
                                             </td>
                                             <td class="px-0 text-end">
-                                                <span class="text-body ps-2 align-self-center text-end fw-medium">38
+                                                <span class="text-body ps-2 align-self-center text-end fw-medium"><?= htmlspecialchars(number_format($top_produit['nombre_ventes'],0)) ?>
                                                     <span
-                                                        class="badge rounded text-success bg-success-subtle">+9%</span></span>
+                                                        class="badge rounded text-success bg-success-subtle"><?= htmlspecialchars(number_format($top_produit['chiffre_affaires'],0)) ?> Fbu</span></span>
                                             </td>
                                         </tr>
-                                        <!--end tr-->
-                                        <tr class="">
-                                            <td class="px-0">
-                                                <div class="d-flex align-items-center">
-                                                    <div
-                                                        class="me-2 align-self-center thumb-sm bg-warning-subtle text-warning rounded-circle d-flex align-items-center justify-content-center">
-                                                        <i class="iconoir-headset fs-14"></i>
-                                                    </div>
-                                                    <h6 class="m-0 text-truncate">Accessoires</h6>
-                                                </div>
-                                                <!--end media-->
-                                            </td>
-                                            <td class="px-0 text-end">
-                                                <span class="text-body ps-2 align-self-center text-end fw-medium">28
-                                                    <span
-                                                        class="badge rounded text-danger bg-danger-subtle">-2%</span></span>
-                                            </td>
-                                        </tr>
-                                        <!--end tr-->
-                                        <tr class="">
-                                            <td class="px-0">
-                                                <div class="d-flex align-items-center">
-                                                    <div
-                                                        class="me-2 align-self-center thumb-sm bg-purple-subtle text-purple rounded-circle d-flex align-items-center justify-content-center">
-                                                        <i class="iconoir-printer fs-14"></i>
-                                                    </div>
-                                                    <h6 class="m-0 text-truncate">Imprimantes</h6>
-                                                </div>
-                                                <!--end media-->
-                                            </td>
-                                            <td class="px-0 text-end">
-                                                <span class="text-body ps-2 align-self-center text-end fw-medium">24
-                                                    <span
-                                                        class="badge rounded text-success bg-success-subtle">+8%</span></span>
-                                            </td>
-                                        </tr>
-                                        <!--end tr-->
-                                        <tr class="">
-                                            <td class="px-0">
-                                                <div class="d-flex align-items-center">
-                                                    <div
-                                                        class="me-2 align-self-center thumb-sm bg-danger-subtle text-danger rounded-circle d-flex align-items-center justify-content-center">
-                                                        <i class="iconoir-network-left fs-14"></i>
-                                                    </div>
-                                                    <h6 class="m-0 text-truncate">Réseau</h6>
-                                                </div>
-                                                <!--end media-->
-                                            </td>
-                                            <td class="px-0 text-end">
-                                                <span class="text-body ps-2 align-self-center text-end fw-medium">18
-                                                    <span
-                                                        class="badge rounded text-success bg-success-subtle">+5%</span></span>
-                                            </td>
-                                        </tr>
-                                        <!--end tr-->
-                                        <tr class="">
-                                            <td class="px-0 pb-0">
-                                                <div class="d-flex align-items-center">
-                                                    <div
-                                                        class="me-2 align-self-center thumb-sm bg-secondary-subtle text-secondary rounded-circle d-flex align-items-center justify-content-center">
-                                                        <i class="iconoir-hard-drive fs-14"></i>
-                                                    </div>
-                                                    <h6 class="m-0 text-truncate">Stockage</h6>
-                                                </div>
-                                                <!--end media-->
-                                            </td>
-                                            <td class="px-0 pb-0 text-end">
-                                                <span class="text-body ps-2 align-self-center text-end fw-medium">15
-                                                    <span
-                                                        class="badge rounded text-danger bg-danger-subtle">-1%</span></span>
-                                            </td>
-                                        </tr>
+                                    <?php endforeach; ?>
                                         <!--end tr-->
                                     </tbody>
                                 </table>
@@ -474,15 +390,20 @@
                             <!--end /div-->
                             <hr class="hr-dashed" />
                             <div class="row">
+                                <?php
+                                    $topProducts = $bord['kpis']['top_products'];
+                                    $firstProduct = reset($topProducts); // premier
+                                    $lastProduct  = end($topProducts);   // dernier
+                                ?>
                                 <div class="col-lg-6 text-center">
                                     <div class="p-2 border-dashed border-theme-color rounded">
                                         <p class="text-muted text-uppercase mb-0 fw-normal fs-13">
                                             Meilleur Vente
                                         </p>
                                         <h5 class="mt-1 mb-0 fw-medium text-success">
-                                            42 unités
+                                            <?=  htmlspecialchars(number_format($firstProduct['quantite'],0)) ?> unités
                                         </h5>
-                                        <small>Ordinateurs</small>
+                                        <small><?= htmlspecialchars($firstProduct['nom']) ?></small>
                                     </div>
                                 </div>
                                 <!--end col-->
@@ -492,9 +413,9 @@
                                             Moins Vendu
                                         </p>
                                         <h5 class="mt-1 mb-0 fw-medium text-danger">
-                                            15 unités
+                                            <?=  htmlspecialchars(number_format($lastProduct['quantite'],0)) ?> unités
                                         </h5>
-                                        <small>Stockage</small>
+                                        <small><?= htmlspecialchars($lastProduct['nom']) ?></small>
                                     </div>
                                 </div>
                                 <!--end col-->
@@ -575,7 +496,7 @@
                                 <table class="table mb-0">
                                     <thead class="table-light">
                                         <tr>
-                                               <th>Client</th>
+                                            <th>Client</th>
                                             <th>Produit</th>
                                             <th>Quantité</th>
                                             <th>Prix de vente</th>
@@ -692,14 +613,15 @@
                             <div class="table-responsive">
                                 <table class="table mb-0">
                                     <tbody>
+                                     <?php foreach($bord['dernieres_ventes'] as $top_ventes): ?>
                                         <tr class="">
                                             <td class="px-0">
                                                 <div class="d-flex align-items-center">
                                                     
                                                     <div class="flex-grow-1 text-truncate">
-                                                        <h6 class="m-0 text-truncate">Dorian axcelle</h6>
+                                                        <h6 class="m-0 text-truncate"><?= htmlspecialchars($top_ventes['client_nom']) ?> <?= htmlspecialchars($top_ventes['client_prenom']) ?></h6>
                                                         <a href="#"
-                                                            class="font-12 text-muted text-decoration-underline">8
+                                                            class="font-12 text-muted text-decoration-underline"><?= htmlspecialchars(number_format($top_ventes['quantite'],0)) ?>
                                                             commandes</a>
                                                     </div>
                                                     <!--end media body-->
@@ -708,89 +630,11 @@
                                             </td>
                                             <td class="px-0 text-end">
                                                 <span
-                                                    class="text-primary ps-2 align-self-center text-end fw-medium">3.325.000</span>
+                                                    class="text-primary ps-2 align-self-center text-end fw-medium"><?= htmlspecialchars(number_format($top_ventes['prix_vente'],2)) ?></span>
                                             </td>
                                         </tr>
-                                        <!--end tr-->
-                                        <tr class="">
-                                            <td class="px-0">
-                                                <div class="d-flex align-items-center">
-                                                    
-                                                    <div class="flex-grow-1 text-truncate">
-                                                        <h6 class="m-0 text-truncate">Audry Wakanda</h6>
-                                                        <a href="#"
-                                                            class="font-12 text-muted text-decoration-underline">6
-                                                            commandes</a>
-                                                    </div>
-                                                    <!--end media body-->
-                                                </div>
-                                                <!--end media-->
-                                            </td>
-                                            <td class="px-0 text-end">
-                                                <span
-                                                    class="text-primary ps-2 align-self-center text-end fw-medium">2.548.000</span>
-                                            </td>
-                                        </tr>
-                                        <!--end tr-->
-                                        <tr class="">
-                                            <td class="px-0">
-                                                <div class="d-flex align-items-center">
-                                                   
-                                                    <div class="flex-grow-1 text-truncate">
-                                                        <h6 class="m-0 text-truncate">Calvin Mkamba </h6>
-                                                        <a href="#"
-                                                            class="font-12 text-muted text-decoration-underline">5
-                                                            commandes</a>
-                                                    </div>
-                                                    <!--end media body-->
-                                                </div>
-                                                <!--end media-->
-                                            </td>
-                                            <td class="px-0 text-end">
-                                                <span
-                                                    class="text-primary ps-2 align-self-center text-end fw-medium">2.985.000</span>
-                                            </td>
-                                        </tr>
-                                        <!--end tr-->
-                                        <tr class="">
-                                            <td class="px-0">
-                                                <div class="d-flex align-items-center">
-                                                    
-                                                    <div class="flex-grow-1 text-truncate">
-                                                        <h6 class="m-0 text-truncate">Onile orlando</h6>
-                                                        <a href="#"
-                                                            class="font-12 text-muted text-decoration-underline">4
-                                                            commandes</a>
-                                                    </div>
-                                                    <!--end media body-->
-                                                </div>
-                                                <!--end media-->
-                                            </td>
-                                            <td class="px-0 text-end">
-                                                <span
-                                                    class="text-primary ps-2 align-self-center text-end fw-medium">1.845.000</span>
-                                            </td>
-                                        </tr>
-                                        <!--end tr-->
-                                        <tr>
-                                            <td class="px-0">
-                                                <div class="d-flex align-items-center">
-                                                   
-                                                    <div class="flex-grow-1 text-truncate">
-                                                        <h6 class="m-0 text-truncate">Kenny CB</h6>
-                                                        <a href="#"
-                                                            class="font-12 text-muted text-decoration-underline">3
-                                                            commandes</a>
-                                                    </div>
-                                                    <!--end media body-->
-                                                </div>
-                                                <!--end media-->
-                                            </td>
-                                            <td class="px-0 text-end">
-                                                <span
-                                                    class="text-primary ps-2 align-self-center text-end fw-medium">1.422.000</span>
-                                            </td>
-                                        </tr>
+
+                                    <?php endforeach ; ?>
                                         <!--end tr-->
                                     </tbody>
                                 </table>
