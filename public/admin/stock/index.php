@@ -14,7 +14,6 @@ if (requireRole($role) === "Accès interdit") {
 }
 
   $entreprise=$_SESSION['entreprise'];
-
   //=========== verifier l'abonnement de cet entreprise
   $url = "./../../../index.php";
   abonnement($url,$entreprise);

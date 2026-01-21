@@ -14,8 +14,6 @@
     }
 
     $entreprise=$_SESSION['entreprise'];
-
-
     //=========== verifier l'abonnement de cet entreprise
     $url = "./../../../index.php";
     abonnement($url,$entreprise);
@@ -655,8 +653,7 @@
                                                     Remboursée
                                                 </span>
                                             </td>
-
-                                           
+                                     
                                         </tr>
                                     </tbody>
                                 </table>

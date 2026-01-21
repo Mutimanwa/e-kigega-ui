@@ -6,13 +6,14 @@
 
     require_once('./../backend/function/function.php');
     $role="ADMIN";
-    $entreprise=$_SESSION['entreprise'];
+
     //================== gerer les session 
     if(!$_SESSION['token']){
         header("Location: ./../index.php");
         session_destroy();
     }
 
+    $entreprise=$_SESSION['entreprise'];
     // Vérifier l’abonnement (SUPER_ADMIN n’en a pas besoin)
     if ($_SESSION['role'] !== "SUPER_ADMIN") {
         abonnement("./../../index.php", $entreprise);
@@ -219,7 +220,6 @@ require_once '../includes/sidebar.php';
         </form>
     </div>
 </div>
-
 
 <!-- Script JavaScript pour toutes les fonctionnalités -->
 <script>

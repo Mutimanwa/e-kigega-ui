@@ -13,9 +13,11 @@ if (requireRole($role) === "Accès interdit") {
   session_destroy();
 }
 
-//=========== verifier l'abonnement de cet entreprise
-$url = "./../../../index.php";
-abonnement($url);
+$entreprise=$_SESSION['entreprise'];
+// Vérifier l’abonnement (SUPER_ADMIN n’en a pas besoin)
+if ($_SESSION['role'] !== "SUPER_ADMIN") {
+    abonnement("./../../index.php", $entreprise);
+}
 
 //================== fetch les produits
 $clients = getApi('/api/partners/fournisseurs/') ?? [];
@@ -92,36 +94,36 @@ include "./../../../includes/sidebar.php";
                         <td class="text-end">
 
 
-                        <!-- Modifier -->
-                        <a href="#"
-                          class="editBtn"
-                          data-bs-toggle="modal"
-                          data-bs-target="#modifyProductModal"
-                          data-id="<?= $c['id'] ?>"
-                          data-nom="<?= htmlspecialchars($c['nom']) ?>"
-                          data-prenom="<?= htmlspecialchars($c['prenom']) ?>"
-                          data-email="<?= $c['email'] ?>"
-                          data-telephone="<?= $c['telephone'] ?>"
-                          data-adresse="<?= $c['adresse'] ?>">
-                          <i class="las la-pen  fs-18"  data-bs-toggle="tooltip"
-   data-bs-placement="top"
-   title="Modifier"></i>
-                        </a>
+                          <!-- Modifier -->
+                          <a href="#"
+                            class="editBtn"
+                            data-bs-toggle="modal"
+                            data-bs-target="#modifyProductModal"
+                            data-id="<?= $c['id'] ?>"
+                            data-nom="<?= htmlspecialchars($c['nom']) ?>"
+                            data-prenom="<?= htmlspecialchars($c['prenom']) ?>"
+                            data-email="<?= $c['email'] ?>"
+                            data-telephone="<?= $c['telephone'] ?>"
+                            data-adresse="<?= $c['adresse'] ?>">
+                            <i class="las la-pen  fs-18" data-bs-toggle="tooltip"
+                              data-bs-placement="top"
+                              title="Modifier"></i>
+                          </a>
 
 
-                        <!-- Supprimer -->
-                        <a href="#"
-                          class="text-danger delete-btn"
-                          data-bs-toggle="modal"
-                          data-bs-target="#deleteModal"
-                          data-id="<?= $c['id'] ?>"
-                          data-nom="<?= htmlentities($c['nom']) ?> <?= htmlentities($c['prenom']) ?>">
-                          <i class="las la-trash-alt  fs-18 "  data-bs-toggle="tooltip"
-   data-bs-placement="top"
-   title="Supprimer"></i>
-                        </a>
+                          <!-- Supprimer -->
+                          <a href="#"
+                            class="text-danger delete-btn"
+                            data-bs-toggle="modal"
+                            data-bs-target="#deleteModal"
+                            data-id="<?= $c['id'] ?>"
+                            data-nom="<?= htmlentities($c['nom']) ?> <?= htmlentities($c['prenom']) ?>">
+                            <i class="las la-trash-alt  fs-18 " data-bs-toggle="tooltip"
+                              data-bs-placement="top"
+                              title="Supprimer"></i>
+                          </a>
 
-                         
+
 
 
                         </td>

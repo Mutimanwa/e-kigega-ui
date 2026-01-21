@@ -13,9 +13,11 @@ if(requireRole($role)==="Accès interdit"){
     session_destroy();
 }
 
-//=========== verifier l'abonnement de cet entreprise
-$url="./../../../index.php";
-abonnement($url);
+$entreprise=$_SESSION['entreprise'];
+// Vérifier l’abonnement (SUPER_ADMIN n’en a pas besoin)
+if ($_SESSION['role'] !== "SUPER_ADMIN") {
+    abonnement("./../../index.php", $entreprise);
+}
 
 
 // ================== fetch les categories
