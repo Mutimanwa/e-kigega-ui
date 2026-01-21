@@ -617,7 +617,7 @@ if ($key !== 'tous') {
             // Simuler l'envoi au serveur
             const newComment = {
                 id: Date.now(),
-                user_id: <?= $_SESSION['user_id'] ?? 0 ?>,
+                user_id: 1,
                 username: 'Vous',
                 avatar: '../../../assets/images/users/default.jpg',
                 comment: commentText,
@@ -660,7 +660,7 @@ if ($key !== 'tous') {
             if (parentComment) {
                 const newReply = {
                     id: Date.now(),
-                    user_id: <?= $_SESSION['user_id'] ?? 0 ?>,
+                    user_id: 1,
                     username: 'Vous',
                     avatar: '../../../assets/images/users/default.jpg',
                     comment: replyText,
@@ -914,7 +914,7 @@ if ($key !== 'tous') {
                 },
                 body: JSON.stringify({
                     short_id: shortId,
-                    user_id: <?= $_SESSION['user_id'] ?? 0 ?>
+                    user_id: 1
                 })
             })
                 .then(response => response.json())
@@ -944,7 +944,7 @@ if ($key !== 'tous') {
             const formData = new FormData(form);
 
             // Ajouter l'ID utilisateur
-            formData.append('user_id', <?= $_SESSION['user_id'] ?? 0 ?>);
+            formData.append('user_id', 1);
 
             // Envoyer au serveur
             fetch('<?= BASE_URL ?>api/shorts/create.php', {
@@ -979,7 +979,7 @@ if ($key !== 'tous') {
                 body: JSON.stringify({
                     short_id: shortId,
                     liked: liked,
-                    user_id: <?= $_SESSION['user_id'] ?? 0 ?>
+                    user_id: 1
                 })
             })
                 .then(response => response.json())
@@ -999,7 +999,7 @@ if ($key !== 'tous') {
                 },
                 body: JSON.stringify({
                     short_id: shortId,
-                    user_id: <?= $_SESSION['user_id'] ?? 0 ?>
+                    user_id: 1
                 })
             })
                 .then(response => response.json())
@@ -1020,7 +1020,7 @@ if ($key !== 'tous') {
                 body: JSON.stringify({
                     comment_id: commentId,
                     liked: liked,
-                    user_id: <?= $_SESSION['user_id'] ?? 0 ?>
+                    user_id: 1
                 })
             })
                 .then(response => response.json())
@@ -1041,7 +1041,7 @@ if ($key !== 'tous') {
                 body: JSON.stringify({
                     author_id: authorId,
                     follow: follow,
-                    user_id: <?= $_SESSION['user_id'] ?? 0 ?>
+                    user_id: 1
                 })
             })
                 .then(response => response.json())
