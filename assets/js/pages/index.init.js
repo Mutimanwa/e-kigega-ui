@@ -1,3 +1,4 @@
+
 var chart = {
     series: [
       {
@@ -44,7 +45,7 @@ var chart = {
       labels: {
         show: !0,
         formatter: function (e) {
-          return "$" + e + "k";
+          return e + "k"+" "+"Fbu";
         },
       },
     },

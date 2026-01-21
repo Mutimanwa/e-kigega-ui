@@ -9,7 +9,7 @@
 
     //================== gerer les session 
     if(requireRole($role)==="Accès interdit"){
-        header("Location: ./../../index.php");
+        header("Location: ./../index.php");
         session_destroy();
     }
 
@@ -237,12 +237,12 @@
                                             <i class="icofont-calendar fs-5 me-1"></i> Ce Mois
                                             <i class="las la-angle-down ms-1"></i>
                                         </a>
-                                        <div class="dropdown-menu dropdown-menu-end">
+                                        <!-- <div class="dropdown-menu dropdown-menu-end">
                                             <a class="dropdown-item" href="#">Aujourd'hui</a>
                                             <a class="dropdown-item" href="#">Semaine dernière</a>
                                             <a class="dropdown-item" href="#">Mois dernier</a>
                                             <a class="dropdown-item" href="#">Cette année</a>
-                                        </div>
+                                        </div> -->
                                     </div>
                                 </div>
                                 <!--end col-->
@@ -273,12 +273,12 @@
                                             <i class="icofont-calendar fs-5 me-1"></i>
                                             Hebdomadaire<i class="las la-angle-down ms-1"></i>
                                         </a>
-                                        <div class="dropdown-menu dropdown-menu-end">
+                                        <!-- <div class="dropdown-menu dropdown-menu-end">
                                             <a class="dropdown-item" href="#">Aujourd'hui</a>
                                             <a class="dropdown-item" href="#">Hebdomadaire</a>
                                             <a class="dropdown-item" href="#">Mensuel</a>
                                             <a class="dropdown-item" href="#">Annuel</a>
-                                        </div>
+                                        </div> -->
                                     </div>
                                 </div>
                                 <!--end col-->
@@ -286,37 +286,69 @@
                             <!--end row-->
                         </div>
                         <!--end card-header-->
+                        <?php
+                                $cashIn  = $bord['cashflow']['current_month']['cash_in'];
+                                $cashOut = $bord['cashflow']['current_month']['cash_out'];
+                                $balance = $bord['cashflow']['current_month']['balance']; // par ex: -18785995
+                                $balanceFormatted = number_format(abs($balance), 0, ',', '.'); // 1 530 000 FBU
+                                // $prefix = $balance < 0 ? "Il vous reste" : "Vous avez"; 
+
+                                if ($balance > 0) {
+                                    $prefix = "Solde disponible";
+                                } elseif ($balance < 0) {
+                                    $prefix = "Solde débiteur";
+                                } else {
+                                    $prefix = "Solde nul";
+                                }
+
+                                $total = $cashIn + $cashOut;
+
+                                if ($total > 0) {
+                                    $revenus   = ($cashIn / $total) * 100;
+                                    $depenses  = ($cashOut / $total) * 100;
+                                    $autres    = 100 - ($revenus + $depenses);
+                                } else {
+                                    $revenus = $depenses = $autres = 0;
+                                }
+                        ?>
+
                         <div class="card-body pt-0">
                             <div id="cashflow" class="apex-charts"></div>
-                            <div class="row">
-                                <div class="col-4">
-                                    <div class="text-center">
-                                        <p class="text-muted text-uppercase mb-0 fw-medium fs-13">
-                                            Revenus
-                                        </p>
-                                        <h5 class="mt-1 mb-0 fw-medium">76%</h5>
+                                <div class="row">
+                                    <div class="col-4">
+                                        <div class="text-center">
+                                            <p class="text-muted text-uppercase mb-0 fw-medium fs-13">
+                                                Revenus
+                                            </p>
+                                            <h5 class="mt-1 mb-0 fw-medium">
+                                                <?= round($revenus, 1) ?>%
+                                            </h5>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-4">
+                                        <div class="text-center">
+                                            <p class="text-muted text-uppercase mb-0 fw-medium fs-13">
+                                                Dépenses
+                                            </p>
+                                            <h5 class="mt-1 mb-0 fw-medium">
+                                                <?= round($depenses, 1) ?>%
+                                            </h5>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-4">
+                                        <div class="text-center">
+                                            <p class="text-muted text-uppercase mb-0 fw-medium fs-13">
+                                                Autres
+                                            </p>
+                                            <h5 class="mt-1 mb-0 fw-medium">
+                                                <?= round($autres, 1) ?>%
+                                            </h5>
+                                        </div>
                                     </div>
                                 </div>
-                                <!--end col-->
-                                <div class="col-4">
-                                    <div class="text-center">
-                                        <p class="text-muted text-uppercase mb-0 fw-medium fs-13">
-                                            Dépenses
-                                        </p>
-                                        <h5 class="mt-1 mb-0 fw-medium">23%</h5>
-                                    </div>
-                                </div>
-                                <!--end col-->
-                                <div class="col-4">
-                                    <div class="text-center">
-                                        <p class="text-muted text-uppercase mb-0 fw-medium fs-13">
-                                            Autres
-                                        </p>
-                                        <h5 class="mt-1 mb-0 fw-medium">1%</h5>
-                                    </div>
-                                </div>
-                                <!--end col-->
-                            </div>
+
                             <!--end row-->
                             <div class="text-center mx-auto">
                                 <img src="<?= IMAGES_URL ?>extra/rabit.png" alt="" class="d-inline-block"
@@ -331,7 +363,7 @@
                                         </div>
                                         <div class="flex-grow-1 ms-2">
                                             <h6 class="my-0 fw-normal text-dark fs-13 mb-0">
-                                                Vous avez 1.530.000 FBU restant...<a
+                                                <?= $prefix ?> <?= $balanceFormatted ?> FBU Merci....<a
                                                     href="<?= BASE_URL ?>public/admin/rapports/"
                                                     class="text-primary fw-medium mb-0 text-decoration-underline">Voir
                                                     Détails</a>
@@ -441,7 +473,7 @@
                                 <!--end col-->
                                 <div class="col-auto">
                                     <div class="p-2 border-dashed border-theme-color rounded">
-                                        <h5 class="mt-1 mb-0 fw-medium">181</h5>
+                                        <h5 class="mt-1 mb-0 fw-medium"><?= htmlspecialchars($bord['kpis']['total_stock']) ?></h5>
                                         <small class="text-muted">Produits</small>
                                     </div>
                                 </div>
@@ -452,10 +484,20 @@
                         <div class="card-body pt-0">
                             <div id="balance" class="apex-charts"></div>
                             <div class="bg-light py-3 px-2 mb-0 mt-3 text-center rounded">
+                                <?php
+                                    $year = date('Y');
+
+                                    $startDate = "01 January $year";
+                                    $endDate   = "31 December $year";
+                                ?>
+
                                 <h6 class="mb-0">
-                                    <i class="icofont-calendar fs-5 me-1"></i> 01 Janvier 2024
-                                    au 31 Décembre 2024
+                                    <i class="icofont-calendar fs-5 me-1"></i>
+                                    <?= date('d F Y', strtotime($startDate)) ?>
+                                    au
+                                    <?= date('d F Y', strtotime($endDate)) ?>
                                 </h6>
+
                             </div>
                         </div>
                         <!--end card-body-->
@@ -507,75 +549,20 @@
                                         <!--end tr-->
                                     </thead>
                                    <tbody>
+                                    <?php foreach($bord['dernieres_ventes'] as $d_ventes): ?>
                                         <tr>
-                                            <td>Fer</td>
-                                            <td>Aluminium</td>
-                                            <td>10</td>
-                                            <td>12000 FBu</td>
-                                            <td>2024-06-01</td>
+                                            <td><?= htmlspecialchars($d_ventes['client_nom']) ?> <?= htmlspecialchars($d_ventes['client_prenom']) ?></td>
+                                            <td><?= htmlspecialchars($d_ventes['produit_nom']) ?></td>
+                                            <td><?= htmlspecialchars(number_format($d_ventes['quantite'],0)) ?></td>
+                                            <td><?= htmlspecialchars(number_format($d_ventes['prix_vente'],2)) ?> FBu</td>
+                                            <td><?= !empty($d_ventes['date_creation']) ? date('d M Y', strtotime($d_ventes['date_creation'])) :'-' ?></td>
                                             <td>
                                                 <span class="badge rounded text-warning bg-warning-subtle">
-                                                    En attente
+                                                    <?= htmlspecialchars($d_ventes['statut']) ?>
                                                 </span>
-                                            </td>
-
-                                          
+                                            </td>                                        
                                         </tr>
-                                        <tr>
-                                            <td>Jean</td>
-                                            <td>Ordinateur</td>
-                                            <td>5</td>
-                                            <td>12000 FBu</td>
-                                            <td>2024-06-01</td>
-                                            <td>
-                                                <span class="badge rounded text-success bg-success-subtle">
-                                                    Payée
-                                                </span>
-                                            </td>
-
-                                           
-                                        </tr>
-                                        <tr>
-                                            <td>Marie</td>
-                                            <td>Smartphone</td>
-                                            <td>8</td>
-                                            <td>12000 FBu</td>
-                                            <td>2024-06-01</td>
-                                            <td>
-                                                <span class="badge rounded text-info bg-info-subtle">
-                                                    Paiement partiel
-                                                </span>
-                                            </td>
-
-                                           
-                                        </tr>
-                                        <tr>
-                                            <td>Paul</td>
-                                            <td>Tablette</td>
-                                            <td>3</td>
-                                            <td>12000 FBu</td>
-                                            <td>2024-06-01</td>
-                                            <td>
-                                                <span class="badge rounded text-danger bg-danger-subtle">
-                                                    Annulée
-                                                </span>
-                                            </td>
-
-                                           
-                                        </tr>
-                                        <tr>
-                                            <td>Lucie</td>
-                                            <td>Imprimante</td>
-                                            <td>2</td>
-                                            <td>12000 FBu</td>
-                                            <td>2024-06-01</td>
-                                            <td>
-                                                <span class="badge rounded text-primary bg-primary-subtle">
-                                                    Remboursée
-                                                </span>
-                                            </td>
-                                     
-                                        </tr>
+                                    <?php endforeach ; ?>
                                     </tbody>
                                 </table>
                                 <!--end table-->
@@ -613,15 +600,15 @@
                             <div class="table-responsive">
                                 <table class="table mb-0">
                                     <tbody>
-                                     <?php foreach($bord['dernieres_ventes'] as $top_ventes): ?>
+                                     <?php foreach($bord['top_clients'] as $top_clients): ?>
                                         <tr class="">
                                             <td class="px-0">
                                                 <div class="d-flex align-items-center">
                                                     
                                                     <div class="flex-grow-1 text-truncate">
-                                                        <h6 class="m-0 text-truncate"><?= htmlspecialchars($top_ventes['client_nom']) ?> <?= htmlspecialchars($top_ventes['client_prenom']) ?></h6>
-                                                        <a href="#"
-                                                            class="font-12 text-muted text-decoration-underline"><?= htmlspecialchars(number_format($top_ventes['quantite'],0)) ?>
+                                                        <h6 class="m-0 text-truncate"><?= htmlspecialchars($top_clients['nom']) ?> <?= htmlspecialchars($top_clients['prenom']) ?></h6>
+                                                        <a href="#"top_clients
+                                                            class="font-12 text-muted text-decoration-underline"><?= htmlspecialchars(number_format($top_clients['total_ventes'],0)) ?>
                                                             commandes</a>
                                                     </div>
                                                     <!--end media body-->
@@ -630,7 +617,7 @@
                                             </td>
                                             <td class="px-0 text-end">
                                                 <span
-                                                    class="text-primary ps-2 align-self-center text-end fw-medium"><?= htmlspecialchars(number_format($top_ventes['prix_vente'],2)) ?></span>
+                                                    class="text-primary ps-2 align-self-center text-end fw-medium"><?= htmlspecialchars(number_format($top_clients['somme_total'],2)) ?></span>
                                             </td>
                                         </tr>
 
