@@ -5,7 +5,7 @@ ini_set('session.cookie_secure', 1);
 session_start();
 
 require_once('./../../../backend/function/function.php');
-$role = "COMPTABLE";
+$role = "VENTES";
     $entreprise = $_SESSION['entreprise'] ?? null;
 
     // Vérifier l’accès
@@ -43,7 +43,7 @@ include "./../../../includes/sidebar.php";
             <div class="">
               <ol class="breadcrumb mb-0">
                 <li class="breadcrumb-item"><a href="#">E-Kigega</a></li>
-                <li class="breadcrumb-item"><a href="#">Comptable</a>
+                <li class="breadcrumb-item"><a href="#">Responsable des Ventes</a>
                 </li><!--end nav-item-->
                 <li class="breadcrumb-item active">Depenses</li>
               </ol>
@@ -163,7 +163,7 @@ include "./../../../includes/sidebar.php";
       <!-- Popup Ajouter -->
       <div class="modal fade" id="addRate" tabindex="-1" aria-labelledby="addRateLabel" aria-hidden="true">
         <div class="modal-dialog">
-          <form action="./../../../backend/comptable/depenses/add.php" method="post" enctype="multipart/form-data">
+          <form action="./../../../backend/responsable/depenses/add.php" method="post" enctype="multipart/form-data">
             <div class="modal-content">
               <div class="modal-header">
                 <h5 class="modal-title" id="addRateLabel">Ajouter une dépense</h5>
@@ -222,7 +222,7 @@ include "./../../../includes/sidebar.php";
         <!-- Popup Modifier  -->
         <div class="modal fade" id="modifyProductModal" tabindex="-1" aria-labelledby="modifyProductLabel" aria-hidden="true">
           <div class="modal-dialog">
-            <form action="./../../../backend/comptable/depenses/edit.php" method="post" id="form-edit-produit">
+            <form action="./../../../backend/responsable/depenses/edit.php" method="post" id="form-edit-produit">
               <input type="hidden" name="id" id="edit-id">
               <div class="modal-content">
                 <div class="modal-header">
@@ -288,7 +288,7 @@ include "./../../../includes/sidebar.php";
             </div>
 
             <div class="modal-footer">
-              <form method="POST" action="./../../../backend/comptable/depenses/delete.php">
+              <form method="POST" action="./../../../backend/responsable/depenses/delete.php">
                 <input type="hidden" name="id" id="deleteId">
                 <button type="submit" class="btn btn-danger">Oui, supprimer</button>
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">

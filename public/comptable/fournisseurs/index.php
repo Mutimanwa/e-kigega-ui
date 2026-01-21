@@ -1,10 +1,10 @@
 <?php
 
-  ini_set('session.cookie_httponly', 1);
-  ini_set('session.cookie_secure', 1);
-  session_start();
+ini_set('session.cookie_httponly', 1);
+ini_set('session.cookie_secure', 1);
+session_start();
 
-  require_once('./../../../backend/function/function.php');
+require_once('./../../../backend/function/function.php');
 $role = "COMPTABLE";
     $entreprise = $_SESSION['entreprise'] ?? null;
 
@@ -21,15 +21,15 @@ $role = "COMPTABLE";
     }
 
 
-  //================== fetch les clients
-  $clients = getApi('/api/partners/clients/') ?? [];
-  if (!is_array($clients)) {
-    echo "<div class='alert alert-danger'>API error</div>";
-    $clients = [];
-  }
+//================== fetch les produits
+$clients = getApi('/api/partners/fournisseurs/') ?? [];
+if (!is_array($clients)) {
+  echo "<div class='alert alert-danger'>API error</div>";
+  $clients = [];
+}
 
-  include "./../../../includes/header.php";
-  include "./../../../includes/sidebar.php";
+include "./../../../includes/header.php";
+include "./../../../includes/sidebar.php";
 ?>
 <div class="page-wrapper">
 
@@ -39,13 +39,13 @@ $role = "COMPTABLE";
       <div class="row">
         <div class="col-sm-12">
           <div class="page-title-box d-md-flex justify-content-md-between align-items-center">
-            <h4 class="page-title">Client</h4>
+            <h4 class="page-title">Fournisseurs</h4>
             <div class="">
               <ol class="breadcrumb mb-0">
                 <li class="breadcrumb-item"><a href="#">E-Kigega</a></li>
                 <li class="breadcrumb-item"><a href="#">Comptable</a>
                 </li><!--end nav-item-->
-                <li class="breadcrumb-item active">Client</li>
+                <li class="breadcrumb-item active">Fournisseurs</li>
               </ol>
             </div>
           </div><!--end page-title-box-->
@@ -62,7 +62,7 @@ $role = "COMPTABLE";
                 </div><!--end col-->
                 <div class="col-auto">
                   <button class="btn bg-primary text-white" data-bs-toggle="modal" data-bs-target="#addRate"><i
-                      class="fas fa-plus me-1"></i> Ajouter un client</button>
+                      class="fas fa-plus me-1"></i> Ajouter un fournisseur</button>
                 </div><!--end col-->
               </div><!--end row-->
             </div><!--end card-header-->
@@ -95,34 +95,38 @@ $role = "COMPTABLE";
                         <td><?= htmlspecialchars((new DateTime($c['created_at']))->format('d/m/Y')) ?></td>
                         <td class="text-end">
 
-                          <!-- Modifier -->
-                          <a href="#"
-                            class="editBtn"
-                            data-bs-toggle="modal"
-                            data-bs-target="#modifyProductModal"
-                            data-id="<?= $c['id'] ?>"
-                            data-nom="<?= htmlspecialchars($c['nom']) ?>"
-                            data-prenom="<?= htmlspecialchars($c['prenom']) ?>"
-                            data-email="<?= $c['email'] ?>"
-                            data-telephone="<?= $c['telephone'] ?>"
-                            data-adresse="<?= $c['adresse'] ?>">
-                            <i class="las la-pen  fs-18" data-bs-toggle="tooltip"
-                              data-bs-placement="top"
-                              title="Modifier"></i>
-                          </a>
+
+                        <!-- Modifier -->
+                        <a href="#"
+                          class="editBtn"
+                          data-bs-toggle="modal"
+                          data-bs-target="#modifyProductModal"
+                          data-id="<?= $c['id'] ?>"
+                          data-nom="<?= htmlspecialchars($c['nom']) ?>"
+                          data-prenom="<?= htmlspecialchars($c['prenom']) ?>"
+                          data-email="<?= $c['email'] ?>"
+                          data-telephone="<?= $c['telephone'] ?>"
+                          data-adresse="<?= $c['adresse'] ?>">
+                          <i class="las la-pen  fs-18"  data-bs-toggle="tooltip"
+   data-bs-placement="top"
+   title="Modifier"></i>
+                        </a>
 
 
-                          <!-- Supprimer -->
-                          <a href="#"
-                            class="text-danger delete-btn"
-                            data-bs-toggle="modal"
-                            data-bs-target="#deleteModal"
-                            data-id="<?= $c['id'] ?>"
-                            data-nom="<?= htmlentities($c['nom']) ?> <?= htmlentities($c['prenom']) ?>">
-                            <i class="las la-trash-alt  fs-18 " data-bs-toggle="tooltip"
-                              data-bs-placement="top"
-                              title="Supprimer"></i>
-                          </a>
+                        <!-- Supprimer -->
+                        <a href="#"
+                          class="text-danger delete-btn"
+                          data-bs-toggle="modal"
+                          data-bs-target="#deleteModal"
+                          data-id="<?= $c['id'] ?>"
+                          data-nom="<?= htmlentities($c['nom']) ?> <?= htmlentities($c['prenom']) ?>">
+                          <i class="las la-trash-alt  fs-18 "  data-bs-toggle="tooltip"
+   data-bs-placement="top"
+   title="Supprimer"></i>
+                        </a>
+
+                         
+
 
                         </td>
                       </tr>
@@ -165,10 +169,10 @@ $role = "COMPTABLE";
       <!-- Popup Ajouter -->
       <div class="modal fade" id="addRate" tabindex="-1" aria-labelledby="addRateLabel" aria-hidden="true">
         <div class="modal-dialog">
-          <form action="./../../../backend/comptable/clients/add.php" method="post">
+          <form action="./../../../backend/comptable/fournisseurs/add.php" method="post">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="addRateLabel">Ajouter un client</h5>
+                <h5 class="modal-title" id="addRateLabel">Ajouter un fournisseur</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
               </div>
 
@@ -180,7 +184,7 @@ $role = "COMPTABLE";
                     <span class="input-group-text">
                       <i class="fas fa-user"></i>
                     </span>
-                    <input type="text" id="add-nom" name="nom" class="form-control" placeholder="Nom du client">
+                    <input type="text" id="add-nom" name="nom" class="form-control" placeholder="Nom du fournisseur">
                   </div>
                 </div>
 
@@ -190,7 +194,7 @@ $role = "COMPTABLE";
                     <span class="input-group-text">
                       <i class="fas fa-user-tag"></i>
                     </span>
-                    <input type="text" id="add-prenom" name="prenom" class="form-control" placeholder="Prénom du client">
+                    <input type="text" id="add-prenom" name="prenom" class="form-control" placeholder="Prénom du fournisseur">
                   </div>
                 </div>
 
@@ -210,7 +214,7 @@ $role = "COMPTABLE";
                     <span class="input-group-text">
                       <i class="fas fa-envelope"></i>
                     </span>
-                    <input type="email" id="add-email" name="email" class="form-control" placeholder="Email du client">
+                    <input type="email" id="add-email" name="email" class="form-control" placeholder="Email du fournisseur">
                   </div>
                 </div>
 
@@ -220,7 +224,7 @@ $role = "COMPTABLE";
                     <span class="input-group-text">
                       <i class="fas fa-map-marker-alt"></i>
                     </span>
-                    <input type="text" id="add-adresse" name="adresse" class="form-control" placeholder="Adresse du client">
+                    <input type="text" id="add-adresse" name="adresse" class="form-control" placeholder="Adresse du fournisseur">
                   </div>
                 </div>
 
@@ -238,11 +242,11 @@ $role = "COMPTABLE";
       <!-- Popup Modifier  -->
       <div class="modal fade" id="modifyProductModal" tabindex="-1" aria-labelledby="modifyProductLabel" aria-hidden="true">
         <div class="modal-dialog">
-          <form action="./../../../backend/comptable/clients/edit.php" method="post" id="form-edit-produit">
+          <form action="./../../../backend/comptable/fournisseurs/edit.php" method="post" id="form-edit-produit">
             <input type="hidden" name="id" id="edit-id">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="modifyProductLabel">Modifier le Client</h5>
+                <h5 class="modal-title" id="modifyProductLabel">Modifier le Fournisseur</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
               </div>
               <div class="modal-body">
@@ -252,7 +256,7 @@ $role = "COMPTABLE";
                   <label>Nom</label>
                   <div class="input-group">
                     <span class="input-group-text"><i class="fas fa-user"></i></span>
-                    <input type="text" name="nom" id="edit-nom" class="form-control" placeholder="Nom du produit" required>
+                    <input type="text" name="nom" id="edit-nom" class="form-control" placeholder="Nom du fournisseur" required>
                   </div>
                 </div>
 
@@ -261,7 +265,7 @@ $role = "COMPTABLE";
                   <label>Prenom</label>
                   <div class="input-group">
                     <span class="input-group-text"><i class="fas fa-user-tag"></i></span>
-                    <input type="text" name="prenom" id="edit-prenom" class="form-control" placeholder="Nom du produit" required>
+                    <input type="text" name="prenom" id="edit-prenom" class="form-control" placeholder="Prénom du fournisseur" required>
                   </div>
                 </div>
 
@@ -270,7 +274,7 @@ $role = "COMPTABLE";
                   <label>E-mail</label>
                   <div class="input-group">
                     <span class="input-group-text"><i class="fas fa-envelope"></i></span>
-                    <input type="mail" name="email" id="edit-email" class="form-control" placeholder="Nom du produit" required>
+                    <input type="mail" name="email" id="edit-email" class="form-control" placeholder="Email du fournisseur" required>
                   </div>
                 </div>
 
@@ -279,7 +283,7 @@ $role = "COMPTABLE";
                   <label>Telephone</label>
                   <div class="input-group">
                     <span class="input-group-text"><i class="fas fa-phone"></i></span>
-                    <input type="number" name="telephone" id="edit-telephone" class="form-control" placeholder="Prix du produit" required>
+                    <input type="number" name="telephone" id="edit-telephone" class="form-control" placeholder="Numéro de téléphone" required>
                   </div>
                 </div>
 
@@ -288,7 +292,7 @@ $role = "COMPTABLE";
                   <label>Adresse</label>
                   <div class="input-group">
                     <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
-                    <input type="text" name="adresse" id="edit-adresse" class="form-control" placeholder="Prix du produit" required>
+                    <input type="text" name="adresse" id="edit-adresse" class="form-control" placeholder="Adresse du fournisseur" required>
                   </div>
                 </div>
 
@@ -306,7 +310,7 @@ $role = "COMPTABLE";
           <div class="modal-content">
 
             <div class="modal-header bg-white">
-              <h5 class="modal-title text-danger">Supprimer un client</h5>
+              <h5 class="modal-title text-danger">Supprimer un fournisseur</h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
 
@@ -318,7 +322,7 @@ $role = "COMPTABLE";
             </div>
 
             <div class="modal-footer">
-              <form method="POST" action="./../../../backend/comptable/clients/delete.php">
+              <form method="POST" action="./../../../backend/comptable/fournisseurs/delete.php">
                 <input type="hidden" name="id" id="deleteId">
                 <button type="submit" class="btn btn-danger">Oui, supprimer</button>
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">

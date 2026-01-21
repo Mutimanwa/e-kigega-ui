@@ -6,7 +6,7 @@
 
     require_once('./../../backend/function/function.php');
 
-    $role = "VENTES";
+    $role = "COMPTABLE";
     $entreprise = $_SESSION['entreprise'] ?? null;
 
     // Vérifier l’accès
@@ -40,7 +40,7 @@
                         <div class="">
                             <ol class="breadcrumb mb-0">
                                 <li class="breadcrumb-item"><a href="#">E-Kigega</a></li>
-                                <li class="breadcrumb-item"><a href="#">Admin</a></li>
+                                <li class="breadcrumb-item"><a href="#">Comptable</a></li>
                                 <!--end nav-item-->
                                 <li class="breadcrumb-item active">Tableau de Bord</li>
                             </ol>
@@ -61,7 +61,7 @@
                                         <h3 class="text-white fw-semibold fs-20 lh-base">
                                             Bienvenue dans<br />E-Kigega Management
                                         </h3>
-                                        <a href="<?= BASE_URL ?>public/admin/rapports/"
+                                        <a href="<?= BASE_URL ?>public/comptable/rapports/"
                                             class="btn btn-sm btn-danger">Voir Rapports</a>
                                         <img src="<?= IMAGES_URL ?>extra/fund.png" alt="" class="mb-n4 float-end"
                                             height="107" />
@@ -88,11 +88,11 @@
                                             <span class="text-success"><i class="fas fa-arrow-up me-1"></i>8.5%</span>
                                             Croissance mensuelle
                                         </p>
-                                        <a href="<?= BASE_URL ?>public/admin/rapports/"><button type="button" class="btn btn-soft-primary" data-bs-toggle="modal"
+                                        <a href="<?= BASE_URL ?>public/comptable/rapports/"><button type="button" class="btn btn-soft-primary" data-bs-toggle="modal"
                                             data-bs-target="#transferModal">
                                             Benéfices
                                         </button></a>
-                                        <a href="<?= BASE_URL ?>public/admin/depenses/" class="btn btn-soft-danger">
+                                        <a href="<?= BASE_URL ?>public/comptable/depenses/" class="btn btn-soft-danger">
                                             Dépenses
                                         </a>
                                     </div>
@@ -333,7 +333,7 @@
                                         <div class="flex-grow-1 ms-2">
                                             <h6 class="my-0 fw-normal text-dark fs-13 mb-0">
                                                 Vous avez 1.530.000 FBU restant...<a
-                                                    href="<?= BASE_URL ?>public/admin/rapports/"
+                                                    href="<?= BASE_URL ?>public/comptable/rapports/"
                                                     class="text-primary fw-medium mb-0 text-decoration-underline">Voir
                                                     Détails</a>
                                             </h6>
@@ -667,7 +667,7 @@
                             </div>
                             <!--end /div-->
                             <div class="text-center mt-3">
-                                <a href="<?= BASE_URL ?>public/admin/ventes/" class="btn btn-primary">Voir toutes les
+                                <a href="<?= BASE_URL ?>public/comptable/ventes/" class="btn btn-primary">Voir toutes les
                                     ventes</a>
                             </div>
                         </div>
@@ -685,7 +685,7 @@
                                 </div>
                                 <!--end col-->
                                 <div class="col-auto">
-                                    <a href="<?= BASE_URL ?>public/admin/clients/" class="btn btn-light">
+                                    <a href="<?= BASE_URL ?>public/comptable/clients/" class="btn btn-light">
                                         <i class="icofont-contact-add fs-5 me-1"></i> Nouveau
                                     </a>
                                 </div>
@@ -804,7 +804,7 @@
                             </div>
                             <!--end /div-->
                             <div class="text-center mt-3">
-                                <a href="<?= BASE_URL ?>public/admin/clients/"
+                                <a href="<?= BASE_URL ?>public/comptable/clients/"
                                     class="btn btn-outline-primary btn-sm">Voir tous les clients</a>
                             </div>
                         </div>
