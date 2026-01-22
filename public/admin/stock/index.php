@@ -101,8 +101,8 @@ include "./../../../includes/sidebar.php";
                       $total = $quantite * $prix;
                       ?>
                       <tr>
-                        <td><?= $s['produit']['nom'] ?></td>
-                        <td><?=  $s['fournisseur']['nom'] ?> <?=  $s['fournisseur']['prenom'] ?></td>
+                        <td><?= $s['produit_detail']['nom'] ?></td>
+                        <td><?=  $s['fournisseur_detail']['nom'] ?> <?=  $s['fournisseur_detail']['prenom'] ?></td>
                         <td> <?= htmlspecialchars(number_format($s['quantite']), 2) ?></td>
                         <td><?= htmlspecialchars(number_format($s['prix_achat']), 2) ?></td>
                         <td><?= htmlspecialchars(number_format($total), 2) ?></td>
@@ -118,8 +118,8 @@ include "./../../../includes/sidebar.php";
                             data-prix_achat="<?= htmlspecialchars($s['prix_achat']) ?>"
                             data-date_entree="<?= htmlspecialchars($s['date_entree']) ?>"
                             data-quantite="<?= $s['quantite'] ?>"
-                            data-produit="<?= $s['produit']['id'] ?>"
-                            data-fournisseur="<?= $s['fournisseur']['id'] ?>">
+                            data-produit="<?= $s['produit_detail']['id'] ?>"
+                            data-fournisseur="<?= $s['fournisseur_detail']['id'] ?>">
                             <i class="las la-pen  fs-18" data-bs-toggle="tooltip"
                               data-bs-placement="top"
                               title="Modifier"></i>
@@ -131,7 +131,7 @@ include "./../../../includes/sidebar.php";
                             data-bs-toggle="modal"
                             data-bs-target="#deleteModal"
                             data-id="<?= $s['id'] ?>"
-                            data-nom="la tracabilite de l'entree de <?=  $s['produit']['nom'] ?> ">
+                            data-nom="la tracabilite de l'entree de <?=  $s['produit_detail']['nom'] ?> ">
                             <i class="las la-trash-alt  fs-18 " data-bs-toggle="tooltip"
                               data-bs-placement="top"
                               title="Supprimer"></i>

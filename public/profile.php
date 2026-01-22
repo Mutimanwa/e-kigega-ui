@@ -5,8 +5,7 @@
     session_start();
 
     require_once('./../backend/function/function.php');
-    $role="ADMIN";
-
+    
     //================== gerer les session 
     if(!$_SESSION['token']){
         header("Location: ./../index.php");

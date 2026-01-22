@@ -32,46 +32,68 @@ require_once '../../../includes/header.php';
 require_once '../../../includes/sidebar.php';
 
 // Simuler des données depuis la base de données
-$shorts = [
-[
-    'id' => 1,
-    'titre' => '💡 Budget : 50/30/20',
-    'description' => 'La règle de gestion budgétaire : 50% besoins, 30% envies, 20% épargne',
-    'url' => '../../../assets/video.mp4',
-    'miniature' => '../../../assets/images/users/avatar1.jpg',
-    'auteur' => 'Coach Financier',
-    'auteur_id' => 1,
-    'duree' => '0:45',
-    'likes' => 1250,
-    'partages' => 89,
-    'commentaires' => 45,
-    'date' => '2024-03-10',
-    'hashtags' => ['budget', 'finances', 'epargne'],
-    'categorie' => 'finance_personnelle'
-],
-[
-    'id' => 2,
-    'titre' => '💡 Crypto : débuter en 2024',
-    'description' => 'Les bases pour commencer à investir dans les cryptomonnaies cette année',
-    'url' => '../../../assets/video.mp4',
-    'miniature' => '../../../assets/images/users/avatar2.jpg',
-    'auteur' => 'Expert Crypto',
-    'auteur_id' => 2,
-    'duree' => '0:52',
-    'likes' => 890,
-    'partages' => 34,
-    'commentaires' => 28,
-    'date' => '2024-03-15',
-    'hashtags' => ['crypto', 'bitcoin', 'investissement'],
-    'categorie' => 'crypto'
-]
-];
+$shorts = [];
+
+foreach ($videos as $v) {
+    $shorts[] = [
+        'id'           => $v['id'],
+        'titre'        => '💡 ' . $v['titre'],
+        'description'  => $v['description'],
+        'url'          => $v['video'] ?? '../../../assets/video.mp4',
+        'miniature'    => $v['cover_image'],
+        'auteur'       => 'Coach Financier',
+        'auteur_id'    => $v['entreprise'],
+        'duree'        => $v['duree'] . ':00',
+        'likes'        => rand(100, 5000),
+        'partages'     => rand(10, 200),
+        'commentaires' => rand(5, 150),
+        'date'         => date('Y-m-d', strtotime($v['created_at'])),
+        'hashtags'     => explode('_', $v['categorie']),
+        'categorie'    => $v['categorie']
+    ];
+}
+
+
+// $shorts = [
+// [
+//     'id' => 1,
+//     'titre' => '💡 Budget : 50/30/20',
+//     'description' => 'La règle de gestion budgétaire : 50% besoins, 30% envies, 20% épargne',
+//     'url' => '../../../assets/video.mp4',
+//     'miniature' => '../../../assets/images/users/avatar1.jpg',
+//     'auteur' => 'Coach Financier',
+//     'auteur_id' => 1,
+//     'duree' => '0:45',
+//     'likes' => 1250,
+//     'partages' => 89,
+//     'commentaires' => 45,
+//     'date' => '2024-03-10',
+//     'hashtags' => ['budget', 'finances', 'epargne'],
+//     'categorie' => 'finance_personnelle'
+// ],
+// [
+//     'id' => 2,
+//     'titre' => '💡 Crypto : débuter en 2024',
+//     'description' => 'Les bases pour commencer à investir dans les cryptomonnaies cette année',
+//     'url' => '../../../assets/video.mp4',
+//     'miniature' => '../../../assets/images/users/avatar2.jpg',
+//     'auteur' => 'Expert Crypto',
+//     'auteur_id' => 2,
+//     'duree' => '0:52',
+//     'likes' => 890,
+//     'partages' => 34,
+//     'commentaires' => 28,
+//     'date' => '2024-03-15',
+//     'hashtags' => ['crypto', 'bitcoin', 'investissement'],
+//     'categorie' => 'crypto'
+// ]
+// ];
 
 // Simuler des commentaires
 $commentairesParShort = [
 1 => [
     [
-        'id' => 1,
+        'id' => "9e4ecdb6-6014-4b9d-8948-3a23fd76cbb3",
         'user_id' => 3,
         'username' => 'Marie92',
         'avatar' => '../../../assets/images/users/avatar3.jpg',
@@ -164,9 +186,9 @@ if ($key !== 'tous') {
             <div class="no-content-description">
                 Cette catégorie ne contient pas encore de contenu. Soyez le premier à créer un short !
             </div>
-            <button class="create-first-btn" onclick="openCreationModal()">
+            <!-- <button class="create-first-btn" onclick="openCreationModal()">
                 <i class="las la-plus me-1"></i> Créer le premier
-            </button>
+            </button> -->
         </div>
 
         <!-- Flux de shorts -->
