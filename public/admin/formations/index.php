@@ -39,7 +39,7 @@ foreach ($videos as $v) {
         'id'           => $v['id'],
         'titre'        => '💡 ' . $v['titre'],
         'description'  => $v['description'],
-        'url'          => $v['video'] ?? '../../../assets/video.mp4',
+        'url'          => '../../../assets/video2.mp4',
         'miniature'    => $v['cover_image'],
         'auteur'       => 'Coach Financier',
         'auteur_id'    => $v['entreprise'],
