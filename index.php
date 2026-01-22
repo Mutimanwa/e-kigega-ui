@@ -12,7 +12,7 @@
         <meta content="" name="author" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-        <link rel="icon" type="image/png" href="./assets/images/logos/E-Kigega_logo_bordure_blanche.png">
+        <link rel="icon" type="image/png" href="./assets/images/logos/ekigega-logo.png">
 
 
         <!-- App css -->
@@ -34,10 +34,9 @@
                                     <div class="card-body p-0 bg- auth-header-box rounded-top">
                                         <div class="text-center ">
                                             <a href="index.php" class="logo logo-admin">
-                                                <img src="<?= IMAGES_URL ?>/logos/logo.png" height="150" alt="logo"
+                                                <img src="<?= IMAGES_URL ?>/logos/ekigega-logo1" height="150" alt="logo"
                                                     class="auth-logo">
                                             </a>
-                                            <h4 class="mt-n3 fw-semibold fs-18">Bienvenue</h4>
                                             <p class="text-muted  fw-medium mb-0">Connectez-vous pour continuer sur
                                                 e-kigega.</p>
                                         </div>

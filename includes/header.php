@@ -25,9 +25,17 @@ if (!is_array($users)) {
     <meta content="" name="author" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Poppins:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+
+
 
     <!-- App favicon -->
-    <link rel="shortcut icon" href="<?= IMAGES_URL ?>logos/ekigega-logo.png" />
+    <link rel="shortcut icon" href="<?= IMAGES_URL ?>logos/ekigega-logo.JPEG" />
 
     <!-- App css -->
     <link href="<?= CSS_URL ?>bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -201,3 +209,24 @@ if (!is_array($users)) {
         </div>
     </div>
     <!-- Top Bar End -->
+
+    <script>
+        // Toggle menu et texte
+        const togglemenu = document.getElementById('togglemenu');
+        const startbar = document.querySelector('.startbar');
+        const logoSpan = startbar.querySelector('.logo span');
+
+        togglemenu.addEventListener('click', () => {
+            if (startbar.classList.contains('collapsed')) {
+                // Menu s'élargit
+                startbar.classList.remove('collapsed');
+                startbar.classList.add('expanded');
+                logoSpan.textContent = 'E-Kigega';
+            } else {
+                // Menu se réduit
+                startbar.classList.remove('expanded');
+                startbar.classList.add('collapsed');
+                logoSpan.textContent = 'E';
+            }
+        });
+    </script>
