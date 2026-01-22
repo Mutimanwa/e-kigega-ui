@@ -12,7 +12,7 @@
         <meta content="" name="author" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-        <link rel="icon" type="image/png" href="./assets/images/logos/ekigega-logo.png">
+        <link rel="icon" type="image/png" href="./assets/images/logos/E-Kigega_logo_bordure_blanche.png">
 
 
         <!-- App css -->
@@ -96,10 +96,11 @@
                                                 </div><!--end col-->
                                             </div> <!--end form-group-->
                                         </form><!--end form-->
-                                      <div class="text-center  mb-2">
-                                        <p class="text-muted">Vous avez pas de compte  ?  <a href="public/pricing.php" class="text-warning ms-2">Enregistrement </a></p>
-                                        
-                                    </div>
+                                        <div class="text-center  mb-2">
+                                            <p class="text-muted">Vous avez pas de compte ? <a href="public/pricing.php"
+                                                    class="text-warning ms-2">Enregistrement </a></p>
+
+                                        </div>
                                     </div><!--end card-body-->
                                 </div><!--end card-->
                             </div><!--end col-->

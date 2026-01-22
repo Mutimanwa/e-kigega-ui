@@ -1,15 +1,15 @@
-<?php 
+<?php
 
-    include_once __DIR__ . "/../config/constantes.php";
-    include_once __DIR__ . "/../includes/functions.php";
-    include_once __DIR__ ."/../backend/function/function.php";
+include_once __DIR__ . "/../config/constantes.php";
+include_once __DIR__ . "/../includes/functions.php";
+include_once __DIR__ . "/../backend/function/function.php";
 
-    //================== fetch les produits
-    $users=getApi('/api/auth/me/') ?? [];
-    if (!is_array($users)) {
-        echo "<div class='alert alert-danger'>API error</div>";
-        $users = [];
-    } 
+//================== fetch les produits
+$users = getApi('/api/auth/me/') ?? [];
+if (!is_array($users)) {
+    echo "<div class='alert alert-danger'>API error</div>";
+    $users = [];
+}
 
 ?>
 <!DOCTYPE html>
@@ -135,12 +135,13 @@
                     <li class="dropdown topbar-item">
                         <a class="nav-link dropdown-toggle arrow-none nav-icon" data-bs-toggle="dropdown" href="#"
                             role="button" aria-haspopup="false" aria-expanded="false" data-bs-offset="0,19">
-                            <img src="https://ekigega-backend.onrender.com<?= htmlspecialchars($users['profile']) ?> " alt="" class="thumb-md rounded-circle" />
+                            <img src="https://ekigega-backend.onrender.com<?= htmlspecialchars($users['profile']) ?> "
+                                alt="" class="thumb-md rounded-circle" />
                         </a>
                         <div class="dropdown-menu dropdown-menu-end py-0">
                             <div class="d-flex align-items-center dropdown-item py-2 bg-secondary-subtle">
                                 <div class="flex-shrink-0">
-                                    <img src="https://ekigega-backend.onrender.com<?=$users['profile'] ?> " alt=""
+                                    <img src="https://ekigega-backend.onrender.com<?= $users['profile'] ?> " alt=""
                                         class="thumb-md rounded-circle" />
                                 </div>
                                 <div class="flex-grow-1 ms-2 text-truncate align-self-center">
@@ -151,12 +152,39 @@
                                 </div>
                                 <!--end media-body-->
                             </div>
-                            
+
                             <div class="dropdown-divider mt-0"></div>
                             <small class="text-muted px-2 pb-1 d-block">Account</small>
-                            <a class="dropdown-item" href="<?= BASE_URL ?>public/profile.php"><i
-                                    class="las la-user fs-18 me-1 align-text-bottom"></i>
-                                Profile</a> <!--https://ekigega-backend.onrender.com -->
+
+
+                            <?php
+                            // valeur par défaut
+                            $rolePath = 'index.php';
+
+                            // choisir le chemin selon le rôle
+                            if (isset($role)) {
+                                switch ($role) {
+                                    case 'ADMIN':
+                                        $rolePath = 'public/admin/profile/index.php';
+                                        break;
+                                    case 'VENTES':
+                                        $rolePath = 'public/responsable/profile/index.php';
+                                        break;
+                                    case 'COMPTABLE':
+                                        $rolePath = 'public/comptable/profile/index.php';
+                                        break;
+                                }
+                            }
+                            ?>
+
+                            <!-- Lien header -->
+                            <a class="dropdown-item" href="<?= BASE_URL . $rolePath ?>">
+                                <i class="las la-user fs-18 me-1 align-text-bottom"></i>
+                                Profile
+                            </a>
+
+
+                            <!--https://ekigega-backend.onrender.com -->
                             <a class="dropdown-item" href="pages-faq.html"><i
                                     class="las la-question-circle fs-18 me-1 align-text-bottom"></i>
                                 Centre d'aide</a>
