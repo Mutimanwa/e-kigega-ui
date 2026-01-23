@@ -9,15 +9,25 @@ try {
 try {
   lucide.createIcons();
 } catch (e) {}
+
+
 try {
-  var themeColorToggle = document.getElementById("light-dark-mode");
-  themeColorToggle &&
-    themeColorToggle.addEventListener("click", function (e) {
-      "light" === document.documentElement.getAttribute("data-bs-theme")
-        ? document.documentElement.setAttribute("data-bs-theme", "dark")
-        : document.documentElement.setAttribute("data-bs-theme", "light");
-    });
+    const themeColorToggle = document.getElementById("light-dark-mode");
+
+    if (themeColorToggle) {
+      themeColorToggle.addEventListener("click", function () {
+        const current = document.documentElement.getAttribute("data-bs-theme");
+        const next = current === "light" ? "dark" : "light";
+
+        // Appliquer
+        document.documentElement.setAttribute("data-bs-theme", next);
+
+        // Sauvegarder
+        localStorage.setItem("theme", next);
+      });
+    }
 } catch (e) {}
+
 try {
   var collapsedToggle = document.querySelector(".mobile-menu-btn");
   const h = document.querySelector(".startbar-overlay"),

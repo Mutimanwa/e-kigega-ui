@@ -41,13 +41,11 @@ if (!is_array($users)) {
     <link href="<?= CSS_URL ?>bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="<?= CSS_URL ?>icons.min.css" rel="stylesheet" type="text/css" />
     <link href="<?= CSS_URL ?>app.min.css" rel="stylesheet" type="text/css" />
-    <!-- App css -->
-    <link href="<?= CSS_URL ?>bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <link href="<?= CSS_URL ?>icons.min.css" rel="stylesheet" type="text/css" />
-    <link href="<?= CSS_URL ?>app.min.css" rel="stylesheet" type="text/css" />
 
     <!-- datatables -->
     <link href="<?= LIBS_URL ?>simple-datatables/style.css" rel="stylesheet" type="text/css" />
+    <!-- configuration du theme  -->
+     <script src="<?= JS_URL ?>config.js"></script>
 </head>
 
 <body>
@@ -212,21 +210,21 @@ if (!is_array($users)) {
 
     <script>
         // Toggle menu et texte
-        const togglemenu = document.getElementById('togglemenu');
-        const startbar = document.querySelector('.startbar');
-        const logoSpan = startbar.querySelector('.logo span');
+        // const togglemenu = document.getElementById('togglemenu');
+        // const startbar = document.querySelector('.startbar');
+        // const logoSpan = startbar.querySelector('.logo span');
 
-        togglemenu.addEventListener('click', () => {
-            if (startbar.classList.contains('collapsed')) {
-                // Menu s'élargit
-                startbar.classList.remove('collapsed');
-                startbar.classList.add('expanded');
-                logoSpan.textContent = 'E-Kigega';
-            } else {
-                // Menu se réduit
-                startbar.classList.remove('expanded');
-                startbar.classList.add('collapsed');
-                logoSpan.textContent = 'E';
-            }
-        });
+        // togglemenu.addEventListener('click', () => {
+        //     if (startbar.classList.contains('collapsed')) {
+        //         // Menu s'élargit
+        //         startbar.classList.remove('collapsed');
+        //         startbar.classList.add('expanded');
+        //         logoSpan.textContent = 'E-Kigega';
+        //     } else {
+        //         // Menu se réduit
+        //         startbar.classList.remove('expanded');
+        //         startbar.classList.add('collapsed');
+        //         logoSpan.textContent = 'E';
+        //     }
+        // });
     </script>
