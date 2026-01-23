@@ -45,7 +45,7 @@ if (!is_array($users)) {
     <!-- datatables -->
     <link href="<?= LIBS_URL ?>simple-datatables/style.css" rel="stylesheet" type="text/css" />
     <!-- configuration du theme  -->
-     <script src="<?= JS_URL ?>config.js"></script>
+    <script src="<?= JS_URL ?>config.js"></script>
 </head>
 
 <body>
@@ -191,7 +191,7 @@ if (!is_array($users)) {
 
 
                             <!--https://ekigega-backend.onrender.com -->
-                            <a class="dropdown-item" href="pages-faq.html"><i
+                            <a class="dropdown-item" href="#"><i
                                     class="las la-question-circle fs-18 me-1 align-text-bottom"></i>
                                 Centre d'aide</a>
                             <div class="dropdown-divider mb-0"></div>

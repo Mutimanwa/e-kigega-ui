@@ -13,47 +13,47 @@ include_once "../config/constantes.php";
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="<?= IMAGES_URL ?>logos/favicon.ico">
+    <link rel="shortcut icon" href="<?= IMAGES_URL ?>logos/ekigega-logo.JPEG">
 
     <!-- App css -->
     <link href="<?= CSS_URL ?>bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="<?= CSS_URL ?>icons.min.css" rel="stylesheet" type="text/css" />
     <link href="<?= CSS_URL ?>app.min.css" rel="stylesheet" type="text/css" />
-    
+
     <style>
         .pricing-comparison {
-                background: #f8f9fa;
-                border-radius: 15px;
-                padding: 30px;
-                margin-top: 50px;
-            }
-            
-            .comparison-table th {
-                background: var(--bs-warning);
-                color: white;
-                border: none;
-            }
-            
-            .faq-section {
-                background: white;
-                border-radius: 15px;
-                padding: 40px;
-                margin-top: 50px;
-            }
-            
-            .faq-item {
-                border-bottom: 1px solid #f1f3fa;
-                padding: 20px 0;
-            }
-              .cta-section {
-                background: var(--bs-warning);
-                color: white;
-                border-radius: 15px;
-                padding: 60px 40px;
-                margin-top: 50px;
-                text-align: center;
-            }
-            
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 30px;
+            margin-top: 50px;
+        }
+
+        .comparison-table th {
+            background: var(--bs-warning);
+            color: white;
+            border: none;
+        }
+
+        .faq-section {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            margin-top: 50px;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid #f1f3fa;
+            padding: 20px 0;
+        }
+
+        .cta-section {
+            background: var(--bs-warning);
+            color: white;
+            border-radius: 15px;
+            padding: 60px 40px;
+            margin-top: 50px;
+            text-align: center;
+        }
     </style>
 
 </head>
@@ -63,7 +63,7 @@ include_once "../config/constantes.php";
     <nav class="navbar navbar-expand-lg position-sticky navbar-light bg-white shadow-sm" style="top:0px;z-index:100;">
         <div class="container">
             <a class="navbar-brand overflow-hidden p-0" href="<?= BASE_URL ?>">
-                <img src="<?= IMAGES_URL ?>logos/logo-light.png" alt="E-Kigega" height="90">
+                <img src="<?= IMAGES_URL ?>logos/ekigega-logo1.png" alt="E-Kigega" height="60">
                 <!-- <span class="ms-2 fw-bold">E-Kigega</span> -->
             </a>
 
@@ -180,7 +180,7 @@ include_once "../config/constantes.php";
                             <p class="text-muted pt-2 mb-0">It is a long established fact that a reader will be
                                 distracted by the readable.</p>
                             <div class="pt-3">
-                                <h1 class="d-inline-block fw-bold pricing-price"  id="businessPrice">79.200</h1>
+                                <h1 class="d-inline-block fw-bold pricing-price" id="businessPrice">79.200</h1>
                                 <small class="font-12 text-muted pricing-period">FBU/month</small>
                             </div>
                             <hr class="hr-dashed">
@@ -200,7 +200,8 @@ include_once "../config/constantes.php";
                 <div class="card ">
                     <div class="card-body">
                         <div class="text-center">
-                            <span class="badge bg-warning-subtle text-warning mt-0 py-1 px-2 mx-auto">Solution sur mesure</span>
+                            <span class="badge bg-warning-subtle text-warning mt-0 py-1 px-2 mx-auto">Solution sur
+                                mesure</span>
                             <h6 class="pt-3 pb-2 m-0 fs-18 fw-medium">Plan Entreprise</h6>
                             <p class="text-muted pt-2 mb-0">Solution Complète</p>
                             <div class="pt-3">
@@ -343,7 +344,7 @@ include_once "../config/constantes.php";
                     <a href="<?= BASE_URL ?>register.php" class="btn btn-light btn-lg px-5">
                         <i class="las la-play-circle me-2"></i> Essayer gratuitement
                     </a>
-                    <a  href="<?= BASE_URL ?>contact.php" class="btn btn-outline-light btn-lg px-5">
+                    <a href="<?= BASE_URL ?>contact.php" class="btn btn-outline-light btn-lg px-5">
                         <i class="las la-phone me-2"></i> Parler à un expert
                     </a>
                 </div>
@@ -430,7 +431,7 @@ include_once "../config/constantes.php";
     <!-- JavaScript -->
     <script src="<?= LIBS_URL ?>bootstrap/js/bootstrap.bundle.min.js"></script>
 
-     <script>
+    <script>
         document.addEventListener('DOMContentLoaded', function () {
             const billingSwitch = document.getElementById('billingSwitch');
             const proPrice = document.getElementById('proPrice');
@@ -458,7 +459,7 @@ include_once "../config/constantes.php";
                 }
             });
 
-       
+
         });
     </script>
 </body>

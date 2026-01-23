@@ -212,6 +212,8 @@ require_once './../../../includes/sidebar.php';
                                             <i class="iconoir-eye-closed"></i>
                                         </span>
                                     </div>
+                                    <small class="text-muted">
+                                        Laisser vide ou au moins 8 caractères </small>
                                 </div>
                                 <div class="col-md-6 mb-2">
                                     <label for="confirmPasswordEdit">Confirmer mot de passe</label>
@@ -224,6 +226,9 @@ require_once './../../../includes/sidebar.php';
                                             <i class="iconoir-eye-closed"></i>
                                         </span>
                                     </div>
+                                    <small class="text-muted">
+                                        Confirmez seulement si vous changez le mot de passe.
+                                    </small>
                                 </div>
                             </div>
                         </div>
