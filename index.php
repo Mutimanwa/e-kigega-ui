@@ -34,7 +34,7 @@
                                     <div class="card-body p-0 bg- auth-header-box rounded-top">
                                         <div class="text-center ">
                                             <a href="index.php" class="logo logo-admin">
-                                                <img src="<?= IMAGES_URL ?>/logos/ekigega-logo1" height="150" alt="logo"
+                                                <img src="<?= IMAGES_URL ?>/logos/ekigega-logo1.png" height="150" alt="logo"
                                                     class="auth-logo">
                                             </a>
                                             <p class="text-muted  fw-medium mb-0">Connectez-vous pour continuer sur
@@ -83,7 +83,7 @@
                                                 <div class="col-12">
                                                     <div class="d-grid mt-3">
                                                         <input type="hidden" value="1" name="send">
-                                                        <button class="btn btn-warning" type="submit" name="send"
+                                                        <button class="btn btn-primary" type="submit" name="send"
                                                             value="1" id="loginBtn">
                                                             <span class="spinner-border spinner-border-sm d-none"
                                                                 id="btnSpinner"></span>
@@ -97,7 +97,7 @@
                                         </form><!--end form-->
                                         <div class="text-center  mb-2">
                                             <p class="text-muted">Vous avez pas de compte ? <a href="public/pricing.php"
-                                                    class="text-warning ms-2">Enregistrement </a></p>
+                                                    class="text-primary ms-2">Enregistrement </a></p>
 
                                         </div>
                                     </div><!--end card-body-->
