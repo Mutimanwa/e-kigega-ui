@@ -8,7 +8,7 @@ $menu_structure = [
             'title' => 'Tableau de bord',
             'icon' => 'iconoir-report-columns',
             'path' => '/public/admin/index.php',
-            'active' => ['index.php'],
+            'active' => ['admin/index.php'],
             'permission' => 'admin'
         ],
         'gestion_depenses' => [
@@ -89,7 +89,7 @@ $menu_structure = [
             'active' => ['utilisateurs', 'utilisateurs.php', 'utilisateurs/'],
             'permission' => 'admin'
         ],
-         'log de connexion' => [
+        'log de connexion' => [
             'title' => 'Log de connexion',
             'icon' => 'iconoir-book',
             'path' => '/public/admin/logs/',
@@ -104,16 +104,16 @@ $menu_structure = [
             'permission' => 'admin'
         ]
     ],
-    
+
     'comptable' => [
         'dashboard' => [
             'title' => 'Tableau de bord',
             'icon' => 'iconoir-report-columns',
             'path' => '/public/comptable/index.php',
-            'active' => ['index.php'],
+            'active' => ['comptable/index.php'],
             'permission' => 'comptable'
         ],
-           'gestion_depenses' => [
+        'gestion_depenses' => [
             'title' => 'Gestion des Dépenses',
             'icon' => 'iconoir-wallet',
             'path' => '/public/comptable/depenses/',
@@ -147,29 +147,29 @@ $menu_structure = [
             'active' => ['ventes', 'ventes.php', 'ventes/'],
             'permission' => 'comptable'
         ],
-       
-         'clients' => [
+
+        'clients' => [
             'title' => 'Gestion des Clients',
             'icon' => 'iconoir-user-square',
             'path' => '/public/comptable/clients/',
             'active' => ['clients', 'clients.php', 'clients/'],
             'permission' => 'comptable'
         ],
-         'stock' => [
+        'stock' => [
             'title' => 'Gestion de Stock',
             'icon' => 'iconoir-database',
             'path' => '/public/comptable/stock/',
             'active' => ['stock', 'stock.php', 'stock/'],
             'permission' => 'comptable'
         ],
-           'stock' => [
+        'stock' => [
             'title' => 'Gestion de Stock',
             'icon' => 'iconoir-database',
             'path' => '/public/comptable/stock/',
             'active' => ['stock', 'stock.php', 'stock/'],
             'permission' => 'comptable'
         ],
-         'fournisseurs' => [
+        'fournisseurs' => [
             'title' => 'Gestion des Fournisseurs',
             'icon' => 'iconoir-truck',
             'path' => '/public/comptable/fournisseurs/',
@@ -177,13 +177,13 @@ $menu_structure = [
             'permission' => 'comptable'
         ]
     ],
-    
+
     'responsable' => [
         'dashboard' => [
             'title' => 'Tableau de bord',
             'icon' => 'iconoir-report-columns',
             'path' => '/public/responsable/index.php',
-            'active' => ['index.php'],
+            'active' => ['responsable/index.php'],
             'permission' => 'responsable'
         ],
         'gestion_produits' => [
@@ -214,29 +214,29 @@ $menu_structure = [
             'permission' => 'responsable'
         ],
 
-            
-         'clients' => [
+
+        'clients' => [
             'title' => 'Gestion des Clients',
             'icon' => 'iconoir-user-square',
             'path' => '/public/responsable/clients/',
             'active' => ['clients', 'clients.php', 'clients/'],
             'permission' => 'responsable'
         ],
-         'stock' => [
+        'stock' => [
             'title' => 'Gestion des Stock',
             'icon' => 'iconoir-database',
             'path' => '/public/responsable/stock/',
             'active' => ['stock', 'stock.php', 'stock/'],
             'permission' => 'responsable'
         ],
-           'stock' => [
+        'stock' => [
             'title' => 'Gestion des Stock',
             'icon' => 'iconoir-database',
             'path' => '/public/responsable/stock/',
             'active' => ['stock', 'stock.php', 'stock/'],
             'permission' => 'responsable'
         ],
-         'fournisseurs' => [
+        'fournisseurs' => [
             'title' => 'Gestion des Fournisseurs',
             'icon' => 'iconoir-truck',
             'path' => '/public/responsable/fournisseurs/',
@@ -259,7 +259,7 @@ $menu_groups = [
     [
         'label' => 'Administration',
         'items' => ['formations', 'rapports', 'ai'],
-       // 'roles' => ['admin']
+        // 'roles' => ['admin']
     ],
     [
         'label' => 'Système',
@@ -269,62 +269,67 @@ $menu_groups = [
 ];
 
 // Fonction pour détecter la page active (version optimisée)
-function is_active_page($active_patterns) {
+function is_active_page($active_patterns)
+{
     if (!is_array($active_patterns)) {
         return false;
     }
-    
+
     $current_uri = $_SERVER['REQUEST_URI'];
     $current_path = parse_url($current_uri, PHP_URL_PATH);
-    
+
     // Nettoyer le chemin actuel
     $current_path = ltrim($current_path, '/');
-    
+
     foreach ($active_patterns as $pattern) {
         // Si c'est un fichier PHP simple
         if ($pattern == basename($_SERVER['PHP_SELF'])) {
             return true;
         }
-        
+
         // Si le chemin contient le pattern (chemin complet)
         if (strpos($current_path, $pattern) !== false) {
             return true;
         }
-        
+
         // Pour les chemins avec ou sans slash
-        if (strpos($current_path, rtrim($pattern, '/')) !== false || 
-            strpos($current_path, rtrim($pattern, '/') . '/') !== false) {
+        if (
+            strpos($current_path, rtrim($pattern, '/')) !== false ||
+            strpos($current_path, rtrim($pattern, '/') . '/') !== false
+        ) {
             return true;
         }
     }
-    
+
     return false;
 }
 
 // Fonction pour vérifier si un menu collapse doit être ouvert
-function should_collapse_be_open($item_active_patterns, $current_menu_items = []) {
+function should_collapse_be_open($item_active_patterns, $current_menu_items = [])
+{
     // Vérifier si le menu principal est actif
     if (is_active_page($item_active_patterns)) {
         return true;
     }
-    
+
     // Vérifier si un des sous-menus est actif
     foreach ($current_menu_items as $sub_item) {
         if (is_active_page($sub_item['active'])) {
             return true;
         }
     }
-    
+
     return false;
 }
 
 // Récupérer le rôle de l'utilisateur
-function get_user_role() {
+function get_user_role()
+{
     ob_start();
     if (isset($_SESSION['user_role'])) {
         return $_SESSION['user_role'];
     }
-    
+
     // Pour le développement, déterminer le rôle par l'URL
     $current_url = $_SERVER['REQUEST_URI'];
     if (strpos($current_url, '/comptable/') !== false) {
@@ -332,7 +337,7 @@ function get_user_role() {
     } elseif (strpos($current_url, '/responsable/') !== false) {
         return 'responsable';
     }
-    
+
     return 'admin';
 }
 ?>
