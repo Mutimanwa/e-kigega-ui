@@ -13,11 +13,11 @@
         session_destroy();
     }
 
-$entreprise=$_SESSION['entreprise'];
-// Vérifier l’abonnement (SUPER_ADMIN n’en a pas besoin)
-if ($_SESSION['role'] !== "SUPER_ADMIN") {
-    abonnement("./../../index.php", $entreprise);
-}
+    $entreprise=$_SESSION['entreprise'];
+    // Vérifier l’abonnement (SUPER_ADMIN n’en a pas besoin)
+    if ($_SESSION['role'] !== "SUPER_ADMIN") {
+        abonnement("./../../index.php", $entreprise);
+    }
 
     //================== fetch les produits
     $clients=getApi('/api/partners/') ?? [];
@@ -25,8 +25,9 @@ if ($_SESSION['role'] !== "SUPER_ADMIN") {
       echo "<div class='alert alert-danger'>API error</div>";
       $clients = [];
     } 
-include "../../../includes/header.php";
-include "../../../includes/sidebar.php";
+
+    include "../../../includes/header.php";
+    include "../../../includes/sidebar.php";
 
 ?>
 
@@ -98,6 +99,108 @@ include "../../../includes/sidebar.php";
                     </div>
                 </div>
             </div>
+
+        <!-- ############ gerer les filtrage automatique des rapports -->
+         <!-- -------------------------------------------------------- -->
+          <!-- Rapports Détails -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="row align-items-center">
+                                <div class="col">
+                                    <h4 class="card-title">Rapport Détail des Ventes</h4>
+                                </div>
+                                <div class="col-auto">
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-outline-primary dropdown-toggle"
+                                            data-bs-toggle="dropdown">
+                                            <i class="las la-print me-1"></i> Imprimer
+                                        </button>
+                                        <div class="dropdown-menu dropdown-menu-end">
+                                            <a class="dropdown-item" href="#">Format
+                                                A4</a>
+                                            <a class="dropdown-item" href="#">Format
+                                                A3</a>
+                                            <div class="dropdown-divider"></div>
+                                            <a class="dropdown-item" href="#">Générer PDF</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="tableau-rapport">
+                                    <thead>
+                                        <tr class="bg-light">
+                                            <th>Date</th>
+                                            <th>Référence</th>
+                                            <th>Client</th>
+                                            <th>Produit</th>
+                                            <th class="text-end">Quantité</th>
+                                            <th class="text-end">Prix Unitaire</th>
+                                            <th class="text-end">Total</th>
+                                            <th>Statut</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        <tr>
+                                            <td>12/13/2021</td>
+                                            <td>V-2024-001</td>
+                                            <td>Client 1</td>
+                                            <td>Produit A</td>
+                                            <td class="text-end">5</td>
+                                            <td class="text-end">100.000 FBU</td>
+                                            FBU</td>
+                                            <td class="text-end fw-bold">10000 FBU
+                                            </td>
+                                            <td>
+                                                <span class="badge bg-success-subtle text-success">
+                                                    Payé
+                                                </span>
+                                            </td>
+                                        </tr>
+
+                                    </tbody>
+                                    <tfoot class="table-light">
+                                        <tr>
+                                            <td colspan="6" class="text-end fw-bold">Total Général:</td>
+                                            <td class="text-end fw-bold">12.845.000 FBU</td>
+                                            <td></td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                            <div class="row mt-4">
+                                <div class="col-md-6">
+                                    <div class="alert alert-info">
+                                        <h5 class="alert-heading"><i class="las la-info-circle me-2"></i>Informations
+                                        </h5>
+                                        <p class="mb-0">Ce rapport inclut toutes les ventes effectuées pendant la
+                                            période sélectionnée.</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 text-end">
+                                    <div class="d-flex justify-content-end gap-2">
+                                        <button class="btn btn-primary" onclick="exporterExcel()">
+                                            <i class="las la-file-excel me-1"></i> Exporter Excel
+                                        </button>
+                                        <button class="btn btn-success" onclick="exporterPDF()">
+                                            <i class="las la-file-pdf me-1"></i> Exporter PDF
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
 
             <!-- Statistiques Principales -->
             <div class="row">
