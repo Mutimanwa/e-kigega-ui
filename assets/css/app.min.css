@@ -1939,7 +1939,7 @@ hr.hr-dashed {
 }
 
 .startbar .brand .logo-sm {
-    height: 24px;
+    /* height: 24px; */
     display: none
 }
 
@@ -2111,7 +2111,8 @@ html[data-startbar=dark] .logo-dark {
     }
 
     body[data-sidebar-size=collapsed] .startbar:not(:hover) .brand .logo .logo-lg {
-        width: 0;
+        /* width: 0; */
+        display: none;
         margin-left: 0;
         -webkit-transition: .3s;
         transition: .3s

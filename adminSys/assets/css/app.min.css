@@ -1891,7 +1891,7 @@ hr.hr-dashed {
 }
 
 .startbar .brand .logo-sm {
-    height: 24px;
+    /* height: 24px; */
     display: none
 }
 

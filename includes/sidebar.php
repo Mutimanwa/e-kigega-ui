@@ -7,9 +7,8 @@ require_once 'menu_functions.php';
 <div class="startbar d-print-none">
             <!--start brand-->
         <div class="brand">
-            <a href="<?php echo BASE_URL; ?>" class="logo">
-                <span class="logo-sm">
-                   
+            <a href="#" class="logo">
+                <span class="logo-sm">   
                     E
                 </span>
                 <span>
