@@ -1862,7 +1862,29 @@ hr.hr-dashed {
 }
 
 /* CSS Pour le side bar est le logo en haut en lette E-Kigega */
-  .logo {
+
+  /* Logo container */
+    .logo1 {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        overflow: hidden;
+    }
+
+    /* Petit logo (E) */
+    .logo-sm {
+
+        transition: all 0.3s ease;
+    }
+
+    /* Grand logo (E-Kigega) */
+    .logo-lg {
+
+        white-space: nowrap;
+        transition: all 0.3s ease;
+    }
+    
+  .logo1 {
         font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
         font-size: 26px;
         font-weight: 300;

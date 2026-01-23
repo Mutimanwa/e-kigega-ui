@@ -5,17 +5,17 @@ require_once 'menu_functions.php';
 
 <!-- leftbar-tab-menu -->
 <div class="startbar d-print-none">
-            <!--start brand-->
-        <div class="brand">
-            <a href="#" class="logo">
-                <span class="logo-sm">   
-                    E
-                </span>
-                <span>
-                    <h2 class="logo-lg">E-Kigega</h2>
-                </span>
-            </a>
-        </div>
+    <!--start brand-->
+    <div class="brand">
+        <a href="#" class="logo1">
+            <span class="logo-sm">
+                E
+            </span>
+            <span>
+                <h2 class="logo-lg">E-Kigega</h2>
+            </span>
+        </a>
+    </div>
     <!--end brand-->
 
     <!--start startbar-menu-->

@@ -1,29 +1,29 @@
 <?php
 
-    ini_set('session.cookie_httponly', 1);
-    ini_set('session.cookie_secure', 1);
-    session_start();
+ini_set('session.cookie_httponly', 1);
+ini_set('session.cookie_secure', 1);
+session_start();
 
-    require_once('./../../backend/function/function.php');
-    $role="ADMIN";
+require_once('./../../backend/function/function.php');
+$role = "ADMIN";
 
-    //================== gerer les session 
-    if(requireRole($role)==="Accès interdit"){
-        header("Location: ./../index.php");
-        session_destroy();
-    }
+//================== gerer les session 
+if (requireRole($role) === "Accès interdit") {
+    header("Location: ./../index.php");
+    session_destroy();
+}
 
-    $entreprise=$_SESSION['entreprise'];
-    //=========== verifier l'abonnement de cet entreprise
-    $url = "./../../../index.php";
-    abonnement($url,$entreprise);
+$entreprise = $_SESSION['entreprise'];
+//=========== verifier l'abonnement de cet entreprise
+$url = "./../../../index.php";
+abonnement($url, $entreprise);
 
-    //============= Dashbord
-    $bord=getApi('/api/analytics/dashboard/');
+//============= Dashbord
+$bord = getApi('/api/analytics/dashboard/');
 
-    // menu lateral admin et header
-    include "../../includes/header.php";
-    include "../../includes/sidebar.php";
+// menu lateral admin et header
+include "../../includes/header.php";
+include "../../includes/sidebar.php";
 ?>
 
 <!-- Page Content Start -->
@@ -49,7 +49,7 @@
                 <!--end col-->
             </div>
             <!--end row-->
-             <div class="row justify-content-center">
+            <div class="row justify-content-center">
                 <div class="col-lg-7">
                     <div class="row">
                         <div class="col-md-6">
@@ -76,21 +76,23 @@
                                     <div>
                                         <div class="d-flex justify-content-between align-items-center">
                                             <span class="fs-16 fw-semibold">Caisse – Dépenses</span>
-                                         
+
                                         </div>
 
                                         <h4 class="my-2 fs-24 fw-semibold">
-                                            <?= htmlspecialchars(number_format($bord['cashflow']['current_month']['balance'],2)) ?> <small class="font-14">FBU</small>
+                                            <?= htmlspecialchars(number_format($bord['cashflow']['current_month']['balance'], 2)) ?>
+                                            <small class="font-14">FBU</small>
                                         </h4>
-                                        
+
                                         <p class="mb-3 text-muted fw-semibold">
                                             <span class="text-success"><i class="fas fa-arrow-up me-1"></i>8.5%</span>
                                             Croissance mensuelle
                                         </p>
-                                        <a href="<?= BASE_URL ?>public/admin/rapports/"><button type="button" class="btn btn-soft-primary" data-bs-toggle="modal"
-                                            data-bs-target="#transferModal">
-                                            Benéfices
-                                        </button></a>
+                                        <a href="<?= BASE_URL ?>public/admin/rapports/"><button type="button"
+                                                class="btn btn-soft-primary" data-bs-toggle="modal"
+                                                data-bs-target="#transferModal">
+                                                Benéfices
+                                            </button></a>
                                         <a href="<?= BASE_URL ?>public/admin/depenses/" class="btn btn-soft-danger">
                                             Dépenses
                                         </a>
@@ -115,7 +117,9 @@
                                             <p class="text-muted text-uppercase mb-0 fw-normal fs-13">
                                                 Chiffre d'Affaires
                                             </p>
-                                            <h4 class="mt-1 mb-0 fw-medium"><?= htmlspecialchars(number_format($bord['kpis']['chiffre_affaire'],2)) ?> FBU</h4>
+                                            <h4 class="mt-1 mb-0 fw-medium">
+                                                <?= htmlspecialchars(number_format($bord['kpis']['chiffre_affaire'], 2)) ?>
+                                                FBU</h4>
                                         </div>
                                         <!--end col-->
                                         <div class="col-3 align-self-center">
@@ -140,9 +144,11 @@
                                     <div class="row d-flex justify-content-center">
                                         <div class="col-9">
                                             <p class="text-muted text-uppercase mb-0 fw-normal fs-13">
-                                               Ventes du Mois
+                                                Ventes du Mois
                                             </p>
-                                            <h4 class="mt-1 mb-0 fw-medium"><?= htmlspecialchars(number_format($bord['kpis']['total_ventes'],2)) ?></h4>
+                                            <h4 class="mt-1 mb-0 fw-medium">
+                                                <?= htmlspecialchars(number_format($bord['kpis']['total_ventes'], 2)) ?>
+                                            </h4>
                                         </div>
                                         <!--end col-->
                                         <div class="col-3 align-self-center">
@@ -168,7 +174,8 @@
                                             <p class="text-muted text-uppercase mb-0 fw-normal fs-13">
                                                 Produits Stock
                                             </p>
-                                            <h4 class="mt-1 mb-0 fw-medium"><?= htmlspecialchars(number_format($bord['total_produits'],2)) ?></h4>
+                                            <h4 class="mt-1 mb-0 fw-medium">
+                                                <?= htmlspecialchars(number_format($bord['total_produits'], 2)) ?></h4>
                                         </div>
                                         <!--end col-->
                                         <div class="col-3 align-self-center">
@@ -195,7 +202,9 @@
                                             <p class="text-muted text-uppercase mb-0 fw-normal fs-13">
                                                 Fournisseurs
                                             </p>
-                                            <h4 class="mt-1 mb-0 fw-medium"><?= htmlspecialchars(number_format($bord['total_fournisseurs'],2)) ?></h4>
+                                            <h4 class="mt-1 mb-0 fw-medium">
+                                                <?= htmlspecialchars(number_format($bord['total_fournisseurs'], 2)) ?>
+                                            </h4>
                                         </div>
                                         <!--end col-->
                                         <div class="col-3 align-self-center">
@@ -221,7 +230,7 @@
             </div>
             <!--end row-->
 
-             <div class="row justify-content-center">
+            <div class="row justify-content-center">
                 <div class="col-md-12 col-lg-6">
                     <div class="card">
                         <div class="card-header">
@@ -287,67 +296,67 @@
                         </div>
                         <!--end card-header-->
                         <?php
-                                $cashIn  = $bord['cashflow']['current_month']['cash_in'];
-                                $cashOut = $bord['cashflow']['current_month']['cash_out'];
-                                $balance = $bord['cashflow']['current_month']['balance']; // par ex: -18785995
-                                $balanceFormatted = number_format(abs($balance), 0, ',', '.'); // 1 530 000 FBU
-                                // $prefix = $balance < 0 ? "Il vous reste" : "Vous avez"; 
+                        $cashIn = $bord['cashflow']['current_month']['cash_in'];
+                        $cashOut = $bord['cashflow']['current_month']['cash_out'];
+                        $balance = $bord['cashflow']['current_month']['balance']; // par ex: -18785995
+                        $balanceFormatted = number_format(abs($balance), 0, ',', '.'); // 1 530 000 FBU
+                        // $prefix = $balance < 0 ? "Il vous reste" : "Vous avez"; 
+                        
+                        if ($balance > 0) {
+                            $prefix = "Solde disponible";
+                        } elseif ($balance < 0) {
+                            $prefix = "Solde débiteur";
+                        } else {
+                            $prefix = "Solde nul";
+                        }
 
-                                if ($balance > 0) {
-                                    $prefix = "Solde disponible";
-                                } elseif ($balance < 0) {
-                                    $prefix = "Solde débiteur";
-                                } else {
-                                    $prefix = "Solde nul";
-                                }
+                        $total = $cashIn + $cashOut;
 
-                                $total = $cashIn + $cashOut;
-
-                                if ($total > 0) {
-                                    $revenus   = ($cashIn / $total) * 100;
-                                    $depenses  = ($cashOut / $total) * 100;
-                                    $autres    = 100 - ($revenus + $depenses);
-                                } else {
-                                    $revenus = $depenses = $autres = 0;
-                                }
+                        if ($total > 0) {
+                            $revenus = ($cashIn / $total) * 100;
+                            $depenses = ($cashOut / $total) * 100;
+                            $autres = 100 - ($revenus + $depenses);
+                        } else {
+                            $revenus = $depenses = $autres = 0;
+                        }
                         ?>
 
                         <div class="card-body pt-0">
                             <div id="cashflow" class="apex-charts"></div>
-                                <div class="row">
-                                    <div class="col-4">
-                                        <div class="text-center">
-                                            <p class="text-muted text-uppercase mb-0 fw-medium fs-13">
-                                                Revenus
-                                            </p>
-                                            <h5 class="mt-1 mb-0 fw-medium">
-                                                <?= round($revenus, 1) ?>%
-                                            </h5>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-4">
-                                        <div class="text-center">
-                                            <p class="text-muted text-uppercase mb-0 fw-medium fs-13">
-                                                Dépenses
-                                            </p>
-                                            <h5 class="mt-1 mb-0 fw-medium">
-                                                <?= round($depenses, 1) ?>%
-                                            </h5>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-4">
-                                        <div class="text-center">
-                                            <p class="text-muted text-uppercase mb-0 fw-medium fs-13">
-                                                Autres
-                                            </p>
-                                            <h5 class="mt-1 mb-0 fw-medium">
-                                                <?= round($autres, 1) ?>%
-                                            </h5>
-                                        </div>
+                            <div class="row">
+                                <div class="col-4">
+                                    <div class="text-center">
+                                        <p class="text-muted text-uppercase mb-0 fw-medium fs-13">
+                                            Revenus
+                                        </p>
+                                        <h5 class="mt-1 mb-0 fw-medium">
+                                            <?= round($revenus, 1) ?>%
+                                        </h5>
                                     </div>
                                 </div>
+
+                                <div class="col-4">
+                                    <div class="text-center">
+                                        <p class="text-muted text-uppercase mb-0 fw-medium fs-13">
+                                            Dépenses
+                                        </p>
+                                        <h5 class="mt-1 mb-0 fw-medium">
+                                            <?= round($depenses, 1) ?>%
+                                        </h5>
+                                    </div>
+                                </div>
+
+                                <div class="col-4">
+                                    <div class="text-center">
+                                        <p class="text-muted text-uppercase mb-0 fw-medium fs-13">
+                                            Autres
+                                        </p>
+                                        <h5 class="mt-1 mb-0 fw-medium">
+                                            <?= round($autres, 1) ?>%
+                                        </h5>
+                                    </div>
+                                </div>
+                            </div>
 
                             <!--end row-->
                             <div class="text-center mx-auto">
@@ -395,25 +404,28 @@
                             <div class="table-responsive">
                                 <table class="table mb-0">
                                     <tbody>
-                                     <?php foreach($bord['top_products'] as $top_produit): ?>
-                                        <tr class="">
-                                            <td class="px-0">
-                                                <div class="d-flex align-items-center">
-                                                    <div
-                                                        class="me-2 align-self-center thumb-sm bg-info-subtle text-info rounded-circle d-flex align-items-center justify-content-center">
-                                                        <i class="iconoir-mobile fs-14"></i>
+                                        <?php foreach ($bord['top_products'] as $top_produit): ?>
+                                            <tr class="">
+                                                <td class="px-0">
+                                                    <div class="d-flex align-items-center">
+                                                        <div
+                                                            class="me-2 align-self-center thumb-sm bg-info-subtle text-info rounded-circle d-flex align-items-center justify-content-center">
+                                                            <i class="iconoir-mobile fs-14"></i>
+                                                        </div>
+                                                        <h6 class="m-0 text-truncate">
+                                                            <?= htmlspecialchars($top_produit['produit_nom']) ?></h6>
                                                     </div>
-                                                    <h6 class="m-0 text-truncate"><?= htmlspecialchars($top_produit['produit_nom']) ?></h6>
-                                                </div>
-                                                <!--end media-->
-                                            </td>
-                                            <td class="px-0 text-end">
-                                                <span class="text-body ps-2 align-self-center text-end fw-medium"><?= htmlspecialchars(number_format($top_produit['nombre_ventes'],0)) ?>
+                                                    <!--end media-->
+                                                </td>
+                                                <td class="px-0 text-end">
                                                     <span
-                                                        class="badge rounded text-success bg-success-subtle"><?= htmlspecialchars(number_format($top_produit['chiffre_affaires'],0)) ?> Fbu</span></span>
-                                            </td>
-                                        </tr>
-                                    <?php endforeach; ?>
+                                                        class="text-body ps-2 align-self-center text-end fw-medium"><?= htmlspecialchars(number_format($top_produit['nombre_ventes'], 0)) ?>
+                                                        <span
+                                                            class="badge rounded text-success bg-success-subtle"><?= htmlspecialchars(number_format($top_produit['chiffre_affaires'], 0)) ?>
+                                                            Fbu</span></span>
+                                                </td>
+                                            </tr>
+                                        <?php endforeach; ?>
                                         <!--end tr-->
                                     </tbody>
                                 </table>
@@ -423,9 +435,9 @@
                             <hr class="hr-dashed" />
                             <div class="row">
                                 <?php
-                                    $topProducts = $bord['kpis']['top_products'];
-                                    $firstProduct = reset($topProducts); // premier
-                                    $lastProduct  = end($topProducts);   // dernier
+                                $topProducts = $bord['kpis']['top_products'];
+                                $firstProduct = reset($topProducts); // premier
+                                $lastProduct = end($topProducts);   // dernier
                                 ?>
                                 <div class="col-lg-6 text-center">
                                     <div class="p-2 border-dashed border-theme-color rounded">
@@ -433,7 +445,7 @@
                                             Meilleur Vente
                                         </p>
                                         <h5 class="mt-1 mb-0 fw-medium text-success">
-                                            <?=  htmlspecialchars(number_format($firstProduct['quantite'],0)) ?> unités
+                                            <?= htmlspecialchars(number_format($firstProduct['quantite'], 0)) ?> unités
                                         </h5>
                                         <small><?= htmlspecialchars($firstProduct['nom']) ?></small>
                                     </div>
@@ -445,7 +457,7 @@
                                             Moins Vendu
                                         </p>
                                         <h5 class="mt-1 mb-0 fw-medium text-danger">
-                                            <?=  htmlspecialchars(number_format($lastProduct['quantite'],0)) ?> unités
+                                            <?= htmlspecialchars(number_format($lastProduct['quantite'], 0)) ?> unités
                                         </h5>
                                         <small><?= htmlspecialchars($lastProduct['nom']) ?></small>
                                     </div>
@@ -473,7 +485,8 @@
                                 <!--end col-->
                                 <div class="col-auto">
                                     <div class="p-2 border-dashed border-theme-color rounded">
-                                        <h5 class="mt-1 mb-0 fw-medium"><?= htmlspecialchars($bord['kpis']['total_stock']) ?></h5>
+                                        <h5 class="mt-1 mb-0 fw-medium">
+                                            <?= htmlspecialchars($bord['kpis']['total_stock']) ?></h5>
                                         <small class="text-muted">Produits</small>
                                     </div>
                                 </div>
@@ -485,10 +498,10 @@
                             <div id="balance" class="apex-charts"></div>
                             <div class="bg-light py-3 px-2 mb-0 mt-3 text-center rounded">
                                 <?php
-                                    $year = date('Y');
+                                $year = date('Y');
 
-                                    $startDate = "01 January $year";
-                                    $endDate   = "31 December $year";
+                                $startDate = "01 January $year";
+                                $endDate = "31 December $year";
                                 ?>
 
                                 <h6 class="mb-0">
@@ -544,25 +557,28 @@
                                             <th>Prix de vente</th>
                                             <th>Date</th>
                                             <th>Statut</th>
-                                           
+
                                         </tr>
                                         <!--end tr-->
                                     </thead>
-                                   <tbody>
-                                    <?php foreach($bord['dernieres_ventes'] as $d_ventes): ?>
-                                        <tr>
-                                            <td><?= htmlspecialchars($d_ventes['client_nom']) ?> <?= htmlspecialchars($d_ventes['client_prenom']) ?></td>
-                                            <td><?= htmlspecialchars($d_ventes['produit_nom']) ?></td>
-                                            <td><?= htmlspecialchars(number_format($d_ventes['quantite'],0)) ?></td>
-                                            <td><?= htmlspecialchars(number_format($d_ventes['prix_vente'],2)) ?> FBu</td>
-                                            <td><?= !empty($d_ventes['date_creation']) ? date('d M Y', strtotime($d_ventes['date_creation'])) :'-' ?></td>
-                                            <td>
-                                                <span class="badge rounded text-warning bg-warning-subtle">
-                                                    <?= htmlspecialchars($d_ventes['statut']) ?>
-                                                </span>
-                                            </td>                                        
-                                        </tr>
-                                    <?php endforeach ; ?>
+                                    <tbody>
+                                        <?php foreach ($bord['dernieres_ventes'] as $d_ventes): ?>
+                                            <tr>
+                                                <td><?= htmlspecialchars($d_ventes['client_nom']) ?>
+                                                    <?= htmlspecialchars($d_ventes['client_prenom']) ?></td>
+                                                <td><?= htmlspecialchars($d_ventes['produit_nom']) ?></td>
+                                                <td><?= htmlspecialchars(number_format($d_ventes['quantite'], 0)) ?></td>
+                                                <td><?= htmlspecialchars(number_format($d_ventes['prix_vente'], 2)) ?> FBu
+                                                </td>
+                                                <td><?= !empty($d_ventes['date_creation']) ? date('d M Y', strtotime($d_ventes['date_creation'])) : '-' ?>
+                                                </td>
+                                                <td>
+                                                    <span class="badge rounded text-success bg-success-subtle">
+                                                        <?= htmlspecialchars($d_ventes['statut']) ?>
+                                                    </span>
+                                                </td>
+                                            </tr>
+                                        <?php endforeach; ?>
                                     </tbody>
                                 </table>
                                 <!--end table-->
@@ -600,28 +616,30 @@
                             <div class="table-responsive">
                                 <table class="table mb-0">
                                     <tbody>
-                                     <?php foreach($bord['top_clients'] as $top_clients): ?>
-                                        <tr class="">
-                                            <td class="px-0">
-                                                <div class="d-flex align-items-center">
-                                                    
-                                                    <div class="flex-grow-1 text-truncate">
-                                                        <h6 class="m-0 text-truncate"><?= htmlspecialchars($top_clients['nom']) ?> <?= htmlspecialchars($top_clients['prenom']) ?></h6>
-                                                        <a href="#"top_clients
-                                                            class="font-12 text-muted text-decoration-underline"><?= htmlspecialchars(number_format($top_clients['total_ventes'],0)) ?>
-                                                            commandes</a>
-                                                    </div>
-                                                    <!--end media body-->
-                                                </div>
-                                                <!--end media-->
-                                            </td>
-                                            <td class="px-0 text-end">
-                                                <span
-                                                    class="text-primary ps-2 align-self-center text-end fw-medium"><?= htmlspecialchars(number_format($top_clients['somme_total'],2)) ?></span>
-                                            </td>
-                                        </tr>
+                                        <?php foreach ($bord['top_clients'] as $top_clients): ?>
+                                            <tr class="">
+                                                <td class="px-0">
+                                                    <div class="d-flex align-items-center">
 
-                                    <?php endforeach ; ?>
+                                                        <div class="flex-grow-1 text-truncate">
+                                                            <h6 class="m-0 text-truncate">
+                                                                <?= htmlspecialchars($top_clients['nom']) ?>
+                                                                <?= htmlspecialchars($top_clients['prenom']) ?></h6>
+                                                            <a href="#" top_clients
+                                                                class="font-12 text-muted text-decoration-underline"><?= htmlspecialchars(number_format($top_clients['total_ventes'], 0)) ?>
+                                                                commandes</a>
+                                                        </div>
+                                                        <!--end media body-->
+                                                    </div>
+                                                    <!--end media-->
+                                                </td>
+                                                <td class="px-0 text-end">
+                                                    <span
+                                                        class="text-primary ps-2 align-self-center text-end fw-medium"><?= htmlspecialchars(number_format($top_clients['somme_total'], 2)) ?></span>
+                                                </td>
+                                            </tr>
+
+                                        <?php endforeach; ?>
                                         <!--end tr-->
                                     </tbody>
                                 </table>
