@@ -57,7 +57,7 @@ function sendlogin() {
 
           // =====when is a VENTE loged
           if (["VENTES"].includes(result.role)) {
-             window.location.href = "./public/comptable/index.php";
+             window.location.href = "./public/responsable/index.php";
           }
 
           //=========== when is a society admin loged

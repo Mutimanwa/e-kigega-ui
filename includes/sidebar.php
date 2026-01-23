@@ -5,20 +5,20 @@ require_once 'menu_functions.php';
 
 <!-- leftbar-tab-menu -->
 <div class="startbar d-print-none">
-    <!--start brand-->
-    <div class="brand">
-        <a href="<?php echo BASE_URL; ?>" class="logo">
-            <span>
-                   <img src="<?= IMAGES_URL?>logos/logo-sm.png" alt="logo-small" class="logo-sm" />
+            <!--start brand-->
+        <div class="brand">
+            <a href="<?php echo BASE_URL; ?>" class="logo">
+                <span class="logo-sm">
+                   
+                    E
                 </span>
-                <span class="">
-                    <!-- <img src="<?= IMAGES_URL?>logos/logo-light.png" alt="logo-large" class="logo-lg logo-light" /> -->
-                    <img src="<?= IMAGES_URL?>logos/logo-dark.png" alt="logo-large" class="logo-lg logo-dark" />
+                <span>
+                    <h2 class="logo-lg">E-Kigega</h2>
                 </span>
-        </a>
-    </div>
+            </a>
+        </div>
     <!--end brand-->
-    
+
     <!--start startbar-menu-->
     <div class="startbar-menu">
         <div class="startbar-collapse" id="startbarCollapse" data-simplebar>
@@ -28,16 +28,26 @@ require_once 'menu_functions.php';
                     <?php echo generate_menu(); ?>
                 </ul>
                 <!--end navbar-nav--->
-                
+
                 <div class="update-msg text-center">
-                    <div class="d-flex justify-content-center bg-light align-items-center thumb-xxl update-icon-box rounded-circle mx-auto">
-                        <img src="<?= IMAGES_URL ?>logos/logo.png" alt="" class="" height="130" />
+                    <div
+                        class="update-icon-box rounded-circle mx-auto d-flex justify-content-center align-items-center">
+                        <img src="<?= IMAGES_URL ?>logos/ekigega-logo1.png" alt="E-Kigega Logo" class="logo-img" />
                     </div>
+
+
+
                     <h5 class="mt-3">
-                        Bienvenue, <span class="text-white"><?php echo htmlspecialchars($_SESSION['user_name'] ?? 'Utilisateur'); ?></span>
+                        Bienvenue, <span class="text-white">
+                            <?php echo htmlspecialchars($_SESSION['user_name'] ?? 'Utilisateur'); ?>
+                        </span>
                     </h5>
-                    <p class="mb-3 text-muted"><?php echo APP_NAME; ?> v<?php echo APP_VERSION; ?></p>
-                    <a href="<?php echo BASE_URL; ?>logout.php" class="btn text-primary shadow-sm rounded-pill px-3">Déconnexion</a>
+                    <p class="mb-3 text-muted">
+                        <?php echo APP_NAME; ?> v
+                        <?php echo APP_VERSION; ?>
+                    </p>
+                    <a href="<?php echo BASE_URL; ?>logout.php"
+                        class="btn text-primary shadow-sm rounded-pill px-3">Déconnexion</a>
                 </div>
             </div>
         </div>
@@ -46,6 +56,10 @@ require_once 'menu_functions.php';
     <!--end startbar-menu-->
 </div>
 
-    <!--end startbar-->
-    <div class="startbar-overlay d-print-none"></div>
-    <!-- end leftbar-tab-menu-->
+<!--end startbar-->
+<div class="startbar-overlay d-print-none"></div>
+<!-- end leftbar-tab-menu-->
+
+<style>
+
+</style>

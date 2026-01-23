@@ -1861,6 +1861,54 @@ hr.hr-dashed {
     color: #25282d
 }
 
+/* CSS Pour le side bar est le logo en haut en lette E-Kigega */
+  .logo {
+        font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        font-size: 26px;
+        font-weight: 300;
+        letter-spacing: 0.35em;
+        text-transform: uppercase;
+        white-space: nowrap;
+        background: linear-gradient(135deg, #0066FF, #00D4FF);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        transition: all 1s cubic-bezier(0.77, 0, 0.175, 1);
+    }
+
+
+
+
+    .update-icon-box {
+        width: 150px;
+        /* largeur du cercle */
+        height: 150px;
+        /* hauteur = largeur pour faire un cercle parfait */
+        background-color: #f8f9fa;
+        /* bg-light équivalent */
+        border-radius: 50%;
+        /* cercle */
+        overflow: hidden;
+        /* pour que l'image ne dépasse pas */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0 auto;
+        /* centre horizontalement */
+    }
+
+    /* Ajuster l'image */
+    .update-icon-box img.logo-img {
+        width: 80%;
+        /* ou height: 80% si tu veux respecter hauteur */
+        height: auto;
+        object-fit: cover;
+        /* pour que l'image garde ses proportions */
+        border-radius: 50%;
+        /* optionnel si tu veux que l'image soit aussi ronde */
+    }
+
+    /* END  */
+
 .startbar {
     position: fixed;
     top: 0;
@@ -1869,8 +1917,8 @@ hr.hr-dashed {
     width: var(--bs-startbar-width);
     background-color: var(--bs-startbar-bg);
     border-right: 1px solid var(--bs-startbar-e-border-color);
-    -webkit-transition: .3s;
-    transition: .3s;
+    -webkit-transition: .4s;
+    transition: .4s;
     z-index: 1005
 }
 
