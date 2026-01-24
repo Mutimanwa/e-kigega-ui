@@ -19,12 +19,15 @@
         abonnement("./../../index.php", $entreprise);
     }
 
-    //================== fetch les produits
-    $clients=getApi('/api/partners/') ?? [];
-    if (!is_array($clients)) {
-      echo "<div class='alert alert-danger'>API error</div>";
-      $clients = [];
-    } 
+    //============= Dashbord
+    $bord = getApi('/api/analytics/dashboard/');
+
+
+    $revenue = $bord['kpis']['chiffre_affaire'];
+    $depense = $bord['kpis']['depenses'];
+
+    $benefice = $revenue + $depense;
+
 
     include "../../../includes/header.php";
     include "../../../includes/sidebar.php";
@@ -212,7 +215,7 @@
                                     <p class="text-muted text-uppercase mb-0 fw-normal fs-13">
                                         Chiffre d'Affaires
                                     </p>
-                                    <h4 class="mt-1 mb-0 fw-medium">8.365.000 FBU</h4>
+                                    <h4 class="mt-1 mb-0 fw-medium"><?= htmlspecialchars(number_format($bord['kpis']['chiffre_affaire'], 0)) ?> FBU</h4>
                                 </div>
                                 <!--end col-->
                                 <div class="col-3 align-self-center">
@@ -237,7 +240,7 @@
                                     <p class="text-muted text-uppercase mb-0 fw-normal fs-13">
                                         Ventes du Mois
                                     </p>
-                                    <h4 class="mt-1 mb-0 fw-medium">300 <small>commandes</small></h4>
+                                    <h4 class="mt-1 mb-0 fw-medium"><?= htmlspecialchars(number_format($bord['kpis']['total_ventes'], 0)) ?> <small>commandes</small></h4>
                                 </div>
                                 <!--end col-->
                                 <div class="col-3 align-self-center">
@@ -262,7 +265,7 @@
                                     <p class="text-muted text-uppercase mb-0 fw-normal fs-13">
                                         Dépenses
                                     </p>
-                                    <h4 class="mt-1 mb-0 fw-medium">300000 FBU </h4>
+                                    <h4 class="mt-1 mb-0 fw-medium"><?= htmlspecialchars(number_format($bord['kpis']['depenses'], 0)) ?> FBU </h4>
                                 </div>
                                 <!--end col-->
                                 <div class="col-3 align-self-center">

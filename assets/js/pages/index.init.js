@@ -109,7 +109,7 @@ var chart = {
       plotOptions: { pie: { donut: { size: "80%" } } },
       dataLabels: { enabled: !1 },
       stroke: { show: !0, width: 2, colors: ["transparent"] },
-      series: [50, 25, 10, 15],
+      series: [5, 95],
       legend: {
         show: !0,
         position: "bottom",
@@ -121,8 +121,8 @@ var chart = {
         offsetX: 0,
         offsetY: 0,
       },
-      labels: ["USD", "Euro", "Pounds", "Dinar"],
-      colors: ["#0e2a89", "#d96345", "#ffb600", "#47cdea"],
+      labels: ["USD (soon)", "Fbu"],
+      colors: ["#0e2a89", "#47cdea", "#d96345", "#ffb600"],
       responsive: [
         {
           breakpoint: 600,
