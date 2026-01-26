@@ -12,13 +12,14 @@
         <meta content="" name="author" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-        <link rel="icon" type="image/png" href="./assets/images/logos/ekigega-logo.png">
+        <link rel="shortcut icon" href="assets/images/logos/ekigega-logo1.png" type="image/x-icon">
 
 
         <!-- App css -->
         <link href="<?= CSS_URL ?>bootstrap.min.css" rel="stylesheet" type="text/css" />
         <link href="<?= CSS_URL ?>icons.min.css" rel="stylesheet" type="text/css" />
         <link href="<?= CSS_URL ?>app.min.css" rel="stylesheet" type="text/css" />
+        <script src="assets/js/config.js"></script>
 
     </head>
     <!-- Top Bar Start -->
@@ -27,11 +28,11 @@
         <div class="container-xxl">
             <div class="row vh-100 d-flex justify-content-center">
                 <div class="col-12 align-self-center">
-                    <div class="card-body">
+                    <div class="card-body ">
                         <div class="row">
                             <div class="col-lg-4 mx-auto">
                                 <div class="card">
-                                    <div class="card-body p-0 bg- auth-header-box rounded-top">
+                                    <div class="card-body p-0 auth-header-box rounded-top">
                                         <div class="text-center ">
                                             <a href="index.php" class="logo logo-admin">
                                                 <img src="<?= IMAGES_URL ?>/logos/ekigega-logo1.png" height="150" alt="logo"
@@ -144,7 +145,7 @@
             }
         }
     </style>
-
+ 
     <script>
         document.querySelectorAll('.toggle-password').forEach(btn => {
             btn.addEventListener('click', function () {
