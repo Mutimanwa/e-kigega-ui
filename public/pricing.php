@@ -19,10 +19,7 @@ include_once "../config/constantes.php";
 
     <!-- App css -->
     <link href="<?= CSS_URL ?>bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <link href="<?= CSS_URL ?>icons.min.css" rel="stylesheet" type="text/css" />
-    <link href="<?= CSS_URL ?>app.min.css" rel="stylesheet" type="text/css" />
-    <link href="<?= CSS_URL ?>all_style.css" rel="stylesheet" type="text/css" />
-
+    <link href="<?= CSS_URL ?>all_style.css" rel="stylesheet" type="text/css" />    
  
 </head>
 
@@ -447,10 +444,6 @@ include_once "../config/constantes.php";
     <!-- JavaScript -->
     <script src="<?= LIBS_URL ?>bootstrap/js/bootstrap.bundle.min.js"></script>
      <script src="<?= JS_URL ?>all.js"></script>
-
-    <script>
-       
-    </script>
 </body>
 
 </html>
