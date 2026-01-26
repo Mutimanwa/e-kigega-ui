@@ -19,7 +19,6 @@
         <link href="<?= CSS_URL ?>bootstrap.min.css" rel="stylesheet" type="text/css" />
         <link href="<?= CSS_URL ?>icons.min.css" rel="stylesheet" type="text/css" />
         <link href="<?= CSS_URL ?>app.min.css" rel="stylesheet" type="text/css" />
-        <script src="assets/js/config.js"></script>
 
     </head>
     <!-- Top Bar Start -->
