@@ -12,7 +12,7 @@ require_once 'menu_functions.php';
                 E
             </span>
             <span>
-                <h2 class="logo-lg">E-Kigega</h2>
+                <h2 class="logo-lg ms-1">E-Kigega</h2>
             </span>
         </a>
     </div>
