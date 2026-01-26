@@ -1,3 +1,4 @@
+
 try {
   var dropdownMenus = document.querySelectorAll(".dropdown-menu.stop");
   dropdownMenus.forEach(function (e) {
@@ -29,28 +30,30 @@ try {
 } catch (e) {}
 
 try {
-  var collapsedToggle = document.querySelector(".mobile-menu-btn");
-  const h = document.querySelector(".startbar-overlay"),
-    changeSidebarSize =
-      (collapsedToggle?.addEventListener("click", function () {
-        "collapsed" == document.body.getAttribute("data-sidebar-size")
-          ? document.body.setAttribute("data-sidebar-size", "default")
-          : document.body.setAttribute("data-sidebar-size", "collapsed");
-      }),
-      h &&
-        h.addEventListener("click", () => {
-          document.body.setAttribute("data-sidebar-size", "collapsed");
-        }),
-      () => {
-        310 <= window.innerWidth && window.innerWidth <= 1440
-          ? document.body.setAttribute("data-sidebar-size", "collapsed")
-          : document.body.setAttribute("data-sidebar-size", "default");
-      });
-  window.addEventListener("resize", () => {
-    changeSidebarSize();
-  }),
-    changeSidebarSize();
+  const collapsedToggle = document.querySelector(".mobile-menu-btn");
+  const overlay = document.querySelector(".startbar-overlay");
+
+  // 1️⃣ Appliquer l’état sauvegardé au chargement
+  const savedSize = localStorage.getItem("sidebarSize") || "default";
+  document.body.setAttribute("data-sidebar-size", savedSize);
+
+  // 2️⃣ Toggle au clic
+  collapsedToggle?.addEventListener("click", () => {
+    const current = document.body.getAttribute("data-sidebar-size");
+    const next = current === "collapsed" ? "default" : "collapsed";
+
+    document.body.setAttribute("data-sidebar-size", next);
+    localStorage.setItem("sidebarSize", next);
+  });
+
+  // 3️⃣ Clic sur l’overlay → réduit
+  overlay?.addEventListener("click", () => {
+    document.body.setAttribute("data-sidebar-size", "collapsed");
+    localStorage.setItem("sidebarSize", "collapsed");
+  });
+
 } catch (e) {}
+
 try {
   const k = document.querySelectorAll('[data-bs-toggle="tooltip"]'),
     l = [...k].map((e) => new bootstrap.Tooltip(e));
@@ -61,6 +64,7 @@ try {
       return new bootstrap.Popover(e);
     });
 } catch (e) {}
+/*
 try {
   changeSidebarSize(),
     window.addEventListener("resize", changeSidebarSize),
@@ -69,6 +73,8 @@ try {
     }),
     changeSidebarSize();
 } catch (e) {}
+*/
+
 function windowScroll() {
   var e = document.getElementById("topbar-custom");
   null != e &&
