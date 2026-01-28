@@ -19,8 +19,8 @@ include_once "../config/constantes.php";
 
     <!-- App css -->
     <link href="<?= CSS_URL ?>bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <link href="<?= CSS_URL ?>all_style.css" rel="stylesheet" type="text/css" />    
- 
+    <link href="<?= CSS_URL ?>all_style.css" rel="stylesheet" type="text/css" />
+
 </head>
 
 <body>
@@ -67,12 +67,13 @@ include_once "../config/constantes.php";
 
     <!-- Indicateurs de position (dots) -->
     <div class="position-indicators">
-        <div class="position-dot" data-target="#hero"></div>
-        <div class="position-dot" data-target="#pricing"></div>
-        <div class="position-dot" data-target="#features"></div>
-        <div class="position-dot" data-target="#faq"></div>
-        <div class="position-dot" data-target="#cta"></div>
+        <div class="position-dot" data-target="#hero" data-label="Accueil"></div>
+        <div class="position-dot" data-target="#pricing" data-label="Tarif"></div>
+        <div class="position-dot" data-target="#features" data-label="Fonctionnalités"></div>
+        <div class="position-dot" data-target="#faq" data-label="FAQ"></div>
+        <div class="position-dot" data-target="#cta" data-label="Contact"></div>
     </div>
+
 
     <!-- Hero Section -->
     <section class="hero-section" id="hero">
@@ -96,11 +97,13 @@ include_once "../config/constantes.php";
                         </div>
                     </div>
 
-                    <a href="#pricing"><div class="mt-4">
-                        <a href="#pricing" class="btn btn-gradient-blue btn-lg">
-                            <i class="las la-chart-bar me-2"></i> Voir nos plans
-                        </a>
-                    </div></a>
+                    <a href="#pricing">
+                        <div class="mt-4">
+                            <a href="#pricing" class="btn btn-gradient-blue btn-lg">
+                                <i class="las la-chart-bar me-2"></i> Voir nos plans
+                            </a>
+                        </div>
+                    </a>
                 </div>
             </div>
         </div>
@@ -134,7 +137,7 @@ include_once "../config/constantes.php";
                                     <li>06 Sous-domaines</li>
                                     <li>10 Domaines inclus</li>
                                 </ul>
-                                 <a href="#" class="btn btn-dark py-2 px-5 mt-3 ">
+                                <a href="#" class="btn btn-dark py-2 px-5 mt-3 ">
                                     <span>Commencer</span>
                                 </a>
                             </div>
@@ -142,10 +145,10 @@ include_once "../config/constantes.php";
                     </div>
                 </div>
 
-               <div class="col-md-6 col-lg-3 fade-in" style="animation-delay: 0.1s">
+                <div class="col-md-6 col-lg-3 fade-in" style="animation-delay: 0.1s">
                     <div class="card">
                         <div class="card-body">
-                           <div class="text-center">
+                            <div class="text-center">
                                 <h6 class="pt-3 pb-2 m-0 fs-5 fw-semibold">Premium Plan</h6>
                                 <p class="text-muted pt-2 mb-0">Parfait pour les entreprises en croissance</p>
                                 <div class="pt-3">
@@ -186,7 +189,7 @@ include_once "../config/constantes.php";
                                     <li>50 Sous-domaines</li>
                                     <li>50 Domaines inclus</li>
                                 </ul>
-                                  <a href="#" class="btn btn-dark py-2 px-5 mt-3">
+                                <a href="#" class="btn btn-dark py-2 px-5 mt-3">
                                     <span>Commencer</span>
                                 </a>
                             </div>
@@ -271,13 +274,13 @@ include_once "../config/constantes.php";
 
                         foreach ($features as $feature):
                             ?>
-                                    <tr>
-                                        <td class="fw-semibold"><?= $feature[0] ?></td>
-                                        <td class="text-center"><?= $feature[1] ?></td>
-                                        <td class="text-center"><?= $feature[2] ?></td>
-                                        <td class="text-center"><?= $feature[3] ?></td>
-                                        <td class="text-center"><?= $feature[4] ?></td>
-                                    </tr>
+                            <tr>
+                                <td class="fw-semibold"><?= $feature[0] ?></td>
+                                <td class="text-center"><?= $feature[1] ?></td>
+                                <td class="text-center"><?= $feature[2] ?></td>
+                                <td class="text-center"><?= $feature[3] ?></td>
+                                <td class="text-center"><?= $feature[4] ?></td>
+                            </tr>
                         <?php endforeach; ?>
                     </tbody>
                 </table>
@@ -353,9 +356,9 @@ include_once "../config/constantes.php";
 
                         <div class="d-flex flex-column flex-sm-row justify-content-center gap-3">
                             <a href="#" class="btn btn-light btn-lg px-5 py-3 text-nowrap">
-    <i class="las la-comments me-2"></i>
-    Communique avec nous
-</a>
+                                <i class="las la-comments me-2"></i>
+                                Communique avec nous
+                            </a>
 
                             <a href="#" class="btn btn-outline-light btn-lg px-5 py-3">
                                 <i class="las la-phone me-2"></i> Parler à un expert
@@ -426,24 +429,24 @@ include_once "../config/constantes.php";
             <hr class="my-4">
 
             <div class="footer-bottom-section">
-    <div class="row align-items-center">
-        <div class="col-md-6">
-            <p class="mb-0">© <?= date('Y') ?> E-Kigega. Tous droits réservés.</p>
-        </div>
-        <div class="col-md-6 text-md-end">
-            <a href="#" class="text-light fs-18 me-3"><i class="iconoir-facebook"></i></a>
-            <a href="#" class="text-light fs-18 me-3"><i class="iconoir-twitter"></i></a>
-            <a href="#" class="text-light fs-18 me-3"><i class="iconoir-linkedin"></i></a>
-            <a href="#" class="text-light fs-18"><i class="iconoir-instagram"></i></a>
-        </div>
-    </div>
-</div>
+                <div class="row align-items-center">
+                    <div class="col-md-6">
+                        <p class="mb-0">© <?= date('Y') ?> E-Kigega. Tous droits réservés.</p>
+                    </div>
+                    <div class="col-md-6 text-md-end">
+                        <a href="#" class="text-light fs-18 me-3"><i class="iconoir-facebook"></i></a>
+                        <a href="#" class="text-light fs-18 me-3"><i class="iconoir-twitter"></i></a>
+                        <a href="#" class="text-light fs-18 me-3"><i class="iconoir-linkedin"></i></a>
+                        <a href="#" class="text-light fs-18"><i class="iconoir-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
         </div>
     </footer>
 
     <!-- JavaScript -->
     <script src="<?= LIBS_URL ?>bootstrap/js/bootstrap.bundle.min.js"></script>
-     <script src="<?= JS_URL ?>all.js"></script>
+    <script src="<?= JS_URL ?>all.js"></script>
 </body>
 
 </html>

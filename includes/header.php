@@ -109,31 +109,33 @@ if (!is_array($users)) {
                                     <div>
                                         <!-- item-->
                                         <a href="#" class="dropdown-item py-3">
-                                            <small class="float-end text-muted ps-2">2 min ago</small>
+                                            <small class="float-end text-muted ps-2">Il y a 2 min</small>
                                             <div class="d-flex align-items-center">
                                                 <div
-                                                    class="flex-shrink-0 bg-primary-subtle text-primary thumb-md rounded-circle">
-                                                    <i class="iconoir-wolf fs-4"></i>
+                                                    class="flex-shrink-0 bg-success-subtle text-success thumb-md rounded-circle">
+                                                    <i class="iconoir-cart fs-4"></i>
                                                 </div>
                                                 <div class="flex-grow-1 ms-2 text-truncate">
                                                     <h6 class="my-0 fw-normal text-dark fs-13">
-                                                        Your order is placed
+                                                        Nouvelle commande confirmée
                                                     </h6>
-                                                    <small class="text-muted mb-0">Dummy text of the printing and
-                                                        industry.</small>
+                                                    <small class="text-muted mb-0">
+                                                        Un Client vient d'etre enrgistré
+                                                    </small>
                                                 </div>
                                                 <!--end media-body-->
                                             </div>
                                             <!--end media-->
-                                        </a><!--end-item-->
+                                        </a>
+                                        <!--end-item-->
+
 
                                     </div>
                                 </div>
                             </div>
                             <!-- All-->
-                            <a href="<?= BASE_URL ?>public/notifications.php"
-                                class="dropdown-item text-center text-dark fs-13 py-2 border-top">
-                                View All <i class="fi-arrow-right"></i>
+                            <a href="#" class="dropdown-item text-center text-dark fs-13 py-2 border-top">
+                                Voir Tous<i class="fi-arrow-right"></i>
                             </a>
                         </div>
                     </li>
@@ -160,7 +162,7 @@ if (!is_array($users)) {
                             </div>
 
                             <div class="dropdown-divider mt-0"></div>
-                            <small class="text-muted px-2 pb-1 d-block">Account</small>
+                            <small class="text-muted px-2 pb-1 d-block">Compte</small>
 
 
                             <?php
@@ -191,9 +193,9 @@ if (!is_array($users)) {
 
 
                             <!--https://ekigega-backend.onrender.com -->
-                            <a class="dropdown-item" href="#"><i
+                            <!-- <a class="dropdown-item" href="#"><i
                                     class="las la-question-circle fs-18 me-1 align-text-bottom"></i>
-                                Centre d'aide</a>
+                                Centre d'aide</a>-->
                             <div class="dropdown-divider mb-0"></div>
                             <a class="dropdown-item text-danger" href="<?= BASE_URL ?>"><i
                                     class="las la-power-off fs-18 me-1 align-text-bottom"></i>
