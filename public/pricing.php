@@ -68,7 +68,7 @@ include_once "../config/constantes.php";
     <!-- Indicateurs de position (dots) -->
     <div class="position-indicators">
         <div class="position-dot" data-target="#hero" data-label="Accueil"></div>
-        <div class="position-dot" data-target="#pricing" data-label="Tarif"></div>
+        <div class="position-dot" data-target="#pricing" data-label="Tarifs"></div>
         <div class="position-dot" data-target="#features" data-label="Fonctionnalités"></div>
         <div class="position-dot" data-target="#faq" data-label="FAQ"></div>
         <div class="position-dot" data-target="#cta" data-label="Contact"></div>
