@@ -79,7 +79,7 @@ $menu_structure = [
             'path' => '#',
             'active' => ['ai', 'ai.php', 'ai/'],
             'badge' => 'coming soon',
-            'badge_class' => 'text-bg-blue',
+            'badge_class' => 'text-bg-warning',
             'permission' => 'admin'
         ],
         'utilisateurs' => [

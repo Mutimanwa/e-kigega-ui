@@ -937,7 +937,7 @@ body {
 }
 
 .bg-welcome-img {
-    background-image: url(../images/extra/welcome.jpg);
+    background-image: url(../images/extra/welcome.png);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover
@@ -1043,7 +1043,7 @@ body {
     --bs-startbar-bg: #fff;
     --bs-startbar-e-border-color: #e3ebf6;
     --bs-menu-icon-color: #96a0b5;
-    --bs-menu-link-color: #061237;
+    --bs-menu-link-color: #776d10;
     --bs-menu-link-active-bg-color: #f9fbfd;
     --bs-nav-link-disc-color: #8997bd;
     --bs-menu-label-color: #a0a5b3;
@@ -2002,12 +2002,12 @@ hr.hr-dashed {
 }
 
 .startbar .startbar-menu .navbar-nav .nav-item.active .nav-link.active {
-    color: #3167f3;
+    color: #f4a14d;
     background-color: var(--bs-menu-link-active-bg-color)
 }
 
 .startbar .startbar-menu .navbar-nav .nav-item.active .nav-link.active .menu-icon {
-    color: #3167f3
+    color: #f4a14d
 }
 
 .startbar .startbar-menu .navbar-nav .nav-item .nav-link {
@@ -2058,12 +2058,12 @@ hr.hr-dashed {
 .startbar .startbar-menu .navbar-nav .nav-item .nav-link[data-bs-toggle=collapse][aria-expanded=true]:after {
     -webkit-transform: rotate(90deg);
     transform: rotate(90deg);
-    color: #3167f3
+    color: #f4a14d
 }
 
 .startbar .startbar-menu .navbar-nav .nav-item .nav-link[data-bs-toggle=collapse][aria-expanded=true] i,
 .startbar .startbar-menu .navbar-nav .nav-item .nav-link[data-bs-toggle=collapse][aria-expanded=true] span {
-    color: #3167f3;
+    color: #f4a14d;
     font-weight: 600
 }
 
@@ -2276,7 +2276,7 @@ html[data-startbar=dark] .logo-dark {
     padding: 1.5rem 12px;
     margin: 50px 16px 16px;
     position: relative;
-    background-color: rgba(49, 103, 243, .08)
+    background-color: rgba(243, 198, 49, 0.08)
 }
 
 .update-msg h5 {

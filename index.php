@@ -13,7 +13,7 @@
     <meta content="" name="author" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-    <link rel="shortcut icon" href="assets/images/logos/ekigega-logo.jpeg" type="image/x-icon">
+    <link rel="shortcut icon" href="assets/images/logos/logo-small.jpg" type="image/x-icon">
 
 
     <!-- App css -->

@@ -372,7 +372,7 @@ include "../../includes/sidebar.php";
                                     height="105" />
                             </div>
                             <div class="card-bg position-relative z-0">
-                                <div class="p-3 bg-primary-subtle rounded position-relative">
+                                <div class="p-3 bg-warning-subtle rounded position-relative">
                                     <div class="d-flex align-items-center">
                                         <div
                                             class="flex-shrink-0 bg-primary-subtle text-primary thumb-lg rounded-circle">
