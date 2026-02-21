@@ -65,7 +65,7 @@ require_once '../includes/sidebar.php';
                         <div class="col">
                             <div class="d-flex align-items-center">
                                 <div class="position-relative">
-                                    <img src="https://ekigega-backend.onrender.com<?= htmlspecialchars($users['profile']) ?>" alt="" class="rounded-circle img-fluid" width="100">
+                                    <img src="https://ekigegabackend-production.up.railway.app<?= htmlspecialchars($users['profile']) ?>" alt="" class="rounded-circle img-fluid" width="100">
                                     <div class="position-absolute top-50 start-100 translate-middle">
                                         <div class="thumb-sm border border-3 border-white bg-success rounded-circle d-flex align-items-center justify-content-center">
                                             <i class="las la-user text-white fs-12"></i>

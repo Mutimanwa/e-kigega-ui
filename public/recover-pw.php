@@ -13,7 +13,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
     <!-- App favicon -->
-    <link rel="shortcut icon" href="<?= IMAGES_URL ?>/logos/ekigega-logo.png">
+    <link rel="shortcut icon" href="<?= IMAGES_URL ?>/logos/logo.jpg" type="image/x-icon">
 
     <!-- App css -->
     <link href="<?= CSS_URL ?>bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -32,11 +32,12 @@
                         <div class="col-lg-4 mx-auto">
                             <div class="card">
                                 <div class="card-body p-0 auth-header-box rounded-top">
-                                    <div class="text-center p-3">
-                                        <a href="index.php" class="logo logo-admin">
-                                            <img src="<?= IMAGES_URL ?>/logos/logo.png" height="150" alt="logo" class="auth-logo">
+                                    <div class="text-center pt-5 ">
+                                          <a href="index.php" class="logo logo-admin">
+                                            <img src="<?= IMAGES_URL ?>/logos/logo.png" height="80" alt="logo"
+                                                class="auth-logo mb-2">
                                         </a>
-                                        <h4 class="mt-n3 fw-semibold fs-18">Réinitialiser le mot de passe</h4>   
+                                        <h4 class=" fw-semibold fs-18">Réinitialiser le mot de passe</h4>   
                                         <p class="text-muted fw-medium mb-0">Entrez votre email et les instructions vous seront envoyées !</p>  
                                     </div>
                                 </div>
@@ -56,7 +57,7 @@
                                         </div> <!--end form-group-->                           
                                     </form><!--end form-->
                                     <div class="text-center  mb-2">
-                                        <p class="text-muted">Remember It ?  <a href="./../index.php" class="text-warning ms-2">Sign in here</a></p>
+                                        <p class="text-muted">Souvenez-vous-en ?  <a href="./../index.php" class="text-warning ms-2">Se connecter</a></p>
                                     </div>
                                 </div><!--end card-body-->
                             </div><!--end card-->

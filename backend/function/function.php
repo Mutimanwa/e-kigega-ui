@@ -3,7 +3,7 @@
     //============ login function 
     function login($email, $motDePasse) {
 
-        $apiUrl = "https://ekigega-backend.onrender.com/api/auth/login/";
+        $apiUrl = "https://ekigegabackend-production.up.railway.app/api/auth/login/";
 
         $payload = json_encode([
             "email" => $email,
@@ -80,7 +80,7 @@
             return null;
         }
 
-        $apiBase = "https://ekigega-backend.onrender.com";
+        $apiBase = "https://ekigegabackend-production.up.railway.app";
         $token   = $_SESSION['token'];
 
         $ch = curl_init($apiBase . $endpoint);
@@ -121,7 +121,7 @@
     //========== GESTION DES API LORS DE DELETE {api/ex/:id} 
     function apiDelete(string $endpoint) {
 
-        $apiBase = "https://ekigega-backend.onrender.com";
+        $apiBase = "https://ekigegabackend-production.up.railway.app";
         $token   = $_SESSION['token'];
 
         $ch = curl_init($apiBase . $endpoint);
@@ -163,7 +163,7 @@
     //========== GESTION DES UPDATES DES DONNEES  {api/ex/:id} 
     function apiPut($endpoint, $body){
 
-        $apiBase = "https://ekigega-backend.onrender.com";
+        $apiBase = "https://ekigegabackend-production.up.railway.app";
         $token = $_SESSION['token'];
 
         $ch = curl_init($apiBase.$endpoint);
@@ -199,7 +199,7 @@
     //========== GESTION DES UPDATES WITH PATCH DES DONNEES  {api/ex/:id} 
     function apiPATCH($endpoint, $body){
 
-        $apiBase = "https://ekigega-backend.onrender.com";
+        $apiBase = "https://ekigegabackend-production.up.railway.app";
         $token = $_SESSION['token'];
 
         $ch = curl_init($apiBase.$endpoint);
@@ -234,7 +234,7 @@
 
     //========== update with file
     function apiPATCHUsers($endpoint, $body){
-            $apiBase = "https://ekigega-backend.onrender.com";
+            $apiBase = "https://ekigegabackend-production.up.railway.app";
             $token = $_SESSION['token'];
 
             $ch = curl_init($apiBase.$endpoint);
@@ -266,7 +266,7 @@
     //================== post method create 
     function apiPost( $endpoint, $body) {
 
-        $apiBase = "https://ekigega-backend.onrender.com";
+        $apiBase = "https://ekigegabackend-production.up.railway.app";
         $token   = $_SESSION['token'];
 
         $ch = curl_init($apiBase . $endpoint);
@@ -312,7 +312,7 @@
 
     //==================== post with file 
     function apiPostMultipart($endpoint, $body) {
-        $apiBase = "https://ekigega-backend.onrender.com";
+        $apiBase = "https://ekigegabackend-production.up.railway.app";
         $token   = $_SESSION['token'] ?? '';
 
         $ch = curl_init($apiBase . $endpoint);
@@ -365,7 +365,7 @@
 
         foreach ($response as $abonnement) {
             if (!is_array($abonnement)) continue;
-            if (($abonnement['status'] ?? '') !== 'actif') continue;
+            if (($abonnement['status'] ?? '') !== 'active') continue;
 
             // On prend uniquement la date YYYY-MM-DD pour éviter les erreurs
             $debut = isset($abonnement['date_debut']) ? new DateTimeImmutable(substr($abonnement['date_debut'],0,10)) : null;

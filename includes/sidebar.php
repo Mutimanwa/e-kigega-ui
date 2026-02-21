@@ -6,13 +6,13 @@ require_once 'menu_functions.php';
 <!-- leftbar-tab-menu -->
 <div class="startbar d-print-none">
     <!--start brand-->
-    <div class="brand">
-        <a href="#" class="logo1">
-            <span class="logo-sm">
-                E
+    <div class="brand ">
+        <a href="#" class="logo">
+            <span >
+                <img src="<?= IMAGES_URL ?>logos/logo-small.png" height="50" alt="E-Kigega Logo" class="logo-sm" />
             </span>
             <span>
-                <h2 class="logo-lg ms-1">E-Kigega</h2>
+                <img src="<?= IMAGES_URL ?>logos/logo.png" alt="E-Kigega Logo" class="logo-lg" />
             </span>
         </a>
     </div>
@@ -30,8 +30,8 @@ require_once 'menu_functions.php';
 
                 <div class="update-msg text-center">
                     <div
-                        class="update-icon-box rounded-circle mx-auto d-flex justify-content-center align-items-center">
-                        <img src="<?= IMAGES_URL ?>logos/ekigega-logo1.png" alt="E-Kigega Logo" class="logo-img" />
+                        class="update-icon-box bg-light rounded-circle mx-auto d-flex justify-content-center align-items-center">
+                        <img src="<?= IMAGES_URL ?>logos/logo-small.png" alt="E-Kigega Logo" height="80" class="" />
                     </div>
 
 
@@ -58,7 +58,3 @@ require_once 'menu_functions.php';
 <!--end startbar-->
 <div class="startbar-overlay d-print-none"></div>
 <!-- end leftbar-tab-menu-->
-
-<style>
-
-</style>

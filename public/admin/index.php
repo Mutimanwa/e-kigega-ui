@@ -15,7 +15,7 @@ if (requireRole($role) === "Accès interdit") {
 
 $entreprise = $_SESSION['entreprise'];
 //=========== verifier l'abonnement de cet entreprise
-$url = "./../../../index.php";
+$url = "./../../index.php";
 abonnement($url, $entreprise);
 
 //============= Dashbord
@@ -79,10 +79,14 @@ include "../../includes/sidebar.php";
 
                                         </div>
 
-                                        <h4 class="my-2 fs-24 fw-semibold">
-                                            <?= htmlspecialchars(number_format($bord['cashflow']['current_month']['balance'], 2)) ?>
-                                            <small class="font-14">FBU</small>
-                                        </h4>
+                                       <?php
+                                            $balance = $bord['cashflow']['current_month']['balance'] ?? 0;
+                                            ?>
+
+                                            <h4 class="my-2 fs-24 fw-semibold">
+                                                <?= htmlspecialchars(number_format($balance, 2)) ?>
+                                                <small class="font-14">FBU</small>
+                                            </h4>
 
                                         <p class="mb-3 text-muted fw-semibold">
                                             <span class="text-success"><i class="fas fa-arrow-up me-1"></i>8.5%</span>
@@ -117,8 +121,9 @@ include "../../includes/sidebar.php";
                                             <p class="text-muted text-uppercase mb-0 fw-normal fs-13">
                                                 Chiffre d'Affaires
                                             </p>
+                                            <?php $chiffre = $bord['kpis']['chiffre_affaire'] ?? 0; ?>
                                             <h4 class="mt-1 mb-0 fw-medium">
-                                                <?= htmlspecialchars(number_format($bord['kpis']['chiffre_affaire'], 2)) ?>
+                                                <?= htmlspecialchars(number_format($chiffre, 2)) ?>
                                                 FBU</h4>
                                         </div>
                                         <!--end col-->
@@ -146,8 +151,9 @@ include "../../includes/sidebar.php";
                                             <p class="text-muted text-uppercase mb-0 fw-normal fs-13">
                                                 Ventes du Mois
                                             </p>
+                                            <?php $ventes = $bord['kpis']['total_ventes'] ?? 0; ?>
                                             <h4 class="mt-1 mb-0 fw-medium">
-                                                <?= htmlspecialchars(number_format($bord['kpis']['total_ventes'], 2)) ?>
+                                                <?= htmlspecialchars(number_format($ventes, 2)) ?>
                                             </h4>
                                         </div>
                                         <!--end col-->
@@ -174,8 +180,9 @@ include "../../includes/sidebar.php";
                                             <p class="text-muted text-uppercase mb-0 fw-normal fs-13">
                                                 Produits Stock
                                             </p>
+                                            <?php $produits = $bord['kpis']['total_produits'] ?? 0; ?>
                                             <h4 class="mt-1 mb-0 fw-medium">
-                                                <?= htmlspecialchars(number_format($bord['total_produits'], 2)) ?></h4>
+                                                <?= htmlspecialchars(number_format($produits, 2)) ?></h4>
                                         </div>
                                         <!--end col-->
                                         <div class="col-3 align-self-center">
@@ -202,8 +209,9 @@ include "../../includes/sidebar.php";
                                             <p class="text-muted text-uppercase mb-0 fw-normal fs-13">
                                                 Fournisseurs
                                             </p>
+                                            <?php $fournisseurs = $bord['kpis']['total_fournisseurs'] ?? 0; ?>
                                             <h4 class="mt-1 mb-0 fw-medium">
-                                                <?= htmlspecialchars(number_format($bord['total_fournisseurs'], 2)) ?>
+                                                <?= htmlspecialchars(number_format($fournisseurs, 2)) ?>
                                             </h4>
                                         </div>
                                         <!--end col-->
@@ -295,31 +303,31 @@ include "../../includes/sidebar.php";
                             <!--end row-->
                         </div>
                         <!--end card-header-->
-                        <?php
-                        $cashIn = $bord['cashflow']['current_month']['cash_in'];
-                        $cashOut = $bord['cashflow']['current_month']['cash_out'];
-                        $balance = $bord['cashflow']['current_month']['balance']; // par ex: -18785995
-                        $balanceFormatted = number_format(abs($balance), 0, ',', '.'); // 1 530 000 FBU
-                        // $prefix = $balance < 0 ? "Il vous reste" : "Vous avez"; 
-                        
-                        if ($balance > 0) {
-                            $prefix = "Solde disponible";
-                        } elseif ($balance < 0) {
-                            $prefix = "Solde débiteur";
-                        } else {
-                            $prefix = "Solde nul";
-                        }
+                       <?php
+                            $cashIn   = $bord['cashflow']['current_month']['cash_in']  ?? 0;
+                            $cashOut  = $bord['cashflow']['current_month']['cash_out'] ?? 0;
+                            $balance  = $bord['cashflow']['current_month']['balance']  ?? 0;
 
-                        $total = $cashIn + $cashOut;
+                            $balanceFormatted = number_format(abs($balance), 0, ',', '.');
 
-                        if ($total > 0) {
-                            $revenus = ($cashIn / $total) * 100;
-                            $depenses = ($cashOut / $total) * 100;
-                            $autres = 100 - ($revenus + $depenses);
-                        } else {
-                            $revenus = $depenses = $autres = 0;
-                        }
-                        ?>
+                            if ($balance > 0) {
+                                $prefix = "Solde disponible";
+                            } elseif ($balance < 0) {
+                                $prefix = "Solde débiteur";
+                            } else {
+                                $prefix = "Solde nul";
+                            }
+
+                            $total = $cashIn + $cashOut;
+
+                            if ($total > 0) {
+                                $revenus  = ($cashIn / $total) * 100;
+                                $depenses = ($cashOut / $total) * 100;
+                                $autres   = max(0, 100 - ($revenus + $depenses));
+                            } else {
+                                $revenus = $depenses = $autres = 0;
+                            }
+                            ?>
 
                         <div class="card-body pt-0">
                             <div id="cashflow" class="apex-charts"></div>

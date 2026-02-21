@@ -14,8 +14,8 @@ include_once "../config/constantes.php";
     <meta name="robots" content="index, follow">
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="<?= IMAGES_URL ?>logos/ekigega-logo.JPEG">
-    <link rel="apple-touch-icon" href="<?= IMAGES_URL ?>logos/ekigega-logo2.png">
+    <link rel="shortcut icon" href="<?= IMAGES_URL ?>logos/logo-small.jpg" type="image/x-icon">
+    <link rel="apple-touch-icon" href="<?= IMAGES_URL ?>logos/logo-small.png">
 
     <!-- App css -->
     <link href="<?= CSS_URL ?>bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -31,7 +31,7 @@ include_once "../config/constantes.php";
     <nav class="navbar navbar-expand-lg position-sticky navbar-light shadow-sm" style="top:0px;z-index:1000;">
         <div class="container">
             <a class="navbar-brand overflow-hidden p-0" href="<?= BASE_URL ?>">
-                <img src="<?= IMAGES_URL ?>logos/ekigega-logo2.png" alt="E-Kigega" height="60">
+                <img src="<?= IMAGES_URL ?>logos/logo.png" alt="E-Kigega" height="60">
             </a>
 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -56,7 +56,7 @@ include_once "../config/constantes.php";
                         <a class="nav-link" href="#cta">Contact</a>
                     </li>
                     <li class="nav-item ms-3">
-                        <a href="<?= BASE_URL ?>" class="btn btn-outline-gradient-blue">Connexion</a>
+                        <a href="<?= BASE_URL ?>" class="btn btn-warning">Connexion</a>
                     </li>
                     <!-- Curseur de navigation animé -->
                     <div id="navCursor"></div>
@@ -89,17 +89,17 @@ include_once "../config/constantes.php";
                         <div class="d-flex align-items-center">
                             <span class="me-3 fw-medium">Facturation mensuelle</span>
                             <div class="form-check form-switch">
-                                <input class="form-check-input" type="checkbox" id="billingSwitch" checked>
+                                <input class="form-check-input" type="checkbox" id="billingSwitch" >
                                 <label class="form-check-label" for="billingSwitch"></label>
                             </div>
-                            <span class="ms-3 fw-medium">Facturation annuelle <span
-                                    class="badge bg-success ms-2">Économisez 20%</span></span>
+                            <span class="ms-3 fw-normal">Facturation annuelle <span
+                                    class="badge bg-secondary ms-2 p-1 ">Économisez 20%</span></span>
                         </div>
                     </div>
 
                     <a href="#pricing">
                         <div class="mt-4">
-                            <a href="#pricing" class="btn btn-gradient-blue btn-lg">
+                            <a href="#pricing" class="btn btn-warning btn-lg">
                                 <i class="las la-chart-bar me-2"></i> Voir nos plans
                             </a>
                         </div>
@@ -381,9 +381,9 @@ include_once "../config/constantes.php";
             <div class="row g-4">
                 <div class="col-lg-4">
                     <a class="navbar-brand mb-3 d-inline-flex align-items-center" href="<?= BASE_URL ?>">
-                        <img src="<?= IMAGES_URL ?>logos/ekigega-logo2.png" alt="E-Kigega" height="40"
+                        <img src="<?= IMAGES_URL ?>logos/logo.png" alt="E-Kigega" height="50"
                             class="bg-white p-1 rounded me-2">
-                        <span class="fw-bold">E-Kigega</span>
+                        <!-- <span class="fw-bold">E-Kigega</span> -->
                     </a>
                     <p class="text-light mt-2">Système de gestion complet pour les PME burundaises. Simplifiez vos
                         opérations, maximisez vos profits.</p>

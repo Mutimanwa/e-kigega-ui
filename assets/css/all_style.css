@@ -59,7 +59,7 @@
 }
 
 .position-dot.active {
-    background: #0d6efd;
+    background: #f4a14d;
     transform: scale(1.4);
 }
 
@@ -95,7 +95,7 @@
 }
 
 .comparison-table th {
-    background: #007bff;
+    background: #f4a14d;
     color: white;
     border: none;
 }
@@ -140,46 +140,28 @@
 /* Bouton plein avec dégradé bleu → skyblue */
 .btn-gradient-blue {
     color: #fff;
-    background: linear-gradient(135deg, #007bff, #87CEEB);
+    background: linear-gradient(135deg, #f4a14d, #f4cd4d);
     /* bleu → skyblue */
     border: none;
     transition: all 0.3s ease;
 }
 
 .btn-gradient-blue:hover {
-    background: linear-gradient(135deg, #0056b3, #00BFFF);
+    background: linear-gradient(135deg, #f4a14d, #f4cd4d);
     /* foncé au hover */
 }
 
 /* Bouton avec contour bleu et dégradé au survol */
 .btn-outline-gradient-blue {
-    border: 2px solid #007bff;
-    color: #007bff;
+    border: 2px solid #f4a14d;
+    color: #f4a14d;
     background: transparent;
     position: relative;
     overflow: hidden;
     transition: all 0.4s ease;
 }
 
-.btn-outline-gradient-blue::before {
-    content: "";
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: linear-gradient(60deg, #007bff, #00d4ff, #87CEEB, #007bff);
-    background-size: 300% 300%;
-    opacity: 0;
-    transition: all 0.4s ease;
-    border-radius: 8px;
-    z-index: 0;
-}
 
-.btn-outline-gradient-blue:hover::before {
-    animation: gradientAnimation 3s linear infinite;
-    opacity: 0.5;
-}
 
 .btn-outline-gradient-blue:hover {
     color: #fff;
@@ -191,7 +173,7 @@
 /* Bouton plein avec dégradé bleu → skyblue */
 .btn-gradient-blue {
     color: #fff;
-    background: linear-gradient(135deg, #007bff, #87CEEB);
+    background: linear-gradient(135deg, #f4a14d, #f4cd4d);
     border: none;
     position: relative;
     overflow: hidden;
@@ -311,7 +293,7 @@ section {
 }
 
 .position-dot.active {
-    background-color: #0d6efd;
+    background-color: #f4a14d;
     transform: scale(1.2);
     border-color: white;
     box-shadow: 0 0 0 2px rgba(13, 110, 253, 0.3);
@@ -324,7 +306,7 @@ html {
 
 /* Animation pour les liens actifs */
 .nav-link.active {
-    color: #0d6efd !important;
+    color: #f4a14d !important;
     font-weight: 600;
 }
 
@@ -335,11 +317,11 @@ body {
 
 /* ============================================
            STYLES GLOBAUX ET PROFESSIONNELS
-           ============================================ */
+============================================ */
 
 :root {
-    --primary-gradient: linear-gradient(135deg, #0d6efd 0%, #0dcaf0 100%);
-    --secondary-gradient: linear-gradient(135deg, #007bff 0%, #87CEEB 100%);
+    --primary-gradient: linear-gradient(135deg, #f4a14d 0%, #f4a14da9 100%);
+    /* --secondary-gradient: linear-gradient(135deg, #007bff 0%, #87CEEB 100%); */
     --success-gradient: linear-gradient(135deg, #198754 0%, #20c997 100%);
     --dark-bg: #1a1a2e;
     --light-bg: #f8f9fa;
@@ -429,7 +411,7 @@ nav.navbar.scrolled {
 }
 
 .nav-link:hover {
-    color: #0d6efd !important;
+    color: #f4a14d !important;
 }
 
 .nav-link:hover::before {
@@ -437,7 +419,7 @@ nav.navbar.scrolled {
 }
 
 .nav-link.active {
-    color: #0d6efd !important;
+    color: #f4a14d !important;
     font-weight: 600;
 }
 
@@ -455,16 +437,16 @@ nav.navbar.scrolled {
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     z-index: 1;
     pointer-events: none;
-    box-shadow: 0 2px 8px rgba(13, 110, 253, 0.3);
+    box-shadow: 0 2px 8px rgba(253, 229, 13, 0.3);
 }
 
 /* ============================================
            BOUTONS PROFESSIONNELS
-           ============================================ */
+============================================ */
 
-.btn-outline-gradient-blue {
-    border: 2px solid #0d6efd;
-    color: #0d6efd;
+.btn-outline-gradient-orange {
+    border: 2px solid #f4a14d;
+    color: #f4a14d;
     background: transparent;
     font-weight: 500;
     padding: 0.5rem 1.5rem;
@@ -475,20 +457,19 @@ nav.navbar.scrolled {
     z-index: 1;
 }
 
-/* Bouton avec contour bleu et dégradé au survol */
-.btn-outline-gradient-blue {
-    border: 2px solid #007bff;
-    /* bleu Bootstrap */
-    color: #007bff;
-    background: transparent;
-    transition: all 0.3s ease;
+/* Bouton avec contour orange et dégradé au survol */
+.btn-outline-gradient-orange:hover {
+    background: linear-gradient(135deg, #f4a14d, #f4a14da9);
+    color: #fff;
+    border-color: #f4a14d;
 }
 
-.btn-outline-gradient-blue:hover {
-    background: linear-gradient(135deg, #007bff, #87CEEB);
-    /* bleu → skyblue */
+
+.btn-outline-gradient-orange:hover {
+    background: linear-gradient(135deg, #f4a14d, #f4a14da9);
+    /* orange → orange with transparency */
     color: #fff;
-    border-color: #007bff;
+    border-color: #f4a14d;
 }
 
 .btn-gradient-blue {
@@ -568,33 +549,28 @@ nav.navbar.scrolled {
     margin: 0 auto 2rem;
 }
 
-/* Switch de facturation amélioré */
 .form-switch .form-check-input {
     width: 3rem;
     height: 1.5rem;
-    background-color: #dee2e6;
-    border-color: #dee2e6;
     cursor: pointer;
 }
 
+/* OFF */
+.form-switch .form-check-input {
+    background-color: #ccc; 
+    border-color: #b8b8b9;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='white'/%3e%3c/svg%3e");
+}
+
+/* ON */
 .form-switch .form-check-input:checked {
-    background: var(--success-gradient);
-    border-color: #198754;
-}
-
-.form-switch .form-check-input:focus {
-    box-shadow: 0 0 0 0.25rem rgba(25, 135, 84, 0.25);
-}
-
-.badge.bg-success {
-    background: var(--success-gradient) !important;
-    font-size: 0.75em;
-    padding: 0.25em 0.6em;
+    background-color: #1e7404; 
+    border-color: #1e7404;
 }
 
 /* ============================================
            SECTION TARIFS PROFESSIONNELLE
-           ============================================ */
+============================================ */
 
 .scroll-section {
     padding: 5rem 0;
@@ -736,7 +712,7 @@ nav.navbar.scrolled {
 
 .faq-item:hover {
     transform: translateX(5px);
-    border-left-color: #0d6efd;
+    border-left-color: var(--primary-gradient);
     box-shadow: var(--shadow-md);
 }
 
@@ -753,7 +729,7 @@ nav.navbar.scrolled {
 
 /* ============================================
            CTA SECTION AMÉLIORÉE
-           ============================================ */
+============================================ */
 
 .cta-section {
     background: var(--primary-gradient);
@@ -798,7 +774,7 @@ nav.navbar.scrolled {
 
 .cta-section .btn-light {
     background: white;
-    color: #0d6efd;
+    color: #f4a14d;
     font-weight: 600;
     padding: 0.75rem 2rem;
     border-radius: 8px;
@@ -821,14 +797,14 @@ nav.navbar.scrolled {
 
 .cta-section .btn-outline-light:hover {
     background: white;
-    color: #0d6efd;
+    color: #f4a14d;
     transform: translateY(-3px);
     box-shadow: var(--shadow-lg);
 }
 
 /* ============================================
            FOOTER PROFESSIONNEL
-           ============================================ */
+============================================ */
 
 footer {
     background: var(--dark-bg);
@@ -900,12 +876,12 @@ footer a.fs-18 {
 
 footer a.fs-18:hover {
     transform: translateY(-3px);
-    color: #0d6efd !important;
+    color: #f4a14d !important;
 }
 
 /* ============================================
            SYSTÈME DE NAVIGATION AVANCÉ
-           ============================================ */
+============================================ */
 
 #progressBar {
     position: fixed;
@@ -961,7 +937,7 @@ footer a.fs-18:hover {
 }
 
 .position-dot.active {
-    border-color: #0d6efd;
+    border-color: #f4a14d;
     background: transparent;
 }
 
