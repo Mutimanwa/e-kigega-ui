@@ -30,7 +30,7 @@ $activities =[
             <div class="card">
                 <div class="card-header d-flex justify-content-between align-items-center">
                     <h4 class="card-title">Détails</h4>
-                    <button class="btn btn-primary" onclick="location.reload();"><i class="fas fa-sync me-1"></i> Actualiser</button>
+                    <button class="btn btn-warning" onclick="location.reload();"><i class="fas fa-sync me-1"></i> Actualiser</button>
                 </div>
 
                 <div class="card-body pt-0">

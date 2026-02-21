@@ -154,7 +154,7 @@ require_once './../../../includes/sidebar.php';
                                 <i id="profileIconEdit"
                                     class="fa-solid fa-user text-muted thumb-xl rounded me-2 border-dashed"></i>
                                 <div class="flex-grow-1">
-                                    <label class="btn btn-primary text-light">
+                                    <label class="btn btn-warning text-light">
                                         Modifier une photo
                                         <input type="file" id="profileInputEdit" accept="image/*" class="profile-input"
                                             data-target="profileIconEdit" hidden>
@@ -234,7 +234,7 @@ require_once './../../../includes/sidebar.php';
                         </div>
 
                         <div class="modal-footer">
-                            <button type="submit" class="btn btn-primary w-100">Modifier</button>
+                            <button type="submit" class="btn btn-warning w-100">Modifier</button>
                         </div>
                     </div>
                 </form>

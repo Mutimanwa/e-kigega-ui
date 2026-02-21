@@ -217,7 +217,7 @@ $formations = [
                     <div class="row mb-3">
                         <div class="col-md-12 d-flex align-items-center justify-content-between">
                             <h5 class="card-title mb-0">Détails</h5>
-                            <a href="#" data-bs-toggle="modal" data-bs-target="#creationModal" class="btn btn-primary">
+                            <a href="#" data-bs-toggle="modal" data-bs-target="#creationModal" class="btn btn-warning">
                                 <i class="las la-plus-circle me-1"></i> Nouvelle Formation
                             </a>
                         </div>
@@ -674,7 +674,7 @@ $formations = [
             </div>
             <div class="modal-footer border-secondary">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
-                <button type="submit" form="shortForm" class="btn btn-primary">
+                <button type="submit" form="shortForm" class="btn btn-warning">
                     <i class="las la-upload me-1"></i> Publier
                 </button>
             </div>
@@ -878,7 +878,7 @@ $formations = [
             </div>
             <div class="modal-footer border-secondary">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
-                <button type="submit" form="shortFormUpdate" class="btn btn-primary">
+                <button type="submit" form="shortFormUpdate" class="btn btn-warning">
                     <i class="las la-save me-1"></i> Enregistrer les modifications
                 </button>
             </div>

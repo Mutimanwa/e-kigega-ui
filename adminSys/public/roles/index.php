@@ -39,7 +39,7 @@ $roles = [
                             <h4 class="card-title">Détails </h4>
                         </div><!--end col-->
                         <div class="col-auto">
-                            <button class="btn bg-primary text-white" data-bs-toggle="modal"
+                            <button class="btn bg-warning text-white" data-bs-toggle="modal"
                                 data-bs-target="#addRole"><i class="fas fa-plus me-1"></i> Ajouter un
                                 rôle</button>
                         </div><!--end col-->
@@ -152,7 +152,7 @@ $roles = [
 
                     <!-- Footer -->
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary">
+                        <button type="submit" class="btn btn-warning">
                             <i class="fa-solid fa-plus me-1"></i> Ajouter
                         </button>
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
@@ -225,7 +225,7 @@ $roles = [
 
                     <!-- Footer -->
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary">
+                        <button type="submit" class="btn btn-warning">
                             <i class="fa-solid fa-plus me-1"></i> Modifier
                         </button>
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">

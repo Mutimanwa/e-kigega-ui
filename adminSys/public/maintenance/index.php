@@ -32,7 +32,7 @@ $maintenances = [
             <div class="card">
                 <div class="card-header d-flex justify-content-between align-items-center">
                     <h4 class="card-title">Détails</h4>
-                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addMaintenance">
+                    <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#addMaintenance">
                         <i class="fas fa-plus me-1"></i> Ajouter Maintenance
                     </button>
                 </div>
@@ -151,7 +151,7 @@ $maintenances = [
 
             </div>
             <div class="modal-footer">
-                <button type="submit" class="btn btn-primary">Enregistrer</button>
+                <button type="submit" class="btn btn-warning">Enregistrer</button>
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
             </div>
         </form>
@@ -219,7 +219,7 @@ $maintenances = [
 
             </div>
             <div class="modal-footer">
-                <button type="submit" class="btn btn-primary">Modifier</button>
+                <button type="submit" class="btn btn-warning">Modifier</button>
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
             </div>
         </form>

@@ -151,7 +151,7 @@ include './../includes/sidebar.php';
                                 </div>
                                 <div class="col-md-2 text-end mt-2 mt-md-0">
                                     <div class="btn-group" role="group">
-                                        <button type="button" class="btn btn-primary btn-sm" onclick="viewNotification(this)">
+                                        <button type="button" class="btn btn-warning btn-sm" onclick="viewNotification(this)">
                                             Voir
                                         </button>
                                         <button type="button" class="btn btn-outline-secondary btn-sm" onclick="deleteNotification(this)">
@@ -197,7 +197,7 @@ include './../includes/sidebar.php';
                                 </div>
                                 <div class="col-md-2 text-end mt-2 mt-md-0">
                                     <div class="btn-group" role="group">
-                                        <button type="button" class="btn btn-primary btn-sm" onclick="viewNotification(this)">
+                                        <button type="button" class="btn btn-warning btn-sm" onclick="viewNotification(this)">
                                             Voir
                                         </button>
                                         <button type="button" class="btn btn-outline-secondary btn-sm" onclick="deleteNotification(this)">
@@ -243,7 +243,7 @@ include './../includes/sidebar.php';
                                 </div>
                                 <div class="col-md-2 text-end mt-2 mt-md-0">
                                     <div class="btn-group" role="group">
-                                        <button type="button" class="btn btn-primary btn-sm" onclick="viewNotification(this)">
+                                        <button type="button" class="btn btn-warning btn-sm" onclick="viewNotification(this)">
                                             Voir
                                         </button>
                                         <button type="button" class="btn btn-outline-secondary btn-sm" onclick="deleteNotification(this)">

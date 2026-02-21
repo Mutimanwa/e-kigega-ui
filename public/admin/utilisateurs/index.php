@@ -61,7 +61,7 @@ include "../../../includes/sidebar.php";
                                     <h4 class="card-title">Détails </h4>
                                 </div><!--end col-->
                                 <div class="col-auto">
-                                    <button class="btn bg-primary text-white" data-bs-toggle="modal"
+                                    <button class="btn bg-warning text-white" data-bs-toggle="modal"
                                         data-bs-target="#addUser"><i class="fas fa-plus me-1"></i> Ajouter un
                                         utilisateur</button>
                                 </div><!--end col-->
@@ -207,7 +207,7 @@ include "../../../includes/sidebar.php";
                                 <i id="profileIconAdd"
                                     class="fa-solid fa-user text-muted thumb-xl rounded me-2 border-dashed"></i>
                                 <div class="flex-grow-1">
-                                    <label class="btn btn-primary text-light">
+                                    <label class="btn btn-warning text-light">
                                         Ajouter une photo
                                         <input type="file" id="profileInputAdd" name="profile" accept="image/*"
                                             class="profile-input" data-target="profileIconAdd" hidden>
@@ -322,7 +322,7 @@ include "../../../includes/sidebar.php";
                         </div>
 
                         <div class="modal-footer">
-                            <button type="submit" name="send" class="btn btn-primary w-100">Ajouter</button>
+                            <button type="submit" name="send" class="btn btn-warning w-100">Ajouter</button>
                         </div>
                     </div>
                 </form>
@@ -351,7 +351,7 @@ include "../../../includes/sidebar.php";
                                     class="fa-solid fa-user text-muted thumb-xl rounded me-2 border-dashed"
                                     style="width: 60px; height: 60px; object-fit: cover;">
                                 <div class="flex-grow-1">
-                                    <label class="btn btn-primary text-light">
+                                    <label class="btn btn-warning text-light">
                                         Changer la photo
                                         <input type="file" name="profile" accept="image/*" class="profile-input"
                                             data-target="profilePreview" hidden onchange="previewProfile(this)">
@@ -463,7 +463,7 @@ include "../../../includes/sidebar.php";
                         </div>
 
                         <div class="modal-footer">
-                            <button type="submit" name="send" class="btn btn-primary w-100">Modifier</button>
+                            <button type="submit" name="send" class="btn btn-warning w-100">Modifier</button>
                         </div>
                     </div>
                 </form>

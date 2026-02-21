@@ -206,11 +206,11 @@ $niveaux = ['Débutant', 'Intermédiaire', 'Avancé'];
                                         <i class="las la-times me-1"></i> Annuler
                                     </a>
                                     <div class="btn-group">
-                                        <button type="submit" class="btn btn-primary" name="action" value="save">
+                                        <button type="submit" class="btn btn-warning" name="action" value="save">
                                             <i class="las la-save me-1"></i> Enregistrer
                                         </button>
                                         <button type="button"
-                                            class="btn btn-primary dropdown-toggle dropdown-toggle-split"
+                                            class="btn btn-warning dropdown-toggle dropdown-toggle-split"
                                             data-bs-toggle="dropdown" aria-expanded="false">
                                             <span class="visually-hidden">Options</span>
                                         </button>
@@ -320,7 +320,7 @@ $niveaux = ['Débutant', 'Intermédiaire', 'Avancé'];
                             </div>
 
                             <div class="mt-4">
-                                <button type="button" class="btn btn-outline-primary btn-sm w-100"
+                                <button type="button" class="btn btn-outline-warning btn-sm w-100"
                                     onclick="ajouterModule()">
                                     <i class="las la-plus me-1"></i> Ajouter un module
                                 </button>
@@ -379,7 +379,7 @@ $niveaux = ['Débutant', 'Intermédiaire', 'Avancé'];
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
-                        <button type="button" class="btn btn-primary" onclick="enregistrerModule()">
+                        <button type="button" class="btn btn-warning" onclick="enregistrerModule()">
                             <i class="las la-save me-1"></i> Enregistrer
                         </button>
                     </div>

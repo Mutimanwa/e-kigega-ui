@@ -23,7 +23,7 @@ include_once "./../../includes/sidebar.php";
             <div class="card">
                 <div class="card-header d-flex justify-content-between align-items-center">
                     <h4 class="card-title mb-0">Détails</h4>
-                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createBackup">
+                    <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#createBackup">
                         <i class="fas fa-cloud-upload-alt me-1"></i> Créer un Backup
                     </button>
                 </div>
@@ -164,7 +164,7 @@ include_once "./../../includes/sidebar.php";
                     </div>
 
                     <!-- Bouton -->
-                    <button type="submit" class="btn btn-primary w-100">Créer Backup</button>
+                    <button type="submit" class="btn btn-warning w-100">Créer Backup</button>
                 </form>
 
             </div>

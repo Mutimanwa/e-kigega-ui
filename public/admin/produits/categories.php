@@ -60,7 +60,7 @@ include "./../../../includes/sidebar.php";
                   <h4 class="card-title"> Details</h4>
                 </div><!--end col-->
                 <div class="col-auto">
-                  <button class="btn bg-primary text-white" data-bs-toggle="modal" data-bs-target="#addRate"><i class="fas fa-plus me-1"></i> Ajouter une catégorie</button>
+                  <button class="btn bg-warning text-white" data-bs-toggle="modal" data-bs-target="#addRate"><i class="fas fa-plus me-1"></i> Ajouter une catégorie</button>
                 </div><!--end col-->
               </div><!--end row-->
             </div><!--end card-header-->
@@ -173,7 +173,7 @@ include "./../../../includes/sidebar.php";
               </div>
               <div class="modal-footer">
                 <input type="hidden" name="send">
-                <button type="submit" class="btn btn-primary w-100">Ajouter</button>
+                <button type="submit" class="btn btn-warning w-100">Ajouter</button>
               </div>
             </div>
           </form>
@@ -203,7 +203,7 @@ include "./../../../includes/sidebar.php";
               </div>
 
               <div class="modal-footer">
-                <button type="submit" class="btn btn-primary w-100">Mettre à jour</button>
+                <button type="submit" class="btn btn-warning w-100">Mettre à jour</button>
               </div>
 
             </div>

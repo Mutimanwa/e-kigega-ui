@@ -61,7 +61,7 @@ include "./../../../includes/sidebar.php";
                   <h4 class="card-title"> Détails</h4>
                 </div><!--end col-->
                 <div class="col-auto">
-                  <button class="btn bg-primary text-white" data-bs-toggle="modal" data-bs-target="#addRate"><i
+                  <button class="btn bg-warning text-white" data-bs-toggle="modal" data-bs-target="#addRate"><i
                       class="fas fa-plus me-1"></i> Ajouter une dépense</button>
                 </div><!--end col-->
               </div><!--end row-->
@@ -87,7 +87,7 @@ include "./../../../includes/sidebar.php";
                       <td> <?= number_format(htmlspecialchars($d['montant']),2) ?></td>
                       <td>
                       <?php if (!empty($d['justificatif'])): ?>
-                          <a href="./../../../backend/download/index.php?url=<?= urlencode($d['justificatif']) ?>" class="btn btn-primary btn-sm">
+                          <a href="./../../../backend/download/index.php?url=<?= urlencode($d['justificatif']) ?>" class="btn btn-warning btn-sm">
                               Télécharger
                           </a>
                       <?php else: ?>
@@ -212,7 +212,7 @@ include "./../../../includes/sidebar.php";
 
               </div>
               <div class="modal-footer">
-                <button type="submit" name="send" class="btn btn-primary w-100">Ajouter</button>
+                <button type="submit" name="send" class="btn btn-warning w-100">Ajouter</button>
               </div>
             </div>
           </form>
@@ -263,7 +263,7 @@ include "./../../../includes/sidebar.php";
 
                 </div>
                 <div class="modal-footer">
-                  <button type="submit" name="send" class="btn btn-primary w-100">Modifier</button>
+                  <button type="submit" name="send" class="btn btn-warning w-100">Modifier</button>
                 </div>
               </div>
             </form>

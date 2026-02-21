@@ -89,7 +89,7 @@
                                 </div>
                                 <div class="col-md-3">
                                     <div class="mt-3 d-flex align-items-end">
-                                        <button class="btn btn-primary me-2" onclick="genererRapport()">
+                                        <button class="btn btn-warning me-2" onclick="genererRapport()">
                                             <i class="las la-filter me-1"></i> Filtrer
                                         </button>
                                         <button class="btn btn-success" onclick="exporterRapport()">
@@ -187,7 +187,7 @@
                                 </div>
                                 <div class="col-md-6 text-end">
                                     <div class="d-flex justify-content-end gap-2">
-                                        <button class="btn btn-primary" onclick="exporterExcel()">
+                                        <button class="btn btn-warning" onclick="exporterExcel()">
                                             <i class="las la-file-excel me-1"></i> Exporter Excel
                                         </button>
                                         <button class="btn btn-success" onclick="exporterPDF()">
@@ -598,7 +598,7 @@
                                 </div>
                                 <div class="col-md-6 text-end">
                                     <div class="d-flex justify-content-end gap-2">
-                                        <button class="btn btn-primary" onclick="exporterExcel()">
+                                        <button class="btn btn-warning" onclick="exporterExcel()">
                                             <i class="las la-file-excel me-1"></i> Exporter Excel
                                         </button>
                                         <button class="btn btn-success" onclick="exporterPDF()">
@@ -659,7 +659,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
-                            <button type="button" class="btn btn-primary" onclick="confirmerExport()">Exporter</button>
+                            <button type="button" class="btn btn-warning" onclick="confirmerExport()">Exporter</button>
                         </div>
                     </div>
                 </div>

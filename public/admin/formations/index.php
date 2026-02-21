@@ -362,7 +362,7 @@ if ($key !== 'tous') {
                 </div>
                 <div class="modal-footer border-secondary">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
-                    <button type="submit" form="shortForm" class="btn btn-primary">
+                    <button type="submit" form="shortForm" class="btn btn-warning">
                         <i class="las la-upload me-1"></i> Publier
                     </button>
                 </div>

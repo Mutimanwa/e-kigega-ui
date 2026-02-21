@@ -93,7 +93,7 @@ include "../../includes/sidebar.php";
                                             Croissance mensuelle
                                         </p>
                                         <a href="<?= BASE_URL ?>public/admin/rapports/"><button type="button"
-                                                class="btn btn-soft-primary" data-bs-toggle="modal"
+                                                class="btn btn-soft-warning" data-bs-toggle="modal"
                                                 data-bs-target="#transferModal">
                                                 Benéfices
                                             </button></a>
@@ -593,7 +593,7 @@ include "../../includes/sidebar.php";
                             </div>
                             <!--end /div-->
                             <div class="text-center mt-3">
-                                <a href="<?= BASE_URL ?>public/admin/ventes/" class="btn btn-primary">Voir toutes les
+                                <a href="<?= BASE_URL ?>public/admin/ventes/" class="btn btn-warning">Voir toutes les
                                     ventes</a>
                             </div>
                         </div>
@@ -656,7 +656,7 @@ include "../../includes/sidebar.php";
                             <!--end /div-->
                             <div class="text-center mt-3">
                                 <a href="<?= BASE_URL ?>public/admin/clients/"
-                                    class="btn btn-outline-primary btn-sm">Voir tous les clients</a>
+                                    class="btn btn-outline-warning btn-sm">Voir tous les clients</a>
                             </div>
                         </div>
                         <!--end card-body-->
@@ -708,7 +708,7 @@ include "../../includes/sidebar.php";
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
-                            <button type="button" class="btn btn-primary"
+                            <button type="button" class="btn btn-warning"
                                 onclick="processTransfer()">Transferer</button>
                         </div>
                     </div>

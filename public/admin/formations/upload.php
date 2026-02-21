@@ -219,7 +219,7 @@ $formations = [
                     <div class="row">
                         <div class="col-md-8">
                             <div class="d-flex flex-wrap gap-2">
-                                <a href="<?= BASE_URL ?>public/admin/formations/ajouter.php" class="btn btn-primary">
+                                <a href="<?= BASE_URL ?>public/admin/formations/ajouter.php" class="btn btn-warning">
                                     <i class="las la-plus-circle me-1"></i> Nouvelle Formation
                                 </a>
                                 <button class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#importModal">
@@ -241,7 +241,7 @@ $formations = [
                             <div class="d-flex flex-wrap gap-2 justify-content-end">
                                 <div class="input-group input-group-sm" style="width: 200px;">
                                     <input type="text" class="form-control" placeholder="Rechercher..." id="searchInput">
-                                    <button class="btn btn-primary" type="button" onclick="rechercherFormations()">
+                                    <button class="btn btn-warning" type="button" onclick="rechercherFormations()">
                                         <i class="las la-search"></i>
                                     </button>
                                 </div>
@@ -516,7 +516,7 @@ $formations = [
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
-                <button type="button" class="btn btn-primary" onclick="importerFormations()">
+                <button type="button" class="btn btn-warning" onclick="importerFormations()">
                     <i class="las la-upload me-1"></i> Importer
                 </button>
             </div>
