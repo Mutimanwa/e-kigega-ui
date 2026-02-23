@@ -46,7 +46,7 @@ require_once 'menu_functions.php';
                         <?php echo APP_VERSION; ?>
                     </p>
                     <a href="<?php echo BASE_URL; ?>index.php"
-                        class="btn text-primary shadow-sm rounded-pill px-3">Déconnexion</a>
+                        class="btn text-warning shadow-sm rounded-pill px-3">Déconnexion</a>
                 </div>
             </div>
         </div>

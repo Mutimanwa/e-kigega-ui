@@ -118,16 +118,16 @@ include_once "../config/constantes.php";
             </div>
 
             <div class="row g-4">
-                <div class="col-md-6 col-lg-3 fade-in" style="animation-delay: 0.1s">
-                    <div class="card">
+                <div class="col-md-6 col-lg-3 fade-in " style="animation-delay: 0.1s">
+                    <div class="card ">
                         <div class="card-body">
                             <div class="text-center">
                                 <h6 class="pt-3 pb-2 m-0 fs-5 fw-semibold">Basic plan</h6>
                                 <p class="text-muted pt-2 mb-0">Solution idéale pour les startups et petites entreprises
                                 </p>
                                 <div class="pt-3">
-                                    <h1 class="d-inline-block fw-bold pricing-price">$39.00</h1>
-                                    <small class="font-12 text-muted pricing-period">/month</small>
+                                    <h1 class="d-inline-block fw-bold pricing-price">39.000</h1>
+                                    <small class="font-12 text-muted pricing-period">Fbu/mois</small>
                                 </div>
                                 <hr class="hr-dashed">
                                 <ul class="list-unstyled pricing-content text-start pt-3 border-0 mb-0">
@@ -152,7 +152,7 @@ include_once "../config/constantes.php";
                                 <h6 class="pt-3 pb-2 m-0 fs-5 fw-semibold">Premium Plan</h6>
                                 <p class="text-muted pt-2 mb-0">Parfait pour les entreprises en croissance</p>
                                 <div class="pt-3">
-                                    <h1 class="d-inline-block fw-bold" id="proPrice">39.000</h1>
+                                    <h1 class="d-inline-block fw-bold" id="proPrice">49.000</h1>
                                     <small class="font-12 text-muted">FBU/mois</small>
                                 </div>
                                 <hr class="hr-dashed">
@@ -178,7 +178,7 @@ include_once "../config/constantes.php";
                                 <h6 class="pt-3 pb-2 m-0 fs-5 fw-semibold">Business Plan</h6>
                                 <p class="text-muted pt-2 mb-0">Pour les entreprises établies</p>
                                 <div class="pt-3">
-                                    <h1 class="d-inline-block fw-bold pricing-price" id="businessPrice">79.200</h1>
+                                    <h1 class="d-inline-block fw-bold pricing-price" id="businessPrice">79.000</h1>
                                     <small class="font-12 text-muted pricing-period">FBU/mois</small>
                                 </div>
                                 <hr class="hr-dashed">

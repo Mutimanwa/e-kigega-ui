@@ -103,8 +103,8 @@ include "../../../includes/sidebar.php";
                                     <tbody>
                                         <?php foreach ($ventes as $v): ?>
                                             <tr>
-                                                <td><?=  $v['client']['nom'] ?> <?=  $v['client']['prenom'] ?></td>
-                                                <td><?=  $v['produit']['nom'] ?></td>
+                                                <td><?=  $v['client_detail']['nom'] ?> <?=  $v['client_detail']['prenom'] ?></td>
+                                                <td><?=  $v['produit_detail']['nom'] ?></td>
                                                 <td><?= number_format($v['quantite'], 2) ?></td>
                                                 <td><?= number_format($v['prix_unitaire'], 2) ?></td>
                                                 <td><?= number_format($v['prix_vente'], 2) ?> FBu</td>
@@ -124,9 +124,9 @@ include "../../../includes/sidebar.php";
                                                         data-bs-target="#modifyProductModal"
                                                         data-id="<?= $v['id'] ?>"
                                                         data-quantite="<?= $v['quantite'] ?>"
-                                                        data-produit="<?= $v['produit']['id'] ?>"
+                                                        data-produit="<?= $v['produit_detail']['id'] ?>"
                                                         data-statut="<?= $v['statut'] ?>"
-                                                        data-client="<?= $v['client']['id'] ?>">
+                                                        data-client="<?= $v['client_detail']['id'] ?>">
                                                         <i class="las la-pen  fs-18" data-bs-toggle="tooltip"
                                                             data-bs-placement="top"
                                                             title="Modifier"></i>
@@ -138,7 +138,7 @@ include "../../../includes/sidebar.php";
                                                         data-bs-toggle="modal"
                                                         data-bs-target="#deleteModal"
                                                         data-id="<?= $v['id'] ?>"
-                                                        data-nom="<?=  $v['produit']['nom'] ?>">
+                                                        data-nom="<?=  $v['produit_detail']['nom'] ?>">
                                                         <i class="las la-trash-alt  fs-18 " data-bs-toggle="tooltip"
                                                             data-bs-placement="top"
                                                             title="Supprimer"></i>
